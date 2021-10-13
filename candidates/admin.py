@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Skill, SavedJobs, AppliedJobs
+from .models import Profile, Skill, SavedJobs, AppliedJobs, AvailableCountry
 
 class ProfileAdmin(admin.ModelAdmin):
      list_display = ('user', 'full_name', 'country', 'location', 'resume', 'grad_year', 'looking_for', 'slug')
@@ -14,6 +14,10 @@ class AppliedJobsAdmin(admin.ModelAdmin):
      list_display =  ['job', 'user']
 
 
+class AvailableCountryAdmin(admin.ModelAdmin):
+     list_display = ['name']
+
+admin.site.register(AvailableCountry, AvailableCountryAdmin)
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Skill, SkillAdmin)
 admin.site.register(SavedJobs, SavedJobsAdmin)

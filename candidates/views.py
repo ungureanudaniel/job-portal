@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Profile, Skill, AppliedJobs, SavedJobs
+from .models import Profile, Skill, AppliedJobs, SavedJobs, AvailableCountry
 from recruiters.models import Job, Applicants, Selected
 from .forms import ProfileUpdateForm, NewSkillForm
 from django.contrib.auth.decorators import login_required
@@ -16,9 +16,10 @@ from django.core.paginator import Paginator
 #--------------------------------home view-------------------------------------
 def home(request):
     template = 'candidates/home.html'
-
+    countries_list = AvailableCountry.objects.all()
     context = {
         'home_page': "active",
+        'countries_list': countries_list,
     }
     return render(request, template, context)
 
@@ -64,7 +65,9 @@ def job_search_list(request):
     }
     return render(request, template, context)
 
+#----------------------------JOB DETAIL VIEW-----------------------------------
 def job_detail(request, slug):
+    template = 'candidates/job_detail.html'
     job = get_object_or_404(Job, slug=slug)
     apply_button = 0
     save_button = 0
@@ -96,4 +99,25 @@ def job_detail(request, slug):
         if i not in relevant_jobs and i != job:
             relevant_jobs.append(i)
 
-    return render(request, 'candidates/job_detail.html', {'job': job, 'profile': profile, 'apply_button': apply_button, 'save_button': save_button, 'relevant_jobs': relevant_jobs, 'candidate_navbar': 1})
+    context = {
+        'job': job,
+        'profile': profile,
+        'apply_button': apply_button,
+        'save_button': save_button,
+        'relevant_jobs': relevant_jobs,
+        'candidate_navbar': 1,
+        }
+    return render(request, template, context)
+
+#--------------------------SAVED JOBS -----------------------------------------
+@login_required
+def saved_jobs(request):
+    template = 'candidates/saved_jobs.html'
+    jobs = SavedJobs.objects.filter(
+        user=request.user).order_by('-date_posted')
+
+    context = {
+        'jobs': jobs,
+        'candidate_navbar': 1,
+        }
+    return render(request, template, context)

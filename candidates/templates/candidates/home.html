@@ -21,10 +21,17 @@
     </div> <!-- .row -->
     <div class="row">
       <div class="col-md-12 col-sm-6 col-sm-offset-3">
-        <form>
+        <form class="form-signin mt-4" action="{% url 'job-search-list' %}" method="get">
           <div class="form-box">
             <input type="text" class="searchfield-business" placeholder="Search for job keywords...">
-            <input type="text" class="searchfield-location" placeholder="Select location">
+            <!-- <input type="text" class="searchfield-location" placeholder="Select location"> -->
+            <input list="countries" name="country" id="country" class="searchfield-location" placeholder="Choose location...">
+            <datalist id="countries" style="z-index:10">
+              {% for country in countries_list %}
+              <option value="{{ country }}"></option>
+              {% endfor %}
+
+            </datalist
             <span class="vert_sep_line"></span>
             <button class="search-button" type="button">Search</button>
           </div>

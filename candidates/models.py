@@ -5,6 +5,11 @@ from autoslug import AutoSlugField
 from django_countries.fields import CountryField
 from recruiters.models import Job
 
+class AvailableCountry(models.Model):
+    name = models.CharField(max_length=200, null=True, blank=True, verbose_name = "Available Countries")
+
+    def __str__(self):
+        return self.name
 
 CHOICES = (
     ('Full Time', 'Full Time'),
