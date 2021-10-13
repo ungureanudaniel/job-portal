@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'users',
     'recruiters',
     'candidates',
-    'pwa',
+
 ]
 
 MIDDLEWARE = [
@@ -89,12 +89,12 @@ if (os.environ.get('DJANGO_DEV') == 'True'):
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'defaultdb',
-            'USER': 'doadmin',
-            'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-            'HOST': 'fenice-database-do-user-8082982-0.b.db.ondigitalocean.com',
-            'PORT': '25060',
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'jobmarket_db',
+            'USER': 'daniel',
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
+            'HOST': 'localhost',
+            'PORT': '3306',
         }
     }
 
@@ -156,32 +156,32 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #-------------------PROGRESSIVE WEB APP SETUP-----------------------------------
-PWA_APP_NAME = 'Dincolo'
-PWA_APP_DESCRIPTION = "Job portal PWA"
-PWA_APP_THEME_COLOR = '#000000'
-PWA_APP_BACKGROUND_COLOR = '#ffffff'
-PWA_APP_DISPLAY = 'standalone'
-PWA_APP_SCOPE = '/'
-PWA_APP_ORIENTATION = 'any'
-PWA_APP_START_URL = '/'
-PWA_APP_STATUS_BAR_COLOR = 'default'
-PWA_APP_ICONS = [
-    {
-        'src': 'static/images/1200px-Flag_of_Romania.svg.png',
-        'sizes': '160x160'
-    }
-]
-PWA_APP_ICONS_APPLE = [
-    {
-        'src': 'static/images/1200px-Flag_of_Romania.svg.png',
-        'sizes': '160x160'
-    }
-]
-PWA_APP_SPLASH_SCREEN = [
-    {
-        'src': 'static/images/1200px-Flag_of_Romania.svg.png',
-        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
-    }
-]
-PWA_APP_DIR = 'ltr'
-PWA_APP_LANG = 'en-US'
+# PWA_APP_NAME = 'Dincolo'
+# PWA_APP_DESCRIPTION = "Job portal PWA"
+# PWA_APP_THEME_COLOR = '#000000'
+# PWA_APP_BACKGROUND_COLOR = '#ffffff'
+# PWA_APP_DISPLAY = 'standalone'
+# PWA_APP_SCOPE = '/'
+# PWA_APP_ORIENTATION = 'any'
+# PWA_APP_START_URL = ''
+# PWA_APP_STATUS_BAR_COLOR = 'default'
+# PWA_APP_ICONS = [
+#     {
+#         'src': 'static/images/1200px-Flag_of_Romania.svg.png',
+#         'sizes': '160x160'
+#     }
+# ]
+# PWA_APP_ICONS_APPLE = [
+#     {
+#         'src': 'static/images/1200px-Flag_of_Romania.svg.png',
+#         'sizes': '160x160'
+#     }
+# ]
+# PWA_APP_SPLASH_SCREEN = [
+#     {
+#         'src': 'static/images/1200px-Flag_of_Romania.svg.png',
+#         'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+#     }
+# ]
+# PWA_APP_DIR = 'ltr'
+# PWA_APP_LANG = 'en-US'

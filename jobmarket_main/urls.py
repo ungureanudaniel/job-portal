@@ -7,8 +7,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('/', include('users.urls')),
     path('hiring/', include('recruiters.urls')),
-    path('/', include('candidates.urls')),
+    path('', include('candidates.urls')),
     path('captcha/', include('captcha.urls')),
     path('__debug__/', include(debug_toolbar.urls)),
-    path('', include('pwa.urls')),
+    # path('', include('pwa.urls')),
 ]

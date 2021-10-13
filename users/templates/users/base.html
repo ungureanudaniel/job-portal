@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ro">
+  {% include 'users/header.html' %}
+  <body>
+
+  <!--== Loader Start ==-->
+  <div id="loader-overlay">
+    <div class="loader">
+      <div class="spinner-double-dot-in"></div>
+    </div>
+  </div>
+  <!--== Loader End ==-->
+
+  <!--== navbar Start ==-->
+
+  <nav class="navbar fixed-top justify-content-center">
+    <div class="logo">
+      <a href="{% url 'home' %}"><h1 class=""><img class="icon p-1" src="{% static 'icons/briefcase.png' %}" alt="Dincolo-Logo" width="50" height="50">Dincolo</h1>
+    </div>
+    <!--== Header Start ==-->
+    <div class="topnav" id="myTopnav">
+      <a href="#home" class="active">Home</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+      <div class="dropdown">
+        <button class="dropbtn">Find Job
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>
+      <a href="#about">About</a>
+      <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+    <div class="login_btn text-center">
+      <button href="#" type="button">Sign In</button>
+    </div>
+  </nav>
+    <!--== Header End ==-->
+    {% block content %}
+
+
+    {% endblock %}
+
+  {% include 'users/js.html' %}
+  <!--== Wrapper End ==-->
+  <!-- ==== fetch the selected language to show it === -->
+
+  <!-- == end fetch language  === -->
+  </body>
+</html>

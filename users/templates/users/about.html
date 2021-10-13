@@ -1,0 +1,36 @@
+{% load static %}
+
+
+<!--== Who We Are Start ==-->
+<section class="whoweare white-bg" id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 centerize-col text-center wow fadeInUp" data-wow-delay="0.1s">
+        <div class="section-title">
+          <h1 class="raleway-font font-40px"><span class="font-100 font-40px"># "We Are a " %}</span> "Web Development Company" %}"</h1>
+          <hr class="center_line dark-bg">
+          <p style="font-size:1.2rem;">
+            " "We started in 2019, with a strong motivation to be successful by putting commitment, hard work and our clients satisfaction on the table for each and every project." %}"
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="skillrow row ">
+      <div class="skill-image col-md-6 col-sm-12 wow fadeInRight" data-wow-delay="0.2s">
+        <img class="img-responsive" alt="laptop" src="{% static 'images/laptop5.png' %}">
+      </div>
+      <div class="col-md-6 col-sm-12 wow fadeInLeft" data-wow-delay="0.3s">
+        <div class="skillbar-wrap skillbar-style-02">
+          {% for skill in skills %}
+            <div class="skillbar" data-percent="{{ skill.percent }}">
+                <span class="skillbar-title">{{ skill.title|upper }}</span>
+                <!-- <span class="skill-bar-percent"></span> -->
+                <!-- <p class="skillbar-bar corporate" id="hide_review_redirect"></p> -->
+
+            </div>
+          {% endfor %}
+            <!-- End Skill Bar -->
+      </div>
+    </div>
+  </div>
+</section>
