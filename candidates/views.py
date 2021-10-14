@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile, Skill, AppliedJobs, SavedJobs, AvailableCountry
-from recruiters.models import Job, Applicants, Selected
+from recruiters.models import Job, Applicant, Selected
 from .forms import ProfileUpdateForm, NewSkillForm
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -17,8 +17,10 @@ from django.core.paginator import Paginator
 def home(request):
     template = 'candidates/home.html'
     countries_list = AvailableCountry.objects.all()
+    featured_jobs = Job.objects.all()[:10]
     context = {
         'home_page': "active",
+        "featured_jobs": featured_jobs,
         'countries_list': countries_list,
     }
     return render(request, template, context)
@@ -26,16 +28,17 @@ def home(request):
 #----------------------------job search list ----------------------------------
 def job_search_list(request):
     template = 'candidates/job_search_list.html'
-    query = request.GET.get('p')
-    loc = request.GET.get('q')
+    countries_list = AvailableCountry.objects.all()
+    query_keywords = request.GET.get('keyword')
+    query_location = request.GET.get('loc')
     object_list = []
-    if(query == None):
+    if(query_keywords == None):
         object_list = Job.objects.all()
     else:
-        title_list = Job.objects.filter(title__icontains=query).order_by('-date_posted')
-        skill_list = Job.objects.filter(skills_req__icontains=query).order_by('-date_posted')
-        company_list = Job.objects.filter(company__icontains=query).order_by('-date_posted')
-        job_type_list = Job.objects.filter(job_type__icontains=query).order_by('-date_posted')
+        title_list = Job.objects.filter(title__icontains=query_keywords).order_by('-date_posted')
+        skill_list = Job.objects.filter(skills_req__icontains=query_keywords).order_by('-date_posted')
+        company_list = Job.objects.filter(company__icontains=query_keywords).order_by('-date_posted')
+        job_type_list = Job.objects.filter(job_type__icontains=query_keywords).order_by('-date_posted')
         for i in title_list:
             object_list.append(i)
         for i in skill_list:
@@ -47,11 +50,11 @@ def job_search_list(request):
         for i in job_type_list:
             if i not in object_list:
                 object_list.append(i)
-    if(loc == None):
+    if(query_location == None):
         locat = Job.objects.all()
     else:
         locat = Job.objects.filter(
-            location__icontains=loc).order_by('-date_posted')
+            location__icontains=query_location).order_by('-date_posted')
     final_list = []
     for i in object_list:
         if i in locat:
@@ -61,7 +64,8 @@ def job_search_list(request):
     page_obj = paginator.get_page(page_number)
     context = {
         'jobs': page_obj,
-        'query': query,
+        'query_keywords': query_keywords,
+        "countries_list": countries_list,
     }
     return render(request, template, context)
 

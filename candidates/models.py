@@ -8,6 +8,10 @@ from recruiters.models import Job
 class AvailableCountry(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True, verbose_name = "Available Countries")
 
+    class Meta:
+        verbose_name = "Available Country"
+        verbose_name_plural = "Available Countries"
+
     def __str__(self):
         return self.name
 
@@ -47,6 +51,11 @@ class SavedJobs(models.Model):
     user = models.ForeignKey(User, related_name='saved', on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
 
+
+    class Meta:
+        verbose_name = "Saved Jobs"
+        verbose_name_plural = "Saved Jobs"
+
     def __str__(self):
         return self.job.title
 
@@ -54,6 +63,10 @@ class AppliedJobs(models.Model):
     job = models.ForeignKey(Job, related_name='applied_job', on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name='applied_user', on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        verbose_name = "Applied Jobs"
+        verbose_name_plural = "Applied Jobs"
 
     def __str__(self):
         return self.job.title

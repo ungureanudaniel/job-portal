@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import Job, Applicants, Selected
+from .models import Job, Applicant, Selected
 
 
 class JobAdmin(admin.ModelAdmin):
-     list_display = ('recruiter', 'title', 'company', 'location', 'description', 'skills_req', 'job_type', 'link', 'slug')
+     list_display = ('recruiter', 'title', 'company', 'logo', 'location', 'description', 'skills_req', 'job_type', 'from_wage_hour', 'to_wage_hour', 'link', 'slug')
 
-class ApplicantsAdmin(admin.ModelAdmin):
+class ApplicantAdmin(admin.ModelAdmin):
      list_display =  ('job', 'applicant', 'date_posted')
 
 class SelectedAdmin(admin.ModelAdmin):
@@ -13,5 +13,5 @@ class SelectedAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Job, JobAdmin)
-admin.site.register(Applicants, ApplicantsAdmin)
+admin.site.register(Applicant, ApplicantAdmin)
 admin.site.register(Selected, SelectedAdmin)

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="ro">
   {% include 'users/header.html' %}
-  <body>
+  <body class="bg-dark">
 
   <!--== Loader Start ==-->
   <div id="loader-overlay">
@@ -21,9 +21,9 @@
     </div>
     <!--== Header Start ==-->
     <div class="topnav" id="myTopnav">
-      <a href="#home" class="active">Home</a>
+      <a href="{% url 'home' %}" class="active">Home</a>
       <a href="#news">News</a>
-      <a href="#contact">Contact</a>
+      <a href="{% url 'contact' %}">Contact</a>
       <div class="dropdown">
         <button class="dropbtn">Find Job
           <i class="fa fa-caret-down"></i>
@@ -38,7 +38,7 @@
       <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
     <div class="login_btn text-center">
-      <button href="#" type="button">Sign In</button>
+      <a href="{% url 'login' %}" type="button">Sign In</a>
     </div>
   </nav>
     <!--== Header End ==-->

@@ -1,5 +1,9 @@
-body {color: #888;background: #fafafa;font-size:14px;font-family: 'Open Sans', sans-serif;font-weight: 400;}
-
+body {color: #888;background: #fafafa;font-size:14px;font-family: 'Open Sans', sans-serif;font-weight: 400;display: flex;flex-direction: column;align-items: center;}
+html {
+  height: 100%;
+  margin: auto;
+  width: 100%;
+}
 /* --------------------navbar style--------------------------------- */
 button:hover {
   transition: 0.4s;
@@ -112,8 +116,15 @@ button:hover {
     float: right;
     display: block;
   }
+
 }
 
+@media screen and (max-width: 800px) {
+  .navbar .logo {
+    display: none;
+    font-size: 1rem;
+  }
+}
 @media screen and (max-width: 600px) {
   .topnav.responsive {position: relative;}
   .topnav.responsive .icon {
@@ -138,16 +149,38 @@ button:hover {
 .navbar .login_btn {
   float: right;
 }
-.navbar .login_btn button {
+.navbar .login_btn a {
+  position: relative;
   border-radius: 50px;
-  background-color: rgba(54, 215, 183, .3);
-}
+  width: 10rem;
+  padding: 10px;
+  color: rgba(230, 126, 34, 1);;
+  background-color: white;
+  transition: 0.4s;
 
+}
+.navbar .login_btn a:hover, .navbar .login_btn a:focus {
+  overflow: hidden;
+  color: white;
+  background-color: transparent;
+  border: 2px solid rgba(230, 126, 34, 1);
+
+}
+/*----------------------------login view style ------------------------------*/
+.section-login {
+  position: relative;
+  top:10rem;
+  background-color: black;
+}
+/*---------------------------contact view style------------------------------*/
+.section-contact {
+  z-index: 10;
+}
 /* ---------------------------welcome header style-------------------------- */
 
 video.html5-video {
-  z-index: 1;
-  background-size: cover;
+  z-index: -10;
+  background-size: auto;
   display: table-cell;
   position: absolute;
   top: 0;
@@ -181,72 +214,191 @@ video.html5-video {
   color: white;
 }
 
-.section_welcome .form-box {
+.section_welcome .form-box, .search-list-banner .form-box  {
   border-radius: 70px;
-  border: 3px solid rgba(54, 215, 183, .3);
+  border: 3px solid rgba(230, 126, 34, 1);
   background: white;
   padding: 0.3rem;
   width: 100%;
   height: 80px;
 }
 
-.section_welcome .form-box input {
+.section_welcome .form-box input, .search-list-banner .form-box input {
   outline: none;
   border: none;
 }
-.section_welcome .form-box .searchfield-business {
-  margin-right: 100px;
+.section_welcome .form-box .searchfield-business, .search-list-banner .form-box .searchfield-business {
+  margin-left: 2rem;
+  margin-top: 1rem;
 }
-.section_welcome .form-box .searchfield-location {
-  margin-left: 100px;
-  margin-right: 100px;
+.section_welcome .form-box .searchfield-location, .search-list-banner .form-box .searchfield-location {
+  margin-left: 10rem;
+  margin-right: 2rem;
 }
 
-.section_welcome .form-box button {
+.section_welcome .form-box button, .search-list-banner .form-box button {
   float: right;
   width: 10rem;
   height: 4rem;
   border-radius: 50px;
-  background-color: rgba(54, 215, 183, .3);
+  background-color: rgba(230, 126, 34, 1);
 }
 
+.section_welcome .form-box button:hover, .section_welcome .form-box button:focus, .search-list-banner .form-box button:hover, .search-list-banner .form-box button:focus {
+  float: right;
+  width: 10rem;
+  height: 4rem;
+  border-radius: 50px;
+  border: 2px solid rgba(230, 126, 34, 1);
+  color: rgba(230, 126, 34, 1);
+  background-color: white;
+}
 .section_welcome .trending_kwords {
   float: left;
   display: inline;
+  position: relative;
 }
 .section_welcome .featured-jobs {
   display: table;   /* Allow the centering to work */
 	margin: 0 auto;
-}
-.section_welcome .featured-jobs-list {
-  min-width: 90px;
-	list-style: none;
-	padding-top: 20px;
-}
-.section_welcome .featured-jobs-list .list-item {
+  margin-top: 2rem;
+  position: relative;
 
+}
+.section_welcome .featured-jobs .featured-jobs-type {
+  z-index: 10;
+  margin-top: 2rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  background-color: rgba(48, 48, 48, 0.6);
+  justify-content: center;
+  align-items: center;
+  -moz-border-radius:20px;
+  -webkit-border-radius:10px;
+  border-radius:25px;
+  overflow: hidden;
+  padding: 3em;
+  padding-top: 3em;
+  position: relative;
+}
+
+.section_welcome .featured-jobs .featured-jobs-type:hover, .section_welcome .featured-jobs .featured-jobs-type:focus {
+  overflow: hidden;
+  background-color: rgba(230, 126, 34, 1);
+  border: 2px solid rgba(230, 126, 34, 1);
+  color: white;
+  animation-name: featured_jobs;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  padding: 3.1em;
+  padding-top: 3.1em;
+}
+
+.section_welcome .featured-jobs .featured-jobs-type:hover {
+  animation-name: reverse_featured_jobs;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+@keyframes featured_jobs {
+  from {background-color: rgba(48, 48, 48, 0.6);}
+  to {background-color: rgba(230, 126, 34, 1);}
+}
+@keyframes reverse_featured_jobs {
+  from {background-color: rgba(230, 126, 34, 1);}
+  to {background-color: rgba(48, 48, 48, 0.6);}
+}
+
+.section_welcome .featured-jobs .featured-jobs-type .job-title {
+  font-family: cursive;
+}
+
+.sep-line-section {
+  width: 50%;
+  border-bottom:5px solid rgba(230, 126, 34, 0.8);
+}
+
+.sep-line-title {
+  width: 10%;
+  border-bottom:5px solid gba(48, 48, 48, 0.6);
+}
+
+.section-jobs {
+  margin-top:20em;
+  z-index: 100;
+  width: 100%;
+  background-color: rgb(250, 250, 250, 0.99);
+  position: relative;
+}
+
+.section-jobs .headline span {
+  color: rgba(230, 126, 34, 1);
+  font-weight: bolder;
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+.section-jobs .headline h1 {
+  text-transform: uppercase;
+  color: black;
+  font-weight: lighter;
+  font-size: 3rem;
+}
+
+.section-jobs .listing-company-logo {
+  position: relative;
+}
+
+.section-jobs a.listings {
+  box-shadow: 0px 0px 10px 5px rgb(243, 243, 243, 0.9);
+  background-color: white;
+  text-decoration: none;
+  position: relative;
+  padding-right: 30px;
+  margin-bottom: 15px;
+  display: block;
+  width: 100%;
+  float: left;
+  border-radius: 6px;
+  z-index: 1;
+  /* border: 2px solid rgba(48, 48, 48, 0.6); */
+}
+
+.section-jobs .container a.listings:hover {
+  box-shadow: 0px 0px 10px 5px rgb(243, 243, 243, 0.5);
+  animation: listings;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes listings {
+  from {box-shadow: 0px 0px 10px 5px rgb(243, 243, 243, 0.5);margin-left: 0.3em;margin-right: 0.3em;}
+  to {box-shadow: 0px 0px 20px 5px rgb(240, 240, 240, 0.9);margin-left: 0.3em;margin-right: 0.3em}
+}
+
+.section-jobs .listings  .listing-details {
+  position: relative;
+  padding: 2em;
   display: inline;
 }
-.section_welcome .featured-jobs-list .list-item a {
+.section-jobs .listings .listing-title {
   position: relative;
-  width: 130px;
-  height: 100px;
-  overflow: hidden;
-  color: #ffffff;
-  border-radius: 4px;
-  padding: 0px;
-  -webkit-transition: all .25s ease-in-out;
-  transition: all .25s ease-in-out;
-  }
-.utf_box {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: rgba(48, 48, 48, 0.6);
-    border-radius: 4px;
-    padding-top: 20px;
-    text-align: center;
-    transition: 0.35s;
-    box-shadow: 0px 0px 16px 0px rgb(2 2 2 / 10%);
-    -webkit-box-shadow: 0px 0px 16px 0px rgb(2 2 2 / 10%);
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
 }
+.section-jobs .listings  .listing-details .listing-footer ul {
+  list-style: none;
+}
+.section-jobs .listings  .listing-details .listing-footer li:nth-child(1) {
+  font-size: 1.2rem;
+}
+.section-jobs .listings  .listing-details .listing-footer li:nth-child(2) {
+  font-size: 1.2rem;
+}
+
+/* -----------------------JOB SEARCH LIST-------------------------------------*/
+/* --------------SEARCH BOX----------------*/
