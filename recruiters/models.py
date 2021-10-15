@@ -38,7 +38,7 @@ class Job(models.Model):
         if self.date_posted:
             now = datetime.datetime.utcnow().replace(tzinfo=timezone.utc)
             timediff = (now - self.date_posted).total_seconds()
-            return strftime("%H:%M:%S", gmtime(timediff))
+            return strftime("%H", gmtime(timediff))
 
     def __str__(self):
         return self.title
