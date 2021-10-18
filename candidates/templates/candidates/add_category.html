@@ -1,0 +1,114 @@
+{% extends 'blogapp/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Add post page{% endblock %}
+
+{% block content %}
+
+<!-- Header Section Begin -->
+<header class="header">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-1 col-6 order-md-1 order-1">
+                    <div class="header__humberger">
+                        <i class="fa fa-bars humberger__open"></i>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-10 order-md-2 order-3">
+                    <nav class="header__menu">
+                        <ul>
+                            <li ><a href="{% url 'home' %}">Home</a></li>
+                            <li class="dropdown"><a href="#">Post categories</a>
+                                <ul class="dropdown__menu">
+                                    {% for cat in categories %}
+                                    <li><a style="color:white;" href="{% url 'category' cat.slug %}">{{ cat }}</a></li>
+
+                                    {% endfor %}
+                                </ul>
+                            </li>
+
+                            <li><a href="{% url 'about' %}">About</a></li>
+
+                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'add_post' %}">Add post</a></li>
+                            <li class="active"><a href="{% url 'add_category' %}">Add category</a></li>
+                            <li><a href="{% url 'draft_posts' %}">Draft posts</a></li>
+                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-2 col-md-1 col-6 order-md-3 order-2">
+                    <div class="header__search">
+                        <i class="fa fa-search search-switch"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="header__btn">
+                    <a class="primary-btn" href="{% url 'subscription' %}">Subscribe</a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="header__logo">
+                    <a href="{% url 'home' %}"><img alt="" src="{% static 'img/logo6.png' %}"></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="header__social">
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-youtube-play"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-envelope-o"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Header Section End -->
+    <!-- Sign In Section Begin -->
+    <div class="signin">
+        <div class="signin__warp">
+            <div class="signin__content">
+                <div class="signin__logo">
+                    <a href="{% url 'home' %}"><img src="{% static 'img/logo7.png' %}" alt=""></a>
+                </div>
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|striptags }}</li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                  <p>Add a new blog post category here, below! It wil also appear in the main navigation bar, in menu "POSTS"</p>
+
+                {% endif %}
+                <div class="signin__form">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <div class="signin__form__text">
+                                <div class="divide"></div>
+                                <form action="{% url 'home' %}" method="POST">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+
+                                    <button type="submit" class="site-btn">Save category</button><br/><hr>
+                                    <a type="button" href="{% url 'home' %}" class="btn btn-secondary">Back home</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sign In Section End -->
+{% endblock %}

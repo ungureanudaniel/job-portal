@@ -1,56 +1,229 @@
 {% load static %}
-
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="en">
+
   {% include 'users/header.html' %}
-  <body class="bg-dark">
 
-  <!--== Loader Start ==-->
-  <div id="loader-overlay">
-    <div class="loader">
-      <div class="spinner-double-dot-in"></div>
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
     </div>
-  </div>
-  <!--== Loader End ==-->
 
-  <!--== navbar Start ==-->
-
-  <nav class="navbar fixed-top justify-content-center">
-    <div class="logo">
-      <a href="{% url 'home' %}"><h1 class=""><img class="icon p-1" src="{% static 'icons/briefcase.png' %}" alt="Dincolo-Logo" width="50" height="50">Dincolo</h1>
-    </div>
-    <!--== Header Start ==-->
-    <div class="topnav" id="myTopnav">
-      <a href="{% url 'home' %}" class="active">Home</a>
-      <a href="#news">News</a>
-      <a href="{% url 'contact' %}">Contact</a>
-      <div class="dropdown">
-        <button class="dropbtn">Find Job
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+    <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+          {% for logo in logos %}
+            <a href="{% url 'home' %}"><img alt="" src="{{ logo.image.url }}"></a>
+          {% endfor %}
         </div>
-      </div>
-      <a href="#about">About</a>
-      <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
-    </div>
-    <div class="login_btn text-center">
-      <a href="{% url 'login' %}" type="button">Sign In</a>
-    </div>
-  </nav>
-    <!--== Header End ==-->
-    {% block content %}
+        <nav class="humberger__menu__nav mobile-menu">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li class="dropdown"><a href="#">Find Job</a>
+                  <ul class="dropdown__menu">
+                    <li ><a style="color:white;" href="#">Job List</a></li>
+                    <li ><a style="color:white;" href="#">Browse Recruiters</a></li>
+                  </ul>
+                </li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                {% if user.is_authenticated %}
+                <li class="dropdown"><a href="#">Sign In</a>
+                    <ul class="dropdown__menu">
+                      <l<li><a href="#">Dashboard</a></li>
+                      <li><a href="#">Add resume</a></li>
+                      <li><a href="#">...</a></li>
+                      <li><a href="#">...</a></li>
+                      <li><a href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="humberger__menu__about">
+            <div class="humberger__menu__title sidebar__item__title">
+                <h6>About me</h6>
+            </div>
+            <img alt="" src="{% static 'img/humberger/ioana-2.jpg' %}">
+            {% for item in about_list %}
+            <h6 style="color:white;">{{ item.title }}</h6>
+            <p>{{ item.text|slice:190 }}...</p>
 
+            <a class="btn btn-dark mb-2" href="{% url 'about' %}">Read more</a>
+            {% endfor %}
+            <div class="humberger__menu__about__social sidebar__item__follow__links">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-envelope-o"></i></a>
+            </div>
+        </div>
+        <div class="humberger__menu__subscribe">
+            <div class="humberger__menu__title sidebar__item__title">
+                <h6>Subscribe</h6>
+            </div>
+            <p>Subscribe to our newsletter and get my newest updates right on your inbox.</p>
+            <a class="site-btn" href="#">Subscribe</a>
+
+        </div>
+    </div>
+    <!-- Humberger End -->
+
+    <!-- Header/NAVBAR Section Begin -->
+    <header class="header">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 col-md-1 col-6 order-md-1 order-1">
+                        <div class="header__humberger">
+                            <i class="fa fa-bars humberger__open"></i>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-10 order-md-2 order-3">
+                        <nav class="header__menu">
+                            <ul>
+                                <li class="active"><a href="{% url 'home' %}">Home</a></li>
+                                <li class="dropdown"><a href="#">Find Job</a>
+                                    <ul class="dropdown__menu">
+                                      <li ><a style="color:white;" href="#">Job List</a></li>
+                                      <li ><a style="color:white;" href="#">Browse Recruiters</a></li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="{% url 'about' %}">About</a></li>
+
+                                <li><a href="{% url 'contact' %}">Contact</a></li>
+                                {% if user.is_authenticated %}
+                                <li class="dropdown"><a href="#">Sign In</a>
+                                    <ul class="dropdown__menu">
+                                      <l<li><a href="#">Dashboard</a></li>
+                                      <li><a href="#">Add resume</a></li>
+                                      <li><a href="#">...</a></li>
+                                      <li><a href="#">...</a></li>
+                                      <li><a href="{% url 'logout' %}">Logout</a></li>
+                                    </ul>
+                                </li>
+                                {% else %}
+                              <li class="active"><a class="primary-btn" href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true">  <p>Sign In</p></i></a></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-lg-2 col-md-1 col-6 order-md-3 order-2">
+                        <div class="header__search">
+                            <i class="fa fa-search search-switch"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header/NAVBAR Section End -->
+
+    {% block content %}
 
     {% endblock %}
 
-  {% include 'users/js.html' %}
-  <!--== Wrapper End ==-->
-  <!-- ==== fetch the selected language to show it === -->
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="footer__instagram">
 
-  <!-- == end fetch language  === -->
-  </body>
+                <div class="footer__instagram__avatar">
+                    <div class="footer__instagram__avatar--pic">
+                        <img alt="" src="{% static 'images/footer/insta_logo.png' %}">
+                    </div>
+                    <div class="footer__instagram__avatar--text">
+                        <h5><a href="https://www.instagram.com/artisanbakerybrasov/"><small></small></a></h5>
+
+                        <span>xxx followers</span>
+
+                    </div>
+                </div>
+                 <div class="footer__facebook__avatar">
+                    <div class="footer__facebook__avatar--pic">
+                        <img alt="" src="{% static 'images/footer/fb_logo.png' %}">
+                    </div>
+                    <div class="footer__facebook__avatar--text">
+                        <h5><a href="https://www.facebook.com/artisanbakerybrasov/"><small></small></a></h5>
+
+                        <span>xxx followers</span>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
+                        <div class="footer__instagram__item set-bg" data-setbg="{% static 'images/footer/footer-1.png' %}"></div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
+                        <div class="footer__instagram__item set-bg" data-setbg="{% static 'images/footer/footer-2.png' %}"></div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
+                        <div class="footer__instagram__item set-bg" data-setbg="{% static 'images/footer/footer-3.png' %}"></div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
+                        <div class="footer__instagram__item set-bg" data-setbg="{% static 'images/footer/footer-4.png' %}"></div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
+                        <div class="footer__instagram__item set-bg" data-setbg="{% static 'images/footer/footer-5.png' %}"></div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
+                        <div class="footer__instagram__item set-bg" data-setbg="{% static 'images/footer/footer-6.png' %}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__text">
+                        <div class="footer__logo">
+                          {% for logo in logos %}
+                            <a href="{% url 'home' %}"><img alt="" src="{{ logo.image.url }}"></a>
+                          {% endfor %}
+                        </div>
+                        <p> </p>
+                        <div class="footer__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-envelope-o"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer__copyright">
+                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script><a class="text-dark" style="cursor: pointer;" href="{% url 'login' %}"> All rights reserved</a> | This template is made with <i aria-hidden="true" class="fa fa-heart"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div>
+                    <p class="text-center">If you don't want to receive any of my emails anymore, please press the unsubscribe button below.</p>
+
+
+                                <div class="header__btn text-center">
+                                    <a class="primary-btn" href="#">Unsubscribe</a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+
+
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form" action="#">
+                <input id="search-input" name="q" placeholder="Search here....." type="text">
+            </form>
+        </div>
+    </div>
+    <!-- Search End -->
+
+    {% include 'users/js.html' %}
+</body>
+
 </html>

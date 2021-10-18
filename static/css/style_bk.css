@@ -1,0 +1,502 @@
+body {color: #888;background: #fafafa;font-size:14px;font-weight: 400;display: flex;flex-direction: column;align-items: center;font-family: "Nunito", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;text-transform: none;}
+html {
+  height: 100%;
+  margin: auto;
+  width: 100%;
+}
+
+button:hover {
+  transition: 0.4s;
+  background-color: white;
+  border: 2px solid rgba(54, 215, 183, .5);
+  color: rgba(54, 215, 183, .5);
+}
+video {position:absolute;background-size: auto;height: 100%;
+  width: 100%;position: absolute;top: 50%;transform: translate(-50%, -50%);z-index: -3}
+
+
+/* .html5-video {background-color: #000; height: auto; left: 50%; min-height: 100%; max-width: 100%; position: absolute; top: 50%; -ms-transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%);  width: auto; z-index: -3; } */
+
+/* --------------------navbar style--------------------------------- */
+.header-container .top-bar {
+  float: left;
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  flex: 1;
+}
+.header-container .logo {
+  height: 44px;
+  width: auto;
+  top: 50%;
+  position: relative;
+  transform: translate3d(0, -50%, 0);
+
+}
+.navbar .logo .brand-name {
+  padding-left: 2rem;
+  text-decoration: none;
+  color: white;
+}
+.navbar-default {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  padding: .5rem 1rem;
+  border-bottom: 1px solid rgba(54, 215, 183, .3);
+  -webkit-background-clip: padding-box;
+}
+
+.navbar-scrolled {
+  position: relative;
+  animation: navbar_scrolled;
+  background-color: rgba(48, 48, 48, 0.8);
+  border-bottom: 1px solid rgba(54, 215, 183, .3);
+  -webkit-background-clip: padding-box;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  background-clip: padding-box;
+}
+
+@keyframes navbar_scrolled {
+  from {background-color: transparent;}
+  to {background-color: white;}
+}
+
+.topnav {
+  z-index: 3;
+  background-size: cover;
+  background-position: center center;
+  background: transparent;
+  min-height: 50px;
+}
+
+.topnav .nav-item {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.active {
+  background-color: transparent;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 17px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 4;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.topnav a:hover, .dropdown:hover .dropbtn {
+  color: rgba(54, 215, 183, .9);
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+@media screen and (max-width: 1600px) {
+  .topnav a.icon {
+    float: right;
+    display: block;}
+  .navbar .login_btn {
+    margin-left: auto;
+  }
+}
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+  .navbar .login_btn {
+    margin-left: auto;
+  }
+  .navbar .login_btn a {
+    width: 1rem;
+  }
+}
+/* ------------- small screen top settings ------------------------*/
+@media screen and (max-width: 800px) {
+  .navbar .logo {
+    display: none;
+    font-size: 1rem;
+  }
+  .section_welcome .form-box, .search-list-banner .form-box  {
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 10px;
+    flex-direction: column;
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.2) !important;
+    padding: 0.3rem;
+    width: 75%;
+    height: 18em;
+  }
+  .section_welcome .form-box .searchfield-business, .search-list-banner .form-box .searchfield-business {
+    margin-left: 2rem;
+    margin-top: 1rem;
+  }
+  .header-container .login_btn p {
+    display: none;
+  }
+  .header-container .login .login_btn a {
+    background: #ff8a00;
+    position: relative;
+    top: 50%;
+    border-radius: 40px;
+    transform: translateY(-50%);
+    transition: 0.3s;
+    color: #ffffff;
+    border: 2px solid #ff8a00;
+    padding: 7px 15px;
+    display: block;
+    margin: 0 -3px;
+    min-width: 116px;
+    text-align: center;
+    line-height: 26px;
+    /* position: relative;
+    border-radius: 50px;
+    width: 4rem;
+    padding: 10px;
+    color: rgba(230, 126, 34, 1);;
+    background-color: white;
+    transition: 0.4s; */
+  }
+}
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+.navbar .login_btn {
+  float: right;
+}
+.navbar .login_btn a {
+  position: relative;
+  border-radius: 50px;
+  width: 6rem;
+  padding: 10px;
+  color: rgba(230, 126, 34, 1);;
+  background-color: white;
+  transition: 0.4s;
+
+}
+.navbar .login_btn a:hover, .navbar .login_btn a:focus {
+  overflow: hidden;
+  color: white;
+  background-color: transparent;
+  border: 2px solid rgba(230, 126, 34, 1);
+
+}
+/*----------------------------login view style ------------------------------*/
+.section-login {
+  position: relative;
+  top:10rem;
+  background-color: black;
+}
+/*---------------------------contact view style------------------------------*/
+.section-contact {
+  z-index: 10;
+}
+/* ---------------------------welcome header style-------------------------- */
+
+
+/* .html5-video {
+  z-index: -10;
+  background-size: auto;
+  display: table-cell;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto
+} */
+
+.section_welcome {
+  position: relative;
+  background-image: url(../videos/tech-world.mp4);
+  background-size: cover;
+  background-position: center center;
+  top: 10rem;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 10;
+  color:white;
+}
+.section_welcome .welcome_content h1, .section_welcome .welcome_content h3 {
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  width: 100%;
+  color: white;
+}
+.section_welcome .welcome_content_caption {
+  margin-top: 100px;
+  width: 50%;
+  color: white;
+}
+/* ------------- large screen search box ------------------------*/
+.section_welcome .form-box, .search-list-banner .form-box  {
+  border-radius: 70px;
+  border: 3px solid rgba(230, 126, 34, 1);
+  background: white;
+  padding: 0.3rem;
+  width: 100%;
+  height: 80px;
+}
+
+.section_welcome .form-box input, .search-list-banner .form-box input {
+  outline: none;
+  border: none;
+}
+.section_welcome .form-box .searchfield-business, .search-list-banner .form-box .searchfield-business {
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+.section_welcome .form-box .searchfield-location, .search-list-banner .form-box .searchfield-location {
+  margin-left: 10rem;
+  margin-right: 2rem;
+}
+
+.section_welcome .form-box button, .search-list-banner .form-box button {
+  float: right;
+  width: 10rem;
+  height: 4rem;
+  border-radius: 50px;
+  background-color: rgba(230, 126, 34, 1);
+}
+
+.section_welcome .form-box button:hover, .section_welcome .form-box button:focus, .search-list-banner .form-box button:hover, .search-list-banner .form-box button:focus {
+  float: right;
+  width: 10rem;
+  height: 4rem;
+  border-radius: 50px;
+  border: 2px solid rgba(230, 126, 34, 1);
+  color: rgba(230, 126, 34, 1);
+  background-color: white;
+}
+.section_welcome .trending_kwords {
+  float: left;
+  display: inline;
+  position: relative;
+}
+.section_welcome .featured-jobs {
+  display: table;   /* Allow the centering to work */
+	margin: 0 auto;
+  margin-top: 2rem;
+  position: relative;
+
+}
+
+.section_welcome .featured-jobs .featured-jobs-type {
+  z-index: 10;
+  margin-top: 2rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  background-color: rgba(48, 48, 48, 0.6);
+  justify-content: center;
+  align-items: center;
+  -moz-border-radius:20px;
+  -webkit-border-radius:10px;
+  border-radius:25px;
+  overflow: hidden;
+  padding: 3em;
+  padding-top: 3em;
+  position: relative;
+}
+
+.section_welcome .featured-jobs .featured-jobs-type:hover, .section_welcome .featured-jobs .featured-jobs-type:focus {
+  overflow: hidden;
+  background-color: rgba(230, 126, 34, 1);
+  border: 2px solid rgba(230, 126, 34, 1);
+  color: white;
+  animation-name: featured_jobs;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  padding: 3.1em;
+  padding-top: 3.1em;
+}
+
+.section_welcome .featured-jobs .featured-jobs-type:hover {
+  animation-name: reverse_featured_jobs;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+@keyframes featured_jobs {
+  from {background-color: rgba(48, 48, 48, 0.6);}
+  to {background-color: rgba(230, 126, 34, 1);}
+}
+@keyframes reverse_featured_jobs {
+  from {background-color: rgba(230, 126, 34, 1);}
+  to {background-color: rgba(48, 48, 48, 0.6);}
+}
+
+.section_welcome .featured-jobs .featured-jobs-type .job-title {
+  font-family: cursive;
+}
+/* --------------section welcome end----------------------------*/
+
+/*------------------------small screen search box end---------------*/
+.sep-line-section {
+  width: 50%;
+  border-bottom:5px solid rgba(230, 126, 34, 0.8);
+}
+
+.sep-line-title {
+  width: 10%;
+  border-bottom:5px solid gba(48, 48, 48, 0.6);
+}
+
+.section-jobs {
+  margin-top:20em;
+  z-index: 100;
+  width: 100%;
+  background-color: rgb(250, 250, 250, 0.99);
+  position: relative;
+}
+
+.section-jobs .headline span {
+  color: rgba(230, 126, 34, 1);
+  font-weight: bolder;
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+.section-jobs .headline h1 {
+  text-transform: uppercase;
+  color: black;
+  font-weight: lighter;
+  font-size: 3rem;
+}
+
+.section-jobs .listing-company-logo {
+  position: relative;
+}
+
+.section-jobs a.listings {
+  box-shadow: 0px 0px 10px 5px rgb(243, 243, 243, 0.9);
+  background-color: white;
+  text-decoration: none;
+  position: relative;
+  padding-right: 30px;
+  margin-bottom: 15px;
+  display: block;
+  width: 100%;
+  float: left;
+  border-radius: 6px;
+  z-index: 1;
+  /* border: 2px solid rgba(48, 48, 48, 0.6); */
+}
+
+.section-jobs .container a.listings:hover {
+  box-shadow: 0px 0px 10px 5px rgb(243, 243, 243, 0.5);
+  animation: listings;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes listings {
+  from {box-shadow: 0px 0px 10px 5px rgb(243, 243, 243, 0.5);margin-left: 0.3em;margin-right: 0.3em;}
+  to {box-shadow: 0px 0px 20px 5px rgb(240, 240, 240, 0.9);margin-left: 0.3em;margin-right: 0.3em}
+}
+
+.section-jobs .listings  .listing-details {
+  position: relative;
+  padding: 2em;
+  display: inline;
+}
+.section-jobs .listings .listing-title {
+  position: relative;
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+.section-jobs .listings  .listing-details .listing-footer ul {
+  list-style: none;
+}
+.section-jobs .listings  .listing-details .listing-footer li:nth-child(1) {
+  font-size: 1.2rem;
+}
+.section-jobs .listings  .listing-details .listing-footer li:nth-child(2) {
+  font-size: 1.2rem;
+}
+
+/* -----------------------JOB SEARCH LIST-------------------------------------*/
+/* --------------SEARCH BOX----------------*/

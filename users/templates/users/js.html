@@ -1,25 +1,24 @@
 {% load static %}
-
+<!-- == google api files== -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJNGOwO2hJpJ9kz8e0UUPjZhEbgDJTTXE"></script>
+<!-- == google api END== -->
 
 <!-- == CSS files== -->
 <script src="{% static 'css/style_main.css' %}"></script>
 <!-- == CSS files END== -->
 
 <!-- == Javascript files== -->
-
+<script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static '/js/bootstrap.min.js' %}"></script>
+<script src="{% static '/js/jquery.slicknav.js' %}"></script>
+<script src="{% static '/js/owl.carousel.min.js' %}"></script>
+<script src="{% static '/js/main.js' %}"></script>
 <!-- == Javascript files END== -->
-
-<!--== Javascript plugins ==-->
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-<!--== Javascript plugins END==-->
 
 <!-- ===== LANGUAGE BUTTON ======= -->
 <script>
 
   /* ===== LANGUAGE BUTTON ===== */
-
 function lang_dropdown_btn() {
   document.getElementById("lang_dropdown").classList.toggle("show");}
 
@@ -44,15 +43,4 @@ window.onclick = function(event) {
   //         alert(selectedLanguage);
   //     }
   //     getSelectValue();
-</script>
-
-<script>
-  function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
 </script>

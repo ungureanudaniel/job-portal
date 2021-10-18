@@ -1,0 +1,190 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!--<br/><br/><br/><br/>
+<div class="posts container-fluid mb-3 ">
+    <div class="offset-2 col-lg-8 col-sm-12">
+      <img alt="" src="{{ post.image.url }}">
+      <hr>
+      <ul class="list-unstyled">
+        <li class="text-center"><h1>{{ post.title }}</h1></li>
+        <li class="text-center"><p>by {{ post.author.first_name }} {{ post.author.last_name }}</p></li>
+        <li class="text-center"><p><small><a href="#">- {{ post.category }} -</a></small></p></li>
+        <li><p>{{ post.text|safe }}</p></li>
+        <li><p>{{ post.created_date }}</p></li>
+      </ul>
+      </div>
+  </div>
+</div>-->
+
+<!-- Single Post Section Begin -->
+  {% for job in jobs %}
+    <section class="single-post spad">
+        <div class="single-post__hero set-bg" data-setbg="{{ job.image.url }}"></div>
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <div class="single-post__title">
+                        <div class="single-post__title__meta">
+                            <h2>{{ job.get_time_diff }} hours ago</h2>
+                        </div>
+                        <div class="single-post__title__text">
+                            <ul class="label">
+                                <li>{{ job.category }}</li>
+                            </ul>
+                            <h4>{{ job.title }}</h4>
+                            <ul class="widget">
+                              <li>by <span></span></li>
+                                <li>{{ views_count }}</li>
+                                <li>{{ comment_count }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="single-post__social__item">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                        </ul>
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div class="single-post__edit">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-pencil"></i></a></li>
+                            <li><a href="#"><i class="fa fa-trash"></i></a></li>
+                        </ul>
+                    </div>
+                    {% endif %}
+                    <div class="single-post__top__text">
+                        <p>{{ job.description|striptags }}</p>
+                    </div>
+        <!-- Single Post page navigation start -->
+                    <div class="single-post__next__previous">
+                        <div class="row">
+                          {% if job.previous_post %}
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <a href="{{ post.previous_post.get_absolute_url }}" class="single-post__previous">
+                                    <h6><span class="arrow_carrot-left"></span> Previous posts</h6>
+                                    <div class="single-post__previous__meta">
+                                        <h4>{{ job.previous_post.date_posted.day }}</h4>
+                                    </div>
+                                    <div class="single-post__previous__text">
+                                        <span>{{ job.previous_post.category }}</span>
+                                        <h5>{{ job.previous_post.title }}</h5>
+                                    </div>
+                                </a>
+                            </div>
+                          {% endif %}
+                          {% if job.next_post %}
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <a href="{{ post.next_post.get_absolute_url }}" class="single-post__next">
+                                    <h6>Next posts <span class="arrow_carrot-right"></span> </h6>
+                                    <div class="single-post__next__meta">
+                                        <h4>{{ job.next_post.created_date.day }}</h4>
+                                        <!-- <span>{{ job.next_post.created_date|date:'F' }}</span> -->
+                                    </div>
+                                    <div class="single-post__next__text">
+                                        <span>{{ job.next_post.category }}</span>
+                                        <h5>{{ job.next_post.title }}</h5>
+                                    </div>
+                                </a>
+                            </div>
+                          {% endif %}
+                        </div>
+                    </div>
+              <!-- Single Post page navigation end -->
+              <!-- Single Post about section at the bottom, start -->
+                    {% for item in about_list %}
+                    <div class="single-post__author__profile">
+                        <div class="single-post__author__profile__pic">
+
+                        </div>
+                        <img src="{{ item.image2.url }}" alt="" width:'50' height:'50'>
+                        <div class="single-post__author__profile__text">
+                            <h4>{{ item.title }}.</h4>
+                            <p>{{ item.text|safe }}</p>
+                            <div class="single-post__author__profile__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-google-plus"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+              <!-- Single Post about section at the bottom, end -->
+              <!-- Side column  -->
+              <div class="col-lg-4 col-md-4">
+                  <div class="sidebar__item">
+                      <div class="sidebar__about__item">
+                          <div class="sidebar__item__title">
+                              <h6>About me</h6>
+                          </div>
+                          {% for item in about_list %}
+                          <img src="{% static 'img/about/ioana-2.jpg' %}" alt="">
+                          <h6><span>{{ item.title }}</span></h6>
+                          <p>{{ item.text|slice:200 }}</p>
+                          {% endfor %}
+                          <a href="{% url 'about' %}" class="primary-btn">Read more</a>
+                      </div>
+                      <div class="sidebar__follow__item">
+                          <div class="sidebar__item__title">
+                              <h6>Follow me</h6>
+                          </div>
+                          <div class="sidebar__item__follow__links">
+                              <a href="#"><i class="fa fa-facebook"></i></a>
+                              <a href="#"><i class="fa fa-twitter"></i></a>
+                              <a href="#"><i class="fa fa-youtube-play"></i></a>
+                              <a href="#"><i class="fa fa-instagram"></i></a>
+                              <a href="#"><i class="fa fa-envelope-o"></i></a>
+                          </div>
+                      </div>
+                      <div class="sidebar__feature__item">
+                          <div class="sidebar__item__title">
+                              <h6>Feature Posts</h6>
+                          </div>
+                          {% for post in featured_posts %}
+                          <div class="sidebar__feature__item__large set-bg"
+                              data-setbg="{{ post.image.url }}">
+                              <div class="sidebar__feature__item__large--text">
+                                  <span><a class="text-warning" href="{% url 'category' post.category %}">{{ post.category }}</a></span>
+                                  <h5><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h5>
+                              </div>
+                          </div>
+                          {% endfor %}
+
+                      </div>
+                      <div class="sidebar__item__banner">
+                          <img src="{% static 'img/about/Artisan-Bakery-1.jpg' %}" alt="">
+                      </div>
+                      <div class="sidebar__item__categories">
+                          <div class="sidebar__item__title">
+                              <h6>Categories</h6>
+                          </div>
+
+                          <ul>
+                              {% for category in posts_count %}
+                              <li><a href="{% url 'home' %}">{{ category.name|capfirst }}<span>{{ category.num_posts }}</span></a></li>
+                              {% endfor %}
+                      </div>
+                   <div class="sidebar__subscribe__item">
+                              <div class="sidebar__item__title">
+                                  <h6>Subscribe</h6>
+                              </div>
+                              <p>Subscribe to our newsletter and get our newest updates right on your inbox.</p>
+                              <a class="site-btn" href="#">Subscribe</a>
+                          </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</section>
+    <!-- Single Post Section End -->
+
+{% endfor %}
+{% endblock %}

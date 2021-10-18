@@ -1,0 +1,27 @@
+{% load static %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-3">
+            <div class="header__btn">
+                <a class="primary-btn" href="{% url 'subscription' %}">Subscribe</a>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="header__logo">
+              {% for logo in logos %}
+                <a href="{% url 'home' %}"><img alt="" src="{{ logo.image.url }}"></a>
+              {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3">
+            <div class="header__social">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-youtube-play"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-envelope-o"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

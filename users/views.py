@@ -62,3 +62,21 @@ def contact(request):
         render(request, template_name, {'message_name': message_name, 'categories': categories, 'form': form,})
     else:
         return render(request, template_name, {'form': form})
+
+#--------------------------ABOUT VIEW -----------------------------------------
+def about(request):
+    template_name = 'users/about.html'
+    about_list = About.objects.all()
+    #--------------logo------------------------------
+    # logos = Logo.objects.filter(status='active')
+
+    # form = AboutForm(request.POST or None)
+    # categories = Category.objects.all()
+    context = {
+        # 'logos': logos,
+        # 'form': form,
+        # 'categories': categories,
+        'about_list': about_list,
+    }
+    return render(request, template_name, context)
+    

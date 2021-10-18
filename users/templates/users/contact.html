@@ -1,80 +1,135 @@
 {% extends 'users/base.html' %}
 {% load static %}
+{% block content %}
+<!-- Header Section Begin -->
+<header class="header">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-1 col-6 order-md-1 order-1">
+                    <div class="header__humberger">
+                        <i class="fa fa-bars humberger__open"></i>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-10 order-md-2 order-3">
+                    <nav class="header__menu">
+                        <ul>
+                            <li ><a href="{% url 'home' %}">Home</a></li>
+                            <li class="dropdown"><a href="#">Post categories</a>
+                                <ul class="dropdown__menu">
+                                    {% for cat in categories %}
+                                    <li ><a style="color:white;" href="{% url 'category' cat.slug %}">{{ cat }}</a></li>
 
-<!--== Contact Start ==-->
-<section class="section-contact" id="contact">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 centerize-col text-center">
-        <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
-          <h1 class="raleway-font"><span class="font-100">Contact</span>Us</h1>
-          <hr class="center_line dark-bg">
+                                    {% endfor %}
+                                </ul>
+                            </li>
+
+                            <li><a href="{% url 'about' %}">About</a></li>
+
+                            <li  class="active"><a href="{% url 'contact' %}">Contact</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'add_post' %}">Add post</a></li>
+                            <li><a href="{% url 'add_logo' %}">Add logo</a></li>
+                            <li><a href="{% url 'add_category' %}">Add category</a></li>
+                            <li><a href="{% url 'draft_posts' %}">Draft posts</a></li>
+                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col-lg-2 col-md-1 col-6 order-md-3 order-2">
+                    <div class="header__search">
+                        <i class="fa fa-search search-switch"></i>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <div class="container">
-    <div class="row mt-7">
-      <div class="col-md-6 col-sm-12 col-xs-12 wow fadeInLeft" data-wow-delay="0.1s">
-        {% if messages %}
-          {% for message in messages %}
-          <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            {{ message.message }}
-          </div>
-          {% endfor %}
-        {% endif %}
-        <form name="" id="contact-form" action="." method="POST" class="contact-form">
-          {% csrf_token %}
-          <div class="messages"></div>
-          <div class="row">
-            <div class="col-md-12 col-sm-12">
-              <div class="form-group">
-                <label for="name">Name *</label>
-                <input type="text" name="message-name" class="md-input" id="name" required data-error="Your Name is Required">
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-            <div class="col-md-12 col-sm-12">
-              <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" name="message-email" class="md-input" id="email" required data-error="Please Enter Valid Email">
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-            <div class="col-md-12 col-sm-12">
-              <div class="form-group">
-                <label for="message">Your Message *</label>
-                <textarea name="message" class="md-textarea" id="message" rows="7" required data-error="Please, Leave us a message"></textarea>
-                <div class="help-block with-errors"></div>
-              </div>
-            </div>
-            <div class="form-group captcha mb-5 ml-4">
-              <label class="text-warning">Please solve the captcha.</label>
-              <br>
-              <!-- {{ form.captcha }} -->
-            </div>
-            <!-- Note -->
-            <div class="form-group">
-              <p class="text-muted">
-                * All fields compulsory *
-              </p>
-            </div>
-            <div class="col-md-12 col-sm-12">
-              <div class="text-left">
-                <button type="submit" name="submit" class="btn btn-primary btn-animate remove-margin btn-zoom "><span>Send<i class="ion-android-arrow-forward"></i></span></button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
+    {% include 'blogapp/logo_container.html' %}
+</header>
+<!-- Header Section End -->
 
-      <div class="map-section map-parallax col-md-6 col-sm-12 col-xs-12 wow fadeInRight" data-wow-delay="0.2s">
-        <div id="myMap" class="wide">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d89245.39472599306!2d25.526423469855324!3d45.65245670123032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b35b862aa214f1%3A0x6cf5f2ef54391e0f!2zQnJhyJlvdg!5e0!3m2!1sen!2sro!4v1593452481294!5m2!1sen!2sro" frameborder="0" style="border:20;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+
+    <!-- Contact Section Begin -->
+    <section class="contact spad">
+        <div class="container">
+            <div class="contact__text">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb__text">
+                            <h2>Contact</h2>
+                            <div class="breadcrumb__option">
+                                <a href="{% url 'home' %}">Home</a>
+                                <span>Contact</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="contact__map">
+                          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d89245.39472599306!2d25.526423469855324!3d45.65245670123032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b35b862aa214f1%3A0x6cf5f2ef54391e0f!2zQnJhyJlvdg!5e0!3m2!1sen!2sro!4v1593452481294!5m2!1sen!2sro" width="600" height="350" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        </div>
+                        <div class="contact__widget">
+                            <ul>
+                                <li>
+                                    <i class="fa fa-map-marker"></i>
+                                    <span>Ioana Ungureanu, Brasov, Romania</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-mobile"></i>
+                                    <span>Phone: +40 768 662 612</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span>Email: ioanad.ungureanu@gmail.com</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="contact__form">
+
+                            <div class="contact__form__title">
+                              {% if messages %}
+                                {% for message in messages %}
+                                <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                  {{ message.message }}
+                                </div>
+                                {% endfor %}
+                              {% else %}
+                                <h2>Want to talk? Can't wait to hear from you!</h2>
+                                <p>Please use the form below to send me a message.</p>
+                              {% endif %}
+                            </div>
+                            <form action="{% url 'contact' %}" method="POST">
+                              {% csrf_token %}
+                                <input type="text" name="message-name" placeholder="Name" required="required" data-error="Name is required.">
+                                <input type="text" name="message-email" placeholder="Email" required="required" data-error="Valid email is required.">
+                                <textarea name="message" placeholder="Message" required="required" data-error="Add a few words please."></textarea>
+                                <label class="text-warning">Please solve the captcha.</label>
+                                <br>
+                                {{ form.captcha }}
+                                <!-- <button class='js-captcha-refresh'>Refresh</button> -->
+                                <button type="submit" class="site-btn">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
+    <!-- <script>
+      $('.js-captcha-refresh').click(function(){
+          $form = $(this).parents('form');
 
-    </div>
-  </div>
-</section>
-<!--== Contact End ==-->
+          $.getJSON($(this).data('url'), {}, function(json) {
+              // This should update your captcha image src and captcha hidden input
+          });
+
+          return false;
+      });
+    </script> -->
+    <!-- Contact Section End -->
+{% endblock %}

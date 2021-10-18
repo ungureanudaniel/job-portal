@@ -1,36 +1,110 @@
+{% extends 'users/base.html' %}
 {% load static %}
+{% block content %}
 
+  <!-- Header Section Begin -->
+  <header class="header">
+      <div class="header__top">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-2 col-md-1 col-6 order-md-1 order-1">
+                      <div class="header__humberger">
+                          <i class="fa fa-bars humberger__open"></i>
+                      </div>
+                  </div>
+                  <div class="col-lg-8 col-md-10 order-md-2 order-3">
+                      <nav class="header__menu">
+                          <ul>
+                              <li ><a href="{% url 'home' %}">Home</a></li>
+                              <li class="dropdown"><a href="#">Post categories</a>
+                                  <ul class="dropdown__menu">
+                                      {% for cat in categories %}
+                                      <li><a style="color:white;" href="{% url 'category' cat.slug %}">{{ cat }}</a></li>
 
-<!--== Who We Are Start ==-->
-<section class="whoweare white-bg" id="about">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 centerize-col text-center wow fadeInUp" data-wow-delay="0.1s">
-        <div class="section-title">
-          <h1 class="raleway-font font-40px"><span class="font-100 font-40px"># "We Are a " %}</span> "Web Development Company" %}"</h1>
-          <hr class="center_line dark-bg">
-          <p style="font-size:1.2rem;">
-            " "We started in 2019, with a strong motivation to be successful by putting commitment, hard work and our clients satisfaction on the table for each and every project." %}"
-          </p>
-        </div>
+                                      {% endfor %}
+                                  </ul>
+                              </li>
+
+                              <li class="active"><a href="{% url 'about' %}">About</a></li>
+
+                              <li><a href="{% url 'contact' %}">Contact</a></li>
+                              {% if user.is_authenticated %}
+                              <li><a href="{% url 'add_post' %}">Add post</a></li>
+                              <li><a href="{% url 'add_logo' %}">Add logo</a></li>
+                              <li><a href="{% url 'add_category' %}">Add category</a></li>
+                              <li><a href="{% url 'draft_posts' %}">Draft posts</a></li>
+                              <li><a href="{% url 'logout' %}">Logout</a></li>
+                              {% endif %}
+                          </ul>
+                      </nav>
+                  </div>
+                  <div class="col-lg-2 col-md-1 col-6 order-md-3 order-2">
+                      <div class="header__search">
+                          <i class="fa fa-search search-switch"></i>
+                      </div>
+                  </div>
+              </div>
+          </div>
       </div>
-    </div>
-    <div class="skillrow row ">
-      <div class="skill-image col-md-6 col-sm-12 wow fadeInRight" data-wow-delay="0.2s">
-        <img class="img-responsive" alt="laptop" src="{% static 'images/laptop5.png' %}">
-      </div>
-      <div class="col-md-6 col-sm-12 wow fadeInLeft" data-wow-delay="0.3s">
-        <div class="skillbar-wrap skillbar-style-02">
-          {% for skill in skills %}
-            <div class="skillbar" data-percent="{{ skill.percent }}">
-                <span class="skillbar-title">{{ skill.title|upper }}</span>
-                <!-- <span class="skill-bar-percent"></span> -->
-                <!-- <p class="skillbar-bar corporate" id="hide_review_redirect"></p> -->
+      {% include 'blogapp/logo_container.html' %}
+  </header>
+  <!-- Header Section End -->
+    <!-- About Section Begin -->
+    <section class="about spad">
+        <div class="container">
+            <div class="about__text">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb__text">
+                            <h2>About me</h2>
+                            <div class="breadcrumb__option">
+                                <a href="{% url 'home' %}">Home</a>
+                                <span>About</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="row">
+                    {% for item in about_list %}
+                    <div class="col-lg-6">
+
+                        <div class="about__pic__item__large">
+                            <img src="{{ item.image1.url}}" alt="" width="1000" height="300">
+                        </div>
+                        <div class="about__pic">
+                            <div class="about__pic__item">
+                                <img src="{{ item.image2.url}}" alt="" width="500" max-height="150">
+                            </div>
+                            <div class="about__pic__item">
+                                <img src="{{ item.image3.url}}" alt="" width="500" max-height="200">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about__right__text">
+
+
+                            <h2>{{ item.title }}</h2>
+                            {% if user.is_authenticated %}
+                                <div class="single-post__edit">
+                                    <ul>
+                                        <li><a href="{% url 'edit_about' item.pk %}"><i class="fa fa-pencil"></i></a></li>
+                                    </ul>
+                                </div>
+                            {% endif %}
+                            <p>{{ item.text }}</p>
+
+                            <div class="about__right__text__social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
-          {% endfor %}
-            <!-- End Skill Bar -->
-      </div>
-    </div>
-  </div>
-</section>
+        </div>
+    </section>
+    <!-- About Section End -->
+{% endblock %}

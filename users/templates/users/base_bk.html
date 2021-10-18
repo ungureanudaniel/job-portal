@@ -1,0 +1,73 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ro">
+  {% include 'users/header.html' %}
+  <body class="bg-dark">
+
+  <!--== Loader Start ==-->
+  <div id="loader-overlay">
+    <div class="loader">
+      <div class="spinner-double-dot-in"></div>
+    </div>
+  </div>
+  <!--== Loader End ==-->
+
+  <!--== navbar Start ==-->
+  <header class="header-container">
+    <div class="container">
+      <div class="row top-bar">
+        <div class="col-md-2">
+          <div class="logo">
+            <a class="brand-name" href="{% url 'home' %}"><h1 class=""><img class="icon p-1" src="{% static 'icons/briefcase.png' %}" alt="Dincolo-Logo" width="50" height="50">Dincolo</h1>
+          </div>
+        </div>
+        <div class="col-xl-8">
+          <nav class="navbar navbar-default fixed-top justify-content-center">
+
+
+            <!--== Header Start ==-->
+            <div class="topnav justify-content-center" id="myTopnav">
+              <!-- ============ navigation links ============ -->
+              <a href="{% url 'home' %}" class="nav-item">Home</a>
+              <a href="#news" class="nav-item">News</a>
+              <a href="{% url 'contact' %}" class="nav-item">Contact</a>
+              <div class="dropdown">
+                <button class="dropbtn nav-item">Find Job
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                  <a href="#" class="nav-item">Link 1</a>
+                  <a href="#" class="nav-item">Link 2</a>
+                  <a href="#" class="nav-item">Link 3</a>
+                </div>
+              </div>
+              <a href="#about" class="nav-item">About</a>
+              <!-- ============ mobile menu =============== -->
+              <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="mobileMenuFct()"><i class="fa fa-bars"></i></a>
+            </div>
+
+          </nav>
+        </div>
+        <div class="col-xl-2 login">
+          <!-- ============ sign in button =============== -->
+          <div class="login_btn text-center">
+            <a href="{% url 'login' %}" type="button"><i class="fa fa-sign-in" aria-hidden="true">  <p>Sign In</p></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+    <!--== Header End ==-->
+    {% block content %}
+
+
+    {% endblock %}
+
+  {% include 'users/js.html' %}
+  <!--== Wrapper End ==-->
+  <!-- ==== fetch the selected language to show it === -->
+
+  <!-- == end fetch language  === -->
+  </body>
+</html>

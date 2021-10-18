@@ -1,0 +1,126 @@
+{% extends "users/base.html" %}
+{% load static %}
+
+{% block content %}
+<!--== Welcome Slider Start ==-->
+<!-- section welcome -->
+<video muted="" autoplay="autoplay" loop class="html5-video ">
+  <source src="{% static 'videos/top-1.mp4' %}" type="video/mp4">
+   <source src="{% static 'videos/top-2.mp4' %}" type="video/mp4">
+   <source src="{% static 'videos/top-3.mp4' %}" type="video/mp4">
+</video>
+<!-- section welcome -->
+<section class="section_welcome" id="section_welcome">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12 col-sm-12 col-sm-offset-3">
+        <div class="welcome_content">
+          <h1 class="welcome_content_caption">Change Your Career Starts Now!</h1>
+          <h3 class="welcome_content_caption">Find Jobs, Employment & Career Making Over 100,000 Applications Every Day.</h3>
+        </div> <!-- .welcome_content -->
+      </div>
+    </div> <!-- .row -->
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-sm-12 col-sm-offset-3">
+        <form class="wide-form-search mt-4" action="{% url 'job-search-list' %}" method="GET">
+          <div class="form-box">
+            <input type="text" name="keyword" class="searchfield-business" placeholder="Search for job keywords...">
+            <!-- <input type="text" class="searchfield-location" placeholder="Select location"> -->
+            <input list="countries" name="loc" id="country" class="searchfield-location" placeholder="Choose location...">
+            <datalist id="countries" style="z-index:10">
+              {% for country in countries_list %}
+              <option value="{{ country }}"></option>
+              {% endfor %}
+
+            </datalist
+            <span class="vert_sep_line"></span>
+            <button class="search-button" type="submit">Search</button>
+          </div>
+        </form>
+      </div>
+    </div><!-- .row -->
+    <div class="row">
+      <div class="col-md-12 col-sm-6 col-sm-offset-3">
+        <div class="trending_kwords pt-3">
+          <h5>Trending Keywords: <span class="text-warning ml-5">IT Engineer</span></h5>
+        </div>
+      </div>
+    </div><!-- .row -->
+    <div class="row">
+      <div class="col-md-12 col-sm-6 col-sm-offset-3">
+        <div class="featured-jobs">
+          <div class="featured-jobs-type ">
+              <span class="job-title">IT engineer</span>
+          </div>
+          <div class="featured-jobs-type">
+              <span class="job-title">Marketing</span>
+          </div>
+          <div class="featured-jobs-type">
+              <span class="job-title">Banking</span>
+          </div>
+          <div class="featured-jobs-type">
+              <span class="job-title">Health Care</span>
+          </div>
+          <div class="featured-jobs-type">
+              <span class="job-title">Art</span>
+          </div>
+        </div>
+      </div>
+    </div><!-- .row -->
+  </div> <!-- .container -->
+  <div class="welcome-parallax_bg" style="transform: translateY(0px);"></div>
+</section>
+<div class="welcome-top" id="home">
+  <div id="rev_slider_wrapper" class="rev_slider_wrapper fullscreen-container">
+
+  </div>
+</div>
+<hr>
+<br>
+<!-- Featured Jobs -->
+<section class="section-jobs">
+  <div class="headline container">
+    <div class="row justify-content-center">
+      <div class="col-12-xl text-center">
+        <h1 class="section-title mt-5">Featured <span>Jobs</span></h1>
+        <hr class="sep-line-title mt-2">
+        <h3 class="section-descr mt-5">Featured Job Posts</h3>
+        <hr class="sep-line-title">
+        <p class="">Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="listings-container">
+          {% for job in featured_jobs %}
+          <a href="#" class="listings ">
+            <div class="listing-details">
+    				  <div class="listing-company-logo"> <img src="{{ job.logo.url }}" width="50" height="50" alt="Recruiter Logo"> </div>
+    				  <div class="listing-description">
+    				    <h3 class="listing-title">{{ job.company|title }}</h3>
+                <div class="listing-footer">
+      					  <ul>
+        						<li><i class="fas fa-briefcase"></i> {{ job.title|title }}</li>
+        						<li><i class="fas fa-briefcase"></i> {{ job.location }}</li>
+        						<li><i cclass="fas fa-briefcase"></i> {{ job.job_type|title }}</li>
+        						<li><i class="fas fa-briefcase"></i> {{ job.get_time_diff }} hours ago</li>
+      					  </ul>
+                </div>
+    					  <span class="job-hour-price"><i class="icon-line-awesome-dollar"></i> $ {{ job.from_wage_hour }} - {{ job.to_wage_hour }} Per Hour</span>
+    				  </div>
+    				  <span class="list-apply-button ripple-effect">Browse Job <i class="icon-line-awesome-bullhorn"></i></span>
+  				  </div>
+          </a>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="justify-content-center text-center">
+        <a href="{% url 'job-search-list' %}">See More</a>
+      </div>
+    </div>
+<!--== Particle Slider End ==-->
+
+{% endblock content %}
