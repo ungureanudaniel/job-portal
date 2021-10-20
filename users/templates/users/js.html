@@ -44,3 +44,24 @@ window.onclick = function(event) {
   //     }
   //     getSelectValue();
 </script>
+<script>
+  var preloader = (function() {
+
+      // Variables
+      var $window = $(window);
+      var loader = $("#loader-wrapper");
+
+      // Methods
+      $window.on({
+          'load': function() {
+
+              // loader.fadeOut();
+              loader.delay(400).fadeOut("slow");
+
+          }
+      });
+
+      // Events
+
+  })();
+</script>
