@@ -3,188 +3,318 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<!--<br/><br/><br/><br/>
-<div class="posts container-fluid mb-3 ">
-    <div class="offset-2 col-lg-8 col-sm-12">
-      <img alt="" src="{{ post.image.url }}">
-      <hr>
-      <ul class="list-unstyled">
-        <li class="text-center"><h1>{{ post.title }}</h1></li>
-        <li class="text-center"><p>by {{ post.author.first_name }} {{ post.author.last_name }}</p></li>
-        <li class="text-center"><p><small><a href="#">- {{ post.category }} -</a></small></p></li>
-        <li><p>{{ post.text|safe }}</p></li>
-        <li><p>{{ post.created_date }}</p></li>
-      </ul>
-      </div>
-  </div>
-</div>-->
+
 
 <!-- Single Post Section Begin -->
-  {% for job in jobs %}
-    <section class="single-post spad">
-        <div class="single-post__hero set-bg" data-setbg="{{ job.image.url }}"></div>
-        <div class="container">
-            <div class="row d-flex justify-content-center">
-                <div class="col-lg-8">
-                    <div class="single-post__title">
-                        <div class="single-post__title__meta">
-                            <h2>{{ job.get_time_diff }} hours ago</h2>
-                        </div>
-                        <div class="single-post__title__text">
-                            <ul class="label">
-                                <li>{{ job.category }}</li>
-                            </ul>
-                            <h4>{{ job.title }}</h4>
-                            <ul class="widget">
-                              <li>by <span></span></li>
-                                <li>{{ views_count }}</li>
-                                <li>{{ comment_count }}</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="single-post__social__item">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-                        </ul>
-                    </div>
-                    {% if user.is_authenticated %}
-                    <div class="single-post__edit">
-                        <ul>
-                            <li><a href="#"><i class="fa fa-pencil"></i></a></li>
-                            <li><a href="#"><i class="fa fa-trash"></i></a></li>
-                        </ul>
-                    </div>
-                    {% endif %}
-                    <div class="single-post__top__text">
-                        <p>{{ job.description|striptags }}</p>
-                    </div>
-        <!-- Single Post page navigation start -->
-                    <div class="single-post__next__previous">
-                        <div class="row">
-                          {% if job.previous_post %}
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <a href="{{ post.previous_post.get_absolute_url }}" class="single-post__previous">
-                                    <h6><span class="arrow_carrot-left"></span> Previous posts</h6>
-                                    <div class="single-post__previous__meta">
-                                        <h4>{{ job.previous_post.date_posted.day }}</h4>
-                                    </div>
-                                    <div class="single-post__previous__text">
-                                        <span>{{ job.previous_post.category }}</span>
-                                        <h5>{{ job.previous_post.title }}</h5>
-                                    </div>
-                                </a>
-                            </div>
-                          {% endif %}
-                          {% if job.next_post %}
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <a href="{{ post.next_post.get_absolute_url }}" class="single-post__next">
-                                    <h6>Next posts <span class="arrow_carrot-right"></span> </h6>
-                                    <div class="single-post__next__meta">
-                                        <h4>{{ job.next_post.created_date.day }}</h4>
-                                        <!-- <span>{{ job.next_post.created_date|date:'F' }}</span> -->
-                                    </div>
-                                    <div class="single-post__next__text">
-                                        <span>{{ job.next_post.category }}</span>
-                                        <h5>{{ job.next_post.title }}</h5>
-                                    </div>
-                                </a>
-                            </div>
-                          {% endif %}
-                        </div>
-                    </div>
-              <!-- Single Post page navigation end -->
-              <!-- Single Post about section at the bottom, start -->
-                    {% for item in about_list %}
-                    <div class="single-post__author__profile">
-                        <div class="single-post__author__profile__pic">
+<div class="container">
+    <div class="row">
+      <div class="col-xl-8 col-lg-8 utf-content-right-offset-aera">
+        <div class="utf-single-page-section-aera">
+		  <div class="job-description-image-aera">
+			  <img src="images/job-detail-inner.png" alt="">
+		  </div>
+		  <div class="utf-boxed-list-headline-item">
+            <h3><i class="icon-material-outline-description"></i> Jobs Description</h3>
+          </div>
+          <p>Lorem Ipsum is simply dummy text of printing and type setting industry. Lorem Ipsum been industry standard dummy text ever since, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+          <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standard dummy text ever since, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+          <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>
+		  <ul class="utf-job-deatails-content-item margin-bottom-30">
+			<li><i class="icon-feather-arrow-right"></i> Morbi mattis ullamcorper velit. Phasellus gravida semper nisi nullam vel sem.</li>
+			<li><i class="icon-feather-arrow-right"></i> Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet.</li>
+			<li><i class="icon-feather-arrow-right"></i> Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</li>
+			<li><i class="icon-feather-arrow-right"></i> Donec mollis hendrerit risus. Phasellus nec sem in justo pellentesque facilisis.</li>
+			<li><i class="icon-feather-arrow-right"></i> Praesent congue erat at massa. Sed cursus turpis vitae tortor. Donec posuere vulputate arcu.</li>
+			<li><i class="icon-feather-arrow-right"></i> Donec elit libero, sodales nec, volutpat a, suscipit non, turpis. Nullam sagittis.</li>
+			<li><i class="icon-feather-arrow-right"></i> Pellentesque auctor neque nec urna. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi.</li>
+			<li><i class="icon-feather-arrow-right"></i> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</li>
+		  </ul>
+		  <div class="row">
+			<div class="col-xl-6 col-lg-6 col-sm-12">
+				<a href="#small-dialog" class="apply-now-button popup-with-zoom-anim margin-top-0">Apply Now <i class="icon-feather-chevron-right"></i></a>
+			</div>
+			<div class="col-xl-6 col-lg-6 col-sm-12">
+				<a href="#" class="button save-job-btn">Get Job Alerts <i class="icon-feather-chevron-right"></i></a>
+			</div>
+		  </div>
+		  <div class="utf-detail-social-sharing margin-top-25">
+			<span><strong>Social Sharing:-</strong></span>
+			<ul class="margin-top-15">
+				<li><a href="#" data-tippy-placement="top" data-tippy="" data-original-title="Facebook"><i class="icon-brand-facebook-f"></i></a></li>
+				<li><a href="#" data-tippy-placement="top" data-tippy="" data-original-title="Twitter"><i class="icon-brand-twitter"></i></a></li>
+				<li><a href="#" data-tippy-placement="top" data-tippy="" data-original-title="LinkedIn"><i class="icon-brand-linkedin-in"></i></a></li>
+				<li><a href="#" data-tippy-placement="top" data-tippy="" data-original-title="Google Plus"><i class="icon-brand-google"></i></a></li>
+				<li><a href="#" data-tippy-placement="top" data-tippy="" data-original-title="Whatsapp"><i class="icon-brand-whatsapp"></i></a></li>
+				<li><a href="#" data-tippy-placement="top" data-tippy="" data-original-title="Pinterest"><i class="icon-brand-pinterest-p"></i></a></li>
+			</ul>
+		  </div>
+        </div>
 
-                        </div>
-                        <img src="{{ item.image2.url }}" alt="" width:'50' height:'50'>
-                        <div class="single-post__author__profile__text">
-                            <h4>{{ item.title }}.</h4>
-                            <p>{{ item.text|safe }}</p>
-                            <div class="single-post__author__profile__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-google-plus"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-              <!-- Single Post about section at the bottom, end -->
-              <!-- Side column  -->
-              <div class="col-lg-4 col-md-4">
-                  <div class="sidebar__item">
-                      <div class="sidebar__about__item">
-                          <div class="sidebar__item__title">
-                              <h6>About me</h6>
-                          </div>
-                          {% for item in about_list %}
-                          <img src="{% static 'img/about/ioana-2.jpg' %}" alt="">
-                          <h6><span>{{ item.title }}</span></h6>
-                          <p>{{ item.text|slice:200 }}</p>
-                          {% endfor %}
-                          <a href="{% url 'about' %}" class="primary-btn">Read more</a>
-                      </div>
-                      <div class="sidebar__follow__item">
-                          <div class="sidebar__item__title">
-                              <h6>Follow me</h6>
-                          </div>
-                          <div class="sidebar__item__follow__links">
-                              <a href="#"><i class="fa fa-facebook"></i></a>
-                              <a href="#"><i class="fa fa-twitter"></i></a>
-                              <a href="#"><i class="fa fa-youtube-play"></i></a>
-                              <a href="#"><i class="fa fa-instagram"></i></a>
-                              <a href="#"><i class="fa fa-envelope-o"></i></a>
-                          </div>
-                      </div>
-                      <div class="sidebar__feature__item">
-                          <div class="sidebar__item__title">
-                              <h6>Feature Posts</h6>
-                          </div>
-                          {% for post in featured_posts %}
-                          <div class="sidebar__feature__item__large set-bg"
-                              data-setbg="{{ post.image.url }}">
-                              <div class="sidebar__feature__item__large--text">
-                                  <span><a class="text-warning" href="{% url 'category' post.category %}">{{ post.category }}</a></span>
-                                  <h5><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h5>
-                              </div>
-                          </div>
-                          {% endfor %}
+		<div class="utf-single-page-section-aera">
+		  <div class="utf-boxed-list-headline-item">
+            <h3><i class="icon-feather-briefcase"></i> Education Qualification</h3>
+          </div>
+          <p>Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been the industry's standard dummy text ever since, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+		  <ul class="utf-job-deatails-content-item">
+			<li><i class="icon-feather-arrow-right"></i> Morbi mattis ullamcorper velit. Phasellus gravida semper nisi nullam vel sem.</li>
+			<li><i class="icon-feather-arrow-right"></i> Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet.</li>
+			<li><i class="icon-feather-arrow-right"></i> Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus.</li>
+			<li><i class="icon-feather-arrow-right"></i> Donec mollis hendrerit risus. Phasellus nec sem in justo pellentesque facilisis.</li>
+			<li><i class="icon-feather-arrow-right"></i> Praesent congue erat at massa. Sed cursus turpis vitae tortor. Donec posuere vulputate arcu.</li>
+			<li><i class="icon-feather-arrow-right"></i> Donec elit libero, sodales nec, volutpat a, suscipit non, turpis. Nullam sagittis.</li>
+			<li><i class="icon-feather-arrow-right"></i> Pellentesque auctor neque nec urna. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi.</li>
+			<li><i class="icon-feather-arrow-right"></i> Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</li>
+		  </ul>
+        </div>
 
-                      </div>
-                      <div class="sidebar__item__banner">
-                          <img src="{% static 'img/about/Artisan-Bakery-1.jpg' %}" alt="">
-                      </div>
-                      <div class="sidebar__item__categories">
-                          <div class="sidebar__item__title">
-                              <h6>Categories</h6>
-                          </div>
+		<div class="utf-single-page-section-aera">
+		  <div class="utf-boxed-list-headline-item">
+            <h3><i class="icon-material-outline-business-center"></i> Required Skills and Abilities</h3>
+          </div>
+          <ul class="utf-job-deatails-content-item">
+			<li><i class="icon-feather-arrow-right"></i> Commitment – understanding the price and having the willingness to pay that price</li>
+			<li><i class="icon-feather-arrow-right"></i> Taking action – practice Ready, Fire, Aim…</li>
+			<li><i class="icon-feather-arrow-right"></i> You will drift aimlessly until you arrive back at the original dock.</li>
+			<li><i class="icon-feather-arrow-right"></i> You will run aground and become hopelessly stuck in the mud.</li>
+			<li><i class="icon-feather-arrow-right"></i> Belief – believing in yourself and those around you.</li>
+		  </ul>
+        </div>
 
-                          <ul>
-                              {% for category in posts_count %}
-                              <li><a href="{% url 'home' %}">{{ category.name|capfirst }}<span>{{ category.num_posts }}</span></a></li>
-                              {% endfor %}
-                      </div>
-                   <div class="sidebar__subscribe__item">
-                              <div class="sidebar__item__title">
-                                  <h6>Subscribe</h6>
-                              </div>
-                              <p>Subscribe to our newsletter and get our newest updates right on your inbox.</p>
-                              <a class="site-btn" href="#">Subscribe</a>
-                          </div>
+		<div class="utf-single-page-section-aera">
+		  <div class="utf-boxed-list-headline-item">
+            <h3><i class="icon-material-outline-business-center"></i> Primary Responsibilities</h3>
+          </div>
+          <ul class="utf-job-deatails-content-item">
+			<li><i class="icon-feather-arrow-right"></i> HTML, CSS &amp; Scss</li>
+			<li><i class="icon-feather-arrow-right"></i> Javascript</li>
+			<li><i class="icon-feather-arrow-right"></i> PHP Developer</li>
+			<li><i class="icon-feather-arrow-right"></i> Photoshop</li>
+			<li><i class="icon-feather-arrow-right"></i> Illustrator</li>
+		  </ul>
+        </div>
+
+        <div class="utf-single-page-section-aera">
+		  <div class="utf-boxed-list-headline-item">
+            <h3><i class="icon-material-outline-location-on"></i> Jobs Location</h3>
+          </div>
+          <div id="utf-single-job-map-container-item">
+            <div id="singleListingMap" data-latitude="48.8566" data-longitude="2.3522" data-map-icon="im im-icon-Hamburger" style="position: relative; overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"><div class="gm-style" style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px;"><div><button draggable="false" aria-label="Keyboard shortcuts" title="Keyboard shortcuts" type="button" style="background: none transparent; display: block; border: none; margin: 0px; padding: 0px; text-transform: none; appearance: none; position: absolute; cursor: pointer; user-select: none; z-index: 1000002; left: -100000px; top: -100000px;"></button></div><div tabindex="0" aria-label="Map" aria-roledescription="map" role="group" style="position: absolute; z-index: 0; left: 0px; top: 0px; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;), default;"><div style="z-index: 1; position: absolute; left: 50%; top: 50%; width: 100%; transform: translate(0px, 0px);"><div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div style="position: absolute; z-index: 985; transform: matrix(1, 0, 0, 1, -26, -31);"><div style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: -256px; top: 0px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: -256px; top: -256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 0px; top: -256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 256px; top: -256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: 256px; top: 0px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: -512px; top: 0px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div><div style="position: absolute; left: -512px; top: -256px; width: 256px; height: 256px;"><div style="width: 256px; height: 256px;"></div></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div style="position: absolute; z-index: 985; transform: matrix(1, 0, 0, 1, -26, -31);"><div style="position: absolute; left: -256px; top: -256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;"><img draggable="false" alt="" role="presentation" src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i15!2i16597!3i11272!4i256!2m3!1e0!2sm!3i576303104!2m3!1e2!6m1!3e5!3m17!2sen-US!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;token=104959" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 256px; top: -256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;"><img draggable="false" alt="" role="presentation" src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i15!2i16599!3i11272!4i256!2m3!1e0!2sm!3i576303104!2m3!1e2!6m1!3e5!3m17!2sen-US!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;token=48612" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 0px; top: -256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;"><img draggable="false" alt="" role="presentation" src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i15!2i16598!3i11272!4i256!2m3!1e0!2sm!3i576303104!2m3!1e2!6m1!3e5!3m17!2sen-US!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;token=11250" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -256px; top: 0px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;"><img draggable="false" alt="" role="presentation" src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i15!2i16597!3i11273!4i256!2m3!1e0!2sm!3i576303104!2m3!1e2!6m1!3e5!3m17!2sen-US!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;token=102026" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;"><img draggable="false" alt="" role="presentation" src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i15!2i16598!3i11273!4i256!2m3!1e0!2sm!3i576303104!2m3!1e2!6m1!3e5!3m17!2sen-US!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;token=8317" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -512px; top: 0px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;"><img draggable="false" alt="" role="presentation" src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i15!2i16596!3i11273!4i256!2m3!1e0!2sm!3i576303104!2m3!1e2!6m1!3e5!3m17!2sen-US!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;token=64664" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: -512px; top: -256px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;"><img draggable="false" alt="" role="presentation" src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i15!2i16596!3i11272!4i256!2m3!1e0!2sm!3i576303104!2m3!1e2!6m1!3e5!3m17!2sen-US!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;token=67597" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="position: absolute; left: 256px; top: 0px; width: 256px; height: 256px; transition: opacity 200ms linear 0s;"><img draggable="false" alt="" role="presentation" src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i15!2i16599!3i11273!4i256!2m3!1e0!2sm!3i576303092!2m3!1e2!6m1!3e5!3m17!2sen-US!3sUS!5e18!12m4!1e68!2m2!1sset!2sRoadmap!12m3!1e37!2m1!1ssmartmaps!12m4!1e26!2m2!1sstyles!2zcC5zOi02MHxwLmw6LTYw!4e0!5m1!5f2&amp;token=104880" style="width: 256px; height: 256px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div></div><div style="z-index: 3; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px;"><div style="z-index: 4; position: absolute; left: 50%; top: 50%; width: 100%; transform: translate(0px, 0px);"><div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"><div class="map-marker-container" data-marker_id="1" style="left: 0.232604px; top: 0.4142px;"><div class="marker-container"><div class="marker-card"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div></div></div><div class="gm-style-moc" style="z-index: 4; position: absolute; height: 100%; width: 100%; padding: 0px; border-width: 0px; margin: 0px; left: 0px; top: 0px; opacity: 0;"><p class="gm-style-mot"></p></div></div><iframe aria-hidden="true" frameborder="0" tabindex="-1" style="z-index: -1; position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; border: none;"></iframe><div style="pointer-events: none; width: 100%; height: 100%; box-sizing: border-box; position: absolute; z-index: 1000002; opacity: 0; border: 2px solid rgb(26, 115, 232);"></div><div></div><div></div><div></div><div></div><div><button draggable="false" aria-label="Toggle fullscreen view" title="Toggle fullscreen view" type="button" class="gm-control-active gm-fullscreen-control" style="background: none rgb(255, 255, 255); border: 0px; margin: 10px; padding: 0px; text-transform: none; appearance: none; position: absolute; cursor: pointer; user-select: none; border-radius: 2px; height: 40px; width: 40px; box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; overflow: hidden; top: 0px; right: 0px;"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2018%2018%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M0%200v6h2V2h4V0H0zm16%200h-4v2h4v4h2V0h-2zm0%2016h-4v2h6v-6h-2v4zM2%2012H0v6h6v-2H2v-4z%22/%3E%3C/svg%3E" alt="" style="height: 18px; width: 18px;"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2018%2018%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M0%200v6h2V2h4V0H0zm16%200h-4v2h4v4h2V0h-2zm0%2016h-4v2h6v-6h-2v4zM2%2012H0v6h6v-2H2v-4z%22/%3E%3C/svg%3E" alt="" style="height: 18px; width: 18px;"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2018%2018%22%3E%3Cpath%20fill%3D%22%23111%22%20d%3D%22M0%200v6h2V2h4V0H0zm16%200h-4v2h4v4h2V0h-2zm0%2016h-4v2h6v-6h-2v4zM2%2012H0v6h6v-2H2v-4z%22/%3E%3C/svg%3E" alt="" style="height: 18px; width: 18px;"></button></div><div></div><div></div><div><div style="padding: 5px; z-index: 0; position: absolute; right: 0px; top: 124px;"><div><div class="custom-zoom-in"></div><div class="custom-zoom-out"></div></div></div></div><div><div class="gmnoprint gm-bundled-control gm-bundled-control-on-bottom" draggable="false" controlwidth="0" controlheight="0" style="margin: 10px; user-select: none; position: absolute; display: none; bottom: 26px; left: 0px;"><div class="gmnoprint" controlwidth="40" controlheight="40" style="display: none; position: absolute;"><div style="background-color: rgb(255, 255, 255); box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px; border-radius: 2px; width: 40px; height: 40px;"><button draggable="false" aria-label="Rotate map clockwise" title="Rotate map clockwise" type="button" class="gm-control-active" style="background: none; display: none; border: 0px; margin: 0px; padding: 0px; text-transform: none; appearance: none; position: relative; cursor: pointer; user-select: none; left: 0px; top: 0px; overflow: hidden; width: 40px; height: 40px;"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h24v24H0V0z%22/%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M12.06%209.06l4-4-4-4-1.41%201.41%201.59%201.59h-.18c-2.3%200-4.6.88-6.35%202.64-3.52%203.51-3.52%209.21%200%2012.72%201.5%201.5%203.4%202.36%205.36%202.58v-2.02c-1.44-.21-2.84-.86-3.95-1.97-2.73-2.73-2.73-7.17%200-9.9%201.37-1.37%203.16-2.05%204.95-2.05h.17l-1.59%201.59%201.41%201.41zm8.94%203c-.19-1.74-.88-3.32-1.91-4.61l-1.43%201.43c.69.92%201.15%202%201.32%203.18H21zm-7.94%207.92V22c1.74-.19%203.32-.88%204.61-1.91l-1.43-1.43c-.91.68-2%201.15-3.18%201.32zm4.6-2.74l1.43%201.43c1.04-1.29%201.72-2.88%201.91-4.61h-2.02c-.17%201.18-.64%202.27-1.32%203.18z%22/%3E%3C/svg%3E" style="width: 20px; height: 20px;"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h24v24H0V0z%22/%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M12.06%209.06l4-4-4-4-1.41%201.41%201.59%201.59h-.18c-2.3%200-4.6.88-6.35%202.64-3.52%203.51-3.52%209.21%200%2012.72%201.5%201.5%203.4%202.36%205.36%202.58v-2.02c-1.44-.21-2.84-.86-3.95-1.97-2.73-2.73-2.73-7.17%200-9.9%201.37-1.37%203.16-2.05%204.95-2.05h.17l-1.59%201.59%201.41%201.41zm8.94%203c-.19-1.74-.88-3.32-1.91-4.61l-1.43%201.43c.69.92%201.15%202%201.32%203.18H21zm-7.94%207.92V22c1.74-.19%203.32-.88%204.61-1.91l-1.43-1.43c-.91.68-2%201.15-3.18%201.32zm4.6-2.74l1.43%201.43c1.04-1.29%201.72-2.88%201.91-4.61h-2.02c-.17%201.18-.64%202.27-1.32%203.18z%22/%3E%3C/svg%3E" style="width: 20px; height: 20px;"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h24v24H0V0z%22/%3E%3Cpath%20fill%3D%22%23111%22%20d%3D%22M12.06%209.06l4-4-4-4-1.41%201.41%201.59%201.59h-.18c-2.3%200-4.6.88-6.35%202.64-3.52%203.51-3.52%209.21%200%2012.72%201.5%201.5%203.4%202.36%205.36%202.58v-2.02c-1.44-.21-2.84-.86-3.95-1.97-2.73-2.73-2.73-7.17%200-9.9%201.37-1.37%203.16-2.05%204.95-2.05h.17l-1.59%201.59%201.41%201.41zm8.94%203c-.19-1.74-.88-3.32-1.91-4.61l-1.43%201.43c.69.92%201.15%202%201.32%203.18H21zm-7.94%207.92V22c1.74-.19%203.32-.88%204.61-1.91l-1.43-1.43c-.91.68-2%201.15-3.18%201.32zm4.6-2.74l1.43%201.43c1.04-1.29%201.72-2.88%201.91-4.61h-2.02c-.17%201.18-.64%202.27-1.32%203.18z%22/%3E%3C/svg%3E" style="width: 20px; height: 20px;"></button><div style="position: relative; overflow: hidden; width: 30px; height: 1px; margin: 0px 5px; background-color: rgb(230, 230, 230); display: none;"></div><button draggable="false" aria-label="Rotate map counterclockwise" title="Rotate map counterclockwise" type="button" class="gm-control-active" style="background: none; display: none; border: 0px; margin: 0px; padding: 0px; text-transform: none; appearance: none; position: relative; cursor: pointer; user-select: none; left: 0px; top: 0px; overflow: hidden; width: 40px; height: 40px; transform: scaleX(-1);"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h24v24H0V0z%22/%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M12.06%209.06l4-4-4-4-1.41%201.41%201.59%201.59h-.18c-2.3%200-4.6.88-6.35%202.64-3.52%203.51-3.52%209.21%200%2012.72%201.5%201.5%203.4%202.36%205.36%202.58v-2.02c-1.44-.21-2.84-.86-3.95-1.97-2.73-2.73-2.73-7.17%200-9.9%201.37-1.37%203.16-2.05%204.95-2.05h.17l-1.59%201.59%201.41%201.41zm8.94%203c-.19-1.74-.88-3.32-1.91-4.61l-1.43%201.43c.69.92%201.15%202%201.32%203.18H21zm-7.94%207.92V22c1.74-.19%203.32-.88%204.61-1.91l-1.43-1.43c-.91.68-2%201.15-3.18%201.32zm4.6-2.74l1.43%201.43c1.04-1.29%201.72-2.88%201.91-4.61h-2.02c-.17%201.18-.64%202.27-1.32%203.18z%22/%3E%3C/svg%3E" style="width: 20px; height: 20px;"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h24v24H0V0z%22/%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M12.06%209.06l4-4-4-4-1.41%201.41%201.59%201.59h-.18c-2.3%200-4.6.88-6.35%202.64-3.52%203.51-3.52%209.21%200%2012.72%201.5%201.5%203.4%202.36%205.36%202.58v-2.02c-1.44-.21-2.84-.86-3.95-1.97-2.73-2.73-2.73-7.17%200-9.9%201.37-1.37%203.16-2.05%204.95-2.05h.17l-1.59%201.59%201.41%201.41zm8.94%203c-.19-1.74-.88-3.32-1.91-4.61l-1.43%201.43c.69.92%201.15%202%201.32%203.18H21zm-7.94%207.92V22c1.74-.19%203.32-.88%204.61-1.91l-1.43-1.43c-.91.68-2%201.15-3.18%201.32zm4.6-2.74l1.43%201.43c1.04-1.29%201.72-2.88%201.91-4.61h-2.02c-.17%201.18-.64%202.27-1.32%203.18z%22/%3E%3C/svg%3E" style="width: 20px; height: 20px;"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h24v24H0V0z%22/%3E%3Cpath%20fill%3D%22%23111%22%20d%3D%22M12.06%209.06l4-4-4-4-1.41%201.41%201.59%201.59h-.18c-2.3%200-4.6.88-6.35%202.64-3.52%203.51-3.52%209.21%200%2012.72%201.5%201.5%203.4%202.36%205.36%202.58v-2.02c-1.44-.21-2.84-.86-3.95-1.97-2.73-2.73-2.73-7.17%200-9.9%201.37-1.37%203.16-2.05%204.95-2.05h.17l-1.59%201.59%201.41%201.41zm8.94%203c-.19-1.74-.88-3.32-1.91-4.61l-1.43%201.43c.69.92%201.15%202%201.32%203.18H21zm-7.94%207.92V22c1.74-.19%203.32-.88%204.61-1.91l-1.43-1.43c-.91.68-2%201.15-3.18%201.32zm4.6-2.74l1.43%201.43c1.04-1.29%201.72-2.88%201.91-4.61h-2.02c-.17%201.18-.64%202.27-1.32%203.18z%22/%3E%3C/svg%3E" style="width: 20px; height: 20px;"></button><div style="position: relative; overflow: hidden; width: 30px; height: 1px; margin: 0px 5px; background-color: rgb(230, 230, 230); display: none;"></div><button draggable="false" aria-label="Tilt map" title="Tilt map" type="button" class="gm-tilt gm-control-active" style="background: none; display: block; border: 0px; margin: 0px; padding: 0px; text-transform: none; appearance: none; position: relative; cursor: pointer; user-select: none; top: 0px; left: 0px; overflow: hidden; width: 40px; height: 40px;"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2018%2016%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M0%2016h8V9H0v7zm10%200h8V9h-8v7zM0%207h8V0H0v7zm10-7v7h8V0h-8z%22/%3E%3C/svg%3E" style="width: 18px;"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2018%2016%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M0%2016h8V9H0v7zm10%200h8V9h-8v7zM0%207h8V0H0v7zm10-7v7h8V0h-8z%22/%3E%3C/svg%3E" style="width: 18px;"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2018%2016%22%3E%3Cpath%20fill%3D%22%23111%22%20d%3D%22M0%2016h8V9H0v7zm10%200h8V9h-8v7zM0%207h8V0H0v7zm10-7v7h8V0h-8z%22/%3E%3C/svg%3E" style="width: 18px;"></button></div></div></div></div><div></div><div><div style="margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;"><a target="_blank" rel="noopener" href="https://maps.google.com/maps?ll=48.8566,2.3522&amp;z=15&amp;t=m&amp;hl=en-US&amp;gl=US&amp;mapclient=apiv3" title="Open this area in Google Maps (opens a new window)" style="position: static; overflow: visible; float: none; display: inline;"><div style="width: 66px; height: 26px; cursor: pointer;"><img alt="" src="https://maps.gstatic.com/mapfiles/api-3/images/google_white5_hdpi.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 66px; height: 26px; user-select: none; border: 0px; padding: 0px; margin: 0px;"></div></a></div></div><div></div><div><div class="gmnoprint" style="z-index: 1000001; position: absolute; right: 232px; bottom: 0px;"><div draggable="false" class="gm-style-cc" style="user-select: none; height: 14px; line-height: 14px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; box-sizing: border-box; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(0, 0, 0); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><button draggable="false" aria-label="Keyboard shortcuts" title="Keyboard shortcuts" type="button" style="background: none; display: inline-block; border: 0px; margin: 0px; padding: 0px; text-transform: none; appearance: none; position: relative; cursor: pointer; user-select: none; color: rgb(0, 0, 0); font-family: inherit; line-height: normal;">Keyboard shortcuts</button></div></div></div><div class="gmnoprint" style="z-index: 1000001; position: absolute; right: 91px; bottom: 0px; width: 121px;"><div draggable="false" class="gm-style-cc" style="user-select: none; height: 14px; line-height: 14px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; box-sizing: border-box; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(0, 0, 0); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><button draggable="false" aria-label="Map Data" title="Map Data" type="button" style="background: none; display: none; border: 0px; margin: 0px; padding: 0px; text-transform: none; appearance: none; position: relative; cursor: pointer; user-select: none; color: rgb(0, 0, 0); font-family: inherit; line-height: normal;">Map Data</button><span>Map data ©2021 Google</span></div></div></div><div class="gmnoprint gm-style-cc" draggable="false" style="z-index: 1000001; user-select: none; height: 14px; line-height: 14px; position: absolute; right: 0px; bottom: 0px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="background-color: rgb(245, 245, 245); width: auto; height: 100%; margin-left: 1px;"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; box-sizing: border-box; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(0, 0, 0); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a href="https://www.google.com/intl/en-US_US/help/terms_maps.html" target="_blank" rel="noopener" style="text-decoration: none; cursor: pointer; color: rgb(0, 0, 0);">Terms of Use</a></div></div><div class="gmnoscreen" style="position: absolute; right: 0px; bottom: 0px;"><div style="font-family: Roboto, Arial, sans-serif; font-size: 11px; color: rgb(0, 0, 0); direction: ltr; text-align: right; background-color: rgb(245, 245, 245);">Map data ©2021 Google</div></div></div></div></div><div style="background-color: white; font-weight: 500; font-family: Roboto, sans-serif; padding: 15px 25px; box-sizing: border-box; top: 5px; border: 1px solid rgba(0, 0, 0, 0.12); border-radius: 5px; left: 50%; max-width: 375px; position: absolute; transform: translateX(-50%); width: calc(100% - 10px); z-index: 1;"><div><img alt="" src="https://maps.gstatic.com/mapfiles/api-3/images/google_gray.svg" draggable="false" style="padding: 0px; margin: 0px; border: 0px; height: 17px; vertical-align: middle; width: 52px; user-select: none;"></div><div style="line-height: 20px; margin: 15px 0px;"><span style="color: rgba(0, 0, 0, 0.87); font-size: 14px;">This page can't load Google Maps correctly.</span></div><table style="width: 100%;"><tr><td style="line-height: 16px; vertical-align: middle;"><a href="https://developers.google.com/maps/documentation/javascript/error-messages?utm_source=maps_js&amp;utm_medium=degraded&amp;utm_campaign=billing#api-key-and-billing-errors" target="_blank" rel="noopener" style="color: rgba(0, 0, 0, 0.54); font-size: 12px;">Do you own this website?</a></td><td style="text-align: right;"><button class="dismissButton">OK</button></td></tr></table></div></div>
+		  </div>
+        </div>
+
+		<div class="utf-boxed-list-item margin-bottom-60">
+          <div class="utf-boxed-list-headline-item">
+            <h3><i class="icon-material-outline-business-center"></i> People Also Viewed</h3>
+          </div>
+          <div class="utf-listings-container-part compact-list-layout">
+            <a href="single-job-page.html" class="utf-job-listing">
+				<div class="utf-job-listing-details">
+				  <div class="utf-job-listing-company-logo"> <img src="images/company_logo_1.png" alt=""> </div>
+				  <div class="utf-job-listing-description">
+				    <span class="dashboard-status-button utf-job-status-item green"><i class="icon-material-outline-business-center"></i> Full Time</span>
+					<h3 class="utf-job-listing-title">Website Developer &amp; Software Developer</h3>
+					<div class="utf-job-listing-footer">
+					  <ul>
+						<li><i class="icon-feather-briefcase"></i> Software Developer</li>
+					    <li><i class="icon-material-outline-account-balance-wallet"></i> $35000-$38000</li>
+					    <li><i class="icon-material-outline-location-on"></i> Drive Potsdam, NY 676</li>
+					    <li><i class="icon-material-outline-access-time"></i> 15 Minute Ago</li>
+					  </ul>
+					</div>
+				  </div>
+				</div>
+				<span class="bookmark-icon"></span>
+			</a>
+            <a href="single-job-page.html" class="utf-job-listing">
+				<div class="utf-job-listing-details">
+				  <div class="utf-job-listing-company-logo"> <img src="images/company_logo_2.png" alt=""> </div>
+				  <div class="utf-job-listing-description">
+				    <span class="dashboard-status-button utf-job-status-item green"><i class="icon-material-outline-business-center"></i> Full Time</span>
+					<h3 class="utf-job-listing-title">Head of Developers &amp; MySQL Developers</h3>
+					<div class="utf-job-listing-footer">
+					  <ul>
+						<li><i class="icon-feather-briefcase"></i> Software Developer</li>
+					    <li><i class="icon-material-outline-account-balance-wallet"></i> $35000-$38000</li>
+					    <li><i class="icon-material-outline-location-on"></i> Drive Potsdam, NY 676</li>
+						<li><i class="icon-material-outline-access-time"></i> 30 Minute Ago</li>
+					  </ul>
+					</div>
+				  </div>
+				</div>
+				<span class="bookmark-icon"></span>
+			</a>
+			<a href="single-job-page.html" class="utf-job-listing">
+				<div class="utf-job-listing-details">
+				  <div class="utf-job-listing-company-logo"> <img src="images/company_logo_3.png" alt=""> </div>
+				  <div class="utf-job-listing-description">
+				    <span class="dashboard-status-button utf-job-status-item green"><i class="icon-material-outline-business-center"></i> Full Time</span>
+					<h3 class="utf-job-listing-title">Frontend/Backendd Developer</h3>
+					<div class="utf-job-listing-footer">
+					  <ul>
+						<li><i class="icon-feather-briefcase"></i> Software Developer</li>
+					    <li><i class="icon-material-outline-account-balance-wallet"></i> $35000-$38000</li>
+					    <li><i class="icon-material-outline-location-on"></i> Drive Potsdam, NY 676</li>
+						<li><i class="icon-material-outline-access-time"></i> 55 Minute Ago</li>
+					  </ul>
+					</div>
+				  </div>
+				</div>
+				<span class="bookmark-icon"></span>
+			</a>
+			<a href="single-job-page.html" class="utf-job-listing">
+				<div class="utf-job-listing-details">
+				  <div class="utf-job-listing-company-logo"> <img src="images/company_logo_4.png" alt=""> </div>
+				  <div class="utf-job-listing-description">
+				    <span class="dashboard-status-button utf-job-status-item yellow"><i class="icon-material-outline-business-center"></i> Part Time</span>
+					<h3 class="utf-job-listing-title">Application Developer &amp; Web Designer</h3>
+					<div class="utf-job-listing-footer">
+					  <ul>
+						<li><i class="icon-feather-briefcase"></i> Software Developer</li>
+					    <li><i class="icon-material-outline-account-balance-wallet"></i> $35000-$38000</li>
+					    <li><i class="icon-material-outline-location-on"></i> Drive Potsdam, NY 676</li>
+						<li><i class="icon-material-outline-access-time"></i> 1 Days Ago</li>
+					  </ul>
+					</div>
+				  </div>
+				</div>
+				<span class="bookmark-icon"></span>
+			</a>
+		  </div>
+		  <div class="utf-centered-button margin-top-10"> <a href="jobs-list-layout-leftside.html" class="button utf-button-sliding-icon" style="width: 187.266px;">View More Jobs <i class="icon-feather-chevron-right"></i></a> </div>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div class="col-xl-4 col-lg-4">
+        <div class="utf-sidebar-container-aera">
+		  <div class="utf-sidebar-widget-item">
+			  <div class="utf-detail-banner-add-section">
+				 <a href="#"><img src="images/banner-add-2.jpg" alt="banner-add-2"></a>
+			  </div>
+          </div>
+		  <div class="utf-sidebar-widget-item">
+			<div class="utf-quote-box">
+				<div class="utf-quote-info">
+					<h4>Make a Difference with Your Online Resume!</h4>
+					<p>Your Resume in Minutes with Jobs Resume Assistant is Ready!</p>
+					<a href="register.html" class="button utf-ripple-effect-dark utf-button-sliding-icon margin-top-10" style="width: 206.219px;">Create an Account <i class="icon-feather-chevron-right"></i></a>
+				</div>
+			</div>
+		  </div>
+		  <div class="utf-sidebar-widget-item">
+			  <h3>Offered Salary</h3>
+			  <div class="utf-right-side">
+				<div class="salary-box">
+					<div class="salary-amount">£25,000 - £30,000</div>
+				</div>
+			  </div>
+		  </div>
+          <div class="utf-sidebar-widget-item">
+            <div class="utf-job-overview">
+              <div class="utf-job-overview-headline">Jobs Position Information</div>
+              <div class="utf-job-overview-inner">
+                <ul>
+                  <li>
+				    <i class="icon-material-outline-business-center"></i> <span>Job Vacancy:</span>
+                    <h5>PHP Developer</h5>
+                  </li>
+				  <li>
+				    <i class="icon-material-outline-account-circle"></i> <span>Gender</span>
+                    <h5>Female</h5>
+                  </li>
+                  <li>
+				    <i class="icon-line-awesome-glass"></i> <span>Experience</span>
+                    <h5>2.6 Years</h5>
+                  </li>
+				  <li>
+				    <i class="icon-material-outline-location-on"></i> <span>Location</span>
+                    <h5>Bothell, WA, USA</h5>
+                  </li>
+				  <li>
+				    <i class="icon-material-outline-business-center"></i> <span>Jobs Type</span>
+                    <h5>Full Time</h5>
+                  </li>
+				  <li>
+				    <i class="icon-line-awesome-gg-circle"></i> <span>Qualification</span>
+                    <h5>Bachelor Degree</h5>
+                  </li>
+				  <li>
+				    <i class="icon-material-outline-access-time"></i> <span>Date Posted</span>
+                    <h5>2 days ago</h5>
+                  </li>
+                </ul>
               </div>
             </div>
+          </div>
+
+          <div class="utf-sidebar-widget-item">
+			<h3>Tags Cloud</h3>
+			<div class="task-tags">
+			  <a href="#"><span>Business</span></a>
+			  <a href="#"><span>Investment </span></a>
+			  <a href="#"><span>Audit</span></a>
+			  <a href="#"><span>Assurance</span></a>
+			  <a href="#"><span>Consulting </span></a>
+			  <a href="#"><span>Partnership</span></a>
+			  <a href="#"><span>Secutity</span></a>
+			  <a href="#"><span>Camera</span></a>
+			</div>
+		  </div>
+
+		  <div class="utf-sidebar-widget-item">
+			<h3>Quick Contacts</h3>
+			<form method="post" name="contactform" id="contact">
+				<div class="row">
+				  <div class="col-md-12">
+					<div class="utf-no-border">
+					  <input class="utf-with-border" name="fristname" type="text" id="fristname" placeholder="Frist Name" required="">
+					</div>
+				  </div>
+				  <div class="col-md-12">
+					<div class="utf-no-border">
+					  <input class="utf-with-border" name="lastname" type="text" id="lastname" placeholder="Last Name" required="">
+					</div>
+				  </div>
+				  <div class="col-md-12">
+					<div class="utf-no-border">
+					  <input class="utf-with-border" name="email" type="email" id="email" placeholder="Email Address" required="">
+					</div>
+				  </div>
+				  <div class="col-md-12">
+					<div class="utf-no-border">
+					  <input class="utf-with-border" name="subject" type="text" id="subject" placeholder="Subject" required="">
+					</div>
+				  </div>
+				</div>
+				<div>
+				  <textarea class="utf-with-border" name="comments" cols="40" rows="2" id="comments" placeholder="Message..." required=""></textarea>
+				</div>
+				<div class="utf-centered-button margin-top-10">
+					<input type="submit" class="submit button" id="submit" value="Submit Message">
+				</div>
+			 </form>
+		  </div>
+
+		  <div class="utf-sidebar-widget-item">
+            <h3>Bookmark Jobs</h3>
+			<p class="bookmark-text-item">950 People Bookmarked Jobs</p>
+            <button class="bookmark-button margin-bottom-10"> <span class="bookmark-icon"></span> <span class="bookmark-text">Login to Bookmark Jobs</span> <span class="bookmarked-text">Login to Bookmark Jobs</span> </button>
+          </div>
+
+		  <div class="utf-sidebar-widget-item">
+            <h3>Print Job &amp; Report Job</h3>
+			<a href="#" class="button dark">Print Jobs <i class="icon-line-awesome-print"></i></a>
+			<a href="#" class="button dark">Report Jobs <i class="icon-feather-flag"></i></a>
+          </div>
+
+		  <div class="utf-sidebar-widget-item">
+			  <div class="utf-detail-banner-add-section">
+				 <a href="#"><img src="images/banner-add-2.jpg" alt="banner-add-2"></a>
+			  </div>
+          </div>
         </div>
       </div>
     </div>
-</section>
+  </div>
     <!-- Single Post Section End -->
-
-{% endfor %}
 {% endblock %}

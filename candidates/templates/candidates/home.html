@@ -8,53 +8,93 @@
 <section class="hero">
     <div class="hero__slider owl-carousel">
         <div class="hero__item">
-            <div class="container-fluid mt-5">
-            <h1 class="welcome_title text-center text-white mt-5">Change Your Career Starts Now!</h1>
-            <h3 class="welcome_ad text-center text-white mt-3">Find Jobs, Employment & Career Making Over 100,000 Applications Every Day.</h3>
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 p-0 justify-content-center">
-                        <div class="hero__inside__item hero__inside__item--wide set-bg">
-                            <form class="wide_form_search mt-5" action="{% url 'job-search-list' %}" method="GET">
-                              <div class="form-box">
-                                <input type="text" name="keyword" class="searchfield-business" placeholder="Search for job keywords...">
-                                <!-- <input type="text" class="searchfield-location" placeholder="Select location"> -->
-                                <input list="countries" name="loc" id="country" class="searchfield-location" placeholder="Choose location...">
+            <div class="container mt-5">
+              <h1 class="welcome_title text-center text-white mt-5">Change Your Career Starts Now!</h1>
+              <h3 class="welcome_ad text-center text-white mt-3">Find Jobs, Employment & Career Making Over 100,000 Applications Every Day.</h3>
+              <!-- NEW search box -->
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="hero__inside set-bg">
+                      <form action="{% url 'job-search-list' %}" method="GET">
+                        <div class="form-box">
+                          <div class="box-item">
+                            <div class="btn_group">
+              			          <i class="fas fa-map-marker-alt"></i>
+                              <input type="text" name="keyword" class="searchfield" placeholder="Search for job keywords...">
+              			        </div>
+                          </div>
+              			      <div class="box-item">
+                            <div class="btn_group">
+                                <input list="countries" name="loc" id="country" class="searchfield" placeholder="Choose location...">
                                 <datalist id="countries" style="z-index:10">
                                   {% for country in countries_list %}
                                   <option value="{{ country }}"></option>
                                   {% endfor %}
-
                                 </datalist
-                                <span class="vert_sep_line"></span>
-                                <button class="search-button" type="submit">Search</button>
                               </div>
-                            </form>
-                            <div class="trending_kwords pt-3">
-                              <h5 class="text-white">Trending Keywords:  <span class="text-warning ml-5">IT Engineer</span><span class="text-warning ml-5">Farm Worker</span><span class="text-warning ml-5">Nurse</span></h5>
+                          </div>
+                          </div>
+                          <div class="box-item">
+                              <input list="categories" name="loc" id="country" class="searchfield" placeholder="Choose category...">
+                              <datalist id="categories" style="z-index:10">
+                                <option value="Food Service">Food Service</option>
+                                <option value="Construction">Construction</option>
+                                <option value="Agriculture">Agriculture</option>
+                                <option value="Human Resources">Human Resources</option>
+                              </datalist>
+                          </div>
+
+                          <div class="srch-item">
+                            <div class="srch-btn">
+                              <button class="btn" type="submit"><i class="fa fa-search"></i> Search Jobs</button>
                             </div>
-                            <div class="featured-jobs">
-                              <div class="featured-jobs-type ">
-                                  <span class="job-title">IT engineer</span>
-                              </div>
-                              <div class="featured-jobs-type">
-                                  <span class="job-title">Marketing</span>
-                              </div>
-                              <div class="featured-jobs-type">
-                                  <span class="job-title">Banking</span>
-                              </div>
-                              <div class="featured-jobs-type">
-                                  <span class="job-title">Health Care</span>
-                              </div>
-                              <div class="featured-jobs-type">
-                                  <span class="job-title">Art</span>
-                              </div>
-                            </div>
+                          </div>
                         </div>
-                    </div>
+                      </form>
+                  </div>
+                  <p class="trending_kwords"><span class="trending-title">Trending Jobs Keywords:</span> <a href="#">Web Designer</a>  <a href="#">Web Developer</a>  <a href="#">Graphic Designer</a>  <a href="#">PHP Developer</a>  <a href="#">IOS Developer</a>  <a href="#">Android Developer</a></p>
                 </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="feat-jobs">
+                    <ul class="feat-jobs-list">
+                      <li> <a href="#" class="feat_jobs-grid">
+                        <div class="feat_jobs-box"> <i class="fa fa-pie-chart"></i>
+                          <p>Food Service</p>
+                        </div>
+                        </a>
+                      </li>
+                      <li> <a href="#" class="feat_jobs-grid">
+                        <div class="feat_jobs-box"><i class="fa fa-tools"></i>
+                          <p>Construction</p>
+                        </div>
+                        </a>
+                      </li>
+                      <li> <a href="#" class="feat_jobs-grid">
+                        <div class="feat_jobs-box"> <i class="fa fa-phone"></i>
+                          <p>Telecommunications</p>
+                        </div>
+                        </a>
+                      </li>
+                      <li> <a href="#" class="feat_jobs-grid">
+                        <div class="feat_jobs-box"> <i class="fa fa-heartbeat"></i>
+                          <p>Health Care</p>
+                        </div>
+                        </a>
+                      </li>
+                      <li> <a href="#" class="feat_jobs-grid">
+                        <div class="feat_jobs-box"> <i class="fa fa-palette"></i>
+                          <p>Design &amp; Art</p>
+                        </div>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
         </div>
-    </div>
 </section>
 <!-- Hero Section End -->
 
@@ -67,41 +107,71 @@
     {% endfor %}
 {% endif %}
 <!-- Categories Section Begin -->
-
-<section class="categories spad">
-    <h3 class="text-center">Job Categories</h3>
-    <hr class="sep-line-title mt-2">
-    <h5 class="text-center">Choose your sector</h5>
-    <hr class="sep-line-title mt-2">
+<div class="section margin-top-60 margin-bottom-50">
     <div class="container">
-        <div class="row" >
-          {% for cat in jobs_cat %}
-            <div class="col-lg-2 col-md-6 col-sm-6 m-3 set-bg categories__box" data-setbg="{{ cat.image.url }}">
-                <hr>
-
-                <div class="categories__title">
-                  <h5>{{ cat|title }}</h5>
-                </div>
-                <div class="categories__cover">
-                </div>
-                <hr>
-            </div>
-            <hr>
-          {% endfor %}
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="section_head mt-5 mb-4">
+            <span>Jobs Categories</span>
+      			<h3>Choose Your Sector</h3>
+      			<div class="section_title">Jobs Categories</div>
+      			<p class="section_text">Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley.</p>
+          </div>
         </div>
+      {% for cat in jobs_cat %}
+        <div class="col-xl-3 col-md-6 col-lg-4">
+			    <a href="{% url 'category' cat.slug %}" class="cat-box photo-category-box small" data-background-image="dark" style="background-image: url('{{ cat.image.url }}');">
+			      <div class="job-count">10 Openings</div>
+			      <div class="cat-name">
+              <div class="cat-icon"> <img class="" src="{{ cat.icon.url }}"></img> </div>
+      				<h3 class=>{{ cat.name }}</h3>
+      				<span>2,612 Jobs</span>
+			      </div>
+			</a>
+		</div>
+    {% endfor %}
+		<div class="col-xl-12 utf-centered-button margin-top-10">
+			<a href="jobs-categorie-two.html" class="button utf-ripple-effect-dark utf-button-sliding-icon margin-top-0">View All Categories <i class="icon-feather-chevron-right"></i></a>
+		</div>
+      </div>
     </div>
-    <hr class="sep-line-title mt-2">
-    <h3 class="text-center mt-5">Most Popular Jobs</h3>
-    <hr class="sep-line-title mt-2">
-    <h5 class="text-center">Click on any to see details</h5>
-    <hr class="sep-line-title mt-2">
-    <div class="job">
-        <div class="container">
-            <div class="row justify-content-center">
+  </div>
+<!-- Categories End -->
+<!-- Featured Jobs Start -->
+<div class="section spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="section_head mt-5 mb-4">
+          <span>Featured Jobs</span>
+          <h3>Click Browse to see details</h3>
+          <div class="section_title">Jobs Categories</div>
+          <p class="section_text">Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley.</p>
+        </div>
+      </div>
                 <div class="col-lg-12 col-md-12">
                   {% for job in featured_jobs %}
-
-                    <div class="job__item">
+                  <div class="job__item mt-5">
+                    <a href="{% url 'job_details' job.pk %}" class="job__item__link">
+                      <div class="job__details">
+        				            <div class="job__item__logo"> <img src="{{ job.logo.url }}" alt=""> </div>
+        				            <div class="job__description">
+                              <span class="job__type"><i class="fa fa-suitcase"></i> Full Time</span>
+                                <h3 class="job__title">{{ job.title }}</h3>
+                              <div class="job__footer">
+                                <ul>
+                      						<li><i class="fa fa-suitecase briefcase-icon"></i> {{ job.category }}</li>
+                      						<li><i class="fa fa-money-check-alt"></i> {{ job.from_wage_hour }} - {{ job.to_wage_hour }} EUR</li>
+                      						<li><i class="fas fa-map-signs"></i> {{ job.locality }}, {{ job.country }}</li>
+                      						<li><i class="fa fa-clock-o"></i> {{ job.get_time_diff }} Hours Ago</li>
+        					              </ul>
+        					            </div>
+        				            </div>
+                            <span class="job_browse_btn">Browse Job <i class="fa fa-bullhorn"></i></span>
+        				      </div>
+                    </a>
+        		  </div>
+                    <!-- <div class="job__item">
                       <div class="job__description">
                         <div class="job__item__pic">
                             <div class="post__meta">
@@ -134,15 +204,134 @@
                           <a href="{% url 'job_details' job.pk %}" class="primary-btn">Browse Job</a>
                         </div>
                     </div>
-                  </div>
+                  </div> -->
                     {% endfor %}
                 </div>
                 <div class="all_jobs_btn">
                   <a href="{% url 'job-search-list' %}" class="primary-btn">See all Jobs</a>
                 </div>
             </div>
+        </div
+</div>
+<!-- Section Jobs End -->
+<!-- Section Guide Start-->
+<div class="section pt-5 pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="section_head mt-5 mb-4">
+            <span>Guide</span>
+            <div class="section_title">How it works</div>
+            <p class="section_text">Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley.</p>
+          </div>
         </div>
+		    <div class="col-xl-3 col-md-6 col-sm-12">
+          <div class="icon-box with-line">
+            <div class="utf-icon-box-circle">
+              <div class="utf-icon-box-circle-inner"> <i class="icon-line-awesome-user-secret"></i></div>
+            </div>
+            <h3>User Register</h3>
+            <p>Lorem Ipsum is simply dummy text the printing and type setting industry Lorem Ipsum has been industry.</p>
+          </div>
+        </div>
+		    <div class="col-xl-3 col-md-6 col-sm-12">
+          <div class="icon-box with-line">
+            <div class="utf-icon-box-circle">
+              <div class="utf-icon-box-circle-inner"> <i class="icon-line-awesome-user-plus"></i></div>
+            </div>
+            <h3>Create Account</h3>
+            <p>Lorem Ipsum is simply dummy text the printing and type setting industry Lorem Ipsum has been industry.</p>
+          </div>
+        </div>
+		    <div class="col-xl-3 col-md-6 col-sm-12">
+          <div class="icon-box">
+            <div class="utf-icon-box-circle">
+              <div class="utf-icon-box-circle-inner"> <i class="icon-line-awesome-edit"></i></div>
+            </div>
+            <h3>Search Jobs</h3>
+            <p>Lorem Ipsum is simply dummy text the printing and type setting industry Lorem Ipsum has been industry.</p>
+          </div>
+        </div>
+		    <div class="col-xl-3 col-md-6 col-sm-12">
+          <div class="icon-box">
+            <div class="utf-icon-box-circle">
+              <div class="utf-icon-box-circle-inner"> <i class="icon-line-awesome-save"></i></div>
+            </div>
+            <h3>Save &amp; Apply</h3>
+            <p>Lorem Ipsum is simply dummy text the printing and type setting industry Lorem Ipsum has been industry.</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="section pt-5 pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="section__head mt-0 mb-4">
+            <span>Clients Say About Us</span>
+			         <h3>Our Customers Says</h3>
+			            <div class="section__title">Clients Say About Us</div>
+			            <p class="section__text">Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials Carousel -->
+    <div class="section carousel-container">
+      <div class="testimonial-carousel">
+      <div class="slick-list" style="padding: 0px 10px; height: 484px;"><div class="slick-track" style="opacity: 1; width: 7584px; transform: translate3d(-1264px, 0px, 0px);"><div class="utf-carousel-review-item slick-slide slick-cloned" style="width: 592px;" data-slick-index="-2" aria-hidden="true" tabindex="-1">
+          <div class="section__head">
+            <div class="utf-testimonial-avatar-photo"> <img src="images/user_small_1.jpg" alt=""> </div>
+            <div class="utf-testimonial-author-utf-detail-item">
+              <h4>David Peterson</h4>
+              <span>Designer</span> </div>
+            <div class="testimonial">Lorem Ipsum is simply dummy text of printing and type setting industry. Lorem Ipsum been industry standard dummy text ever since, when an unknown printer took a galley of type and laboris nisi ut aliquip ex minim veniam scrambled it to make a type specimen book. It has survived not only five into electronic type setting popularised.</div>
+          </div>
+        </div></div></div><ul class="slick-dots" style="" role="tablist"><li class="slick-active" role="presentation"><button type="button" role="tab" id="slick-slide-control00" aria-controls="slick-slide00" aria-label="1 of 5" tabindex="0" aria-selected="true">1</button></li><li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control01" aria-controls="slick-slide01" aria-label="2 of 5" tabindex="-1">2</button></li><li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control02" aria-controls="slick-slide02" aria-label="3 of 5" tabindex="-1">3</button></li><li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control03" aria-controls="slick-slide03" aria-label="4 of 5" tabindex="-1">4</button></li><li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control04" aria-controls="slick-slide04" aria-label="5 of 5" tabindex="-1">5</button></li></ul></div>
+    </div>
+  </div>
+  <!-- Testimonials Carousel end -->
+  <!-- Blog Carousel -->
+  <div class="section pt-5 pb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="section__head mt-0 mb-5">
+            <span>Our Blog &amp; Articles</span>
+			        <h3>Latest Blog Post</h3>
+			        <div class="section__title">Our Blog &amp; Articles</div>
+			        <p class="section__text">Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley.</p>
+          </div>
+		  <div class="blog-carousel">
+		    <div class="slick-list"><div class="slick-track" style="opacity: 1; width: 5940px; transform: translate3d(-2700px, 0px, 0px);">
+          <a href="#" class="blog_container slick-slide slick-cloned" style="width: 510px;" data-slick-index="-1" aria-hidden="true" tabindex="-1">
+				  <div class="blog_item"> <img src="#" alt="">
+				        <div class="blog_content">
+                  <h3>What It Really Takes to Make $100k Before You Turn 30</h3>
+                  <ul class="utf-blog-post-tags">
+                    <li>By, John Williams</li>
+                    <li>20 Jan, 2021</li>
+                  </ul>
+                  <p>Lorem Ipsum is simply dummy text of printing industry Lorem Ipsum been industry standard dummy text since book.</p>
+                </div>
+          </div>
+			</a>
+      </div>
+    </div>
+    <ul class="slick-dots" style="" role="tablist">
+      <li class="" role="presentation">
+        <button type="button" role="tab" id="slick-slide-control20" aria-controls="slick-slide20" aria-label="1 of 5" tabindex="-1">1</button></li>
+        <li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control21" aria-controls="slick-slide21" aria-label="2 of 5" tabindex="-1">2</button></li>
+        <li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control22" aria-controls="slick-slide22" aria-label="3 of 5" tabindex="-1">3</button></li>
+        <li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control23" aria-controls="slick-slide23" aria-label="4 of 5" tabindex="-1">4</button></li>
+        <li role="presentation" class="slick-active"><button type="button" role="tab" id="slick-slide-control24" aria-controls="slick-slide24" aria-label="5 of 5" tabindex="0" aria-selected="true">5</button></li></ul>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>
     <hr class="sep-line-title mt-5">
     <h3 class="text-center">Job Locations</h3>
     <hr class="sep-line-title mt-2">
@@ -166,6 +355,6 @@
           {% endfor %}
         </div>
     </div>
-</section>
+
 <!-- Categories Section End -->
 {% endblock %}
