@@ -97,15 +97,6 @@
         </div>
 </section>
 <!-- Hero Section End -->
-
-{% if messages %}
-    {% for message in messages %}
-
-        <div class="alert alert-success alert-dismissable" role="alert">
-          {{ message }}
-        </div>
-    {% endfor %}
-{% endif %}
 <!-- Categories Section Begin -->
 <div class="section margin-top-60 margin-bottom-50">
     <div class="container">
@@ -166,6 +157,13 @@
                       						<li><i class="fa fa-clock-o"></i> {{ job.get_time_diff }} Hours Ago</li>
         					              </ul>
         					            </div>
+                              <!-- <div class="job__social">
+                                <ul>
+                      						<li><a><i class="fab fa-facebook"></i></a></li>
+                      						<li><a><i class="fab fa-twitter"></i></a></li>
+                                  <li><a><i class="fab fa-insta"></i></a></li>
+        					              </ul>
+        					            </div> -->
         				            </div>
                             <span class="job_browse_btn">Browse Job <i class="fa fa-bullhorn"></i></span>
         				      </div>
@@ -332,29 +330,6 @@
       </div>
     </div>
   </div>
-    <hr class="sep-line-title mt-5">
-    <h3 class="text-center">Job Locations</h3>
-    <hr class="sep-line-title mt-2">
-    <h5 class="text-center">Choose a location</h5>
-    <hr class="sep-line-title mt-2">
-    <div class="container">
-        <div class="row" >
-          {% for c in countries %}
-            <div class="col-lg-2 col-md-6 col-sm-6 m-3 set-bg categories__box" data-setbg="{{ cat.image.url }}">
-                <hr>
-
-                <div class="categories__title">
-                  <h5>{{ c }}</h5>
-                </div>
-                <div class="categories__cover">
-                </div>
-                <hr>
-                <br>
-                <p style="display:flex;" class="text-white">100 jobs</p>
-            </div>
-          {% endfor %}
-        </div>
-    </div>
 
 <!-- Categories Section End -->
 {% endblock %}
