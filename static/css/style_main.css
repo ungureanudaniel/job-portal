@@ -1,6 +1,8 @@
 /*----------------main css-------------------------------*/
 html,
 body {
+  font-size: 16px;
+  line-height: 27px;
 	height: 100%;
 	font-family: "Nunito Sans", sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -230,7 +232,7 @@ ol {
   }
 }
 /* OLD */
-
+/*
  #preloder {
 	position: fixed;
 	width: 100%;
@@ -365,7 +367,8 @@ ol {
   Header
 -----------------------*/
 .header {
-
+	position: sticky;
+	background: transparent;
 }
 .header__top {
 	background: transparent;
@@ -778,31 +781,66 @@ ol {
 	color: #ffffff !important;
 	opacity: 0.7 !important;
 }
-
-/*---------------------
-  Hero
------------------------*/
-
-.hero__slider {
-	overflow: hidden;
-	background: black;
-	background-size: cover;
+/*----------------------
+		Welcome top
+----------------------*/
+.head__slider {
+	padding: 112px 0;
+	position: relative;
+	background-image: url('../images/head/head_img1.png')
 }
-.hero__item {
-	margin-top: 10em;
-	margin-right: -11px;
+.head__slider:before {
+    background: #0c1017;
+    opacity: 0.55;
+		content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+    z-index: 15;
+    opacity: 0.7;
+    background: #0c1017;
 }
-.row {
-    display: -webkit-box;
-    display: -ms-flexbox;
-		width: auto;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-	}
+.head__item {
+	height: 82px;
+}
+.head__slider .container {
+	z-index: 100;
+  position: relative;
+}
+.head__slider .head_text {
+	margin: 0;
+  display: block;
+  text-align: center;
+}
+.head__slider .head_text h3 {
+  color: #fff;
+	font-size: 40px;
+	font-weight: 700;
+	color: #fff;
+	line-height: 60px;
+}
+.head__slider .head_text h3 {
+  color: #fff;
+	font-size: 40px;
+	font-weight: 700;
+	color: #fff;
+	line-height: 60px;
+}
 
-.hero__inside .form-box {
+.head__slider .head_text span {
+	color: rgba(255,255,255,0.8);
+	font-size: 20px;
+  color: rgba(255,255,255,0.9);
+  font-weight: 500;
+  line-height: 28px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.head__inside .form-box {
 	display: flex;
 	width: 100%;
 	background-color: #fbfdff;
@@ -810,7 +848,7 @@ ol {
 	border: 5px solid rgba(0,0,0,0.1);
 	box-shadow: 0 2px 12px rgb(0 0 0 / 9%)
 }
-.hero__inside .form-box .box-item {
+.head__inside .form-box .box-item {
 	padding: 10px 12px;
 	border-right: 1px solid #e4e4e4;
 	/* flex: 1; */
@@ -825,7 +863,7 @@ ol {
 }
 
 
-.hero__inside .form-box input {
+.head__inside .form-box input {
 	box-shadow: none;
   font-size: 18px;
   margin: 0;
@@ -862,11 +900,12 @@ input {
 
 .form-box .srch-item {
 	margin: 8px;
-    margin-left: 0;
-    flex: auto;
-    flex-grow: 0;
-    display: flex;
-    align-items: center;
+  margin-left: 0;
+  flex: auto;
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+	border-right: none;
 }
 
 .form-box .srch-item .srch-btn {
@@ -896,43 +935,43 @@ input {
 	background-color: rgba(0, 0, 0, 0.7);
 }
 
-.hero__slider .hero__item .trending_kwords {
+.head__slider .trending_kwords {
 	text-align: center;
 	color: #cecece;
 	margin-top: 20px;
 	margin-bottom: 0;
 	font-weight: 500;
 }
-.hero__slider .hero__item .trending_kwords .trending-title {
+.head__slider .trending_kwords .trending-title {
 	color: white;
 	padding: 3px;
 }
-.hero__slider .hero__item .trending_kwords a {
+.head__slider .trending_kwords a {
 	color: white;
 	padding: 3px;
 	background-color: rgba(230, 126, 34, 0.5);
 }
-.hero__slider .hero__item .feat-jobs {
+.head__slider .feat-jobs {
     display: inline-block;
     margin: 30px auto 0 auto;
     width: 100%;
 }
 
-.hero__slider .hero__item .feat-jobs ul.feat-jobs-list {
+.head__slider .feat-jobs ul.feat-jobs-list {
     display: block;
     margin: 0 auto;
     text-align: center;
     padding: 0;
 }
 
-.hero__slider .hero__item .feat-jobs ul.feat-jobs-list li {
-    margin: 5px;
-    list-style: none;
-    display: inline-block;
-    text-align: center;
+.head__slider .feat-jobs ul.feat-jobs-list li {
+	margin: 5px;
+	list-style: none;
+	display: inline-block;
+	text-align: center;
 }
 
-.hero__slider .hero__item .feat-jobs ul.feat-jobs-list li a {
+.head__slider .feat-jobs ul.feat-jobs-list li a {
     position: relative;
     width: 130px;
     height: 100px;
@@ -945,7 +984,7 @@ input {
     transition: all .25s ease-in-out;
 }
 
-.feat-jobs ul.feat-jobs-list li a .feat_jobs-box, {
+.feat-jobs ul.feat-jobs-list li a .feat_jobs-box {
     position: relative;
     width: 100%;
     height: 100%;
@@ -956,12 +995,6 @@ input {
     transition: 0.35s;
     box-shadow: 0px 0px 16px 0px rgb(2 2 2 / 10%);
     -webkit-box-shadow: 0px 0px 16px 0px rgb(2 2 2 / 10%);
-}
-
-.feat-jobs-list li a .feat_jobs-box p {
-	color: white;
-  font-size: 16px;
-  font-weight: 600;
 }
 
 .feat-jobs ul.feat-jobs-list li a .feat_jobs-box:hover, .feat-jobs ul.feat-jobs-list li a .feat_jobs-box:focus {
@@ -975,6 +1008,12 @@ input {
 @keyframes featured_jobs {
   from {background-color: rgba(48, 48, 48, 0.6);}
   to {background-color: rgba(230, 126, 34, 1);}
+}
+
+.feat-jobs-list li a .feat_jobs-box p {
+	color: white;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 /*---------------------
@@ -1028,8 +1067,6 @@ input {
 		    bottom: -7px;
 		    width: 40px;
 }
-
-
 
 /*---------------------
 	  Categories Grid
@@ -2161,7 +2198,7 @@ transform: translate3d(-2615px, 0px, 0px);
 	.job__item .post__social {
 		font-size: 12px;
 	}
-	.hero__inside .form-box {
+	.head__inside .form-box {
     background: rgba(255, 255, 255, 0.2) !important;
     border-radius: 10px;
     padding: 15px;
@@ -2171,7 +2208,7 @@ transform: translate3d(-2615px, 0px, 0px);
     margin-top: 0px;
 		border: none;
 	}
-	.hero__inside .form-box .box-item {
+	.head__inside .form-box .box-item {
 		padding: 0;
 		border-right: 0;
 		border-radius: 4px;
@@ -2190,12 +2227,12 @@ transform: translate3d(-2615px, 0px, 0px);
 		width: 100%;
 		align-items: center;
 	}
-	.hero__inside .form-box .srch-item {
+	.head__inside .form-box .srch-item {
 		margin-top: 0px;
     margin-right: 0;
     margin-bottom: 0px;
 	}
-	.hero__inside .form-box .srch-item .srch-btn {
+	.head__inside .form-box .srch-item .srch-btn {
 		padding: 0;
 		border-right: 0;
 		border-radius: 4px;
@@ -2259,12 +2296,12 @@ transform: translate3d(-2615px, 0px, 0px);
 		left: 0;
 		margin-bottom: 25px;
 	}
-	.hero__inside .form-box input {
+	.head__inside .form-box input {
 		width: 100%;
 		flex-direction: column;
 		flex-grow: 1;
 	}
-	.hero__inside .form-box {
+	.head__inside .form-box {
     background: rgba(255, 255, 255, 0.2) !important;
     border-radius: 10px;
     padding: 15px;
@@ -2274,7 +2311,7 @@ transform: translate3d(-2615px, 0px, 0px);
     margin-top: 0px;
 		border: none;
 	}
-	.hero__inside .form-box .box-item {
+	.head__inside .form-box .box-item {
 		padding: 0;
 		border-right: 0;
 		border-radius: 4px;
@@ -2385,7 +2422,7 @@ transform: translate3d(-2615px, 0px, 0px);
 		width: 300px;
 		padding: 50px 30px 60px 30px;
 	}
-	.hero__inside__item--meta {
+	.head__inside__item--meta {
 		float: none;
 		margin-bottom: 10px;
 	}

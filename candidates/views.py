@@ -60,6 +60,7 @@ def job_search_list(request):
     countries_list = AvailableCountry.objects.all()
     query_keywords = request.GET.get('keyword')
     query_location = request.GET.get('loc')
+    query_cat = request.GET.get('cat')
     object_list = []
     if(query_keywords == None):
         object_list = Job.objects.all()
@@ -68,6 +69,7 @@ def job_search_list(request):
         skill_list = Job.objects.filter(skills_req__icontains=query_keywords).order_by('-date_posted')
         company_list = Job.objects.filter(company__icontains=query_keywords).order_by('-date_posted')
         job_type_list = Job.objects.filter(job_type__icontains=query_keywords).order_by('-date_posted')
+        Job.objects.filter(category__icontains=query_keywords).order_by('-date_posted')
         for i in title_list:
             object_list.append(i)
         for i in skill_list:
@@ -79,11 +81,19 @@ def job_search_list(request):
         for i in job_type_list:
             if i not in object_list:
                 object_list.append(i)
+        for i in category_list:
+            if i not in object_list:
+                object_list.append(i)
     if(query_location == None):
         locat = Job.objects.all()
     else:
         locat = Job.objects.filter(
-            location__icontains=query_location).order_by('-date_posted')
+            country__icontains=query_location).order_by('-date_posted')
+    if(query_cat==None):
+        cat = Job.objects.all()
+    else:
+        query_cat = Job.objects.filter(category__icontains=query_cat).order_by('-date_posted')
+        
     final_list = []
     for i in object_list:
         if i in locat:

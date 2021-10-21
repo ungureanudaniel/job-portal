@@ -5,100 +5,111 @@
 
 {% block content %}
 <!-- Hero Section Begin -->
-<section class="hero">
-    <div class="hero__slider owl-carousel">
-        <div class="hero__item">
-            <div class="container mt-5">
-              <h1 class="welcome_title text-center text-white mt-5">Change Your Career Starts Now!</h1>
-              <h3 class="welcome_ad text-center text-white mt-3">Find Jobs, Employment & Career Making Over 100,000 Applications Every Day.</h3>
-              <!-- NEW search box -->
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="hero__inside set-bg">
-                      <form action="{% url 'job-search-list' %}" method="GET">
-                        <div class="form-box">
-                          <div class="box-item">
-                            <div class="btn_group">
-              			          <i class="fas fa-map-marker-alt"></i>
-                              <input type="text" name="keyword" class="searchfield" placeholder="Search for job keywords...">
-              			        </div>
-                          </div>
-              			      <div class="box-item">
-                            <div class="btn_group">
-                                <input list="countries" name="loc" id="country" class="searchfield" placeholder="Choose location...">
-                                <datalist id="countries" style="z-index:10">
-                                  {% for country in countries_list %}
-                                  <option value="{{ country }}"></option>
-                                  {% endfor %}
-                                </datalist
-                              </div>
-                          </div>
-                          </div>
-                          <div class="box-item">
-                              <input list="categories" name="loc" id="country" class="searchfield" placeholder="Choose category...">
-                              <datalist id="categories" style="z-index:10">
-                                <option value="Food Service">Food Service</option>
-                                <option value="Construction">Construction</option>
-                                <option value="Agriculture">Agriculture</option>
-                                <option value="Human Resources">Human Resources</option>
-                              </datalist>
-                          </div>
-
-                          <div class="srch-item">
-                            <div class="srch-btn">
-                              <button class="btn" type="submit"><i class="fa fa-search"></i> Search Jobs</button>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                  </div>
-                  <p class="trending_kwords"><span class="trending-title">Trending Jobs Keywords:</span> <a href="#">Web Designer</a>  <a href="#">Web Developer</a>  <a href="#">Graphic Designer</a>  <a href="#">PHP Developer</a>  <a href="#">IOS Developer</a>  <a href="#">Android Developer</a></p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="feat-jobs">
-                    <ul class="feat-jobs-list">
-                      <li> <a href="#" class="feat_jobs-grid">
-                        <div class="feat_jobs-box"> <i class="fa fa-pie-chart"></i>
-                          <p>Food Service</p>
-                        </div>
-                        </a>
-                      </li>
-                      <li> <a href="#" class="feat_jobs-grid">
-                        <div class="feat_jobs-box"><i class="fa fa-tools"></i>
-                          <p>Construction</p>
-                        </div>
-                        </a>
-                      </li>
-                      <li> <a href="#" class="feat_jobs-grid">
-                        <div class="feat_jobs-box"> <i class="fa fa-phone"></i>
-                          <p>Telecommunications</p>
-                        </div>
-                        </a>
-                      </li>
-                      <li> <a href="#" class="feat_jobs-grid">
-                        <div class="feat_jobs-box"> <i class="fa fa-heartbeat"></i>
-                          <p>Health Care</p>
-                        </div>
-                        </a>
-                      </li>
-                      <li> <a href="#" class="feat_jobs-grid">
-                        <div class="feat_jobs-box"> <i class="fa fa-palette"></i>
-                          <p>Design &amp; Art</p>
-                        </div>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <section class="section head__slider">
+    <div class="head__item" style="height: 82px;"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="head_text">
+              <h3>Find The Job That Fits Your Life</h3>
+              <span>Each month, more than 7 million jobseekers turn to the internet in their search for work, every day.</span>
+  		  </div>
+          </div>
         </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="head__inside mt-4">
+              <form class="form-box" action="{% url 'job-search-list' %}" method="GET">
+                <!-- <div class="form-box"> -->
+                  <div class="box-item">
+                    <div class="btn_group">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <input type="text" name="keyword" class="searchfield" placeholder="Search for job keywords...">
+                    </div>
+                  </div>
+                  <div class="box-item">
+                    <div class="btn_group">
+                        <input list="countries" name="loc" id="country" class="searchfield" placeholder="Choose location...">
+                        <datalist id="countries" style="z-index:10">
+                          {% for country in countries_list %}
+                          <option value="{{ country }}"></option>
+                          {% endfor %}
+                        </datalist
+                      </div>
+                  </div>
+                  </div>
+                  <!-- </div> -->
+                  <div class="box-item">
+                      <input list="categories" name="cat" id="cats" class="searchfield" placeholder="Choose category...">
+                      <datalist id="categories" style="z-index:10">
+                        <option value="Food Service">Food Service</option>
+                        <option value="Construction">Construction</option>
+                        <option value="Agriculture">Agriculture</option>
+                        <option value="Human Resources">Human Resources</option>
+                      </datalist>
+                  </div>
+
+                  <div class="srch-item">
+                    <div class="srch-btn">
+                      <button class="btn" type="submit"><i class="fa fa-search"></i> Search Jobs</button>
+                    </div>
+                  </div>
+
+              </form>
+              <p class="trending_kwords"><span class="trending-title">Trending Jobs Keywords:</span> <a href="#">Construction Worker</a>  <a href="#">Waiter</a>  <a href="#">Human Resources</a>  <a href="#">Horse Trainer</a>  <a href="#">Lawn Mower</a>  <a href="#">Design Specialist</a></p>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="feat-jobs">
+              <ul class="feat-jobs-list">
+                <li> <a href="#" class="feat_jobs-grid">
+                  <div class="feat_jobs-box"> <i class="fa fa-pie-chart"></i>
+                    <p>Food Service</p>
+                  </div>
+                  </a>
+                </li>
+                <li> <a href="#" class="feat_jobs-grid">
+                  <div class="feat_jobs-box"><i class="fa fa-tools"></i>
+                    <p>Construction</p>
+                  </div>
+                  </a>
+                </li>
+                <li> <a href="#" class="feat_jobs-grid">
+                  <div class="feat_jobs-box"> <i class="fa fa-phone"></i>
+                    <p>Telecommunications</p>
+                  </div>
+                  </a>
+                </li>
+                <li> <a href="#" class="feat_jobs-grid">
+                  <div class="feat_jobs-box"> <i class="fa fa-heartbeat"></i>
+                    <p>Health Care</p>
+                  </div>
+                  </a>
+                </li>
+                <li> <a href="#" class="feat_jobs-grid">
+                  <div class="feat_jobs-box"> <i class="fa fa-palette"></i>
+                    <p>Design &amp; Art</p>
+                  </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+  	<div class="utf-video-container-block" data-background-image="images/home-video-background.jpg" style="background-image: url(&quot;images/home-video-background.jpg&quot;);">
+    <video loop="" autoplay="" muted="">
+      <source src="images/home-video.mp4" type="video/mp4">
+    </video>
+  </div>
 </section>
+
 <!-- Hero Section End -->
 <!-- Categories Section Begin -->
-<div class="section margin-top-60 margin-bottom-50">
+<section class="section mt-5 mb-5">
     <div class="container">
       <div class="row">
         <div class="col-xl-12">
@@ -126,10 +137,10 @@
 		</div>
       </div>
     </div>
-  </div>
+  </section>
 <!-- Categories End -->
 <!-- Featured Jobs Start -->
-<div class="section spad">
+<section class="section spad">
   <div class="container">
     <div class="row">
       <div class="col-xl-12">
@@ -210,10 +221,10 @@
                 </div>
             </div>
         </div
-</div>
+</section>
 <!-- Section Jobs End -->
 <!-- Section Guide Start-->
-<div class="section pt-5 pb-5">
+<section class="section pt-5 pb-5">
     <div class="container">
       <div class="row">
         <div class="col-xl-12">
@@ -262,9 +273,9 @@
         </div>
       </div>
     </div>
-  </div>
+</section>
   <!-- Testimonials SEction -->
-  <div class="section pt-5 pb-5">
+<section class="section pt-5 pb-5">
     <div class="container ">
       <div class="row">
         <div class="col-xl-12">
@@ -279,12 +290,12 @@
     </div>
 
     <!-- Testimonials Carousel -->
-    <div class="section carousel-container owl-carousel">
+    <div class="section carousel-container">
       <div class="testimonial-carousel slick-initialized slick_slider">
       <div class="slick_list" style="padding: 0px 10px; height: 484px;">
         <div class="slick_track" style="opacity: 1; width: 7584px; transform: translate3d(-1264px, 0px, 0px);">
           <div class="testim-item slick-slide slick-cloned" style="width: 592px;" data-slick-index="-2" aria-hidden="true" tabindex="-1">
-          <div class="section__head">
+          <div class="section_head">
             <div class="utf-testimonial-avatar-photo"> <img src="images/user_small_1.jpg" alt=""> </div>
             <div class="utf-testimonial-author-utf-detail-item">
               <h4>David Peterson</h4>
@@ -293,14 +304,14 @@
           </div>
         </div></div></div><ul class="slick-dots" style="" role="tablist"><li class="slick-active" role="presentation"><button type="button" role="tab" id="slick-slide-control00" aria-controls="slick-slide00" aria-label="1 of 5" tabindex="0" aria-selected="true">1</button></li><li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control01" aria-controls="slick-slide01" aria-label="2 of 5" tabindex="-1">2</button></li><li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control02" aria-controls="slick-slide02" aria-label="3 of 5" tabindex="-1">3</button></li><li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control03" aria-controls="slick-slide03" aria-label="4 of 5" tabindex="-1">4</button></li><li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control04" aria-controls="slick-slide04" aria-label="5 of 5" tabindex="-1">5</button></li></ul></div>
     </div>
-  </div>
+  </section>
   <!-- Testimonials Carousel end -->
   <!-- Blog Carousel -->
-  <div class="section pt-5 pb-5">
+  <section class="section pt-5 pb-5">
     <div class="container">
       <div class="row">
         <div class="col-xl-12">
-          <div class="section__head mt-0 mb-5">
+          <div class="section_head mt-0 mb-5">
             <span class="bg_text">Our Blog &amp; Articles</span>
 			        <h3>Latest Blog Post</h3>
 			        <div class="section__title">Our Blog &amp; Articles</div>
@@ -333,7 +344,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
 <!-- Categories Section End -->
 {% endblock %}
