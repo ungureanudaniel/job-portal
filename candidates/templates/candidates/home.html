@@ -99,7 +99,7 @@
             </div>
           </div>
         </div>
-      
+
   	<div class="utf-video-container-block" data-background-image="images/home-video-background.jpg" style="background-image: url(&quot;images/home-video-background.jpg&quot;);">
     <video loop="" autoplay="" muted="">
       <source src="images/home-video.mp4" type="video/mp4">
@@ -333,7 +333,7 @@
       <div class="slider-items blog-item">
         <div class="slider-text">
           <h3>{{ post.title }}</h3>
-          <p>{{ post.text|striptags }}</p>
+          <p>{{ post.text|striptags|truncatechars:50 }}</p>
           <p>by {{ post.author }}
         </div>
       </div>
