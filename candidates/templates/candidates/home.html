@@ -99,7 +99,7 @@
             </div>
           </div>
         </div>
-      </div>
+      
   	<div class="utf-video-container-block" data-background-image="images/home-video-background.jpg" style="background-image: url(&quot;images/home-video-background.jpg&quot;);">
     <video loop="" autoplay="" muted="">
       <source src="images/home-video.mp4" type="video/mp4">
@@ -115,7 +115,7 @@
         <div class="col-xl-12">
           <div class="section_head mt-5 mb-4">
             <span class="bg_text">Jobs Categories</span>
-      			<h3>Choose Your Sector</h3>
+      			<!-- <h3>Choose Your Sector</h3> -->
       			<div class="section_title">Jobs Categories</div>
       			<p class="section_text">Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley.</p>
           </div>
@@ -146,7 +146,7 @@
       <div class="col-xl-12">
         <div class="section_head mt-5 mb-4">
           <span class="bg_text">Featured Jobs</span>
-          <h3>Click Browse to see details</h3>
+          <!-- <h3>Click Browse to see details</h3> -->
           <div class="section_title">Jobs Categories</div>
           <p class="section_text">Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley.</p>
         </div>
@@ -230,7 +230,7 @@
         <div class="col-xl-12">
           <div class="section_head mt-5 mb-4">
             <span class="bg_text">Guide</span>
-            <h3 class="section_title">Guide</h3>
+            <!-- <h3 class="section_title">Guide</h3> -->
             <div class="section_title">How it works</div>
             <p class="section_text">Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley.</p>
           </div>
@@ -281,7 +281,7 @@
         <div class="col-xl-12">
           <div class="section_head testim_slider mt-0 mb-4">
             <span class="bg_text">Clients Say About Us</span>
-			      <h3>Our Customers Say</h3>
+			      <!-- <h3>Our Customers Say</h3> -->
 			      <div class="section_title">Clients Say About Us</div>
 			      <p class="section_text">Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley.</p>
           </div>
@@ -293,69 +293,31 @@
     <div class="slider-wrapper">
       <div class="slider">
         <!-- -------------- -->
+        {% for rev in reviews %}
         <div class="slider-items">
           <div class="slider-text">
             <i class="fa fa-quote-right"></i>
-            <p>Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley</p>
+            <p>{{ rev.text|striptags }}</p>
           </div>
           <div class="slider-image">
             <img src="https://randomuser.me/api/portraits/women/48.jpg" alt="">
-            <h4>Dollor amert</h4>
+            <h4>{{ rev.name }}</h4>
           </div>
         </div>
-        <div class="slider-items">
-          <div class="slider-text">
-            <i class="fa fa-quote-right"></i>
-            <p>Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley</p>
-          </div>
-          <div class="slider-image">
-            <img src="https://randomuser.me/api/portraits/men/83.jpg" alt="">
-            <h4>Dollor amert</h4>
-          </div>
-        </div>
-        <div class="slider-items">
-          <div class="slider-text">
-            <i class="fa fa-quote-right"></i>
-            <p>Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley</p>
-          </div>
-          <div class="slider-image">
-            <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="">
-            <h4>Dollor amert</h4>
-          </div>
-        </div>
-        <div class="slider-items">
-          <div class="slider-text">
-            <i class="fa fa-quote-right"></i>
-            <p>Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley</p>
-          </div>
-          <div class="slider-image">
-            <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="">
-            <h4>Dollor amert</h4>
-          </div>
-        </div>
-        <div class="slider-items">
-          <div class="slider-text">
-            <i class="fa fa-quote-right"></i>
-            <p>Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley</p>
-          </div>
-          <div class="slider-image">
-            <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="">
-            <h4>Dollor amert</h4>
-          </div>
-        </div>
+        {% endfor %}
         <!-- -------------- -->
 
       </div>
     </div>
 </section>
-<!-- Testimonials SEction -->
+<!-- Blog posts Section -->
 <section class="section pt-5 pb-5">
   <div class="container ">
     <div class="row">
       <div class="col-xl-12">
         <div class="section_head testim_slider mt-0 mb-4">
           <span class="bg_text">Our Blog Articles</span>
-          <h3>Our Blog Articles</h3>
+          <!-- <h3>Our Blog Articles</h3> -->
           <div class="section_title">Latest Blog Posts</div>
           <p class="section_text">Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley.</p>
         </div>
@@ -367,32 +329,16 @@
   <div class="slider-wrapper">
     <div class="slider blog">
       <!-- -------------- -->
-      {% %}
+      {% for post in posts %}
       <div class="slider-items blog-item">
         <div class="slider-text">
-          <p>Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley</p>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.text|striptags }}</p>
+          <p>by {{ post.author }}
         </div>
       </div>
-      <div class="slider-items blog-item">
-        <div class="slider-text">
-          <p>Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley</p>
-        </div>
-      </div>
-      <div class="slider-items blog-item">
-        <div class="slider-text">
-          <p>Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley</p>
-        </div>
-      </div>
-      <div class="slider-items blog-item">
-        <div class="slider-text">
-          <p>Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley</p>
-        </div>
-      </div>
-      <div class="slider-items blog-item">
-        <div class="slider-text">
-          <p>Lorem Ipsum is simply dummy text printing and type setting industry Lorem Ipsum been industry standard dummy text ever since when unknown printer took a galley</p>
-        </div>
-      </div>
+      {% endfor %}
+
       <!-- -------------- -->
 
     </div>

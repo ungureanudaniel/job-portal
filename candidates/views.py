@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile, Skill, AppliedJobs, SavedJobs, AvailableCountry
 from recruiters.models import Job, Applicant, Selected, JobCategory
-from users.models import About
+from users.models import About, BlogPost, Testimonial
 from .forms import ProfileUpdateForm, NewSkillForm
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
@@ -30,6 +30,8 @@ def home(request):
     jobs_cat = JobCategory.objects.all()[:8]
     featured_jobs = Job.objects.all()[:8]
     countries = featured_jobs.values_list("country")
+    posts = BlogPost.objects.all().order_by("created_date")[:3]
+    reviews = Testimonial.objects.all()
     print(countries)
 
     context = {
@@ -38,6 +40,8 @@ def home(request):
         'countries_list': countries_list,
         "jobs_cat": jobs_cat,
         "countries": countries,
+        "posts": posts,
+        "reviews": reviews,
     }
     return render(request, template, context)
 
@@ -93,7 +97,7 @@ def job_search_list(request):
         cat = Job.objects.all()
     else:
         query_cat = Job.objects.filter(category__icontains=query_cat).order_by('-date_posted')
-        
+
     final_list = []
     for i in object_list:
         if i in locat:
