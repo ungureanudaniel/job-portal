@@ -8,9 +8,10 @@
 <!-- == CSS files END== -->
 
 <!-- == Javascript files== -->
-<script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{% static '/js/bootstrap.min.js' %}"></script>
 <script src="{% static '/js/jquery.slicknav.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 <!-- <script src="{% static '/js/owl.carousel.min.js' %}"></script> -->
 <script src="{% static '/js/main.js' %}"></script>
 <!-- == Javascript files END== -->
@@ -63,4 +64,46 @@ window.onclick = function(event) {
       // Events
 
   })();
+</script>
+<script>
+  $('.slider').slick({
+  centerMode: true,
+  centerPadding: '260px',
+  slidesToShow: 1,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        centerMode: true,
+        centerPadding: '40px',
+        slidesToShow: 1
+      }
+    }
+  ]
+  });(jQuery);
+//   function slider() {
+//     var $slider = $('div.slider-items');
+//     var tabind = $('div.slider-items').getAttribute('tabindex');
+//
+//     if(tabind === 0) {
+//         $slider.addClass('active');
+//     } else {
+//         $slider.removeClass('active');
+//     }
+// }
+//
+// $(function(){
+//     setInterval(function(){slider();}, 1000);
+// });
+// slider()
 </script>

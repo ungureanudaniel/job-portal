@@ -1080,7 +1080,7 @@ input {
 	  width: 100%;
 	  background: #0c1017;
 	  opacity: 0.8;
-	  border-radius: 6 px	;
+	  border-radius: 6px;
 	  transition: 0.4s;
 }
 
@@ -1347,49 +1347,87 @@ input {
     font-style: 16px;
     padding: 0;
     color: #808080;
+
 }
 /*---------------------
     Testimonials category
 -----------------------*/
-.slick_slider {
-	position: relative;
-	display: block;
-	box-sizing: border-box;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	-webkit-touch-callout: none;
-	-khtml-user-select: none;
-	-ms-touch-action: pan-y;
-	touch-action: pan-y;
-	-webkit-tap-highlight-color: transparent;
+.slider-wrapper {
+  padding: 200px;
 }
-.slick_list {
--webkit-transform: translate3d(0, 0, 0);
--moz-transform: translate3d(0, 0, 0);
--ms-transform: translate3d(0, 0, 0);
--o-transform: translate3d(0, 0, 0);
-transform: translate3d(0, 0, 0);
+.slider-wrapper:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.5);
 }
-.slick_track {
-position: relative;
-top: 0;
-left: 0;
-display: block;
-margin-left: auto;
-margin-right: auto;
-opacity: 1;
-width: 6276px;
-transform: translate3d(-2615px, 0px, 0px);
+.slider p {
+  font-size: 16px;
+  line-height: 26px;
+  margin: 0px;
+}
+.slider .fa-quote-right {
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 15px;
+  color: rgba(230, 126, 34, 1);
+}
+.slider .slider-text {
+  background-color: #fff;
+  position: relative;
+  padding: 25px;
+  min-height: 175px;
+  position: relative;
+  box-shadow: 0px 8px 15px rgba(0,0,0,0.24);
+  opacity: 0.5;
+}
+.slider .slider-text:after {
+  content: "\A";
+  position: absolute;
+  font-family: fontawesome;
+  bottom: -21px;
+  font-size: 32px;
+  color: #fff;
+}
+.slider-items {
+  margin: 0 25px;
+}
+.slider .slider-active {
+  opacity: 1.0 !important;
+}
+.slider-items img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+}
+.slider-items .image h4 {
+  margin: 10px 0;
+  color: #fff;
+}
+.slider-items .image {
+  margin-top: 25px;
 }
 
-.slick_track:before, .slick_track:after {
-    display: table;
-    content: '';
+/*---------------------
+  BLog posts
+  --------------------*/
+.slider .slider-items.blog-item {
+  margin: 0 25px;
+  height: 30rem;
 }
-.slick-initialized .slick-slide {
-    display: block;
+.slider .blog-item .slider-text {
+  background-color: rgba(0,0,0,0.4);
+  position: relative;
+  padding: 25px;
+  max-width: 25rem;
+  min-height: 25rem;
+  position: relative;
+  box-shadow: 0px 8px 15px rgba(0,0,0,0.24);
+  opacity: 0.5;
 }
 /*---------------------
   Footer
@@ -2150,6 +2188,12 @@ transform: translate3d(-2615px, 0px, 0px);
 	.header__menu ul li {
 		margin-right: 34px;
 	}
+  .carousel-inner .carousel-item {
+    margin-left:4rem !important;
+  }
+  .carousel-inner .carousel-item .carousel-caption {
+    margin: 50px 220px 0px 0px;
+  }
 	.single-post__recipe__details__option ul li {
 		margin-right: 8px;
 	}
@@ -2198,6 +2242,13 @@ transform: translate3d(-2615px, 0px, 0px);
 	.job__item .post__social {
 		font-size: 12px;
 	}
+  .carousel-inner .carousel-item {
+    margin-left:0.9rem !important;
+  }
+  .carousel-inner .carousel-item .carousel-caption {
+    width: 70%;
+    margin: 50px 300px 0px 0px;
+  }
 	.head__inside .form-box {
     background: rgba(255, 255, 255, 0.2) !important;
     border-radius: 10px;
