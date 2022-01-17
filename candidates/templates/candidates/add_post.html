@@ -1,4 +1,4 @@
-{% extends 'blogapp/base.html' %}
+{% extends 'users/base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
 {% block content %}
@@ -31,8 +31,8 @@
                             <li><a href="{% url 'contact' %}">Contact</a></li>
                             {% if user.is_authenticated %}
                             <li class="active"><a href="{% url 'add_post' %}">Add post</a></li>
-                            <li><a href="{% url 'add_category' %}">Add category</a></li>
-                            <li><a href="{% url 'draft_posts' %}">Draft posts</a></li>
+                            <li><a href="#">Add category</a></li>
+                            <li><a href="#">Draft posts</a></li>
                             <li><a href="{% url 'logout' %}">Logout</a></li>
                             {% endif %}
                         </ul>

@@ -6,7 +6,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from .forms import CaptchaForm
 from django.core.mail import send_mail, BadHeaderError
-from .models import Candidate, Company
+from .models import Candidate, Company, About
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_protect
 import random
@@ -88,7 +88,7 @@ def register(request):
 
                     except Exception as e:
                         return HttpResponse('Invalid header found.')
-                    return redirect('login')
+                    return redirect('registration_confirmation')
             return render(request, "users/login.html", {'form':form})
         elif type == 'employer':
             username = request.POST['emailaddress-register']
@@ -122,7 +122,7 @@ def register(request):
                     conf_message = ''
                     html_content='Thank you for joining our job platform!\
                         To finalize the process please \
-                                <a href="{}registration_confirmation/?email={}&conf_number={}"> click this link \
+                                <a href="{}registration_success/?email={}&conf_number={}"> click this link \
                                 </a>.'.format(request.build_absolute_uri(''), user.email, companies.conf_number)
                     try:
                         send_mail(conf_subject, conf_message, from_email, [user.email], html_message=html_content)
@@ -133,7 +133,7 @@ def register(request):
                     except Exception as e:
                         print(e)
                         messages.error(request, str(e))
-                        return redirect('register')
+                    return redirect('registration_confirmation')
                 except Exception as e:
                     messages.error(request, str(e))
                     return redirect('register')
@@ -144,7 +144,7 @@ def register(request):
 def registration_conf_view(request):
     template = 'users/registration_conf.html'
     try:
-        x = Company.objects.get(email=request.GET['email'])
+        x = Company.objects.get(email=request.GET['emailaddress-register'])
         print(x.email)
         if x.conf_number == request.GET['conf_number']:
             try:
