@@ -826,7 +826,6 @@ ul.user-menu-dropdown-nav li {
 	padding: 112px 0;
 	position: relative;
   z-index: 1;
-	background-image: url('../images/head/top-bg.png')
 }
 .head__slider:before {
     /* background: #0c1017; */
