@@ -16,7 +16,7 @@ def login(request):
 #-------------------------------LOGIN VIEW-----------------------------------
 def user_login(request):
     if request.user.is_authenticated:
-        return redirect("/")
+        return redirect("account")
     else:
         if request.method == "POST":
             username = request.POST['username']
@@ -226,7 +226,7 @@ def contact(request):
                     message_name,
                     message,
                     message_email,
-                    ['contact@ninjaweb.tech']
+                    ['contact@dincolo.eu']
                     )
                     messages.success(request, "Thank you for writting me {}! I will answer ASAP.".format(message_name))
                 except BadHeaderError as e:
