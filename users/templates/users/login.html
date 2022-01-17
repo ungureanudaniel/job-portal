@@ -2,33 +2,52 @@
 {% load static %}
 {% block content %}
 
-    <!-- Sign In Section Begin -->
-    <div class="signin">
-        <div class="signin__warp">
-            <div class="signin__content">
-                <div class="signin__logo">
-                    <a href="{% url 'home' %}"><img src="{% static 'img/logo7.png' %}" alt=""></a>
-                </div>
-                <p>Please enter credentials</p>
-                <div class="signin__form">
-
-                        <div class="tab-pane" id="tabs-2" role="tabpanel">
-                            <div class="signin__form__text">
-                                <div class="mb-4">LOGIN PAGE</div>
-                                <form action="{% url 'login' %}" method="POST">
-                                    {% csrf_token %}
-                                    <input type="text" name="username" placeholder="User Name*">
-                                    <input type="password" name="password" placeholder="Password">
-                                    <button type="submit" class="site-btn">Sign In</button><br/><br/><br/>
-                                    <a href="{% url 'home' %}" type="submit" class="btn-secondary">Return home</a>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
+      <div id="titlebar" class="gradient">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h2>Log In</h2>
+              <nav id="breadcrumbs">
+                <ul>
+                  <li><a href="index-1.html">Home</a></li>
+                  <li>Log In</li>
+                </ul>
+              </nav>
             </div>
+          </div>
         </div>
-    </div>
-    <!-- Sign In Section End -->
+      </div>
+    <!-- Sign In Section Begin -->
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col-xl-6 offset-xl-3">
+            <div class="login mb-5">
+              <div class="welcome-text">
+                <h3>Welcome back! Please sign in to continue</h3>
+                <span>No account yet? <a href="{% url 'register' %}">Register!</a></span>
+    		  </div>
+              <form method="POST" id="login-form">
+                {% csrf_token %}
+                <div class="utf-no-border">
+                  <input type="text" class="input-border" name="username" id="emailaddress" placeholder="Email Address" required="" autocomplete="off">
+                </div>
+                <div class="utf-no-border">
+                  <input type="password" class="input-border" name="password" id="password" placeholder="Password" required="" autocomplete="off" >
+                </div>
+                <a href="#" class="forgot-password">Forgot Password?</a>
+                <button class="button full-width sliding_icon ripple-effect mt-2" type="submit">Log In <i class="fa fa-chevron-right"></i></button>
+              </form>
+
+              <!-- <div class="social-login"><span>Or Login in With</span></div> -->
+              <!-- <div class="social-login-buttons">
+                <button class="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i> Facebook</button>
+          			<button class="google-login ripple-effect"><i class="icon-brand-google"></i> Google+</button>
+          			<button class="twitter-login ripple-effect"><i class="icon-brand-twitter"></i> Twitter</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- Sign In Section End -->
 
 {% endblock %}

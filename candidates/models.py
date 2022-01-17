@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from autoslug import AutoSlugField
 from django_countries.fields import CountryField
-from recruiters.models import Job
+from recruiters.models import Job, JobCategory
+from ckeditor.fields import RichTextField
 
 class AvailableCountry(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True, verbose_name = "Available Countries")
@@ -14,16 +15,57 @@ class AvailableCountry(models.Model):
 
     def __str__(self):
         return self.name
+#---------------------------POST TAGS -----------------------------------------
+class Tag(models.Model):
+    name_ro = models.CharField(max_length=255, unique=True)
+    name_en = models.CharField(max_length=255, unique=True)
+    name_de = models.CharField(max_length=255, unique=True)
 
-CHOICES = (
-    ('Full Time', 'Full Time'),
-    ('Part Time', 'Part Time'),
-    ('Internship', 'Internship'),
-    ('Remote', 'Remote'),
-)
+    def __str__(self):
+        return self.name_ro
 
+#--------------------------CANDIDATE POST MODEL---------------------------------
+
+class Post(models.Model):
+    STATUS_CHOICES = (
+        ('Published', 'Published'),
+        ('Draft', 'Draft'),
+    )
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='blog')
+    text = RichTextField(blank=True, null=True)
+    category = models.ForeignKey(JobCategory, related_name='jobcategory', on_delete=models.SET_NULL, blank=True, null=True)
+    featured = models.BooleanField(default=False)
+    slug = models.SlugField(max_length=255, unique=True)
+    created_date = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=10, default='Published', choices=STATUS_CHOICES)
+    tags = models.ManyToManyField('Tag')
+
+    class Meta:
+        ordering = ["-created_date"]
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title, allow_unicode=True)
+        return super(Post, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        kwargs = {
+            'slug': self.slug,
+            # 'id': pk.self
+        }
+        return reverse('add_post', kwargs=kwargs)
+
+    def __str__(self):
+        return self.title
 
 class Profile(models.Model):
+    CHOICES = (
+        ('Full Time', 'Full Time'),
+        ('Part Time', 'Part Time'),
+        ('Internship', 'Internship'),
+        ('Remote', 'Remote'),
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='profile')
     full_name = models.CharField(max_length=200, null=True, blank=True)
     country = CountryField(null=True, blank=True)

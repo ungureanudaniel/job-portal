@@ -70,3 +70,4 @@
 
 })(jQuery);
 // ======= Slick Carousel ====== //
+// ======= Filter Registration forms ======== //

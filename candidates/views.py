@@ -45,7 +45,7 @@ def home(request):
     }
     return render(request, template, context)
 
-#-------------------------------CATEGORY VIEW-------------------------------------
+#-------------------------------CATEGORY VIEW-----------------------------------
 def category(request, cat_slug):
     template_name = 'candidates/category.html'
     category = get_object_or_404(JobCategory, slug=cat_slug)
@@ -57,6 +57,104 @@ def category(request, cat_slug):
         'jobsbycategory': jobsbycategory,
     }
     return render(request, template_name, context)
+#-------------------------------ADD POST VIEW-----------------------------------
+@login_required(login_url="/login/")
+def add_post(request):
+    template_name = 'obcinastanisoarei_app/add_post.html'
+    author = request.user
+
+    if request.method == 'POST':
+        form = AddNewJobForm(request.POST, request.FILES or None)
+        # print(form)
+        if form.is_valid():
+            try:
+                # title = form.cleaned_data['title']
+                # # slg = slugify(form.cleaned_data["title"])
+                # cat = form.cleaned_data['category']
+                # feat = form.cleaned_data['featured']
+                # txt = form.cleaned_data['text']
+                # img = request.FILES.get('image')
+                # stat = form.cleaned_data['status']
+                # newpost = BlogPost(author=request.user, text=txt, title=title, image=img, category=cat, featured = feat, status = stat)
+                # newpost.save(commit=False)
+                #
+                # print(newpost.id)
+                # tags = form.cleaned_data['tags']
+                # print(tags)
+                # for tag in tags:
+                #     newpost.tags.add(tag)
+                # newpost.save()
+                newpost = form.save(commit=False)
+                newpost.slug = slugify(newpost.title)
+                newpost.save()
+                return redirect("/blog_list")
+                messages.success(request, _('Succes!'))
+            except Exception as e:
+                messages.error(request, _('Nereusit!') + str(e))
+        else:
+            messages.warning(request, _('Verificati datele introduse!'))
+            form = AddNewPostForm()
+
+    else:
+        form = AddNewPostForm()
+    context = {
+        "form": form,
+    }
+    return render(request, template_name, context)
+
+#----------------------------job search list ----------------------------------
+def my_post_list(request):
+    template = 'candidates/my_post_list.html'
+    countries_list = AvailableCountry.objects.all()
+    query_keywords = request.GET.get('keyword')
+    query_location = request.GET.get('loc')
+    query_cat = request.GET.get('cat')
+    object_list = []
+    if(query_keywords == None):
+        object_list = Job.objects.all()
+    else:
+        title_list = Job.objects.filter(title__icontains=query_keywords).order_by('-date_posted')
+        skill_list = Job.objects.filter(skills_req__icontains=query_keywords).order_by('-date_posted')
+        company_list = Job.objects.filter(company__icontains=query_keywords).order_by('-date_posted')
+        job_type_list = Job.objects.filter(job_type__icontains=query_keywords).order_by('-date_posted')
+        Job.objects.filter(category__icontains=query_keywords).order_by('-date_posted')
+        for i in title_list:
+            object_list.append(i)
+        for i in skill_list:
+            if i not in object_list:
+                object_list.append(i)
+        for i in company_list:
+            if i not in object_list:
+                object_list.append(i)
+        for i in job_type_list:
+            if i not in object_list:
+                object_list.append(i)
+        for i in category_list:
+            if i not in object_list:
+                object_list.append(i)
+    if(query_location == None):
+        locat = Job.objects.all()
+    else:
+        locat = Job.objects.filter(
+            country__icontains=query_location).order_by('-date_posted')
+    if(query_cat==None):
+        cat = Job.objects.all()
+    else:
+        query_cat = Job.objects.filter(category__icontains=query_cat).order_by('-date_posted')
+
+    final_list = []
+    for i in object_list:
+        if i in locat:
+            final_list.append(i)
+    paginator = Paginator(final_list, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'jobs': page_obj,
+        'query_keywords': query_keywords,
+        "countries_list": countries_list,
+    }
+    return render(request, template, context)
 
 #----------------------------job search list ----------------------------------
 def job_search_list(request):
@@ -199,3 +297,10 @@ def saved_jobs(request):
         'candidate_navbar': 1,
         }
     return render(request, template, context)
+#--------------------------CANDIDATE DASHBOARD ---------------------------------
+def candidate_dashboard(request):
+    template_name = 'users/employee.html'
+
+    context = {
+    }
+    return render(request, template_name, context)

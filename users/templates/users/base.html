@@ -9,116 +9,61 @@
     <div id="loader-wrapper">
       <div id="loader"></div>
     </div>
-    <!-- Humberger Begin -->
-    <div class="humberger__menu__overlay"></div>
-    <div class="humberger__menu__wrapper">
-        <div class="humberger__menu__logo">
-          {% for logo in logos %}
-            <a href="{% url 'home' %}"><img alt="" src="{{ logo.image.url }}"></a>
-          {% endfor %}
-        </div>
-        <nav class="humberger__menu__nav mobile-menu">
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li class="dropdown"><a href="#">Find Job</a>
-                  <ul class="dropdown__menu">
-                    <li ><a style="color:white;" href="#">Job List</a></li>
-                    <li ><a style="color:white;" href="#">Browse Recruiters</a></li>
-                  </ul>
-                </li>
-                <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
-                {% if user.is_authenticated %}
-                <li class="dropdown"><a href="#">Sign In</a>
-                    <ul class="dropdown__menu">
-                      <l<li><a href="#">Dashboard</a></li>
-                      <li><a href="#">Add resume</a></li>
-                      <li><a href="#">...</a></li>
-                      <li><a href="#">...</a></li>
-                      <li><a href="{% url 'logout' %}">Logout</a></li>
+    <!-- Wrapper -->
+    <div id="wrapper" class="mm-page mm-slideout">
+<!-- Header Container -->
+      <header id="header-container-block" style="position: fixed;" class="">
+        <div id="header">
+          <div class="container">
+            <div class="left-side">
+              <div id="logo"> <a href="{% url 'login' %}"><img src="{% static 'images/LOGO-ARTISAN-BAKERY.png' %}" alt=""></a> </div>
+              <nav id="navigation">
+                <ul id="responsive">
+                  <li><a href="{% url 'home' %}" class="current">Home</a></li>
+                  <li><a href="{% url 'about' %}">About</a></li>
+                  <li><a href="{% url 'contact' %}">Contact</a></li>
+                  {% if user.is_authenticated %}
+                  <li><a href="{% url 'account' %}">My account</a></li>
+                  <li><a href="{% url 'add_post' %}">Add post</a></li>
+                  <li><a href="{% url 'logout' %}">Logout</a></li>
+                  {% endif %}
+                </ul>
+              </nav>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="right-side">
+              {% if user.is_authenticated %}
+                <div class="header-widget-item">
+                  <div class="header-notifications user-menu">
+                    <!-- ========= dropdown trigger ======== -->
+                    <div class="trigger header-notifications-trigger user-profile-title">
+                      <a href="javascript:void(0);">
+                        <div class="user-avatar status-online"><img src="{% static 'images/user_icon.png' %}" alt=""> </div>
+                        <div class="user-name">Hi, {{ user.first_name }}!</div>
+                      </a>
+                    </div>
+
+                    <div class="header-notifications-dropdown-block">
+                      <ul class="user-menu-dropdown-nav">
+                        <li class="drop-item"><a href="{% url 'account' %}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                        <li class="drop-item"><a href="{% url 'add_post' %}"><i class="fa fa-area-chart"></i> Temperatura</a></li>
+                        <li class="drop-item"><a href="#"><i class="fa fa-feather-user"></i> Profil</a></li>
+                        <li class="drop-item"><a href="{% url 'logout' %}"><i class="fa fa-power-off"></i> Logout</a></li>
                     </ul>
-                </li>
-                {% endif %}
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="humberger__menu__about">
-            <div class="humberger__menu__title sidebar__item__title">
-                <h6>About me</h6>
-            </div>
-            <img alt="" src="{% static 'img/humberger/ioana-2.jpg' %}">
-            {% for item in about_list %}
-            <h6 style="color:white;">{{ item.title }}</h6>
-            <p>{{ item.text|slice:190 }}...</p>
-
-            <a class="btn btn-dark mb-2" href="{% url 'about' %}">Read more</a>
-            {% endfor %}
-            <div class="humberger__menu__about__social sidebar__item__follow__links">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-                <a href="#"><i class="fa fa-envelope-o"></i></a>
-            </div>
-        </div>
-        <div class="humberger__menu__subscribe">
-            <div class="humberger__menu__title sidebar__item__title">
-                <h6>Subscribe</h6>
-            </div>
-            <p>Subscribe to our newsletter and get my newest updates right on your inbox.</p>
-            <a class="site-btn" href="#">Subscribe</a>
-
-        </div>
-    </div>
-    <!-- Humberger End -->
-
-    <!-- Header/NAVBAR Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-2 col-md-1 col-6 order-md-1 order-1">
-                        <div class="header__humberger">
-                            <i class="fa fa-bars humberger__open"></i>
-                        </div>
-                    </div>
-                    <div class="col-lg-8 col-md-10 order-md-2 order-3">
-                        <nav class="header__menu">
-                            <ul>
-                                <li class="active"><a href="{% url 'home' %}">Home</a></li>
-                                <li class="dropdown"><a href="#">Find Job</a>
-                                    <ul class="dropdown__menu">
-                                      <li ><a style="color:white;" href="#">Job List</a></li>
-                                      <li ><a style="color:white;" href="#">Browse Recruiters</a></li>
-                                    </ul>
-                                </li>
-
-                                <li><a href="{% url 'about' %}">About</a></li>
-
-                                <li><a href="{% url 'contact' %}">Contact</a></li>
-                                {% if user.is_authenticated %}
-                                <li class="dropdown"><a href="#">Sign In</a>
-                                    <ul class="dropdown__menu">
-                                      <l<li><a href="#">Dashboard</a></li>
-                                      <li><a href="#">Add resume</a></li>
-                                      <li><a href="#">...</a></li>
-                                      <li><a href="#">...</a></li>
-                                      <li><a href="{% url 'logout' %}">Logout</a></li>
-                                    </ul>
-                                </li>
-                                {% else %}
-                              <li class="active"><a class="primary-btn" href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true">  <p>Sign In</p></i></a></li>
-                                {% endif %}
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="col-lg-2 col-md-1 col-6 order-md-3 order-2">
-                        <div class="header__search">
-                            <i class="fa fa-search search-switch"></i>
-                        </div>
-                    </div>
+                  </div>
                 </div>
-            </div>
+              </div>
+              {% else %}
+              <div class="header-widget-item">
+                <a href="{% url 'login' %}" class="popup-with-zoom-anim log-in-button"><i class="fa fa-sign-in"></i> <span>Sign In</span></a>
+              </div>
+              {% endif %}
+              <span class="mmenu-trigger">
+          <button class="hamburger hamburger-collapse-item" type="button"> <span class="utf-hamburger-box-item"> <span class="utf-hamburger-inner-item"></span> </span> </button>
+              </span>
+        </div>
+          </div>
         </div>
     </header>
     <!-- Header/NAVBAR Section End -->
@@ -126,89 +71,10 @@
     {% block content %}
 
     {% endblock %}
-
+    {% include 'users/newsletter.html' %}
     <!-- Footer Section Begin -->
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="footer__instagram">
+    {% include 'users/footer.html' %}
 
-                <div class="footer__instagram__avatar">
-                    <div class="footer__instagram__avatar--pic">
-                        <img alt="" src="{% static 'images/footer/insta_logo.png' %}">
-                    </div>
-                    <div class="footer__instagram__avatar--text">
-                        <h5><a href="https://www.instagram.com/artisanbakerybrasov/"><small></small></a></h5>
-
-                        <span>xxx followers</span>
-
-                    </div>
-                </div>
-                 <div class="footer__facebook__avatar">
-                    <div class="footer__facebook__avatar--pic">
-                        <img alt="" src="{% static 'images/footer/fb_logo.png' %}">
-                    </div>
-                    <div class="footer__facebook__avatar--text">
-                        <h5><a href="https://www.facebook.com/artisanbakerybrasov/"><small></small></a></h5>
-
-                        <span>xxx followers</span>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
-                        <div class="footer__instagram__item set-bg" data-setbg="{% static 'images/footer/footer-1.png' %}"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
-                        <div class="footer__instagram__item set-bg" data-setbg="{% static 'images/footer/footer-2.png' %}"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
-                        <div class="footer__instagram__item set-bg" data-setbg="{% static 'images/footer/footer-3.png' %}"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
-                        <div class="footer__instagram__item set-bg" data-setbg="{% static 'images/footer/footer-4.png' %}"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
-                        <div class="footer__instagram__item set-bg" data-setbg="{% static 'images/footer/footer-5.png' %}"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-4 col-6">
-                        <div class="footer__instagram__item set-bg" data-setbg="{% static 'images/footer/footer-6.png' %}"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer__text">
-                        <div class="footer__logo">
-                          {% for logo in logos %}
-                            <a href="{% url 'home' %}"><img alt="" src="{{ logo.image.url }}"></a>
-                          {% endfor %}
-                        </div>
-                        <p> </p>
-                        <div class="footer__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-envelope-o"></i></a>
-                        </div>
-                    </div>
-                    <div class="footer__copyright">
-                        <p>
-  Copyright &copy;<a class="text-dark" style="cursor: pointer;" href="{% url 'login' %}"> All rights reserved</a>
-                        </p>
-                    </div>
-                    <p class="text-center text-white">If you don't want to receive any of my emails anymore, please press the unsubscribe button below.</p>
-
-
-                                <div class="header__btn text-center text-white">
-                                    <a class="primary-btn" href="#">Unsubscribe</a>
-                                </div>
-                        </div>
-                    </div>
-                </div>
-
-
-    </footer>
     <!-- Footer Section End -->
 
     <!-- Search Begin -->

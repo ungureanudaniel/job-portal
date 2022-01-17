@@ -1,135 +1,89 @@
 {% extends 'users/base.html' %}
 {% load static %}
 {% block content %}
-<!-- Header Section Begin -->
-<header class="header">
-    <div class="header__top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2 col-md-1 col-6 order-md-1 order-1">
-                    <div class="header__humberger">
-                        <i class="fa fa-bars humberger__open"></i>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-10 order-md-2 order-3">
-                    <nav class="header__menu">
-                        <ul>
-                            <li ><a href="{% url 'home' %}">Home</a></li>
-                            <li class="dropdown"><a href="#">Post categories</a>
-                                <ul class="dropdown__menu">
-                                    {% for cat in categories %}
-                                    <li ><a style="color:white;" href="{% url 'category' cat.slug %}">{{ cat }}</a></li>
-
-                                    {% endfor %}
-                                </ul>
-                            </li>
-
-                            <li><a href="{% url 'about' %}">About</a></li>
-
-                            <li  class="active"><a href="{% url 'contact' %}">Contact</a></li>
-                            {% if user.is_authenticated %}
-                            <li><a href="{% url 'add_post' %}">Add post</a></li>
-                            <li><a href="{% url 'add_logo' %}">Add logo</a></li>
-                            <li><a href="{% url 'add_category' %}">Add category</a></li>
-                            <li><a href="{% url 'draft_posts' %}">Draft posts</a></li>
-                            <li><a href="{% url 'logout' %}">Logout</a></li>
-                            {% endif %}
-                        </ul>
-                    </nav>
-                </div>
-                <div class="col-lg-2 col-md-1 col-6 order-md-3 order-2">
-                    <div class="header__search">
-                        <i class="fa fa-search search-switch"></i>
-                    </div>
-                </div>
-            </div>
+<div id="titlebar" class="gradient">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Contacteaza-ne</h2>
+          <nav id="breadcrumbs">
+            <ul>
+              <li><a href="{% url 'login' %}">Acasa</a></li>
+              <li>Contacteaza-ne</li>
+            </ul>
+          </nav>
         </div>
+      </div>
     </div>
-    {% include 'blogapp/logo_container.html' %}
-</header>
-<!-- Header Section End -->
-
-
-    <!-- Contact Section Begin -->
-    <section class="contact spad">
-        <div class="container">
-            <div class="contact__text">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="breadcrumb__text">
-                            <h2>Contact</h2>
-                            <div class="breadcrumb__option">
-                                <a href="{% url 'home' %}">Home</a>
-                                <span>Contact</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="contact__map">
-                          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d89245.39472599306!2d25.526423469855324!3d45.65245670123032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b35b862aa214f1%3A0x6cf5f2ef54391e0f!2zQnJhyJlvdg!5e0!3m2!1sen!2sro!4v1593452481294!5m2!1sen!2sro" width="600" height="350" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                        </div>
-                        <div class="contact__widget">
-                            <ul>
-                                <li>
-                                    <i class="fa fa-map-marker"></i>
-                                    <span>Ioana Ungureanu, Brasov, Romania</span>
-                                </li>
-                                <li>
-                                    <i class="fa fa-mobile"></i>
-                                    <span>Phone: +40 768 662 612</span>
-                                </li>
-                                <li>
-                                    <i class="fa fa-envelope-o"></i>
-                                    <span>Email: ioanad.ungureanu@gmail.com</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="contact__form">
-
-                            <div class="contact__form__title">
-                              {% if messages %}
-                                {% for message in messages %}
-                                <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                  {{ message.message }}
-                                </div>
-                                {% endfor %}
-                              {% else %}
-                                <h2>Want to talk? Can't wait to hear from you!</h2>
-                                <p>Please use the form below to send me a message.</p>
-                              {% endif %}
-                            </div>
-                            <form action="{% url 'contact' %}" method="POST">
-                              {% csrf_token %}
-                                <input type="text" name="message-name" placeholder="Name" required="required" data-error="Name is required.">
-                                <input type="text" name="message-email" placeholder="Email" required="required" data-error="Valid email is required.">
-                                <textarea name="message" placeholder="Message" required="required" data-error="Add a few words please."></textarea>
-                                <label class="text-warning">Please solve the captcha.</label>
-                                <br>
-                                {{ form.captcha }}
-                                <!-- <button class='js-captcha-refresh'>Refresh</button> -->
-                                <button type="submit" class="site-btn">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+  </div>
+<!-- Contact Section Begin -->
+<div class="container">
+    <div class="row">
+	    <div class="col-xl-4 col-lg-4">
+		    <div class="boxed-list-headline-item mb-4">
+            <h3><i class="fa fa-map-pin"></i> Date contact</h3>
         </div>
+		    <div class="contact-location margin-bottom-50">
+			       <div class="contact-address">
+				          <ul>
+          				  <li><strong>Website:-</strong> <a href="#">www.graficetemperatura.ro</a></li>
+          				  <li><strong>E-Mail:-</strong> <a href="#">contact@ninjaweb.tech</a></li>
+          				  <li><strong>Adresa:-</strong> SanPetru, Str. Drumul cu Plopi 114, Brasov.</li>
+          				</ul>
+			        </div>
+		    </div>
+	    </div>
+	    <div class="col-xl-8 col-lg-8">
+        <section id="contact" class="margin-bottom-50">
+          <div class="boxed-list-headline-item mb-4">
+            <h3><i class="fa fa-mail-forward"></i> Formular de Contact</h3>
+          </div>
+		      <div class="contact-form">
+			      <form method="POST" name="contactform" id="contactform">
+              {% csrf_token %}
+				      <div class="row">
+      				  <div class="col-md-6">
+        					<div class="no-border">
+        					  <input class="with-border" name="name" type="text" id="firstname" placeholder="Frist Name" required="" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABHklEQVQ4EaVTO26DQBD1ohQWaS2lg9JybZ+AK7hNwx2oIoVf4UPQ0Lj1FdKktevIpel8AKNUkDcWMxpgSaIEaTVv3sx7uztiTdu2s/98DywOw3Dued4Who/M2aIx5lZV1aEsy0+qiwHELyi+Ytl0PQ69SxAxkWIA4RMRTdNsKE59juMcuZd6xIAFeZ6fGCdJ8kY4y7KAuTRNGd7jyEBXsdOPE3a0QGPsniOnnYMO67LgSQN9T41F2QGrQRRFCwyzoIF2qyBuKKbcOgPXdVeY9rMWgNsjf9ccYesJhk3f5dYT1HX9gR0LLQR30TnjkUEcx2uIuS4RnI+aj6sJR0AM8AaumPaM/rRehyWhXqbFAA9kh3/8/NvHxAYGAsZ/il8IalkCLBfNVAAAAABJRU5ErkJggg==&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+        					</div>
+      				  </div>
+  				    <div class="col-md-6">
+  					    <div class="no-border">
+  					      <input class="with-border" name="name" type="text" id="lastname" placeholder="Last Name" required="">
+  					    </div>
+  				    </div>
+    				  <div class="col-md-6">
+      					<div class="no-border">
+      					  <input class="with-border" name="email" type="email" id="email" placeholder="Email Address" required="">
+      					</div>
+    				  </div>
+    				  <div class="col-md-6">
+      					<div class="no-border">
+      					  <input class="with-border" name="subject" type="text" id="subject" placeholder="Subject" required="">
+      					</div>
+    				  </div>
+				    </div>
+				    <div>
+				      <textarea class="with-border" name="comments" cols="40" rows="3" id="comments" placeholder="Message..." required=""></textarea>
+				    </div>
+				    <div class="centered-button margin-top-10">
+					    <input type="submit" class="submit button" id="submit" value="Submit Message">
+				    </div>
+			  </form>
+		  </div>
     </section>
-    <!-- <script>
-      $('.js-captcha-refresh').click(function(){
-          $form = $(this).parents('form');
+  </div>
+  <div class="col-xl-12">
+    <div class="contact-location mt-5">
+      <div id="map-container">
+        <section class="section">
+          <!-- RD Google Map-->
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d89245.39472616358!2d25.526423294702386!3d45.652456701123306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b35b862aa214f1%3A0x6cf5f2ef54391e0f!2zQnJhyJlvdg!5e0!3m2!1sro!2sro!4v1641907995274!5m2!1sro!2sro" width="800" height="500" style="border-top:10px solid #232627;border-bottom:10px solid #232627;" allowfullscreen="" loading="lazy"></iframe>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Contact Section End -->
 
-          $.getJSON($(this).data('url'), {}, function(json) {
-              // This should update your captcha image src and captcha hidden input
-          });
-
-          return false;
-      });
-    </script> -->
-    <!-- Contact Section End -->
 {% endblock %}

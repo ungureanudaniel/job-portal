@@ -13,7 +13,37 @@ class About(models.Model):
 
     def __str__(self):
         return self.title
+#----------------------------------APPLICANT MODEL-----------------------------
+class Candidate(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    email = models.CharField(max_length=100)
+    phone = models.CharField(max_length=10)
+    image = models.ImageField(upload_to="")
+    gender = models.CharField(max_length=10)
+    type = models.CharField(max_length=15, default = 'freelancer')
+    birthdate = models.DateTimeField()
+    conf_number = models.CharField(max_length=15)
+    confirmed = models.BooleanField(default=False)
+    status = models.CharField(max_length=20, default="verification pending")
 
+    def __str__(self):
+        return str(self.user.first_name) + str(self.user.last_name)
+#----------------------------------COMPANY MODEL-----------------------------
+class Company(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    email = models.CharField(max_length=100)
+    phone = models.CharField(max_length=10)
+    image = models.ImageField(upload_to="")
+    type = models.CharField(max_length=15)
+    confirmed = models.BooleanField(default=False)
+    identification = models.CharField(max_length=20)
+    address = models.CharField(max_length=300)
+    description = RichTextField()
+    company_name = models.CharField(max_length=100)
+    conf_number = models.CharField(max_length=15)
+
+    def __str__ (self):
+        return self.user.username
 #-----------------------------------THE POST CATEGORIES MODEL-------------------
 class BlogPostCategory(models.Model):
     name = models.CharField(max_length=20)
@@ -95,3 +125,5 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return self.name
+
+# class EmployerAccount(models.Model):

@@ -1,61 +1,143 @@
-{% extends "users/layout.html" %} {% load socialaccount %} {% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col-sm-10 col-md-10 col-lg-7 mx-auto">
-      <div class="card card-signin my-5">
-        <div class="card-body">
-          <h3 class="text-center"><b>Account Details</b></h3>
-          <br />
-          <form class="form-signin">
-            <div class="form-group">
-              <p class="text-center">Username: {{user.username}}</p>
-              <p class="text-center">Email: {{user.email}}</p>
-              <hr class="my-4" />
-              <h5 class="text-center">Link Your Social Media Accounts</h5>
-              <p class="text-center">
-                <small style="font-size: 12px"
-                  >(If already connected, there is no need to do it
-                  again)</small
-                >
-              </p>
-              <hr class="my-4" />
-              <a
-                class="btn btn-outline-secondary btn-block"
-                href="{% provider_login_url 'google' process='connect' %}"
-                ><img
-                  src="https://dl.dropboxusercontent.com/s/es5sylabbcaobjr/google.png?dl=0"
-                  alt="Google"
-                  height="35"
-                  class="d-inline- mr-2"
-                />Connect Google</a
-              >
-              <br />
-              <a
-                class="btn btn-outline-warning btn-block"
-                href="{% provider_login_url 'github' process='connect' %}"
-                ><img
-                  src="https://dl.dropboxusercontent.com/s/2929dbjh0nvgbgn/github.png?dl=0"
-                  alt="Github"
-                  height="35"
-                  class="d-inline-block mr-2"
-                />Connect Github</a
-              >
-              <br />
-              <a
-                class="btn btn-outline-dark btn-block"
-                href="{% provider_login_url 'linkedin_oauth2' process='connect' %}"
-                ><img
-                  src="https://dl.dropboxusercontent.com/s/yz30dq16gqmjbv1/linkedin.png?dl=0"
-                  alt="Linkedin"
-                  height="35"
-                  class="d-inline-block mr-2"
-                />Connect LinkedIn</a
-              >
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Dashboard Container -->
+<div class="dashboard-container" style="height: 713px;">
+    <!-- Dashboard Sidebar -->
+    <div class="dashboard-sidebar-item">
+      <div class="dashboard-sidebar-item-inner" data-simplebar="init" style="height: 713px;">
+        <div class="simplebar-track vertical" style="visibility: visible; display: none;">
+          <div class="simplebar-scrollbar" style="visibility: visible; top: 0px; height: 25px;">
+          </div>
+        </div>
+        <div class="simplebar-track horizontal" style="visibility: visible; display: none;">
+          <div class="simplebar-scrollbar" style="visibility: visible; left: 0px; width: 25px;"></div>
+        </div>
+        <div class="simplebar-scroll-content" style="padding-right: 15px; margin-bottom: -30px;">
+          <div class="simplebar-content" style="padding-bottom: 15px; margin-right: -15px;">
+        <div class="dashboard-nav">
+          <!-- Responsive Navigation Trigger -->
+          <a href="#" class="dashboard-responsive-trigger-item {
+    display: none;}"> <span class="hamburger utf-hamburger-collapse-item"> <span class="utf-hamburger-box-item"> <span class="utf-hamburger-inner-item"></span> </span> </span> <span class="trigger-title">Dashboard Navigation Menu</span> </a>
+          <!-- Navigation -->
+		  <div class="dashboard-nav">
+			<div class="dashboard-nav-inner">
+			  <div class="dashboard-profile-box">
+				  <span class="avatar-img">
+					<img alt="" src="images/user-avatar-placeholder.png" class="photo">
+				  </span>
+				  <div class="user-profile-text">
+					<span class="fullname">{{ user.first_name }} {{ user.last_name }}</span>
+					<span class="user-role">Software Engineer</span>
+				  </div>
+			  </div>
+			  <div class="clearfix"></div>
+              <ul>
+                <li class="active"><a href="{% url 'account' %}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        				<li><a href="#"><i class="fa fa-area-chart"></i> Manage Job Posts</a></li>
+                <li><a href="#"><i class="fa fa-area-chart"></i> Manage Jobs</a></li>
+                <li><a href="#"><i class="fa fa-area-chart"></i> Manage Resume</a></li>
+                <li><a href="#"><i class="fa fa-area-chart"></i> Tasks</a></li>
+                <li><a href="#"><i class="fa fa-area-chart"></i> Reviews</a></li>
+                <li><a href="#"><i class="fa fa-user-circle"></i> Profile</a></li>
+                <li><a href="{% url 'logout' %}"><i class="fa fa-power-off"></i> Logout</a></li>
+              </ul>
             </div>
-          </form>
+          </div>
+        </div>
+      </div></div></div>
+    </div>
+    <!-- Dashboard Sidebar / End -->
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content-container" data-simplebar="init" style="height: 713px;"><div class="simplebar-track vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="visibility: visible; top: 0px; height: 186px;"></div></div><div class="simplebar-track horizontal" style="visibility: visible;"><div class="simplebar-scrollbar" style="visibility: visible; left: 0px; width: 25px;"></div></div><div class="simplebar-scroll-content" style="padding-right: 15px; margin-bottom: -30px;"><div class="simplebar-content" style="padding-bottom: 15px; margin-right: -15px;">
+	  <div id="dashboard-titlebar" class="dashboard-headline-item">
+		<div class="row">
+			<div class="col-xl-12">
+				<h3>Dashboard</h3>
+				<nav id="breadcrumbs">
+					<ul>
+					  <li><a href="{% url 'login' %}">Home</a></li>
+					  <li>Dashboard</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+      </div>
+	  <div class="dashboard-right-side" style="min-height: 713px;">
+		    <div class="notification success closeable">
+          <p>Autentificarea ca <strong>{{ user.first_name }} {{ user.last_name }}</strong> a fost aprobata!</p>
+          <a class="close"></a>
+	       </div>
+         <div class="funfacts">
+           <div class="fun-fact" data-fun-fact-color="#2a41e8">
+       			<div class="fun-fact-icon" style="background-color: rgba(42, 65, 232, 0.07);"><i class="icon-feather-home" style="color: rgb(42, 65, 232);"></i></div>
+            <div class="fun-fact-text">
+              <h4>1502</h4>
+ 			        <span>Companies View</span>
+            </div>
+          </div>
+          <div class="fun-fact" data-fun-fact-color="#36bd78">
+ 			      <div class="fun-fact-icon" style="background-color: rgba(54, 189, 120, 0.07);"><i class="icon-feather-briefcase" style="color: rgb(54, 189, 120);"></i></div>
+            <div class="fun-fact-text">
+              <h4>152</h4>
+ 			        <span>Applied Jobs</span>
+            </div>
+          </div>
+          <div class="fun-fact" data-fun-fact-color="#efa80f">
+ 			      <div class="fun-fact-icon" style="background-color: rgba(239, 168, 15, 0.07);"><i class="icon-feather-heart" style="color: rgb(239, 168, 15);"></i></div>
+            <div class="fun-fact-text">
+              <h4>549</h4>
+ 			        <span>Favourite Jobs</span>
+            </div>
+          </div>
+          <div class="fun-fact" data-fun-fact-color="#0fc5bf">
+            <div class="fun-fact-icon" style="background-color: rgba(15, 197, 191, 0.07);"><i class="fa fa-telegram" style="color: rgb(15, 197, 191);"></i></div>
+ 			      <div class="fun-fact-text">
+              <h4>120</h4>
+ 			        <span>Subscribe Plan</span>
+            </div>
+          </div>
+ 		      <div class="fun-fact" data-fun-fact-color="#f02727">
+            <div class="fun-fact-icon" style="background-color: rgba(240, 39, 39, 0.07);"><i class="icon-feather-trending-up" style="color: rgb(240, 39, 39);"></i></div>
+ 			      <div class="fun-fact-text">
+              <h4>2250</h4>
+ 			        <span>Month Views</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xl-12 col-md-12 col-sm-12">
+            <div class="dashboard-box main-box-in-row">
+              <div class="headline">
+                <h3>User Statistics</h3>
+				            <div class="sort-by">
+                      <div class="btn-group bootstrap-select hide-tick"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" title="This Week"><span class="filter-option pull-left">This Week</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open" role="combobox"><ul class="dropdown-menu inner" role="listbox" aria-expanded="false"><li data-original-index="0" class="selected"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true"><span class="text">This Week</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">This Month</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">Last 6 Months</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">This Year</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div>
+                      <select class="selectpicker hide-tick" tabindex="-98">
+					              <option>This Week</option>
+                        <option>This Month</option>
+                        <option>Last 6 Months</option>
+					              <option>This Year</option>
+                      </select></div>
+                    </div>
+                </div>
+                <div class="content">
+                  <div class="chart"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                  <canvas id="canvas" width="442" height="209" class="chartjs-render-monitor" style="display: block; width: 442px; height: 209px;"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="dashboard-footer" style="padding-top: 123px;"></div>
+        <div class="small-footer margin-top-15">
+          <div class="small-footer-copyrights">Copyright © 2021 All Rights Reserved.</div>
         </div>
       </div>
-    </div>
+    </div></div></div>
+	<!-- Dashboard Content End -->
   </div>
-</div>
-{% endblock %}
+  {% endblock %}

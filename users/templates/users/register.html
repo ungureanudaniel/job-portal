@@ -1,0 +1,135 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="clearfix"></div>
+    <!-- Titlebar -->
+    <div id="titlebar" class="gradient">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Inregistrare</h2>
+          <nav id="breadcrumbs">
+            <ul>
+              <li><a href="{% url 'home' %}">Acasa</a></li>
+              <li>Inregistrare</li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-6 offset-xl-3">
+        <div class="register mb-5">
+          <div class="welcome-text">
+            {% if messages %}
+              {% for message in messages %}
+              <div class="alert {% if message.tags %} {{ message.tags }} {% endif %} alert-dismissible fade show"><button type="button" class="close" data-bs-dismiss="alert"  aria-hidden="false">&times;</button>
+                {{ message }}
+              </div>
+              {% endfor %}
+            {% endif %}
+            <h3>Create Your New Account!</h3>
+            <span>Choose your category below</span>
+		      </div>
+          <div class="account-type">
+              <button type="radio" class="account-type-btn ripple-effect-dark" onclick="filterSelection('employer')"> Employer</button>
+              <button type="radio" class="account-type-btn ripple-effect-dark" onclick="filterSelection('freelancer')"> Freelancer</button>
+          </div>
+
+          <div class="form__types container">
+            <div class="filterElements employer">
+              <form method="POST" id="employer-radio" class="register-account-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="no-border">
+                  <input type="text" class="with-border" name="company_name" id="name-register" placeholder="Company Name" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                </div>
+    			      <div class="no-border">
+                  <input type="email" class="with-border" name="emailaddress-register" id="username" placeholder="User name as your Email Address" required="">
+                </div>
+    			      <div class="no-border">
+                  <input type="text" class="with-border" name="id-register" id="emailaddress-register" placeholder="Company Identification Number" required="">
+                </div>
+                <div class="no-border">
+                  <input type="text" class="with-border" name="phone-reg" id="phone-reg" placeholder="Phone Number" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                </div>
+                <div class="no-border">
+                  <label for="image" style="color: #808080;line-height: 48px;
+                  padding: 0 15px;outline: none;font-size: 16px;">Add a portrait image:</label>
+                  <input type="file" name="image1" id="image"  onchange="loadFile(event)">
+                </div>
+                <div class="no-border">
+                  <input type="password" class="with-border" name="password1" id="password-register" placeholder="Password" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                </div>
+                <div class="no-border">
+                  <input type="password" class="with-border" name="password2" id="password-repeat-register" placeholder="Repeat Password" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                </div>
+
+                <div class="form-check checkbox mt-1">
+                  <input class="form-check-input" type="checkbox" value="Agree" id="two-step1" name="checks[]">
+                  <label class="form-check-label" for="two-step1"><span class="checkbox-icon"></span> I Have Read and Agree to the <a href="{% url 'terms-of-service' %}">Terms &amp; Conditions</a></label>
+                </div>
+                <label class="text-warning">Please fill in the Captcha to show you are human.</label>
+                {{ form.captcha }}
+                <button class="button full-width sliding-icon ripple-effect mt-1" type="submit" name="type" value="employer">Create An Account <i class="fa fa-chevron-right"></i></button>
+
+              </form>
+            </div>
+            <div class="filterElements freelancer">
+              <form method="POST" id="freelancer-radio" class="register-account-form" enctype="multipart/form-data">
+                {% csrf_token %}
+    			      <div class="no-border">
+                  <input type="email" class="with-border" name="emailaddress-register" id="emailaddress-register" placeholder="Email Address" required="">
+                </div>
+                <div class="no-border">
+                  <input type="text" class="with-border" name="first-name-register" id="name-register" placeholder="First Name" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                </div>
+                <div class="no-border">
+                  <input type="text" class="with-border" name="last-name-register" id="name-register" placeholder="Last Name" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                </div>
+                <div class="no-border">
+                  <label for="image" style="color: #808080;line-height: 48px;
+                  padding: 0 15px;outline: none;font-size: 16px;">Add a portrait image:</label>
+                  <input type="file" placeholder="Choose an image" name="image2" id="image" >
+                </div>
+    			      <div class="no-border mb-5">
+                  <input type="text" class="with-border" name="phone-register" id="name-register" placeholder="Phone Number" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                </div>
+                <div class="no-border mb-5">
+                  <input type="text" class="with-border" name="gender-register" id="gender-register" placeholder="Gender" required="" list="gender_choices" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                    <datalist id="gender_choices">
+                      <option value="Male">
+                      <option value="Female">
+                    </datalist>
+                </div>
+                <div class="no-border mb-5">
+                  <input class="with-border" name="birth-register" id="birth-register" placeholder="Birth Date" required="" type="date" name="trip-start" value="2004-01-11" min="2004-01-11" max="2070-12-31" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                </div>
+                <div class="no-border">
+                  <input type="password" class="with-border" name="password-register" id="password-register" placeholder="Password" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                </div>
+                <div class="no-border">
+                  <input type="password" class="with-border" name="password-repeat-register" id="password-repeat-register" placeholder="Repeat Password" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                </div>
+                <div class="form-check checkbox mt-1">
+                  <input class="form-check-input" type="checkbox" value="Agree" id="two-step0" name="checks[]">
+                  <label class="form-check-label" for="two-step0"><span class="checkbox-icon"></span> I Have Read and Agree to the <a href="{% url 'terms-of-service' %}">Terms &amp; Conditions</a></label>
+                </div>
+                <!-- <div class="">
+    				      <input type="checkbox" id="two-step0" name="checks[]" value='True'>
+    				      <label for="two-step0"><span class="checkbox-icon"></span> I Have Read and Agree to the <a href="{% url 'terms-of-service' %}">Terms &amp; Conditions</a></label>
+    		        </div> -->
+                <label class="text-warning">Please fill in the Captcha to show you are human.</label>
+                <div style="">
+                {{ form.captcha }}
+                </div>
+                <button class="button full-width sliding-icon ripple-effect mt-1" type="submit" name="type" value="freelancer">Create An Account <i class="fa fa-chevron-right"></i></button>
+              </form>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
