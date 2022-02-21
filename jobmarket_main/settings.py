@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -67,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -131,6 +133,22 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+# ========= LANGUAGE SETTINGS ========================
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale/'),
+)
+ugettext = lambda s: s
+LANGUAGES = (
+    ('en', ugettext('English')),
+    ('ro', ugettext('Romanian')),
+    ('de', ugettext('German')),
+    ('fr', ugettext('French')),
+    ('it', ugettext('Italian')),
+    ('hu', ugettext('Hungarian')),
+    ('bg', ugettext('Bulgarian')),
+    ('uk', ugettext('Ucrainian')),
+
+)
 
 LOGIN_URL = 'login'
 SITE_ID = 2

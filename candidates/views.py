@@ -25,7 +25,10 @@ def dict_key(d, k):
     return d[k]
 #--------------------------------home view-------------------------------------
 def home(request):
-    template = 'candidates/home.html'
+    if request.user.is_authenticated:
+        template = 'candidates/logged-in-home.html'
+    else:
+        template = 'candidates/logged-out-home.html'
     countries_list = AvailableCountry.objects.all()
     jobs_cat = JobCategory.objects.all()[:8]
     featured_jobs = Job.objects.all()[:8]

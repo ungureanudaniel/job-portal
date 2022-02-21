@@ -1,0 +1,68 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}">
+
+    <title>The Artisan Bakery | Cake & Coffee Shop</title>
+
+    <!-- CSS Plugins -->
+    <link href="{% static 'plugins/lightbox/dist/css/lightbox.css' %}" rel="stylesheet">
+    <link href="{% static 'plugins/flickity/flickity.min.css' %}" rel="stylesheet">
+    <link href="{% static 'plugins/ionicons/css/ionicons.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- CSS Global -->
+    <link href="{% static 'css/styles_v2.css' %}" rel="stylesheet">
+
+  </head>
+  <body data-spy="scroll" data-target=".navbar" data-offset="70">
+
+    <!--  NAVBAR
+    ================================================== -->
+
+    <section class="section_welcome" id="section_welcome">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3">
+            <div class="welcome_content">
+              <p class="welcome_content_subheading">Multumim mult pentru inscrierea la newsletter!</p>
+              <h3 class="welcome_content_caption ">Te rugam verifica casuta de emailuri pentru un email de confirmare!</h3>
+              <div class="welcome_content_btn">
+                <!-- <a href="{% url 'home' %}" class="btn btn-default">Home</a> -->
+                <a href="{% url 'home' %}" class="btn btn-default">Acasa</a>
+
+              </div>
+            </div> <!-- .welcome_content -->
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+      <div class="welcome-parallax_bg" style="transform: translateY(0px);"></div>
+    </section>
+
+    {% include 'artisan_app/footer.html' %}
+
+    <!-- JS
+    ================================================== -->
+
+    <!-- JS Global -->
+    <script src="{% static 'plugins/jquery/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- JS Plugins -->
+    <script async src="{% static 'plugins/lightbox/dist/js/lightbox.min.js' %}"></script>
+    <script async src="{% static 'plugins/isotope/isotope.pkgd.min.js' %}"></script>
+    <script async src="{% static 'plugins/flickity/flickity.pkgd.min.js' %}"></script>
+    <script src="{% static 'plugins/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+
+    <!-- JS Custom -->
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script async src="{% static 'js/google_maps.js' %}"></script>
+
+    <!-- Google Maps -->
+    <script async src="{% static 'js/back_to_top.js' %}"></script>
+  </body>
+</html>

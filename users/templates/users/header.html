@@ -1,49 +1,40 @@
 {% load static %}
+{% load i18n %}
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>DINCOLO - JOBURI SIGURE</title>
-  <link rel="shortcut icon" type="image/x-icon" href="/static/logo/favicon.png"/>
-  <meta name="description" property="og:description" content="Locuri de munca in strainatate printr-un sistem sigur si certificat.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="{% static 'favicon/favicon.ico' %}">
+
+  <title>Dincolo | {% trans 'Find the Job that Fits your Life' %}</title>
+  <meta name="description" property="og:description" content="The best Freelancing Professionals in eastern Europe">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <meta name="keywords" content="locuri de munca">
+  <meta name="keywords" content="job portal, jobs, freelancers, remote work, jobs website">
   <meta name="author" content="Dincolo">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://wwww.dincolo.eu/">
+  <meta property="og:url" content="https://dincolo.eu/">
   <meta property="og:site_name" content="Dincolo">
-  <meta property="og:title" content="Dincolo | Locuri de munca sigure si certificate" />
-  <meta property="og:description" content="Locuri de munca in strainatate printr-un sistem sigur si certificat.">
-  <meta property="og:image" content="#">
-  <meta property="og:image:alt" content="#">
+  <meta property="og:title" content="Dincolo | The best Freelancing Professionals in eastern Europe" />
+  <meta property="og:description" content="Freelancers in eastern Europe.">
+  <meta property="og:image" content="https://dincolo.eu/static/img/meeting.png">
+  <meta property="og:image:alt" content="The best Freelancing Professionals in eastern Europe.">
 
-  <link rel="canonical" href="https://wwww.dincolo.eu/">
+  <link rel="canonical" href="https://dincolo.eu/">
+  <!-- CSS Plugins -->
+  <link href="{% static 'plugins/lightbox/dist/css/lightbox.css' %}" rel="stylesheet">
+  <!-- <link href="{% static 'plugins/flickity/flickity.min.css' %}" rel="stylesheet" media="screen"> -->
+  <link href="{% static 'plugins/ionicons/css/ionicons.min.css' %}" rel="stylesheet" type="text/css">
 
-  <!-- Core Style Sheets -->
-  <link rel="stylesheet" href="{% static 'css/style_main.css' %}">
-  <!-- Responsive Style Sheets -->
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900&display=swap"
-      rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Unna:400,700&display=swap" rel="stylesheet">
-  <!-- Revolution Style Sheets -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+  <!-- CSS Global -->
+  <link href="{% static 'css/general-styles.css' %}" rel="stylesheet">
+  {% if user.is_authenticated %}
+  <link href="{% static 'css/logged-in-homepg-styles.css' %}" rel="stylesheet">
+  {% else %}
+  <link href="{% static 'css/logged-out-homepg-styles.css' %}" rel="stylesheet">
+  {% endif %}
+  <link href="{% static 'css/line-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'plugins/owlcarousel/owl.carousel.css' %}" rel="stylesheet">
+  <!-- <link href="{% static 'plugins/owlcarousel/owl.theme.default.min.css' %}" rel="stylesheet"> -->
 
-  <style type="text/css">
-  .no-fouc {
-    display: none;
-  }
-  </style>
-  <!-- Css Styles -->
-  <!-- <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css"> -->
-  <!-- <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css"> -->
-  <!-- <link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet" type="text/css"> -->
-  <link href="{% static 'css/slicknav.min.css' %}" rel="stylesheet" type="text/css">
-  <link href="{% static 'css/style_main.css' %}" rel="stylesheet" type="text/css">
 </head>

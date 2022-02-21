@@ -1,9 +1,12 @@
 from django.urls import path, include
 from django.conf import settings
 from .views import home, candidate_dashboard, add_post, job_search_list, category, job_details
+from django.conf.urls.i18n import i18n_patterns
+from django.utils.translation import ugettext_lazy as _
 
 urlpatterns = [
     path('', home, name="home"),
+    path('i18n/', include('django.conf.urls.i18n')),
     # for Users or applicants
     path('add_post/', add_post, name='add_post'),
     path('candidate_dashboard', candidate_dashboard, name="candidate_dash"),

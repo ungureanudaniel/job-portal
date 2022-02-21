@@ -1,0 +1,196 @@
+{% extends 'artisan_app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+    <!--  NAVBAR
+    ================================================== -->
+
+    <!-- navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home' %}">The Artisan Bakery</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar__collapse">
+          <ul class="nav navbar-nav navbar-right">
+
+            <!-- General links romanian -->
+            <li ><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+            <li><a href="{% url 'home' %}#section_about">{% trans 'About' %}</a></li>
+            <li ><a href="#section_menu">{% trans 'Menu' %}</a></li>
+            <li ><a href="{% url 'gallery' %}">{% trans 'Gallery' %}</a></li>
+            <li><a href="{% url 'events' %}">{% trans 'Events' %}</a></li>
+            <li><a href="{% url 'blog' %}">Blog</a></li>
+            <li class="active"><a href="{% url 'contacts' %}">Contact</a></li>
+            {% if user.is_authenticated %}
+            <li><a class="" href="{% url 'send_email' %}">{% trans 'Send Newsletter' %}</a></li>
+
+            {% endif %}
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav>
+    <!-- CONTENT
+    ================================================== -->
+
+		<!-- HEADER
+		================================================== -->
+    <section class="section section_header section_header__contacts">
+      <!-- ======language button ==== -->
+      <div class="language_dropdown d-flex">
+        <form action="{% url 'set_language' %}" method="post">
+          {% csrf_token %}
+
+          <input name="next" type="hidden" value="{{ redirect_to }}">
+          <h5 class="text-white">{% trans 'Language' %}</h5>
+          <select class="language" name="language">
+              {% get_current_language as LANGUAGE_CODE %}
+              {% get_available_languages as LANGUAGES %}
+              {% get_language_info_list for LANGUAGES as languages %}
+              {% for language in languages %}
+                  <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                      {{ language.code|upper }}
+                  </option>
+              {% endfor %}
+          </select><br>
+            <input class="lang_button" type="submit" value="Go">
+        </form>
+      </div>
+      <!-- ======language button end ==== -->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+
+						<!-- Heading -->
+              <!-- english -->
+						<!-- <h1 class="section__heading section_header__heading text-center">
+							Contact
+						</h1> -->
+              <!-- romanian -->
+            <h1 class="section__heading section_header__heading text-center">
+							Contact
+						</h1>
+
+						<!-- Breadcrumbs -->
+						<ol class="breadcrumb">
+              <!-- english -->
+							<!-- <li><a href="{% url 'home' %}">Home</a></li> -->
+              <!-- romanian -->
+              <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+              <!-- english -->
+              <!-- <li class="active">Contact</li> -->
+              <!-- romanian -->
+							<li class="active">Contact</li>
+						</ol>
+
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+      <div class="section_header__bg contacts_bg"></div>
+    </section>
+
+    <!-- section contacts -->
+    <section class="section_contacts">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="section_title">&#8722; {% trans 'Would you like to contact us' %}? &#8722;</h2>
+            <hr class="section_title_line">
+            <p class="section_caption">{% trans 'You can do it easily using one of the ways shown below' %}...</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+
+            <div class="section_contacts__item">
+
+              <!-- Title -->
+              <h3 class="item__title">
+                E-Mail
+              </h3>
+              <i class="ion-ios-email-outline"></i>
+
+              <!-- Content -->
+              <p class="item__content">
+                <span >contact@artisanbakery.ro</span>
+              </p>
+              <p class="item__content">
+                <span style="visibility: hidden">------------------------</span>
+              </p>
+
+            </div>
+
+          </div>
+          <div class="col-sm-4">
+
+            <div class="section_contacts__item">
+
+              <!-- Title english-->
+
+              <!-- <h3 class="item__title">
+                Phone
+              </h3> -->
+              <!-- Title romanian-->
+              <h3 class="item__title">
+                {% trans 'Telephone' %}
+              </h3>
+              <i class="ion-ios-telephone-outline"></i>
+
+              <!-- Content -->
+              <p class="item__content">
+                <span href="">+40 768 662 612</span>
+              </p>
+              <p class="item__content">
+                <span >+40 757 484 560</span>
+              </p>
+
+            </div>
+
+          </div>
+          <div class="col-sm-4">
+
+            <div class="section_contacts__item">
+
+              <!-- Title -->
+              <h3 class="item__title">
+                Social
+              </h3>
+              <i class="ion-social-twitter-outline"></i>
+
+              <!-- Content -->
+              <ul class="item__content contact_social">
+                <li class="contact_social__item"><a href="https://www.facebook.com/artisanbakerybrasov">Facebook</a></li>
+                <li class="contact_social__item"><a href="https://www.instagram.com/artisanbakerybrasov/">Instagram</a></li>
+              </ul>
+              <ul class="item__content contact_social">
+                <li class="contact_social__item"><a href="#">Twitter</a></li>
+                <li class="contact_social__item"><a href="#">Foursquare</a></li>
+              </ul>
+
+            </div>
+
+          </div>
+        </div> <!-- / .row -->
+
+      </div> <!-- .container -->
+      <div>
+
+    </div>
+
+    </section>
+    <div id="redirect_contact"></div>
+
+    {% include 'artisan_app/contact_form.html' %}
+
+{% endblock %}

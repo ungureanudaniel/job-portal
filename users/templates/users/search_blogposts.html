@@ -1,0 +1,127 @@
+{% extends 'artisan_app/base.html' %}
+{% load static %}
+{% block content %}
+<!--  NAVBAR
+================================================== -->
+
+<!-- navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
+        <span class="sr-only">Menu</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'home' %}">The Artisan Bakery</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar__collapse">
+      <ul class="nav navbar-nav navbar-right">
+
+        <!-- General links english-->
+        <!-- <li><a href="{% url 'home' %}">Home</a><li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'menu' %}">Menu</a></li>
+        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+        <li ><a href="{% url 'events' %}">Events</a></li>
+        <li class="active"><a href="{% url 'blog' %}">Blog</a></li>
+        <li><a href="{% url 'contacts' %}">Contact</a></li> -->
+
+        <!-- General links romanian-->
+        <li><a href="{% url 'home' %}">Acasa</a></li>
+        <li><a href="{% url 'about' %}">Despre</a></li>
+        <li><a href="{% url 'menu' %}">Meniu</a></li>
+        <li><a href="{% url 'gallery' %}">Fotografii</a></li>
+        <li><a href="{% url 'events' %}">Evenimente</a></li>
+        <li class="active"><a href="{% url 'blog' %}">Blog</a></li>
+        <li><a href="{% url 'contacts' %}">Contact</a></li>
+        {% if user.is_authenticated %}
+        <!-- <li><a href="{% url 'send_email' %}">Send Newsletter</a></li>-->
+        <li><a class="" href="{% url 'send_email' %}">Trimite Newsletter</a></li>
+
+        {% endif %}
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container -->
+</nav>
+      <!-- HEADER
+      ================================================== -->
+      <section class="section section_header section_header__blog">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+
+              <!-- Heading -->
+              <h1 class="section__heading section_header__heading text-center">
+                BLOG
+              </h1>
+
+
+
+              <!-- Breadcrumbs -->
+              <ol class="breadcrumb">
+                <li><a href="{% url 'home' %}">Acasa</a></li>
+                <!-- <li><a href="{% url 'home' %}">Home</a></li> -->
+
+                <li class="active">Blog</li>
+              </ol>
+
+            </div>
+
+          </div> <!-- .row -->
+        </div> <!-- .container -->
+        <div class="section_header__bg blog_bg"></div>
+      </section>
+      <div class="col-sm-12">
+        </div>
+      <!-- section blog -->
+      <section class="section_blog" id="section_blog">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <h2 class="section_title">&#8722; Rezultatul cautarii &#8722;</h2>
+              <hr class="section_title_line">
+              <!-- <p class="section_caption">Read about our latest news, events and much more about life of our friendly family</p> -->
+              <p class="section_caption"></p>
+
+            </div>
+          </div> <!-- .row -->
+          <div class="row">
+
+            {% for post in filtered_posts %}
+            <div class="col-sm-4">
+              <div class="blog__item blog__item1">
+                <div class="blog-item__img">
+                  <img src="{{ post.image.url }}" class="img-responsive" alt="...">
+                </div>
+                <div class="blog-item__content">
+                  <a href="{% url 'blog_post' pk=post.pk %}" class="blog-item__title">
+                    <h3>{{ post.title }}</h3>
+                  </a>
+                  <div class="blog-item__info">
+                    <ul class="item-info__list">
+                      <li class="info-list__item"><i class="ion-android-person" aria-hidden="true"></i> {{ post.author.first_name }} {{ post.author.last_name }}</li>
+                      <li class="info-list__item"><i class="ion-android-chat" aria-hidden="true"></i>{{ post.comments.count }}</li>
+                      <li class="info-list__item"><i class="ion-android-calendar" aria-hidden="true"></i>{{ post.created_date|date:"d N Y" }}</li>
+                    </ul>
+                  </div>
+                  <div class="blog-item__text">
+                    {{ post.text|safe|truncatechars:200 }}
+                  </div>
+                  <!-- <input type="text" name="tags" data-role="tagsinput" class="form-control" id="tags" name="tags" value="{% for tag in post.tags.all %}{{ tag }},{% endfor %}"> -->
+                  <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i>{% for tag in post.tags.all %} <a href="">#{{ tag }} </a> {% endfor %}</p>
+                </div> <!-- / .blog-item__content -->
+              </div> <!-- / .blog__item -->
+            </div>
+            {% endfor %}
+          </div> <!-- .row -->
+        </div> <!-- .container -->
+        <div class="text-center">
+
+        </div>
+      </section>
+
+{% endblock %}

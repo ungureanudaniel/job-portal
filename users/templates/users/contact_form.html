@@ -1,0 +1,74 @@
+{% load static %}
+{% load i18n %}
+
+<!-- section map-heading -->
+<section class="section_map-heading" id="section_contacts">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="map__title">{% trans 'Write us a direct message' %}!</h2>
+        <p class="map__address">{% trans 'Using the form below' %}...</p>
+        <div class="contacts_form__body">
+
+          <!-- Alert message -->
+          <div class="alert" id="form_message" role="alert"></div>
+            {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ message.message }}
+              </div>
+              {% endfor %}
+            {% endif %}
+          <!-- Form -->
+          <form id="form_sendemail" method="POST" action="#redirect_contact">
+            {% csrf_token %}
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="email" class="sr-only">Email address</label>
+              <input type="email" name="email" class="form-control" id="email" placeholder="Introdu adresa de email">
+              <span class="help-block"></span>
+            </div>
+
+            <!-- Name -->
+            <div class="form-group">
+              <label for="name" class="sr-only">Name</label>
+              <input type="text" name="name" class="form-control" id="name" placeholder="Introdu numele si prenumele">
+              <span class="help-block"></span>
+            </div>
+
+            <!-- subject -->
+            <div class="form-group">
+              <label for="name" class="sr-only">Subject</label>
+              <input type="text" name="subject" class="form-control" id="name" placeholder="Introdu subiect">
+              <span class="help-block"></span>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+              <label for="message" class="sr-only">Message</label>
+              <textarea name="message" class="form-control" id="message" rows="6" placeholder="Aici scrie-ne mesajul"></textarea>
+              <span class="help-block"></span>
+            </div>
+            <label class="text-warning">{% trans 'Please fill in the Captcha to show you are human' %}.</label>
+            <br>
+            {{ form.captcha }}
+            <!-- Note -->
+            <div class="form-group">
+              <small class="text-muted">
+                * Toate campurile sunt obligatorii *
+              </small>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-default" >
+              Trimite mesajul
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- .container -->
+</section>

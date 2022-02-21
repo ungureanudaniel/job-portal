@@ -1,0 +1,45 @@
+{% load static %}
+<!-- section review -->
+<section class="section_review">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <h2 class="section_review_title">A few words about us...</h2>
+      </div>
+      <div class="col-sm-8">
+        <div id="carousel-review" class="carousel carousel_review slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-review" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-review" data-slide-to="1"></li>
+            <li data-target="#carousel-review" data-slide-to="2"></li>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            <div class="item active">
+              <p class="review_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate atque eveniet, aut enim quasi eaque repellendus hic, provident tempora sint nulla totam quo nemo velit labore magnam quaerat molestias ad veritatis voluptatibus nobis molestiae illum!</p>
+              <h5 class="review_author">&#8722; Franz Kafka &#8722;</h5>
+            </div>
+            <div class="item">
+              <p class="review_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate atque eveniet, aut enim quasi eaque repellendus hic, provident tempora sint nulla totam quo nemo velit labore magnam quaerat molestias ad veritatis voluptatibus nobis molestiae illum!</p>
+              <h5 class="review_author">&#8722; Ernest Hemingway &#8722;</h5>
+            </div>
+            <div class="item">
+              <p class="review_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate atque eveniet, aut enim quasi eaque repellendus hic, provident tempora sint nulla totam quo nemo velit labore magnam quaerat molestias ad veritatis voluptatibus nobis molestiae illum!</p>
+              <h5 class="review_author">&#8722; Pablo Picasso &#8722;</h5>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-review" role="button" data-slide="prev">
+              <img src="{% static 'img/arrow_left.svg' %}" alt="Prev">
+            </a>
+            <a class="right carousel-control" href="#carousel-review" role="button" data-slide="next">
+              <img src="{% static 'img/arrow_right.svg' %}" alt="Next">
+            </a>
+          </div> <!-- .carousel_inner -->
+        </div>
+      </div>
+    </div> <!-- .row -->
+  </div> <!-- .container -->
+</section>

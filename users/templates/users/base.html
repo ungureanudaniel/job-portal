@@ -1,94 +1,43 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang='ro'>
   {% include 'users/header.html' %}
+  <body data-spy="scroll" data-target=".navbar" data-offset="70">
 
-<body>
-    <!-- Page Preloder -->
-    <div id="loader-wrapper">
+    <!-- TO THE TOP BUTTON
+    ================================================== -->
+    <a id="back-to-top" href="#section_welcome" class="btn btn-primary back-to-top" role="button" onclick="topFunction()" title="Click to return on the top page" data-toggle="tooltip" data-placement="left">
+      <i class="ion-android-arrow-up"></i>
+    </a>
+
+    <!-- PRELOADER
+    ================================================== -->
+    <!-- <div id="loader-wrapper">
       <div id="loader"></div>
-    </div>
-    <!-- Wrapper -->
-    <div id="wrapper" class="mm-page mm-slideout">
-<!-- Header Container -->
-      <header id="header-container-block" style="position: fixed;" class="">
-        <div id="header">
-          <div class="container">
-            <div class="left-side">
-              <div id="logo"> <a href="{% url 'home' %}"><img src="{% static 'images/LOGO-ARTISAN-BAKERY.png' %}" alt=""></a> </div>
-              <nav id="navigation">
-                <ul id="responsive">
-                  <li><a href="{% url 'home' %}" class="current">Home</a></li>
-                  <li><a href="{% url 'about' %}">About</a></li>
-                  <li><a href="{% url 'contact' %}">Contact</a></li>
-                  {% if user.is_authenticated %}
-                  <li><a href="{% url 'account' %}">My account</a></li>
-                  <li><a href="{% url 'add_post' %}">Add post</a></li>
-                  <li><a href="{% url 'logout' %}">Logout</a></li>
-                  {% endif %}
-                </ul>
-              </nav>
-              <div class="clearfix"></div>
-            </div>
-
-            <div class="right-side">
-              {% if user.is_authenticated %}
-                <div class="header-widget-item">
-                  <div class="header-notifications user-menu">
-                    <!-- ========= dropdown trigger ======== -->
-                    <div class="trigger header-notifications-trigger user-profile-title">
-                      <a href="javascript:void(0);">
-                        <div class="user-avatar status-online"><img src="{% static 'images/user_icon.png' %}" alt=""> </div>
-                        <div class="user-name">Hi, {{ user.first_name }}!</div>
-                      </a>
-                    </div>
-
-                    <div class="header-notifications-dropdown-block">
-                      <ul class="user-menu-dropdown-nav">
-                        <li class="drop-item"><a href="{% url 'account' %}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                        <li class="drop-item"><a href="{% url 'add_post' %}"><i class="fa fa-area-chart"></i> Temperatura</a></li>
-                        <li class="drop-item"><a href="#"><i class="fa fa-feather-user"></i> Profil</a></li>
-                        <li class="drop-item"><a href="{% url 'logout' %}"><i class="fa fa-power-off"></i> Logout</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              {% else %}
-              <div class="header-widget-item">
-                <a href="{% url 'login' %}" class="popup-with-zoom-anim log-in-button"><i class="fa fa-sign-in"></i> <span>Sign In</span></a>
-              </div>
-              {% endif %}
-              <span class="mmenu-trigger">
-          <button class="hamburger hamburger-collapse-item" type="button"> <span class="utf-hamburger-box-item"> <span class="utf-hamburger-inner-item"></span> </span> </button>
-              </span>
-        </div>
-          </div>
-        </div>
-    </header>
-    <!-- Header/NAVBAR Section End -->
+    </div> -->
 
     {% block content %}
 
     {% endblock %}
-    {% include 'users/newsletter.html' %}
-    <!-- Footer Section Begin -->
-    {% include 'users/footer.html' %}
 
-    <!-- Footer Section End -->
+    {% include "users/newsletter.html" %}
+    {% include "users/footer.html" %}
 
-    <!-- Search Begin -->
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch">+</div>
-            <form class="search-model-form" action="#">
-                <input id="search-input" name="q" placeholder="Search here....." type="text">
-            </form>
-        </div>
-    </div>
-    <!-- Search End -->
+    <!-- JS
+    ================================================== -->
+    <!-- JS Global -->
+    <script src="{% static 'plugins/jquery/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- JS Plugins -->
+    <script src="{% static 'plugins/lightbox/dist/js/lightbox.min.js' %}"></script>
+    <script src="{% static 'plugins/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'plugins/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
 
-    {% include 'users/js.html' %}
-</body>
-
-</html>
+    <!-- JS Custom -->
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/google_maps.js' %}"></script>
+    <!-- Google Maps -->
+    <script src="{% static 'js/back_to_top.js' %}"></script>
+    </body>
+  </html>

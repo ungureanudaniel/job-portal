@@ -1,78 +1,53 @@
 {% load static %}
-<div id="footer">
-    <div class="footer-section">
-      <div class="container">
-        <div class="row">
+{% load i18n %}
 
-    		  <div class="col-xl-4 col-md-12">
-    			  <div class="footer-items">
-        			<a href="{% url 'home' %}"><img class="footer-logo" src="#" alt="">DINCOLO</a>
-        			<p>We are a revolutionary job market, set to offer the best job matching, safety, and a 100% transparent employment process.</p>
-        		</div>
-          </div>
+<!-- section footer -->
+<footer class="section_footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-lg-3">
+        <!-- <h3 class="section_footer_heading">Contacts</h3> -->
+        <h3 class="section_footer_heading">Contact</h3>
 
-          <div class="col-xl-2 col-md-3 col-sm-6">
-            <div class="footer-items">
-              <h3>Job Categories</h3>
-                <ul>
-                  <li><a href="jobs-list-layout-leftside.html"><i class="fa fa-arrow-right"></i> <span>Farming</span></a></li>
-                  <li><a href="jobs-list-layout-leftside.html"><i class="fa fa-arrow-right"></i> <span>Construction</span></a></li>
-                  <li><a href="jobs-list-layout-leftside.html"><i class="fa fa-arrow-right"></i> <span>Metal Works</span></a></li>
-                  <li><a href="jobs-list-layout-leftside.html"><i class="fa fa-arrow-right"></i> <span>Food Industry</span></a></li>
-    				      <li><a href="#"><i class="fa fa-arrow-right"></i> <span>Post New Job</span></a></li>
-                </ul>
-            </div>
-          </div>
-
-          <div class="col-xl-2 col-md-3 col-sm-6">
-            <div class="footer-items">
-              <h3>Job Type</h3>
-                <ul>
-                  <li><a href="jobs-list-layout-leftside.html"><i class="fa fa-arrow-right"></i> <span>Work from Home</span></a></li>
-                  <li><a href="jobs-list-layout-leftside.html"><i class="fa fa-arrow-right"></i> <span>Internship Job</span></a></li>
-    				      <li><a href="jobs-list-layout-leftside.html"><i class="fa fa-arrow-right"></i> <span>Freelancer Job</span></a></li>
-                  <li><a href="jobs-list-layout-leftside.html"><i class="fa fa-arrow-right"></i> <span>Part Time Job</span></a></li>
-    				      <li><a href="jobs-list-layout-leftside.html"><i class="fa fa-arrow-right"></i> <span>Full Time Job</span></a></li>
-                </ul>
-            </div>
-          </div>
-
-          <div class="col-xl-2 col-md-3 col-sm-6">
-            <div class="footer-items">
-              <h3>Resources</h3>
-                <ul>
-    				      <li><a href="#"><i class="fa fa-arrow-right"></i> <span>My Account</span></a></li>
-                  <li><a href="#"><i class="fa fa-arrow-right"></i> <span>Support</span></a></li>
-                  <li><a href="#"><i class="fa fa-arrow-right"></i> <span>How It Works</span></a></li>
-                  <li><a href="#"><i class="fa fa-arrow-right"></i> <span>Underwriting</span></a></li>
-                  <li><a href="#"><i class="fa fa-arrow-right"></i> <span>Employers</span></a></li>
-                </ul>
-            </div>
-          </div>
-
-    		  <div class="col-xl-2 col-md-3 col-sm-6">
-              <div class="footer-items">
-                <h3>Quick Links</h3>
-                <ul>
-    				      <li><a href="jobs-list-layout-leftside.html"><i class="fa fa-arrow-right"></i> <span>Jobs Listing</span></a></li>
-                  <li><a href="about-us.html"><i class="fa fa-arrow-right"></i> <span>About Us</span></a></li>
-                  <li><a href="contact.html"><i class="fa fa-arrow-right"></i> <span>Contact Us</span></a></li>
-                  <li><a href="privacy-policy.html"><i class="fa fa-arrow-right"></i> <span>Privacy Policy</span></a></li>
-                  <li><a href="terms-condition.html"><i class="fa fa-arrow-right"></i> <span>Term &amp; Condition</span></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+        <p><i class="icon ion-ios-location-outline"></i><a href="https://www.google.com/maps/dir/Artisan+Bakery,+Strada+Pelicanului+Nr.+13,+Bra%C8%99ov+500461/''/@45.6660948,25.5567492,18z/data=!4m14!4m13!1m5!1m1!1s0x40b35b766c35ea5f:0xd19fd0955f55fbff!2m2!1d25.5581365!2d45.6658306!1m5!1m1!1s0x0:0xd19fd0955f55fbff!2m2!1d25.5581365!2d45.6658306!3e0">500461 Str. Pelicanului 13, Brasov, RO</a> </p>
+        <p><i class="icon ion-ios-telephone-outline"></i><a href="tel:+40 768 662 612"> +40 768 662 612</a></p>
+        <p><i class="icon ion-ios-email-outline"></i><a href="mailto:contact@artisanbakery.ro"> contact@artisanbakery.ro</a></p>
       </div>
+      <div class="col-sm-6 col-lg-3">
+        <!-- <h3 class="section_footer_heading">Follow us</h3> -->
+        <h3 class="section_footer_heading">{% trans 'Follow us' %}</h3>
 
-    <!-- Footer Copyrights -->
-    <div class="utf-footer-copyright-item">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-12">Copyright © 2021 All Rights Reserved.</div>
-        </div>
+        <div class="social">
+          <ul>
+            <li><p><b>Social: </b></p></li>
+            <li class="social_icon"><a href="https://www.facebook.com/artisanbakerybrasov"><i class="icon ion-social-facebook-outline"></i></a></li>
+            <li class="social_icon"><a href="#"><i class="icon ion-social-twitter-outline"></i></a></li>
+            <li class="social_icon"><a href="https://www.instagram.com/artisanbakerybrasov/"><i class="icon ion-social-instagram-outline"></i></a></li>
+            <li class="social_icon"><a href="#"><i class="ion-social-foursquare"></i></a></li>
+          </ul>
+        </div> <!-- .social -->
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <!-- <h3 class="section_footer_heading">Opening hours</h3> -->
+        <h3 class="section_footer_heading">Program</h3>
+
+        <p><b>Mon-Fri: </b>9 AM - 4 PM</p>
+        <p><b>Sat: </b>11 AM - 1 PM</p>
       </div>
     </div>
-    <!-- Footer Copyrights / End -->
-  </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <hr>
+        <p class="text-center">{% trans 'If you do not wish to receive any more news from us, just click the button below' %}.</p>
+        <div class="bg-white text-center">
+          <a class="primary-btn" href="#">{% trans 'Unsubscribe' %}</a>
+        </div>
+
+        <p class="footer_info"><a style="text-decoration: none; color:inherit;" href="http://www.artisanbakery.ro/admin/">&#169; 2017 S.C. OBICEIURI SANATOASE S.R.L..</a></p>
+        <p class="footer_info">   J08/1894/2017</p>
+        <p class="footer_info">  C.U.I 37894104 </p>
+        <p> All rights reserved. </p>
+      </div>
+    </div> <!-- .row -->
+  </div> <!-- .container -->
+</footer>

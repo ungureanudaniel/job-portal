@@ -1,0 +1,5 @@
+User-Agent: *
+Disallow: /send_email
+Disallow: /admin/
+
+Sitemap: https://artisanbakery.ro/sitemap.xml

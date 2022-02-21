@@ -207,6 +207,11 @@ def pricing(request):
         'rec_navbar': 1,
     }
     return render(request, 'users/pricing.html', context)
+def blog(request):
+    template_name = "users/blog.html"
+    context = {
+    }
+    return render(request, 'users/pricing.html', context)
 
 
 def contact(request):

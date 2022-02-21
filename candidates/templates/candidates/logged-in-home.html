@@ -1,0 +1,522 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang='en'>
+  {% include 'users/header.html' %}
+  <body data-spy="scroll" data-target=".navbar" data-offset="70">
+    <div class="main-wrapper">
+      <!--================= PRELOADER ======================= -->
+
+      <!--  ===================HEADER=============================== -->
+      <div class="main-header sticky">
+        <div id="GlobalMessages"></div>
+        <!-- === NAVBAR === -->
+        <div id="Header">
+          <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
+                  <span class="sr-only"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'home' %}">Dincolo</a>
+              </div>
+
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="navbar__collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                  <!-- General links -->
+                  <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dincolo Business </a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <i class="las la-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="menu_image.html">Guiding</a></li>
+                      <li><a href="menu_text.html">Professional</a></li>
+                      <li><a href="menu_text.html">Professional</a></li>
+
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Messages <i class="las la-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="menu_text.html">Notifications</a></li>
+                      <li><a href="menu_text.html">Inbox</a></li>
+
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Favorites<i class="las la-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="menu_text.html">Notifications</a></li>
+                      <li><a href="menu_text.html">Inbox</a></li>
+
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Orders<i class="las la-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="menu_text.html">Notifications</a></li>
+                      <li><a href="menu_text.html">Inbox</a></li>
+
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img <i class="las la-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="menu_text.html">Notifications</a></li>
+                      <li><a href="menu_text.html">Inbox</a></li>
+
+                    </ul>
+                  </li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container -->
+          </nav>
+        </div>
+        <!-- <div id="CategoriesMenu" class="categories-menu-wrapper categories_menu-package"><nav class="categories-menu-package default" data-reactroot=""><ul class="categories"><li class="sub-menu-item target top-level buckets_without_title buckets-without-title"><a href="/categories/graphics-design?source=category_tree">Graphics &amp; Design</a></li><li class="sub-menu-item target top-level default list"><a href="/categories/online-marketing?source=category_tree">Digital Marketing</a></li><li class="sub-menu-item target top-level default list"><a href="/categories/writing-translation?source=category_tree">Writing &amp; Translation</a></li><li class="sub-menu-item target top-level default list"><a href="/categories/video-animation?source=category_tree">Video &amp; Animation</a></li><li class="sub-menu-item target top-level default list"><a href="/categories/music-audio?source=category_tree">Music &amp; Audio</a></li><li class="sub-menu-item target top-level default list"><a href="/categories/programming-tech?source=category_tree">Programming &amp; Tech</a></li><li class="sub-menu-item target top-level default list"><a href="/categories/business?source=category_tree">Business</a></li><li class="sub-menu-item target top-level default list"><a href="/categories/lifestyle?source=category_tree">Lifestyle</a></li><li class="sub-menu-item target top-level default static list"><p>Trending</p></li></ul></nav></div> -->
+      </div>
+      <div class="main-content">
+        <!-- ===================TO THE TOP BUTTON====================== -->
+        <a id="back-to-top" href="#section_welcome" class="btn btn-primary back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left">
+          <i class="ion-android-arrow-up"></i>
+        </a>
+      <!-- ================== CONTENT ====================== -->
+        <div class="logged-out-homepage">
+    <!-- ==============SECTION WELCOME =============== -->
+          <section class="section_welcome" id="section_welcome">
+            <div class="container max-width-container">
+              <div class="row clearfix">
+                <div class="left-side clearfix">
+                  <h2 class="welcome_title">
+                    Welcome to <i>Dincolo</i>
+                  </h2>
+                  <h3 class="welcome-subh">
+                    <span>Best <i>Professionals</i> in eastern Europe</span>
+                  </h3>
+                  <div class="search_bar_container">
+                    <form class="form-box">
+                      <span class="srch-icon" aria-hidden="true" style="width: 16px; height: 16px;">
+                        <svg width="20" height="20" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M15.8906 14.6531L12.0969 10.8594C12.025 10.7875 11.9313 10.75 11.8313 10.75H11.4187C12.4031 9.60938 13 8.125 13 6.5C13 2.90937 10.0906 0 6.5 0C2.90937 0 0 2.90937 0 6.5C0 10.0906 2.90937 13 6.5 13C8.125 13 9.60938 12.4031 10.75 11.4187V11.8313C10.75 11.9313 10.7906 12.025 10.8594 12.0969L14.6531 15.8906C14.8 16.0375 15.0375 16.0375 15.1844 15.8906L15.8906 15.1844C16.0375 15.0375 16.0375 14.8 15.8906 14.6531ZM6.5 11.5C3.7375 11.5 1.5 9.2625 1.5 6.5C1.5 3.7375 3.7375 1.5 6.5 1.5C9.2625 1.5 11.5 3.7375 11.5 6.5C11.5 9.2625 9.2625 11.5 6.5 11.5Z">
+                          </path>
+                        </svg>
+                      </span>
+                      <input class="searchfield" type="search" autocomplete="off" placeholder="Try &quot;Law Advice&quot;" value="">
+                      <button class="srch-btn">Search</button>
+                    </form>
+                  </div>
+                  <div class="popular">Popular:
+                    <ul>
+                      <li><a href="#" class="popular-text">Website Design</a></li>
+                      <li><a href="#" class="popular-text">Financial Auditing</a></li>
+                      <li><a href="#" class="popular-text">Tour operator</a></li>
+                      <li><a href="#" class="popular-text">NFT Art</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="right-side col-sm-8">
+                  <div id="welcome-carousel" class="carousel welcome_carousel slide carousel-fade" data-ride="carousel">
+                    <!-- Indicators -->
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                      <div class="item active">
+                        <img src="{% static 'img/hero1.png' %}" alt="Magdalena Maria">
+                        <div class="carousel-caption">
+                         <h3>Magdalena Maria</h3>
+                         <p>>Economist<</p>
+                       </div>
+                      </div>
+
+                      <div class="item">
+                        <img src="{% static 'img/hero3.png' %}" alt="Tom Sawyer">
+                        <div class="carousel-caption">
+                         <h3>Tom Sawyer</h3>
+                         <p>>Web Developer<</p>
+                       </div>
+                      </div>
+
+                      <div class="item">
+                        <img src="{% static 'img/hero5.png' %}" alt="John Fick">
+                        <div class="carousel-caption">
+                         <h3>John Fick</h3>
+                         <p>>Assasin for hire<</p>
+                       </div>
+                      </div>
+
+                      <div class="item">
+                        <img src="{% static 'img/hero6.png' %}" alt="Alex Giurkaev">
+                        <div class="carousel-caption">
+                         <h3>Alex Giurkaev</h3>
+                         <p>>Rapper<</p>
+                       </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> <!-- .row -->
+            </div> <!-- .container -->
+          </section>
+    <!-- ============== POPULAR SERVICES CAROUSEL ================= -->
+          <section class="section-row sec1-wrapper">
+            <div class="sec-inner max-width-container">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h2>Popular Services</h2>
+                </div>
+                <div class="col-sm-12">
+                  <div id="owl-carousel" class="owl-carousel">
+                    <div class="item"><h4>Law Advice</h4><img src="{% static 'img/lawyer.png' %}"></div>
+                    <div class="item"><h4>Human Resources</h4><img src="{% static 'img/calling.png' %}"></div>
+                    <div class="item"><h4>Due Diligence</h4><img src="{% static 'img/black.png' %}"></div>
+                    <div class="item"><h4>Finances</h4><img src="{% static 'img/head_img1.png' %}"></div>
+                    <div class="item"><h4>Medical Care</h4><img src="{% static 'img/medic.png' %}"></div>
+                    <div class="item"><h4>Web Development</h4><img src="{% static 'img/meeting.png' %}"></div>
+                  </div>
+                <!-- <button class="serv-nav serv-next"></button> -->
+              </div> <!-- .row -->
+             </div> <!-- .container -->
+           </div>
+          </section>
+
+      <!-- ==================== SELLING PROP  =================== -->
+          <section class="section-row sec2-wrapper">
+                <div class="sec-inner max-width-container">
+                  <div class="grid-15 flex-items-center">
+                    <div class="selling-text">
+                        <h2>Best freelancers in eastern Europe</h2>
+                      <ul>
+                        <li>
+                          <h6>
+                            <span class="sec2-txt check-icon" aria-hidden="true" style="width: 24px; height: 24px; fill: rgb(122, 125, 133);">
+                              <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 1.75C4.54822 1.75 1.75 4.54822 1.75 8C1.75 11.4518 4.54822 14.25 8 14.25C11.4518 14.25 14.25 11.4518 14.25 8C14.25 4.54822 11.4518 1.75 8 1.75ZM0.25 8C0.25 3.71979 3.71979 0.25 8 0.25C12.2802 0.25 15.75 3.71979 15.75 8C15.75 12.2802 12.2802 15.75 8 15.75C3.71979 15.75 0.25 12.2802 0.25 8Z"></path>
+                                <path d="M11.5303 5.46967C11.8232 5.76256 11.8232 6.23744 11.5303 6.53033L7.53033 10.5303C7.23744 10.8232 6.76256 10.8232 6.46967 10.5303L4.46967 8.53033C4.17678 8.23744 4.17678 7.76256 4.46967 7.46967C4.76256 7.17678 5.23744 7.17678 5.53033 7.46967L7 8.93934L10.4697 5.46967C10.7626 5.17678 11.2374 5.17678 11.5303 5.46967Z"></path>
+                              </svg>
+                            </span>The best for every budget
+                          </h6>
+                          <p class="tbody-sec2">Find high-quality services at every price point. No hourly rates, just project-based pricing.</p>
+                        </li>
+                        <li>
+                          <h6>
+                            <span class="sec2-txt check-icon" aria-hidden="true" style="width: 24px; height: 24px; fill: rgb(122, 125, 133);">
+                              <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.75C4.54822 1.75 1.75 4.54822 1.75 8C1.75 11.4518 4.54822 14.25 8 14.25C11.4518 14.25 14.25 11.4518 14.25 8C14.25 4.54822 11.4518 1.75 8 1.75ZM0.25 8C0.25 3.71979 3.71979 0.25 8 0.25C12.2802 0.25 15.75 3.71979 15.75 8C15.75 12.2802 12.2802 15.75 8 15.75C3.71979 15.75 0.25 12.2802 0.25 8Z"></path>
+                                <path d="M11.5303 5.46967C11.8232 5.76256 11.8232 6.23744 11.5303 6.53033L7.53033 10.5303C7.23744 10.8232 6.76256 10.8232 6.46967 10.5303L4.46967 8.53033C4.17678 8.23744 4.17678 7.76256 4.46967 7.46967C4.76256 7.17678 5.23744 7.17678 5.53033 7.46967L7 8.93934L10.4697 5.46967C10.7626 5.17678 11.2374 5.17678 11.5303 5.46967Z"></path>
+                              </svg>
+                            </span>Quality work done quickly
+                          </h6>
+                          <p class="tbody-sec2">Find the right freelancer to begin working on your project within minutes.</p>
+                        </li>
+                        <li>
+                          <h6>
+                            <span class="sec2-txt check-icon" aria-hidden="true" style="width: 24px; height: 24px; fill: rgb(122, 125, 133);">
+                              <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 1.75C4.54822 1.75 1.75 4.54822 1.75 8C1.75 11.4518 4.54822 14.25 8 14.25C11.4518 14.25 14.25 11.4518 14.25 8C14.25 4.54822 11.4518 1.75 8 1.75ZM0.25 8C0.25 3.71979 3.71979 0.25 8 0.25C12.2802 0.25 15.75 3.71979 15.75 8C15.75 12.2802 12.2802 15.75 8 15.75C3.71979 15.75 0.25 12.2802 0.25 8Z"></path>
+                                <path d="M11.5303 5.46967C11.8232 5.76256 11.8232 6.23744 11.5303 6.53033L7.53033 10.5303C7.23744 10.8232 6.76256 10.8232 6.46967 10.5303L4.46967 8.53033C4.17678 8.23744 4.17678 7.76256 4.46967 7.46967C4.76256 7.17678 5.23744 7.17678 5.53033 7.46967L7 8.93934L10.4697 5.46967C10.7626 5.17678 11.2374 5.17678 11.5303 5.46967Z"></path>
+                              </svg>
+                            </span>Protected payments, every time
+                          </h6>
+                          <p class="tbody-sec2">Always know what you'll pay upfront. Your payment isn't released until you approve the work.</p>
+                        </li>
+                        <li>
+                          <h6>
+                            <span class="sec2-txt check-icon" aria-hidden="true" style="width: 24px; height: 24px; fill: rgb(122, 125, 133);">
+                              <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 1.75C4.54822 1.75 1.75 4.54822 1.75 8C1.75 11.4518 4.54822 14.25 8 14.25C11.4518 14.25 14.25 11.4518 14.25 8C14.25 4.54822 11.4518 1.75 8 1.75ZM0.25 8C0.25 3.71979 3.71979 0.25 8 0.25C12.2802 0.25 15.75 3.71979 15.75 8C15.75 12.2802 12.2802 15.75 8 15.75C3.71979 15.75 0.25 12.2802 0.25 8Z"></path>
+                                <path d="M11.5303 5.46967C11.8232 5.76256 11.8232 6.23744 11.5303 6.53033L7.53033 10.5303C7.23744 10.8232 6.76256 10.8232 6.46967 10.5303L4.46967 8.53033C4.17678 8.23744 4.17678 7.76256 4.46967 7.46967C4.76256 7.17678 5.23744 7.17678 5.53033 7.46967L7 8.93934L10.4697 5.46967C10.7626 5.17678 11.2374 5.17678 11.5303 5.46967Z">
+                                </path>
+                              </svg>
+                            </span>24/7 support
+                          </h6>
+                          <p class="tbody-sec2">Questions? Our round-the-clock support team is available to help anytime, anywhere.</p>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="selling-vid">
+                      <div class="video-modal">
+                        <div class="picture-wrapper">
+                          <picture>
+                            <source media="(min-width: 1160px)" srcset=""><source media="(min-width: 900px)" srcset=""><source media="(min-width: 600px)" srcset=""><source media="(min-width: 361px)" srcset=""><source media="(max-width: 360px)" srcset=""><img alt="Video teaser image" src="#" loading="auto">
+                          </picture>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- grid-15 flex container end -->
+                </div>
+              </section>
+      <!-- ========= SERVICE MAIN CATEGORIES ================= -->
+          <section class="section-row sec3-wrapper">
+              <div class="sec-inner max-width-container">
+                <h2>Explore the marketplace</h2>
+                <div class="categories-list">
+                  <a href="#" class="category-box">
+            				<div class="cat-counter">10 Openings</div>
+            				<div class="category-box-icon"> <i class="las la-bullhorn"></i> </div>
+            				<div class="category-box-content">
+            				  <h3>Design, Art &amp; Multimedia</h3>
+            				</div>
+            				<div class="cat-box-counter">8,188 Jobs</div>
+                  </a>
+                  <a href="#" class="category-box">
+            				<div class="cat-counter">15 Openings</div>
+            				<div class="category-box-icon"> <i class="las la-graduation-cap"></i> </div>
+            				<div class="category-box-content">
+            				  <h3>Education &amp; Training</h3>
+            				</div>
+            				<div class="cat-box-counter">5,244 Jobs</div>
+                  </a>
+                  <a href="#" class="category-box">
+            				<div class="cat-counter">12 Openings</div>
+            				<div class="category-box-icon"> <i class="la la-line-chart"></i> </div>
+            				<div class="category-box-content">
+            				  <h3>Accounting / Finance</h3>
+            				</div>
+            				<div class="cat-box-counter">6,258 Jobs</div>
+                  </a>
+                  <a href="#" class="category-box">
+            				<div class="cat-counter">20 Openings</div>
+            				<div class="category-box-icon"> <i class="las la-users"></i> </div>
+            				<div class="category-box-content">
+            				  <h3>Human Resource</h3>
+            				</div>
+            				<div class="cat-box-counter">1,224 Jobs</div>
+                  </a>
+                  <a href="#" class="category-box">
+            				<div class="cat-counter">25 Openings</div>
+            				<div class="category-box-icon"> <i class="las la-phone"></i> </div>
+            				<div class="category-box-content">
+            				  <h3>Telecommunications</h3>
+            				</div>
+            				<div class="cat-box-counter">3,258 Jobs</div>
+                  </a>
+                  <a href="#" class="category-box">
+            				<div class="cat-counter">18 Openings</div>
+            				<div class="category-box-icon"> <i class="la la-cutlery"></i> </div>
+            				<div class="category-box-content">
+            				  <h3>Restaurant / Food Service</h3>
+            				</div>
+            				<div class="cat-box-counter">5,138 Jobs</div>
+                  </a>
+                  <a href="#" class="category-box">
+            				<div class="cat-counter">38 Openings</div>
+            				<div class="category-box-icon"> <i class="las la-building"></i> </div>
+            				<div class="category-box-content">
+            				  <h3>Construction / Facilities</h3>
+            				</div>
+            				<div class="cat-box-counter">2,580 Jobs</div>
+                  </a>
+                  <a href="#" class="category-box">
+            				<div class="cat-counter">23 Openings</div>
+            				<div class="category-box-icon"> <i class="las la-user-md"></i> </div>
+            				<div class="category-box-content">
+            				  <h3>Health</h3>
+            				</div>
+            				<div class="cat-box-counter">2,360 Jobs</div>
+                  </a>
+            		 </div>
+          </section>
+      <!-- ============== BUSINESSES TESTIMONIALS CAROUSEL ================= -->
+          <section class="section-row sec4-wrapper">
+           <div class="sec-inner max-width-container">
+             <div class="row">
+               <div class="col-sm-12">
+                 <h2 class="section-row_title">What our partners say</h2>
+               </div>
+               <div class="col-sm-12">
+                <div id="owl-carousel-testim" class="owl-carousel">
+                  <div class="item" style="outline: none;">
+                    <div>
+                      <div class="testimonial">
+                        <div class="video-modal testimonial-modal">
+                          <div class="picture-wrapper">
+                            <picture>
+                              <source media="(min-width: 1160px)" srcset=""><source media="(min-width: 900px)" srcset=""><source media="(min-width: 600px)" srcset=""><source media="(min-width: 361px)" srcset=""><source media="(max-width: 360px)" srcset="">
+                              <img alt="Video teaser image" src="{% static 'video/video_bg.mp4' %}" loading="lazy">
+                            </picture>
+                          </div>
+                        </div>
+                        <div class="text-content">
+                          <h5>Kay Kim, Co-Founder
+                            <span class="testimonial-logo">
+                              <img alt="Company logo" src="{% static 'svg/mysql.svg' %}" loading="lazy">
+                            </span>
+                          </h5>
+                          <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item" style="outline: none;">
+                    <div>
+                      <div class="testimonial">
+                        <div class="video-modal testimonial-modal">
+                          <div class="picture-wrapper">
+                            <picture>
+                              <source media="(min-width: 1160px)" srcset="">
+                                <source media="(min-width: 900px)" srcset=""><source media="(min-width: 600px)" srcset=""><source media="(min-width: 361px)" srcset=""><source media="(max-width: 360px)" srcset=""><img alt="Video teaser image" src="" loading="lazy">
+                            </picture>
+                          </div>
+                        </div>
+                        <div class="text-content">
+                          <h5>Kay Kim, Co-Founder
+                            <span class="testimonial-logo">
+                              <img alt="Company logo" src="{% static 'svg/python-brands.svg' %}" loading="lazy">
+                            </span>
+                          </h5>
+                          <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item" style="outline: none;">
+                    <div>
+                      <div class="testimonial">
+                        <div class="video-modal testimonial-modal">
+                          <div class="picture-wrapper">
+                            <picture>
+                              <source media="(min-width: 1160px)" srcset="">
+                                <source media="(min-width: 900px)" srcset=""><source media="(min-width: 600px)" srcset=""><source media="(min-width: 361px)" srcset=""><source media="(max-width: 360px)" srcset=""><img alt="Video teaser image" src="" loading="lazy">
+                            </picture>
+                          </div>
+                        </div>
+                        <div class="text-content">
+                          <h5>Kay Kim, Co-Founder
+                            <span class="testimonial-logo">
+                              <img alt="Company logo" src="{% static 'svg/speedometer.svg' %}" loading="lazy">
+                            </span>
+                          </h5>
+                          <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item" style="outline: none;">
+                    <div>
+                      <div class="testimonial">
+                        <div class="video-modal testimonial-modal">
+                          <div class="picture-wrapper">
+                            <picture>
+                              <source media="(min-width: 1160px)" srcset="">
+                                <source media="(min-width: 900px)" srcset=""><source media="(min-width: 600px)" srcset=""><source media="(min-width: 361px)" srcset=""><source media="(max-width: 360px)" srcset=""><img alt="Video teaser image" src="" loading="lazy">
+                            </picture>
+                          </div>
+                        </div>
+                        <div class="text-content">
+                          <h5>Kay Kim, Co-Founder
+                            <span class="testimonial-logo">
+                              <img alt="Company logo" src="{% static 'svg/photograph-photography-svgrepo-com (1).svg' %}" loading="lazy">
+                            </span>
+                          </h5>
+                          <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item" style="outline: none;">
+                    <div>
+                      <div class="testimonial">
+                        <div class="video-modal testimonial-modal">
+                          <div class="picture-wrapper">
+                            <picture>
+                              <source media="(min-width: 1160px)" srcset="">
+                                <source media="(min-width: 900px)" srcset=""><source media="(min-width: 600px)" srcset=""><source media="(min-width: 361px)" srcset=""><source media="(max-width: 360px)" srcset=""><img alt="Video teaser image" src="" loading="lazy">
+                            </picture>
+                          </div>
+                        </div>
+                        <div class="text-content">
+                          <h5>Kay Kim, Co-Founder
+                            <span class="testimonial-logo">
+                              <img alt="Company logo" src="{% static 'svg/medal-winner-svgrepo-com.svg' %}" loading="lazy">
+                            </span>
+                          </h5>
+                          <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item" style="outline: none;">
+                    <div>
+                      <div class="testimonial">
+                        <div class="video-modal testimonial-modal">
+                          <div class="picture-wrapper">
+                            <picture>
+                              <source media="(min-width: 1160px)" srcset="">
+                              <source media="(min-width: 900px)" srcset=""><source media="(min-width: 600px)" srcset=""><source media="(min-width: 361px)" srcset=""><source media="(max-width: 360px)" srcset="">
+                              <img alt="Video teaser image" src="{% static 'img/medic.png' %}" loading="lazy">
+                            </picture>
+                          </div>
+                        </div>
+                        <div class="text-content">
+                          <h5>Kay Kim, Co-Founder
+                            <span class="testimonial-logo">
+                              <img alt="Company logo" src="{% static 'svg/debug-svgrepo-com.svg' %}" loading="lazy">
+                            </span>
+                          </h5>
+                          <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <!-- <button class="serv-nav serv-next"></button> -->
+            </div> <!-- .row -->
+            </div> <!-- .container -->
+          </section>
+          <!-- ===========SECTION Get Started ================ -->
+          <section class="section-row sec5-wrapper">
+           <div class="sec-inner max-width-container">
+             <div class="signup mb-0">
+              <picture class="signup-image ">
+                  <!-- <source media="(min-width: 1160px)" srcset="">
+                  <source media="(min-width: 900px)" srcset=""> -->
+                  <img alt="The talent you need" src="{% static 'img/get_started1.png' %}" loading="lazy">
+              </picture>
+              <div class="signup-text ">
+                <h2 class="text-display-1 font-domaine">
+                  <span>Find the <i>talent</i> needed to get your business <i>growing</i>.
+                  </span>
+                </h2>
+                <a class=" btn-signup" href="{% url 'register' %}">Get Started</a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- ===========SECTION NEWSLETTER================ -->
+          <div class="" id="newsletter">
+              {% include 'users/newsletter.html' %}
+          </div>
+      </div>
+  </div>
+    {% include 'users/footer.html' %}
+</div>
+    <!-- JS
+    ================================================== -->
+
+    <!-- JS Global -->
+    <script src="{% static 'plugins/jquery/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'plugins/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- JS Plugins -->
+    <script src="{% static 'plugins/lightbox/dist/js/lightbox.min.js' %}"></script>
+    <script src="{% static 'plugins/isotope/isotope.pkgd.min.js' %}"></script>
+    <!-- <script src="{% static 'plugins/flickity/flickity.pkgd.min.js' %}"></script> -->
+    <script src="{% static 'plugins/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+    <!-- JS Custom -->
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script async src="{% static 'js/google_maps.js' %}"></script>
+    <!-- Google Maps -->
+    <script src="{% static 'js/back_to_top.js' %}"></script>
+  </body>
+</html>

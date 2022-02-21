@@ -1,0 +1,25 @@
+{% load static %}
+{% load i18n %}
+      <!-- section map-heading -->
+      <section class="section_map-heading" id="section_contacts">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+                <!-- <h2 class="map__title">Find us on the map</h2> -->
+                <h2 class="map__title">{% trans 'You will find us here' %}</h2>
+                <p>{% trans 'Click on the address to open in google maps' %}</p>
+                <p class="map__address"><a href="https://www.google.com/maps/dir/Artisan+Bakery,+Strada+Pelicanului+Nr.+13,+Bra%C8%99ov+500461/''/@45.6660948,25.5567492,18z/data=!4m14!4m13!1m5!1m1!1s0x40b35b766c35ea5f:0xd19fd0955f55fbff!2m2!1d25.5581365!2d45.6658306!1m5!1m1!1s0x0:0xd19fd0955f55fbff!2m2!1d25.5581365!2d45.6658306!3e0">500461 Str. Pelicanului 13, Brasov, RO</a><i></i></p>
+            </div>
+          </div> <!-- .row -->
+        </div> <!-- .container -->
+      </section>
+
+<!-- section map -->
+      <div class="section_map">
+        <div class="section_row">
+          <div id="iframe-container" ><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2788.2525272281573!2d25.555947815871047!3d45.66583057910369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b35b766c35ea5f%3A0xd19fd0955f55fbff!2sArtisan%20Bakery!5e0!3m2!1sro!2sro!4v1614153413599!5m2!1sro!2sro" style="height: 40vh; width:100%" allowfullscreen="" loading="lazy"></iframe>
+
+            <!-- <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="map" src="https://maps.google.com
+            maps?q=pelicanului%2013&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div></div> -->
+        </div> <!-- / .section_row -->
+      </div> <!-- / .section_map -->
