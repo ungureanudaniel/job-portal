@@ -1,135 +1,94 @@
-{% extends 'users/base.html' %}
 {% load static %}
-{% block content %}
-    <div class="clearfix"></div>
-    <!-- Titlebar -->
-    <div id="titlebar" class="gradient">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2>Register</h2>
-          <nav id="breadcrumbs">
-            <ul>
-              <li><a href="{% url 'home' %}">Home</a></li>
-              <li>Register</li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Page Content -->
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-6 offset-xl-3">
-        <div class="register mb-5">
-          <div class="welcome-text">
-            {% if messages %}
-              {% for message in messages %}
-              <div class="alert {% if message.tags %} {{ message.tags }} {% endif %} alert-dismissible fade show"><button type="button" class="close" data-bs-dismiss="alert"  aria-hidden="false">&times;</button>
-                {{ message }}
-              </div>
-              {% endfor %}
-            {% endif %}
-            <h3>Create Your New Account!</h3>
-            <span>Choose your category below</span>
-		      </div>
-          <div class="account-type">
-              <button type="radio" class="account-type-btn ripple-effect-dark" onclick="filterSelection('employer')"> Employer</button>
-              <button type="radio" class="account-type-btn ripple-effect-dark" onclick="filterSelection('freelancer')"> Freelancer</button>
-          </div>
+<!-- ============== MODAL JOIN AND SIGN IN POPUP ================= -->
+<div class="cd-signin-modal js-signin-modal"> <!-- this is the entire modal form, including the background -->
+  <div class="cd-signin-modal__container"> <!-- this is the container wrapper -->
+    <ul class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger">
+      <li><a href="#0" data-signin="login" data-type="login">Sign in</a></li>
+      <li><a href="#0" data-signin="signup" data-type="signup">New account</a></li>
+    </ul>
 
-          <div class="form__types container">
-            <div class="filterElements employer">
-              <form method="POST" id="employer-radio" class="register-account-form" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="no-border">
-                  <input type="text" class="with-border" name="company_name" id="name-register" placeholder="Company Name" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                </div>
-    			      <div class="no-border">
-                  <input type="email" class="with-border" name="emailaddress-register" id="username" placeholder="User name as your Email Address" required="">
-                </div>
-    			      <div class="no-border">
-                  <input type="text" class="with-border" name="id-register" id="emailaddress-register" placeholder="Company Identification Number" required="">
-                </div>
-                <div class="no-border">
-                  <input type="text" class="with-border" name="phone-reg" id="phone-reg" placeholder="Phone Number" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                </div>
-                <div class="no-border">
-                  <label for="image" style="color: #808080;line-height: 48px;
-                  padding: 0 15px;outline: none;font-size: 16px;">Add a portrait image:</label>
-                  <input type="file" name="image1" id="image"  onchange="loadFile(event)">
-                </div>
-                <div class="no-border">
-                  <input type="password" class="with-border" name="password1" id="password-register" placeholder="Password" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                </div>
-                <div class="no-border">
-                  <input type="password" class="with-border" name="password2" id="password-repeat-register" placeholder="Repeat Password" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                </div>
+    <div class="cd-signin-modal__block js-signin-modal-block" data-type="login"> <!-- log in form -->
+      <form class="cd-signin-modal__form">
+        {% csrf_token %}
+        <p class="cd-signin-modal__fieldset">
+          <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signin-email" name="emailaddress-register">E-mail</label>
+          <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-email" type="email" placeholder="E-mail">
+          <span class="cd-signin-modal__error">Error message here!</span>
+        </p>
 
-                <div class="form-check checkbox mt-1">
-                  <input class="form-check-input" type="checkbox" value="Agree" id="two-step1" name="checks[]">
-                  <label class="form-check-label" for="two-step1"><span class="checkbox-icon"></span> I Have Read and Agree to the <a href="{% url 'terms-of-service' %}">Terms &amp; Conditions</a></label>
-                </div>
-                <label class="text-warning">Please fill in the Captcha to show you are human.</label>
-                {{ form.captcha }}
-                <button class="button full-width sliding-icon ripple-effect mt-1" type="submit" name="type" value="employer">Create An Account <i class="fa fa-chevron-right"></i></button>
+        <p class="cd-signin-modal__fieldset">
+          <label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signin-password" name="emailaddress-register">Password</label>
+          <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-password" type="text"  placeholder="Password">
+          <a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
+          <span class="cd-signin-modal__error">Error message here!</span>
+        </p>
 
-              </form>
-            </div>
-            <div class="filterElements freelancer">
-              <form method="POST" id="freelancer-radio" class="register-account-form" enctype="multipart/form-data">
-                {% csrf_token %}
-    			      <div class="no-border">
-                  <input type="email" class="with-border" name="emailaddress-register" id="emailaddress-register" placeholder="Email Address" required="">
-                </div>
-                <div class="no-border">
-                  <input type="text" class="with-border" name="first-name-register" id="name-register" placeholder="First Name" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                </div>
-                <div class="no-border">
-                  <input type="text" class="with-border" name="last-name-register" id="name-register" placeholder="Last Name" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                </div>
-                <div class="no-border">
-                  <label for="image" style="color: #808080;line-height: 48px;
-                  padding: 0 15px;outline: none;font-size: 16px;">Add a portrait image:</label>
-                  <input type="file" placeholder="Choose an image" name="image2" id="image" >
-                </div>
-    			      <div class="no-border mb-5">
-                  <input type="text" class="with-border" name="phone-register" id="name-register" placeholder="Phone Number" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                </div>
-                <div class="no-border mb-5">
-                  <input type="text" class="with-border" name="gender-register" id="gender-register" placeholder="Gender" required="" list="gender_choices" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                    <datalist id="gender_choices">
-                      <option value="Male">
-                      <option value="Female">
-                    </datalist>
-                </div>
-                <div class="no-border mb-5">
-                  <input class="with-border" name="birth-register" id="birth-register" placeholder="Birth Date" required="" type="date" name="trip-start" value="1955-01-11" min="1955-01-11" max="2070-12-31" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                </div>
-                <div class="no-border">
-                  <input type="password" class="with-border" name="password-register" id="password-register" placeholder="Password" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                </div>
-                <div class="no-border">
-                  <input type="password" class="with-border" name="password-repeat-register" id="password-repeat-register" placeholder="Repeat Password" required="" style="background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
-                </div>
-                <div class="form-check checkbox mt-1">
-                  <input class="form-check-input" type="checkbox" value="Agree" id="two-step0" name="checks[]">
-                  <label class="form-check-label" for="two-step0"><span class="checkbox-icon"></span> I Have Read and Agree to the <a href="{% url 'terms-of-service' %}">Terms &amp; Conditions</a></label>
-                </div>
-                <!-- <div class="">
-    				      <input type="checkbox" id="two-step0" name="checks[]" value='True'>
-    				      <label for="two-step0"><span class="checkbox-icon"></span> I Have Read and Agree to the <a href="{% url 'terms-of-service' %}">Terms &amp; Conditions</a></label>
-    		        </div> -->
-                <label class="text-warning">Please fill in the Captcha to show you are human.</label>
-                <div style="">
-                {{ form.captcha }}
-                </div>
-                <button class="button full-width sliding-icon ripple-effect mt-1" type="submit" name="type" value="freelancer">Create An Account <i class="fa fa-chevron-right"></i></button>
-              </form>
-            </div>
-          </div>
-      </div>
-    </div>
-  </div>
-{% endblock %}
+        <p class="cd-signin-modal__fieldset">
+          <input type="checkbox" id="remember-me" checked class="cd-signin-modal__input ">
+          <label for="remember-me">Remember me</label>
+        </p>
+
+        <p class="cd-signin-modal__fieldset">
+          <input class="cd-signin-modal__input cd-signin-modal__input--full-width" type="submit" value="Login">
+        </p>
+        <hr>
+        <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="reset">Forgot your password?</a></p>
+      </form>
+    </div> <!-- cd-signin-modal__block -->
+
+    <div class="cd-signin-modal__block js-signin-modal-block" data-type="signup"> <!-- sign up form -->
+      <form class="cd-signin-modal__form">
+        {% csrf_token %}
+        <p class="cd-signin-modal__fieldset">
+          <label class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signup-username">Username</label>
+          <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-username" type="text" placeholder="Username">
+          <span class="cd-signin-modal__error">Error message here!</span>
+        </p>
+
+        <p class="cd-signin-modal__fieldset">
+          <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signup-email">E-mail</label>
+          <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-email" type="email" placeholder="E-mail">
+          <span class="cd-signin-modal__error">Error message here!</span>
+        </p>
+
+        <p class="cd-signin-modal__fieldset">
+          <label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signup-password">Password</label>
+          <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password1" type="text"  placeholder="Password">
+          <a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
+          <span class="cd-signin-modal__error">Error message here!</span>
+        </p>
+
+        <p class="cd-signin-modal__fieldset">
+          <input type="checkbox" id="accept-terms" class="cd-signin-modal__input ">
+          <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
+        </p>
+
+        <p class="cd-signin-modal__fieldset">
+          <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Create account">
+        </p>
+        <hr>
+        <p class="cd-signin-modal__message">By joining I agree to receive emails from Dincolo.</p>
+
+      </form>
+    </div> <!-- cd-signin-modal__block -->
+
+    <div class="cd-signin-modal__block js-signin-modal-block" data-type="reset"> <!-- reset password form -->
+      <p class="cd-signin-modal__message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+
+      <form class="cd-signin-modal__form">
+        <p class="cd-signin-modal__fieldset">
+          <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="reset-email">E-mail</label>
+          <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="reset-email" type="email" placeholder="E-mail">
+          <span class="cd-signin-modal__error">Error message here!</span>
+        </p>
+
+        <p class="cd-signin-modal__fieldset">
+          <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Reset password">
+        </p>
+      </form>
+
+      <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="login">Back to log-in</a></p>
+    </div> <!-- cd-signin-modal__block -->
+    <a href="#0" class="cd-signin-modal__close js-close">Close</a>
+  </div> <!-- cd-signin-modal__container -->
+</div> <!-- cd-signin-modal -->

@@ -12,7 +12,7 @@
         <div id="GlobalMessages"></div>
         <!-- === NAVBAR === -->
         <div id="Header">
-          <nav class="navbar navbar-default navbar-fixed-top">
+          <nav class="navbar navbar-default navbar-fixed-top js-main-nav">
             <div class="container">
               <!-- Brand and toggle get grouped for better mobile display -->
               <div class="navbar-header">
@@ -23,7 +23,7 @@
 
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="navbar__collapse">
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right js-signin-modal-trigger">
 
                   <!-- General links -->
                   <li class="dropdown active">
@@ -40,8 +40,8 @@
                   </li>
                   <li><a href="gallery.html">Language</a></li>
                   <li><a href="events.html">Currency</a></li>
-                  <li><a href="{% url 'login' %}">Sign in</a></li>
-                  <li><a href="{% url 'register' %}">Join</a></li>
+                  <li><a class="cd-main-nav__item cd-main-nav__item--signin" href="#0" data-signin="login">Sign in</a></li>
+          				<li><a class="cd-main-nav__item cd-main-nav__item--signup" href="#0" data-signin="signup">Sign up</a></li>
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Change colors <i class="las la-chevron-down"></i></a>
                     <ul class="dropdown-menu" name="theme-select" id="theme-select">
@@ -63,6 +63,8 @@
         </div>
         <!-- <div id="CategoriesMenu" class="categories-menu-wrapper categories_menu-package"><nav class="categories-menu-package default" data-reactroot=""><ul class="categories"><li class="sub-menu-item target top-level buckets_without_title buckets-without-title"><a href="/categories/graphics-design?source=category_tree">Graphics &amp; Design</a></li><li class="sub-menu-item target top-level default list"><a href="/categories/online-marketing?source=category_tree">Digital Marketing</a></li><li class="sub-menu-item target top-level default list"><a href="/categories/writing-translation?source=category_tree">Writing &amp; Translation</a></li><li class="sub-menu-item target top-level default list"><a href="/categories/video-animation?source=category_tree">Video &amp; Animation</a></li><li class="sub-menu-item target top-level default list"><a href="/categories/music-audio?source=category_tree">Music &amp; Audio</a></li><li class="sub-menu-item target top-level default list"><a href="/categories/programming-tech?source=category_tree">Programming &amp; Tech</a></li><li class="sub-menu-item target top-level default list"><a href="/categories/business?source=category_tree">Business</a></li><li class="sub-menu-item target top-level default list"><a href="/categories/lifestyle?source=category_tree">Lifestyle</a></li><li class="sub-menu-item target top-level default static list"><p>Trending</p></li></ul></nav></div> -->
       </div>
+      {% include 'users/register.html' %}
+
       <div class="main-content">
         <!-- ===================TO THE TOP BUTTON====================== -->
         <a id="back-to-top" href="#section_welcome" class="btn btn-primary back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left">
@@ -298,6 +300,7 @@
             				<div class="cat-box-counter">2,360 Jobs</div>
                   </a>
             		 </div>
+              </div>
           </section>
       <!-- ============== BUSINESSES TESTIMONIALS CAROUSEL ================= -->
           <section class="section-row sec4-wrapper">
@@ -307,168 +310,99 @@
                  <h2 class="section-row_title">What our partners say</h2>
                </div>
                <div class="col-sm-12">
-                <div id="owl-carousel-testim" class="owl-carousel">
-                  <div class="item" style="outline: none;">
-                    <div>
-                      <div class="testimonial">
-                        <div class="video-modal testimonial-modal">
-                          <div class="picture-wrapper">
-                            <picture>
-                              <source media="(min-width: 1160px)" srcset=""><source media="(min-width: 900px)" srcset=""><source media="(min-width: 600px)" srcset=""><source media="(min-width: 361px)" srcset=""><source media="(max-width: 360px)" srcset="">
-                              <img alt="Video teaser image" src="{% static 'video/video_bg.mp4' %}" loading="lazy">
-                            </picture>
-                          </div>
-                        </div>
-                        <div class="text-content">
-                          <h5>Kay Kim, Co-Founder
-                            <span class="testimonial-logo">
-                              <img alt="Company logo" src="{% static 'svg/mysql.svg' %}" loading="lazy">
-                            </span>
-                          </h5>
-                          <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
-                          </blockquote>
-                        </div>
-                      </div>
+                 <div id="owl-carousel-testim" class="owl-carousel owl-theme">
+                    <div class="item">
+                        <img src="{% static 'img/hero6.png' %}" alt="Owl Image">
+                        <h5>Kay Kim, Co-Founder
+                          <span class="testimonial-logo ">
+                            <img alt="Company logo" src="{% static 'svg/mysql.svg' %}" loading="lazy">
+                          </span>
+                        </h5>
+                        <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
+                        </blockquote>
                     </div>
-                  </div>
-                  <div class="item" style="outline: none;">
-                    <div>
-                      <div class="testimonial">
-                        <div class="video-modal testimonial-modal">
-                          <div class="picture-wrapper">
-                            <picture>
-                              <source media="(min-width: 1160px)" srcset="">
-                                <source media="(min-width: 900px)" srcset=""><source media="(min-width: 600px)" srcset=""><source media="(min-width: 361px)" srcset=""><source media="(max-width: 360px)" srcset=""><img alt="Video teaser image" src="" loading="lazy">
-                            </picture>
-                          </div>
-                        </div>
-                        <div class="text-content">
-                          <h5>Kay Kim, Co-Founder
-                            <span class="testimonial-logo">
-                              <img alt="Company logo" src="{% static 'svg/python-brands.svg' %}" loading="lazy">
-                            </span>
-                          </h5>
-                          <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
-                          </blockquote>
-                        </div>
-                      </div>
+                    <div class="item">
+                        <img src="{% static 'img/hero6.png' %}" alt="Owl Image">
+                        <h5>Kay Kim, Co-Founder
+                          <span class="testimonial-logo">
+                            <img alt="Company logo" src="{% static 'svg/mysql.svg' %}" loading="lazy">
+                          </span>
+                        </h5>
+                        <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
+                        </blockquote>
                     </div>
-                  </div>
-                  <div class="item" style="outline: none;">
-                    <div>
-                      <div class="testimonial">
-                        <div class="video-modal testimonial-modal">
-                          <div class="picture-wrapper">
-                            <picture>
-                              <source media="(min-width: 1160px)" srcset="">
-                                <source media="(min-width: 900px)" srcset=""><source media="(min-width: 600px)" srcset=""><source media="(min-width: 361px)" srcset=""><source media="(max-width: 360px)" srcset=""><img alt="Video teaser image" src="" loading="lazy">
-                            </picture>
-                          </div>
-                        </div>
-                        <div class="text-content">
-                          <h5>Kay Kim, Co-Founder
-                            <span class="testimonial-logo">
-                              <img alt="Company logo" src="{% static 'svg/speedometer.svg' %}" loading="lazy">
-                            </span>
-                          </h5>
-                          <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
-                          </blockquote>
-                        </div>
-                      </div>
+                    <div class="item">
+                        <img src="{% static 'img/hero6.png' %}" alt="Owl Image">
+                        <h5>Kay Kim, Co-Founder
+                          <span class="testimonial-logo">
+                            <img alt="Company logo" src="{% static 'svg/mysql.svg' %}" loading="lazy">
+                          </span>
+                        </h5>
+                        <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
+                        </blockquote>
                     </div>
-                  </div>
-                  <div class="item" style="outline: none;">
-                    <div>
-                      <div class="testimonial">
-                        <div class="video-modal testimonial-modal">
-                          <div class="picture-wrapper">
-                            <picture>
-                              <source media="(min-width: 1160px)" srcset="">
-                                <source media="(min-width: 900px)" srcset=""><source media="(min-width: 600px)" srcset=""><source media="(min-width: 361px)" srcset=""><source media="(max-width: 360px)" srcset=""><img alt="Video teaser image" src="" loading="lazy">
-                            </picture>
-                          </div>
-                        </div>
-                        <div class="text-content">
-                          <h5>Kay Kim, Co-Founder
-                            <span class="testimonial-logo">
-                              <img alt="Company logo" src="{% static 'svg/photograph-photography-svgrepo-com (1).svg' %}" loading="lazy">
-                            </span>
-                          </h5>
-                          <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
-                          </blockquote>
-                        </div>
-                      </div>
+                    <div class="item">
+                        <img src="{% static 'img/hero6.png' %}" alt="Owl Image">
+                        <h5>Kay Kim, Co-Founder
+                          <span class="testimonial-logo">
+                            <img alt="Company logo" src="{% static 'svg/mysql.svg' %}" loading="lazy">
+                          </span>
+                        </h5>
+                        <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
+                        </blockquote>
                     </div>
-                  </div>
-                  <div class="item" style="outline: none;">
-                    <div>
-                      <div class="testimonial">
-                        <div class="video-modal testimonial-modal">
-                          <div class="picture-wrapper">
-                            <picture>
-                              <source media="(min-width: 1160px)" srcset="">
-                                <source media="(min-width: 900px)" srcset=""><source media="(min-width: 600px)" srcset=""><source media="(min-width: 361px)" srcset=""><source media="(max-width: 360px)" srcset=""><img alt="Video teaser image" src="" loading="lazy">
-                            </picture>
-                          </div>
-                        </div>
-                        <div class="text-content">
-                          <h5>Kay Kim, Co-Founder
-                            <span class="testimonial-logo">
-                              <img alt="Company logo" src="{% static 'svg/medal-winner-svgrepo-com.svg' %}" loading="lazy">
-                            </span>
-                          </h5>
-                          <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
-                          </blockquote>
-                        </div>
-                      </div>
+                    <div class="item">
+                        <img src="{% static 'img/hero6.png' %}" alt="Owl Image">
+                        <h5>Kay Kim, Co-Founder
+                          <span class="testimonial-logo">
+                            <img alt="Company logo" src="{% static 'svg/mysql.svg' %}" loading="lazy">
+                          </span>
+                        </h5>
+                        <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
+                        </blockquote>
                     </div>
-                  </div>
-                  <div class="item" style="outline: none;">
-                    <div>
-                      <div class="testimonial">
-                        <div class="video-modal testimonial-modal">
-                          <div class="picture-wrapper">
-                            <picture>
-                              <source media="(min-width: 1160px)" srcset="">
-                              <source media="(min-width: 900px)" srcset=""><source media="(min-width: 600px)" srcset=""><source media="(min-width: 361px)" srcset=""><source media="(max-width: 360px)" srcset="">
-                              <img alt="Video teaser image" src="{% static 'img/medic.png' %}" loading="lazy">
-                            </picture>
-                          </div>
-                        </div>
-                        <div class="text-content">
-                          <h5>Kay Kim, Co-Founder
-                            <span class="testimonial-logo">
-                              <img alt="Company logo" src="{% static 'svg/debug-svgrepo-com.svg' %}" loading="lazy">
-                            </span>
-                          </h5>
-                          <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
-                          </blockquote>
-                        </div>
-                      </div>
+                    <div class="item">
+                        <img src="{% static 'img/hero6.png' %}" alt="Owl Image">
+                        <h5>Kay Kim, Co-Founder
+                          <span class="testimonial-logo">
+                            <img alt="Company logo" src="{% static 'svg/mysql.svg' %}" loading="lazy">
+                          </span>
+                        </h5>
+                        <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
+                        </blockquote>
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'img/hero6.png' %}" alt="Owl Image">
+                        <h5>Kay Kim, Co-Founder
+                          <span class="testimonial-logo">
+                            <img alt="Company logo" src="{% static 'svg/mysql.svg' %}" loading="lazy">
+                          </span>
+                        </h5>
+                        <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
+                        </blockquote>
                     </div>
                   </div>
                 </div>
-              </div>
-            <!-- <button class="serv-nav serv-next"></button> -->
-            </div> <!-- .row -->
+              </div> <!-- .row -->
             </div> <!-- .container -->
           </section>
           <!-- ===========SECTION Get Started ================ -->
           <section class="section-row sec5-wrapper">
            <div class="sec-inner max-width-container">
              <div class="signup mb-0">
-              <picture class="signup-image ">
-                  <!-- <source media="(min-width: 1160px)" srcset="">
-                  <source media="(min-width: 900px)" srcset=""> -->
-                  <img alt="The talent you need" src="{% static 'img/get_started1.png' %}" loading="lazy">
-              </picture>
               <div class="signup-text ">
                 <h2 class="text-display-1 font-domaine">
                   <span>Find the <i>talent</i> needed to get your business <i>growing</i>.
                   </span>
                 </h2>
+
                 <a class=" btn-signup" href="{% url 'register' %}">Get Started</a>
               </div>
+              <picture class="signup-image ">
+                  <!-- <source media="(min-width: 1160px)" srcset="">
+                  <source media="(min-width: 900px)" srcset=""> -->
+                  <img alt="The talent you need" src="{% static 'img/get_started1.png' %}" loading="lazy">
+              </picture>
             </div>
           </div>
         </section>
