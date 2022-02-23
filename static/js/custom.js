@@ -428,7 +428,6 @@ $(document).ready(function() {
       stagePadding: 300,
       items: 1,
       nav: false,
-      navText: ["<i class='las la-chevron-left'></i>","<i class='las la-chevron-right'></i>"],
       loop: true,
       addClassActive: true,
       dots: false,
@@ -440,13 +439,21 @@ $(document).ready(function() {
       responsive:{
         0:{
             items:1,
+            stagePadding: 10,
+
         },
-        500:{
+        600:{
             items:1,
+            stagePadding: 100,
+
         },
-        768:{
+        1000:{
             items:1,
-            loop:true
+            stagePadding: 200,
+        },
+        1330:{
+            items:1,
+            stagePadding: 330,
         }
     }
   })

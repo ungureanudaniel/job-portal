@@ -170,16 +170,17 @@
 
       <!-- ==================== SELLING PROP  =================== -->
           <section class="section-row sec2-wrapper">
-            <div class="video-wrapper">
-              <video autoplay muted loop>
-                  <source src="{% static 'video/video-selling.mp4' %}" type="video/mp4">Your          browser does not support the video tag.
-              </video>
-            </div>
-            <div class="vid-cover"></div>
             <div class="sec-inner max-width-container">
+              <div class="selling-video">
+                <div class="vid_wrapper">
+                  <video autoplay muted loop id="vidbg">
+                      <source src="{% static 'video/video-selling.mp4' %}" type="video/mp4">Your          browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
               <div class="grid-15 flex-items-center">
                 <div class="selling-text">
-                        <h2 class="">Best freelancers in eastern Europe</h2>
+                    <h2 class="">Best freelancers in eastern Europe</h2>
                       <ul>
                         <li>
                           <h6>
@@ -226,7 +227,9 @@
                           <p class="tbody-sec2">Questions? Our round-the-clock support team is available to help anytime, anywhere.</p>
                         </li>
                       </ul>
-                    </div>
+                </div>
+                <div class="selling-map">
+                  <img src="{% static 'svg/eu-map.svg' %}">
               </div><!-- grid-15 flex container end -->
             </div>
           </section>
@@ -408,7 +411,6 @@
         </section>
         <!-- ===========SECTION NEWSLETTER================ -->
           <div class="" id="newsletter">
-              {% include 'users/newsletter.html' %}
           </div>
       </div>
   </div>

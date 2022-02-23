@@ -10,7 +10,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 :root {
-  --themecolor: #EE82EE;
+  --themecolor: rgba(204, 153, 255, 0.9);
 }
 
 
