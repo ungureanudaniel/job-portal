@@ -602,17 +602,18 @@ x NEW VERSION sigin/signup popup
 }
 .section_footer p {
   line-height: 1.6;
-  color: #F4F3DE;
+  color: #D3D3D3;
 }
 .section_footer p > a {
   color: inherit;
 }
 .section_footer p > a:hover {
-  color: var(--themecolor);
+  color: white;
+  text-decoration: none;
 }
 .section_footer p > i {
   font-size: 15px;
-  color: var(--themecolor);
+  color: white;
   margin-right: 5px;
 }
 .section_footer ul {
@@ -625,7 +626,8 @@ x NEW VERSION sigin/signup popup
 .section_footer ul > li > i {
   display: block;
   text-decoration: none;
-  color: var(--themecolor);
+  color: white;
+  /* color: var(--themecolor); */
 }
 .section_footer ul > .app_icon {
   font-size: 17px;
@@ -648,10 +650,16 @@ x NEW VERSION sigin/signup popup
 }
 .section_footer ul .social_icon > a {
   text-decoration: none;
+  color: #D3D3D3;
+}
+.section_footer ul .social_icon > a:hover {
+  text-decoration: none;
+  color: white;
 }
 .section_footer ul .social_icon:hover {
   -webkit-transform: scale(1.2, 1.2);
           transform: scale(1.2, 1.2);
+
 }
 .section_footer .footer_info {
   margin-bottom: 0;
@@ -1430,16 +1438,6 @@ Last change:	04/21/2017
   width: 80%;
 }
 /*** 13. Section: Popular Services ***/
-
-
-/* .logged-out-homepage .section-row { */
-    /* align-items: center;
-    width: 100%;
-    padding: 24px 24px 48px;
-    margin: 0;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box; */
-/* } */
 @media only screen and (min-width: 900px) {
 .section-row {
     margin-bottom: 96px;}
@@ -1513,6 +1511,8 @@ Last change:	04/21/2017
     z-index: 1500;
     padding: 16px;
 }
+.section-row > .owl-carousel > .owl-item > .item > img {
+  border-radius: 40px;}
 .owl-carousel .owl-nav {
   z-index: 1500;
 }

@@ -2,7 +2,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
-from .views import user_login, register, contact, about, account, privacy, terms, registration_conf_view, registration_success_view, maintenance
+from .views import user_login, register, contact, about, account, privacy, terms, registration_conf_view, registration_success_view
 
 
 urlpatterns = [

@@ -1,7 +1,7 @@
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home, candidate_dashboard, add_post, job_search_list, category, job_details
+from .views import home, candidate_dashboard, add_post, job_search_list, category, job_details, maintenance
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import ugettext_lazy as _
 

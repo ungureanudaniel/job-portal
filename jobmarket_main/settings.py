@@ -212,4 +212,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ]
 # PWA_APP_DIR = 'ltr'
 # PWA_APP_LANG = 'en-US'
-MAINTENANCE_MODE = os.environ.get("MAINTENANCE")
+MAINTENANCE_MODE = True

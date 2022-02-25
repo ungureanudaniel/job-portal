@@ -11,12 +11,6 @@ from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_protect
 import random
 
-def maintenance(request):
-    template = 'users/maintenance.html'
-
-    context = {}
-    return render(request, template, context)
-
 def login(request):
     return render(request, 'users/login.html')
 #-------------------------------LOGIN VIEW-----------------------------------

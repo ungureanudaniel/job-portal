@@ -398,7 +398,7 @@ $('.carousel').carousel()
 /*** Popular Services Carousel ***/
 $(document).ready(function() {
   $('#owl-carousel').owlCarousel({
-    nav: false,
+    nav: true,
     items: 1,
     loop  : true,
     dots: false,

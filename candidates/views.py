@@ -15,6 +15,14 @@ from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator
 from django.template.defaulttags import register
 
+
+def maintenance(request):
+    template = 'candidates/maintenance.html'
+
+    context = {}
+    return render(request, template, context)
+
+
 def get_category_count():
     cats = Category.objects.all().annotate(num_posts = Count('postcategory'))
     return cats
