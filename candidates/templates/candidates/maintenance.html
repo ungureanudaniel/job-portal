@@ -31,31 +31,48 @@
                   </li>
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Explore <i class="las la-chevron-down"></i></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="menu_image.html">Guiding</a></li>
-                      <li><a href="menu_text.html">Professional</a></li>
-                      <li><a href="menu_text.html">Professional</a></li>
+                    <ul class="dropdown-menu" style="">
+                      <li style=""><a href="#">Guide</a><p style="font-size:12px;">In-depth guides for business and freelancers</p></li>
+                      <li><a href="#">Learn</a><p style="font-size:12px;">Online courses for business and freelancers</p></li>
+                      <li><a href="#">Community</a><p style="font-size:12px;">Connect with others like you and share experiences</p></li>
+                      <li><a href="#">Blog</a><p style="font-size:12px;">Latest news, info and stories on freelancing and businesses</p></li>
+
 
                     </ul>
                   </li>
-                  <li><a href="gallery.html">Language</a></li>
-                  <li><a href="events.html">Currency</a></li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Language <i class="las la-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                      {% get_current_language as LANGUAGE_CODE %}
+                      {% get_available_languages as LANGUAGES %}
+                      {% get_language_info_list for LANGUAGES as languages %}
+                      {% for language in languages %}
+                      <li ><a href="{% if language.code == LANGUAGE_CODE %} selected {% endif %}">{{ language.code|upper }}</a></li>
+                      {% endfor %}
+                    </ul>
+                    <!-- <select class="dropdown-menu language" name="language">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% for language in languages %}
+                            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                                {{ language.code|upper }}
+                            </option>
+                        {% endfor %}
+                    </select> -->
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Currency <i class="las la-chevron-down"></i></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">EUR</a></li>
+                        <li><a href="#">USD</a></li>
+                        <li><a href="#">RON</a></li>
+                        <li><a href="#">BGN</a></li>
+
+
+                      </ul>
+                    </li>
                   <li><a class="cd-main-nav__item cd-main-nav__item--signin" href="#0" data-signin="login">Sign in</a></li>
           				<li><a class="cd-main-nav__item cd-main-nav__item--signup" href="#0" data-signin="signup">Sign up</a></li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Change colors <i class="las la-chevron-down"></i></a>
-                    <ul class="dropdown-menu" name="theme-select" id="theme-select">
-                      <li><a href="#" value="orange">Orange</a></li>
-                      <li><a href="#" value="aqua-green">Aqua Green</a></li>
-                      <li><a href="#" value="orange">Professional</a></li>
-                      <li><a href="#" value="orange">Professional</a></li>
-                      <li><a href="#" value="orange">Professional</a></li>
-                      <li><a href="#" value="orange">Professional</a></li>
-                    </ul>
-                  </li>
-
-                    </ul>
-                  </li>
                 </ul>
               </div><!-- /.navbar-collapse -->
             </div><!-- /.container -->

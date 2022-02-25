@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 if settings.MAINTENANCE_MODE == True:
     urlpatterns = [
         path('', maintenance, name="maintenance"),
+        path('i18n/', include('django.conf.urls.i18n')),
     ]
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 else:
