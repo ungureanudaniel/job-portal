@@ -1535,14 +1535,16 @@ Last change:	04/21/2017
 /*** 14. Section2: Selling proposition ***/
 .logged-out-homepage .section-row.sec2-wrapper {
   padding: 0px;
-  height:50vh;
-  position: relative;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.6);
+  min-height: 60vh;
+  width: 100%;
+  display: inline-block;
+  /* position: relative; */
+  /* overflow: hidden; */
+  background-color: rgba(204, 153, 255, 0.24);
 }
-.logged-out-homepage .section-row.sec2-wrapper .sec-inner {
-  height: 50vh;
-}
+/* .logged-out-homepage .section-row.sec2-wrapper .sec-inner {
+  height: auto;
+} */
 @media only screen and (min-width: 1160px) {
   .sec2-wrapper .sec-inner {
   padding-top: 96px;
@@ -1566,26 +1568,32 @@ Last change:	04/21/2017
 @media only screen and (min-width: 900px) {
   .sec2-wrapper .sec-inner .grid-15 {
     margin-left: -8px;
-    margin-right: -8px;}
+    margin-right: -8px;
+    }
 }
 @media only screen and (min-width: 600px) {
   .sec2-wrapper .sec-inner .grid-15 {
     margin-left: -8px;
-    margin-right: -8px;}
+    margin-right: -8px;
+    }
 }
+@media only screen and (max-width: 900px) {
+  .sec2-wrapper .sec-inner .grid-15 {
+    flex-direction: column;
+    }
+  }
 .sec2-wrapper .sec-inner .grid-15 {
     position: relative;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
-    display: flex; */
+    display: flex;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
     -webkit-flex: 0 1 auto;
     -ms-flex:0 1 auto;
-    flex: 0 1 auto;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-    flex-wrap: nowrap;
-    flex-direction: row;
     margin-left: -6px;
     margin-right: -6px;
 }
@@ -1596,8 +1604,10 @@ Last change:	04/21/2017
     align-items: center;
 }
 @media only screen and (min-width: 1160px) {
-.sec2-wrapper .sec-inner .selling-text {
+.sec2-wrapper > .sec-inner > .selling-text {
     padding-right: 11%;
+    padding: 0 16px;
+    flex-direction: row;
   }
 }
 @media only screen and (min-width: 900px) {
@@ -1606,13 +1616,7 @@ Last change:	04/21/2017
     padding-bottom: 0;}}
 .sec2-wrapper .sec-inner .selling-text {
     padding-bottom: 48px;
-    width: 60%;
-}
-@media only screen and (min-width: 1160px) {
-  .grid-15 > .selling-text {
-    padding: 0 16px;
-    flex-direction: row;
-  }
+    /* width: 60%; */
 }
 @media only screen and (min-width: 900px) {
   .grid-15 > .selling-text {
@@ -1624,16 +1628,20 @@ Last change:	04/21/2017
     flex: 2;}
 }
 .grid-15 > .selling-text {
-  /* position: absolute; */
+  position: relative;
   box-sizing:border-box;
-    -webkit-flex-basis: auto;
+  -webkit-flex-basis: auto;
   -ms-flex-preferred-size: 100%;
-  width: 100%;
+  width: 60%;
   padding: 0 6px;
   z-index:1000;
   background-color: rgba(255, 255, 255, 1);
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
+  .grid-15 > .selling-text {
+    width: 100%;
+    flex: 1;
+  }
   .grid-15 .selling-text h2 {
     font-size: 24px;
     line-height: 120%;}
@@ -1678,35 +1686,20 @@ Last change:	04/21/2017
     font-size: 18px;
     line-height: 26px;
 }
-.sec2-wrapper > .sec-inner > .selling-video video#vidbg {
-  position:absolute;
-  top:50%;
-  left:50%;
-  min-width:100%;
-  min-height:100%;
-  width:auto;
-  height:auto;
-  z-index:-100;
-  -ms-transform: translateX(-50%) translateY(-50%);
-  -moz-transform: translateX(-50%) translateY(-50%);
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
-  background-size: cover;
-  /* object-fit: fill; */
-}
-.sec2-wrapper > .sec-inner > .selling-video video {
-          display:block;
-        }
 .grid-15 > .selling-map {
   width: 30%;
   text-align: center;
-  padding-left:50px;
+  padding-left:3%;
 }
 .grid-15 > .selling-map > img {
   border-radius: 10px;
   height: 200px;
   width: auto;
-
+}
+@media only screen and (max-width: 900px) {
+  .grid-15 > .selling-map {
+    display: none;
+  }
 }
 /* ------------------------
     Popular categories
