@@ -1893,7 +1893,6 @@ Last change:	04/21/2017
 .section-row .categories-list {
     display: -webkit-box;
     display: -ms-flexbox;
-    display: none;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     list-style: none;
