@@ -34,7 +34,18 @@
   <link href="{% static 'css/logged-out-homepg-styles.css' %}" rel="stylesheet">
   {% endif %}
   <link href="{% static 'css/line-awesome.min.css' %}" rel="stylesheet">
-  <link href="{% static 'plugins/owlcarousel/owl.carousel.min.css' %}" rel="stylesheet">
-  <link href="{% static 'plugins/owlcarousel/owl.theme.default.min.css' %}" rel="stylesheet">
-
+  <!-- <link href="{% static 'plugins/owlcarousel/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'plugins/owlcarousel/owl.theme.default.min.css' %}" rel="stylesheet"> -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" rel="stylesheet" />
+  <script type="text/javascript">
+        $(document).on('ready', function () {
+            $(".personalized-gigs-carousel").slick({
+                dots: true,
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            });
+        });
+  </script>
 </head>

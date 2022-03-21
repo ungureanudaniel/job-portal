@@ -1,7 +1,7 @@
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home, candidate_dashboard, add_post, job_search_list, category, job_details, maintenance
+from .views import home, candidate_dashboard, add_post, category, job_details, maintenance, search_results
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import ugettext_lazy as _
 
@@ -18,7 +18,7 @@ else:
         # for Users or applicants
         path('add_post/', add_post, name='add_post'),
         path('candidate_dashboard', candidate_dashboard, name="candidate_dash"),
-        path('job/', job_search_list, name='job-search-list'),
+        path('search/', search_results, name='search'),
         path('category/<slug:cat_slug>/', category, name='category'),
         path('job_details/<int:pk>', job_details, name='job_details'),
         # for Companies

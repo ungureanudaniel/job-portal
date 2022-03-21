@@ -114,12 +114,12 @@ def add_post(request):
     return render(request, template_name, context)
 
 #----------------------------job search list ----------------------------------
-def my_post_list(request):
-    template = 'candidates/my_post_list.html'
-    countries_list = AvailableCountry.objects.all()
+def search_results(request):
+    template = 'users/search_results.html'
+    # countries_list = AvailableCountry.objects.all()
     query_keywords = request.GET.get('keyword')
-    query_location = request.GET.get('loc')
-    query_cat = request.GET.get('cat')
+    # query_location = request.GET.get('loc')
+    # query_cat = request.GET.get('cat')
     object_list = []
     if(query_keywords == None):
         object_list = Job.objects.all()
@@ -143,27 +143,28 @@ def my_post_list(request):
         for i in category_list:
             if i not in object_list:
                 object_list.append(i)
-    if(query_location == None):
-        locat = Job.objects.all()
-    else:
-        locat = Job.objects.filter(
-            country__icontains=query_location).order_by('-date_posted')
-    if(query_cat==None):
-        cat = Job.objects.all()
-    else:
-        query_cat = Job.objects.filter(category__icontains=query_cat).order_by('-date_posted')
+    # if(query_location == None):
+    #     locat = Job.objects.all()
+    # else:
+    #     locat = Job.objects.filter(
+    #         country__icontains=query_location).order_by('-date_posted')
+    # if(query_cat==None):
+    #     cat = Job.objects.all()
+    # else:
+    #     query_cat = Job.objects.filter(category__icontains=query_cat).order_by('-date_posted')
 
     final_list = []
     for i in object_list:
-        if i in locat:
-            final_list.append(i)
+        final_list.append(i)
+    #     if i in locat:
+    #
     paginator = Paginator(final_list, 20)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
         'jobs': page_obj,
         'query_keywords': query_keywords,
-        "countries_list": countries_list,
+        # "countries_list": countries_list,
     }
     return render(request, template, context)
 

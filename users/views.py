@@ -16,21 +16,21 @@ def login(request):
 #-------------------------------LOGIN VIEW-----------------------------------
 def user_login(request):
     if request.user.is_authenticated:
-        return redirect("account")
+        return redirect("profile")
     else:
         if request.method == "POST":
-            username = request.POST['username']
-            password = request.POST['password']
+            username = request.POST['signin-email']
+            password = request.POST['signin-pass']
             user = authenticate(username=username, password=password)
 
             if user is not None:
                 user1 = Candidate.objects.get(user=user)
                 if user1.type == "candidate":
                     login(request, user)
-                    return redirect("candidate_dashboard")
+                    return redirect("dashboard")
             else:
                 return render(request, "users/login.html", {})
-    return render(request, "users/login.html")
+    return render(request, "users/register.html")
 #-----------------------GENERATE RANDOM SUBSCRIBER ID--------------------------
 def random_digits():
     return "%0.12d" % random.randint(0, 999999999999)
@@ -38,106 +38,53 @@ def random_digits():
 def register(request):
     form = CaptchaForm(request.POST)
     if request.method=="POST":
-        type = request.POST.get('type', False)
-        if type == 'freelancer':
-            username = request.POST['emailaddress-register']
-            first_name=request.POST['first-name-register']
-            last_name=request.POST['last-name-register']
-            password1 = request.POST['password-register']
-            password2 = request.POST['password-repeat-register']
-            phone = request.POST['phone-register']
-            birth = request.POST['birth-register']
-            gender = request.POST['gender-register']
-            img = request.FILES['image2']
-            check = request.POST['checks[]']
-            if form.is_valid():
-                if password1 != password2:
-                    messages.error(request, "Passwords do not match.")
+        username = request.POST['username-register']
+        email = request.POST['emailaddress-register']
+        password = request.POST['password-register']
+        check = request.POST['checks[]']
+        first_name =""
+        last_name=""
+        phone=""
+        gender=""
+        birth=""
+        img=""
+        type =""
+        if form.is_valid():
+            if check != "Agree":
+                messages.error(request, "Please check box to agree to our terms and conditions.")
+                return redirect('register')
+            try:
+                user_check = User.objects.get(username=username)
+                email_check = User.objects.get(email=username)
+                if user_check:
+                    messages.error(request, "This user name already exists!")
                     return redirect('register')
-                elif check != "Agree":
-                    messages.error(request, "Please check box to agree to our terms and conditions.")
+                elif email_check:
+                    messages.error(request, "This user email address already exists!")
                     return redirect('register')
+            except Exception as e:
+                user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email, password=password)
+                candidates = Candidate.objects.create(user=user, email=email, phone=phone, gender=gender, birthdate = birth, image=img, type=type, conf_number=random_digits())
+                conf_number=random_digits()
+                user.save()
+                candidates.save()
+                #---------------------send confirmation email settings------
+                conf_subject = "DINCOLO account confirmation"
+                from_email=settings.FROM_EMAIL
+                conf_message = ''
+                html_content='Thank you for joining our job platform! You will not regret it.\
+                    To finalize the process please \
+                            <a href="{}registration_confirmation/?email={}&conf_number={}"> click this link \
+                            </a>.'.format(request.build_absolute_uri(''), user.email, candidates.conf_number)
                 try:
-                    user_check = User.objects.get(username=username)
-                    email_check = User.objects.get(email=username)
-                    if user_check:
-                        messages.error(request, "This user name already exists!")
-                        return redirect('register')
-                    elif email_check:
-                        messages.error(request, "This user email address already exists!")
-                        return redirect('register')
-                except Exception as e:
-                    user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=username, password=password1)
-                    candidates = Candidate.objects.create(user=user, email=username, phone=phone, gender=gender, birthdate = birth, image=img, type=type, conf_number=random_digits())
-                    conf_number=random_digits()
-                    user.save()
-                    candidates.save()
-                    #---------------------send confirmation email settings------
-                    conf_subject = "DINCOLO account confirmation"
-                    from_email=settings.FROM_EMAIL
-                    conf_message = ''
-                    html_content='Thank you for joining our job platform! You will not regret it.\
-                        To finalize the process please \
-                                <a href="{}registration_confirmation/?email={}&conf_number={}"> click this link \
-                                </a>.'.format(request.build_absolute_uri(''), user.email, candidates.conf_number)
-                    try:
-                        send_mail(conf_subject, conf_message, from_email, [user.email], html_message=html_content)
-
-                        context = {
+                    send_mail(conf_subject, conf_message, from_email, [user.email], html_message=html_content)
+                    context = {
                             }
 
-                    except Exception as e:
-                        return HttpResponse('Invalid header found.')
-                    return redirect('registration_confirmation')
-            return render(request, "users/login.html", {'form':form})
-        elif type == 'employer':
-            username = request.POST['emailaddress-register']
-            company_name=request.POST['company_name']
-            password1 = request.POST['password1']
-            password2 = request.POST['password2']
-            phone = request.POST['phone-reg']
-            identification_nr = request.POST['id-register']
-            img = request.FILES['image1']
-            check = request.POST['checks[]']
-            if form.is_valid():
-                if password1 != password2:
-                    messages.error(request, "Passwords do not match.")
-                    return redirect('register')
-                elif check is None:
-                    messages.error(request, "Please check box to agree to our terms and conditions.")
-                    return redirect('register')
-                try:
-                    user = User.objects.create_user(first_name="", last_name=company_name, username=username, email=username, password=password1)
-                    print(user)
                 except Exception as e:
-                    messages.error(request, "This user email already exists.")
-                    return redirect('register')
-                try:
-                    companies = Company.objects.create(user=user, email=username, phone=phone, identification = identification_nr, company_name = company_name, description = "", address = "", image=img, type=type, conf_number=random_digits())
-                    user.save()
-                    companies.save()
-                    #---------------------send confirmation email settings------
-                    conf_subject = "DINCOLO account confirmation"
-                    from_email=settings.FROM_EMAIL
-                    conf_message = ''
-                    html_content='Thank you for joining our job platform!\
-                        To finalize the process please \
-                                <a href="{}registration_success/?email={}&conf_number={}"> click this link \
-                                </a>.'.format(request.build_absolute_uri(''), user.email, companies.conf_number)
-                    try:
-                        send_mail(conf_subject, conf_message, from_email, [user.email], html_message=html_content)
-
-                        context = {
-                            }
-
-                    except Exception as e:
-                        print(e)
-                        messages.error(request, str(e))
-                    return redirect('registration_confirmation')
-                except Exception as e:
-                    messages.error(request, str(e))
-                    return redirect('register')
-            return render(request, "users/login.html", {'form':form, 'username':username})
+                    return HttpResponse('Invalid header found.')
+            return redirect('registration_confirmation')
+        return render(request, "users/register.html", {'form':form})
     return render(request, 'users/register.html', {'form':form})
 #-------------------------------REGISTER CONFIRMATION VIEW----------------------
 @csrf_protect
@@ -188,11 +135,11 @@ def registration_success_view(request):
         return render(request, template, {})
 #-------------------------ACCOUNT VIEW---------------------------------------
 @login_required
-def account(request):
+def profile(request):
     context = {
-        'account_page': "active",
+        'profile_page': "active",
     }
-    return render(request, 'users/account.html', context)
+    return render(request, 'users/profile.html', context)
 
 def privacy(request):
     return render(request, 'users/privacy.html')
