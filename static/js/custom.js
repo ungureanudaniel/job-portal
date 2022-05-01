@@ -1,104 +1,92 @@
 
-'use strict';
-/*** Button to top page ***/
 
-var toTopButton = (function() {
+/*** Sort popular service posts ***/
+var listing = (function() {
 
     // Variables
-    var topButton = $('#back-to-top');
-    var scrollTop = $(window).scrollTop();
-    var isActive = false;
-    if (scrollTop > 100) {
-        isActive = true;
-    }
-    // Events
-    $(window).scroll(function() {
-        scrollTop = $(window).scrollTop();
-
-        if (scrollTop > 100 && !isActive) {
-            isActive = true;
-            topButton.fadeIn();
-        } else if (scrollTop <= 100 && isActive) {
-            isActive = false;
-            topButton.fadeOut();
-        }
-
+    var listing = $(".listing__grid").isotope({
+        itemSelector: ".listing__item",
+        layoutMode: "masonry"
     });
 
-})();
-/***  Dropdown ***/
-$(function () {
-  $( '.js-side-nav-trigger' ).click(function(){
-  $('#body').toggleClass('menu-shown')
-  })
-});
-/*** Side Navbar ***/
-jQuery(function($){
-   // $( '.js-side-nav-trigger' ).click(function(){
-   // $('#body').toggleClass('menu-shown')
-   // })
-   // Close collapsed navbar on click
-   $( '.sidebar-overlay' ).click(function(){
-   $('#body').toggleClass('menu-shown')
-   })
-   $( '.tab-title-wrap' ).click(function(){
-   $('.resources-tab-popover-box').toggleClass('hidden')
-   })
-   $( '.title-label' ).click(function(){
-   $('#lang-box').toggleClass('shown')
-   })
-   $( '.currency-selection-title' ).click(function(){
-   $('#currency-box').toggleClass('shown')
-   })
-   // Close collapsed navbar on click
-   $( '.main-content' ).click(function(){
-   $('.resources-tab-popover-box').addClass('hidden')
-   $('#lang-box').removeClass('shown')
-   $('#currency-box').removeClass('shown')
-   })
-});
-/*** Change Navbar color ***/
-$(function () {
-  $(document).scroll(function () {
-    var $nav = $(".dincolo-header");
-    $nav.toggleClass('header-transparent', $(this).scrollTop() < $nav.height());
-  });
-});
-/*** Show categories in navbar ***/
-$(function () {
-  $(document).scroll(function () {
-    var $nav = $(".categories-menu-wrapper");
-    $nav.toggleClass('shown', $(this).scrollTop() > $nav.height());
-  });
-});
+    // Set ititial filtering
 
-/*** Smooth scrolling ***/
-var smoothScroll = (function() {
+    listing.isotope({ filter: ".web-development" });
+    // Filter items on click
+    $(".listing_nav").on('click', 'button', function(e) {
+        var elem = $(this);
 
-    // Variables
-    var link = $('a[href^="#section_"]');
-    var duration = 1000;
-
-    // Methods
-    function scrollTo(link) {
-        var target = $(link.attr('href'));
-        var navbar = $('.navbar');
-        var navbarHeight = navbar.outerHeight();
-
-        if ( target.length ) {
-            $('html, body').animate({
-                scrollTop: target.offset().top - navbarHeight + 50
-            }, duration);
-        }
-    }
-
-    // Events
-    link.on('click', function(e) {
+        // Filter items
+        var filterValue = elem.attr('data-filter');
+        listing.isotope({ filter: filterValue });
         e.preventDefault();
-        scrollTo( $(this) );
     });
 
-})();
+});
+// // init Isotope
+// var $grid = $('.grid').isotope({
+//   itemSelector: '.element-item',
+//   layoutMode: 'fitRows'
+// });
+// // filter functions
+// var filterFns = {
+//   // show if number is greater than 50
+//   numberGreaterThan50: function() {
+//     var number = $(this).find('.number').text();
+//     return parseInt( number, 10 ) > 50;
+//   },
+//   // show if name ends with -ium
+//   ium: function() {
+//     var name = $(this).find('.name').text();
+//     return name.match( /ium$/ );
+//   }
+// };
+// // bind filter button click
+// $('.filters-button-group').on( 'click', 'button', function() {
+//   var filterValue = $( this ).attr('data-filter');
+//   // use filterFn if matches value
+//   filterValue = filterFns[ filterValue ] || filterValue;
+//   $grid.isotope({ filter: filterValue });
+// });
+// // change is-checked class on buttons
+// $('.button-group').each( function( i, buttonGroup ) {
+//   var $buttonGroup = $( buttonGroup );
+//   $buttonGroup.on( 'click', 'button', function() {
+//     $buttonGroup.find('.is-checked').removeClass('is-checked');
+//     $( this ).addClass('is-checked');
+//   });
+// });
+// ======== Dropdown toggle ================
+// $('.dropdown-toggle').dropdown()
+$('nav li').hover(
+  function() {
+    $('ul',this).stop().slideDown(200);
+  },
+  function() {
+    $('ul',this).stop().slideUp(200);
+  }
+);
+
+// ======== Navbar change color ============
+// $(function () {
+//   $(document).scroll(function () {
+//     var $nav = $(".navbar");
+//     var $nav_links = $(".nav-link");
+//     var $nav_icons = $(".title-icon");
+//     var $nav_logo = $(".site-logo");
+//     $nav.toggleClass('header-transparent', $(this).scrollTop() < $nav.height());
+//     // $nav_icons.toggleClass('white-title-icon', $(this).scrollTop() > $nav.height());
+//     // $nav_logo.toggleClass('white-logo', $(this).scrollTop() > $nav.height());
+//
+//   });
+//   // $(document).ready(function () {
+//   //       if($(window).width() > 600) {
+//   //          $(".categories-list").addClass("categs-slider");
+//   //       } else {
+//   //         $(".categories-list").removeClass("categs-slider");
+//   //       }
+//   //   });
+// });
 /*** Slick slider on popular categories ***/
 $('.categories-slider').slick({
   dots: false,
@@ -112,8 +100,8 @@ $('.categories-slider').slick({
   initialSlide: 1,
   centerMode: true,
   speed: 300,
-  slidesToShow: 4,
-  slidesToScroll: 4,
+  slidesToShow: 1,
+  slidesToScroll: 1,
   responsive: [
     {
       breakpoint: 1024,
@@ -143,78 +131,76 @@ $('.categories-slider').slick({
     // instead of a settings object
   ]
 });
-/*** Testimonials Carousel ***/
+/*** Slick slider on reviews ***/
 $('.testimonials-slider').slick({
-  centerMode: true,
-  centerPadding: '60px',
+  dots: false,
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 6000,
+  speed: 800,
+  slidesToShow: 1,
+  adaptiveHeight: true
+});
+/*** Slick slider on logged in page categories  ***/
+$('.categs-slider').slick({
+  dots: false,
   lazyLoad: 'ondemand',
   cssEase: 'ease',
   prevArrow: false,
   nextArrow: false,
   infinite: true,
   mobileFirst: true,
+  adaptiveHeight: true,
+  initialSlide: 1,
+  centerMode: true,
+  speed: 300,
   slidesToShow: 3,
+  slidesToScroll: 1,
   responsive: [
     {
-      breakpoint: 768,
+      breakpoint: 1024,
       settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 3
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        infinite: true,
+        dots: false
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 1
       }
     },
     {
       breakpoint: 480,
       settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 1
+        slidesToShow: 1,
+        slidesToScroll: 1
       }
     }
+    // You can unslick at a given breakpoint now by adding:
+    // settings: "unslick"
+    // instead of a settings object
   ]
 });
-/*** Slick slider on personalized gigs ***/
-$(document).ready(function() {
-  $(".gigs-slider").slick({
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    prevArrow: true,
-    nextArrow: true,
-    infinite: true,
-    responsive: [
-      {
-        breakpoint: 639,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+
+
+// ------ Development buttons---------------
+$(function () {
+  // $(document).scroll(function () {
+  //   var $nav = $(".navbar");
+  //
+  //   $nav.toggleClass('header-transparent', $(this).scrollTop() < $nav.height());
+  // });
+  $( "#toggle-border" ).click(function() {
+    $( '.nav-link' ).toggleClass( "show-border" );
   });
+  /*** Dashboard Dropdown ***/
+  $( ".dashboard-trigger" ).click(function() {
+    $( '.dashboard-nav' ).toggleClass( "active" );
+  });
+
+
 });
-/*** Gigs Slick slider deactivation on resize as a backup plan ***/
-// jQuery(window).on('resize', function() {
-//     var viewportWidth = jQuery(window).width();
-//
-//     if (viewportWidth < 530) {
-//         $('.gigs-slider').slick('unslick');
-//     } else {
-//       $(".gigs-slider").slick({
-//         slidesToShow: 3,
-//         slidesToScroll: 1,
-//         arrows: true,
-//         infinite: true,
-//         responsive: [
-//           {
-//             breakpoint: 639,
-//             settings: {
-//               slidesToShow: 1,
-//               slidesToScroll: 1
-//             }
-//           }
-//         ]
-//       });
-//     }
-// });

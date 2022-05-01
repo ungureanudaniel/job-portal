@@ -1,387 +1,510 @@
 {% load static %}
 {% load i18n %}
-<!DOCTYPE html>s
+<!DOCTYPE html>
 <html lang='en'>
   {% include 'users/header.html' %}
-  <body id="body" class="">
-    <div class="main-wrapper">
-      <!--================= PRELOADER ======================= -->
-
-      <!--  ===================HEADER=============================== -->
-      <div class="main-header sticky">
-        <div id="GlobalMessages"></div>
-        <!-- === NAVBAR === -->
-        <div id="Header">
-          <header class="header-package dincolo-header">
-            <div class="header-row-wrapper">
-              <div class="header-row max-width-container equal-padding row-main">
-                <button class="btn-navicon js-side-nav-trigger"><svg xmlns="http://www.w3.org/2000/svg" width="23" height="19" viewBox="0 0 23 19"><rect y="16" width="23" height="3" rx="1.5" fill="#555"></rect><rect width="23" height="3" rx="1.5" fill="#555"></rect><rect y="8" width="23" height="3" rx="1.5" fill="#555"></rect></svg>
-                </button>
-                <a href="" class="site-logo">
-                  <svg id="eDl4K1aoM9x1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 840 480" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
-                    <text dx="0" dy="0" font-family="&quot;eDl4K1aoM9x1:::Oswald&quot;" font-size="38" font-weight="700" transform="matrix(4.926374 0 0 5.605556 26.405049 310.538851)" fill="#4ddab5" stroke-width="0">
-                      <tspan y="0" font-weight="700" stroke-width="0"><![CDATA[freeastern]]></tspan>
-                    </text>
-                    <style><![CDATA[@font-face {font-family: 'eDl4K1aoM9x1:::Oswald';font-style: normal;font-weight: 700;src: url(data:font/ttf;charset=utf-8;base64,AAEAAAAQAQAABAAAR0RFRgBaABAAAAHsAAAALkdQT1MsICTqAAADYAAAALZHU1VCIJglbwAAAqgAAABWT1MvMrA4d24AAAMAAAAAYFNUQVR5lWtJAAABwAAAACpjbWFwAPQBewAAAlQAAABUZ2FzcAAAABAAAAEUAAAACGdseWZXGOxmAAAGCAAAAuBoZWFkFidZKwAAAhwAAAA2aGhlYQiuAsUAAAF0AAAAJGhtdHgRcwFHAAABmAAAAChsb2NhBO8EPAAAARwAAAAWbWF4cAAbANMAAAE0AAAAIG5hbWUomUo4AAAEGAAAAe5wb3N0/58AMgAAAVQAAAAgcHJlcGgGjIUAAAEMAAAAB7gB/4WwBI0AAAEAAf//AA8AAAAUAF8AmQC+AOAA/gE/AWQBcAFwAAAAAQAAAAoAZwAHAGoABQABAAAAAAAAAAAAAAAAAAQAAQADAAAAAAAA/5wAMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAASp/t8AAATs/zv+7wTHAAEAAAAAAAAAAAAAAAAAAAAKApsAUgHcACQB1gAnAUAAEQH7ADMBfwA1AagAFAFiAAwCYgARAQAAAAABAAEACAABAAAAFAABAAAAHAACd2dodAEAAAAAAgABAAAAAAEGArwAAAAAAAEAAgAeAAAAAAAAAA4AAQACAAAADAAAAAwAAQAAAAIAAgABAAcAAQAIAAgAAgAAAAEAAAAEGh17hNRPXw889QADA+gAAAAA1eqgZQAAAADdH1nU/zv+4QTHBREAAQAGAAIAAAAAAAAAAAACAAAAAwAAABQAAwABAAAAFAAEAEAAAAAMAAgAAgAEACAAYQBmAG4AdP//AAAAIABhAGUAbgBy////6f+g/53/lv+TAAEAAAAAAAAAAAAAAAAAAQAAAAoAJAAyAAJERkxUAA5sYXRuAA4ABAAAAAD//wABAAAAAWxpZ2EACAAAAAEAAAABAAQABAAAAAEACAABABIAAQAIAAEABAAIAAIAAwABAAEAAwAAAAQBywK8AAUAAAKKAlgAAABLAooCWAAAAV4AMgFbAAAAAAAAAAAAAAAAoAAC/0AAIEsAAAAAAAAAAG5ld3QAoAAA+wIEqf7fAAAFLQF5IAABlwAAAAACQgMqAAAAIAADAAEAAAAKACQAMgACREZMVAAObGF0bgAOAAQAAAAA//8AAQAAAAFrZXJuAAgAAAABAAAAAQAEAAIACAABAAgAAgBAAAQAAABkAE4ABAAGAAAAAAAAAAAAAP/+AAAAAAAAAAAAAAAAAAAAAP/9AAAAAAAAAAAAAAAA/+EAAAAAAAEABQABAAIAAwAFAAgAAQABAAgAAgABAAMAAAAAAAQABQADAAEAAgAHAAEAAwAAAAIAAAAAAAMAAAAAAAoAfgADAAEECQAAAKoAxgADAAEECQABAAwAugADAAEECQACAAgAsgADAAEECQADACwAhgADAAEECQAEABYAcAADAAEECQAFABoAVgADAAEECQAGABYAQAADAAEECQAOADQADAADAAEECQEAAAwAAAADAAEECQEGAAgAsgBXAGUAaQBnAGgAdABoAHQAdABwADoALwAvAHMAYwByAGkAcAB0AHMALgBzAGkAbAAuAG8AcgBnAC8ATwBGAEwATwBzAHcAYQBsAGQALQBCAG8AbABkAFYAZQByAHMAaQBvAG4AIAA0AC4AMQAwADIATwBzAHcAYQBsAGQAIABCAG8AbABkADQALgAxADAAMgA7AG4AZQB3AHQAOwBPAHMAdwBhAGwAZAAtAEIAbwBsAGQAQgBvAGwAZABPAHMAdwBhAGwAZABDAG8AcAB5AHIAaQBnAGgAdAAgADIAMAAxADYAIABUAGgAZQAgAE8AcwB3AGEAbABkACAAUAByAG8AagBlAGMAdAAgAEEAdQB0AGgAbwByAHMAIAAoAGgAdAB0AHAAcwA6AC8ALwBnAGkAdABoAHUAYgAuAGMAbwBtAC8AZwBvAG8AZwBsAGUAZgBvAG4AdABzAC8ATwBzAHcAYQBsAGQARgBvAG4AdAApAAAAAgBSAAACSAMqAAMABwAAMxEhESUhESFSAfb+cQEo/tgDKvzWWgJ2AAIAJP/2AbgCTAAlADIAABciJiY1ND4CNzU0JiYjIgYGBwcnNjYzMhYVERQWFhcjJiYnBgY3MjY2NzUOAxUUFqosPB4rRlQpBg4ODg8GAQSYBWVlWFcDBQKSAwgCCjcMChEOBRQiGA0YCipBIjZKMiMOOg8XDQwVDSoGaGNhTf7yJDYoDhc2BSQ4bggOB54MGR4jFh0iAAIAJ//2AbACTAAdACgAABciJiY1NTQ2NjMyFhYVFSMVFBYWMzI2NjU1MxUUBgMzNTQmJiMiBgYV8D9aMDBbPkBVK+gKEgwMEwuWZoJSCxMNDBEKCi1XPdQ+Vi0sVj90bxYcDAsYFT04WFkBbToXGgoMHRsAAQARAAABNAMWABgAADMRIzUzNTQ2NjMyFhcVJiYjIgYVFTMVIxFINzcVQ0YTJRYHEwkSFElJAdRuKzNMKgIDeQIDFRgubv4sAAABADMAAAHMAkwAFAAAMxEzFTY2MzIWFhURIxE0JiMiBgcRM6MgRSYkLxiiDhMKGw4CQjogJCM9J/47Aa4VFgsK/jwAAAEANQAAAW0CSQARAAAzETMVNjYzMhYXFSYmIyIGBxE1oxw4KAgMBQsbDxwwFAJCYDI1AQKiBQceGv6IAAEAFP/2AZYCTAArAAAXIiYnNxYWMzI2NTQmJycmJjU0NjYzMhYXBy4CIyIGFRQWFxceAhUUBgblTGUgbxArGhMTIy0qLjUxUi9HYBNpBhYfEhATKyYpGTAfMlEKRE0xJy0QDhcmJSMnSTYvSChORzATJhoSDxMsHyQVMDolMkckAAABAAz/+gFIAvIAGAAAFyImJjURIzUzNTMVMxUjERQWMzI2NxUGBuZBRxo4OKVSUh0WDRYJDTgGJkk0ATprsLBr/tYZFgMBgAIG//8AEQAAAlUDFgAmAAMAAAAHAAMBIQAA) format('truetype');}]]>
-                    </style>
-                  </svg>
-                </a>
-                <div class="dincolo-header-search-animated dincolo-header-search-animated-show">
-                  <div class="search-bar-package search_bar-package">
-                    <form class="">
-                      <span class="lFICM06 search-bar-icon" style="width:16px;height:16px" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M15.8906 14.6531L12.0969 10.8594C12.025 10.7875 11.9313 10.75 11.8313 10.75H11.4187C12.4031 9.60938 13 8.125 13 6.5C13 2.90937 10.0906 0 6.5 0C2.90937 0 0 2.90937 0 6.5C0 10.0906 2.90937 13 6.5 13C8.125 13 9.60938 12.4031 10.75 11.4187V11.8313C10.75 11.9313 10.7906 12.025 10.8594 12.0969L14.6531 15.8906C14.8 16.0375 15.0375 16.0375 15.1844 15.8906L15.8906 15.1844C16.0375 15.0375 16.0375 14.8 15.8906 14.6531ZM6.5 11.5C3.7375 11.5 1.5 9.2625 1.5 6.5C1.5 3.7375 3.7375 1.5 6.5 1.5C9.2625 1.5 11.5 3.7375 11.5 6.5C11.5 9.2625 9.2625 11.5 6.5 11.5Z"></path></svg>
-                      </span>
-                      <input type="search" autocomplete="off" placeholder="Find Services" value="">
-                      <button class="ORLWF8p _0MkXbqi co-white submit-button bg-co-green-700">
-                      </button>
-                    </form>
-                  </div>
-                </div>
-                <nav class="dincolo-nav dincolo-nav-right">
-                  <ul>
-                    <li class="display-from-md"><a href="/" class="aDeZs5- business-nav-link nav-link" target="_blank">Dincolo Business</a></li>
-                    <li class="display-from-md">
-                      <div class="resources-tab">
-                        <span class="tab-title-wrap">
-                          <span class="tab-title">Explore</span>
-                        </span>
-                        <div class="resources-tab-popover">
-                          <aside class="resources-tab-popover-box hidden" data-position="bottom" style="min-width: 58.4219px; left: -216.789px; top: 24px; padding-top: 8px;">
-                            <div class="dropdown-wrap">
-                              <div class="popover-content">
-                                <ul>
-                                  <li><a href="https://discover.fiverr.com/?source=explore-tab" target="_blank" rel="noopener">
-                                    <div>Discover</div>
-                                    <p>Inspiring projects made on Fiverr</p></a>
-                                  </li>
-                                  <li><a href="https://events.fiverr.com/?source=explore-tab" target="_blank" rel="noopener">
-                                    <div>Community</div>
-                                    <p>Connect with Fiverr’s team and community</p></a>
-                                  </li>
-                                  <li><a href="/resources/guides?source=explore-tab" target="_blank" rel="noopener">
-                                    <div>Guides</div>
-                                    <p>In-depth guides covering business topics</p></a>
-                                  </li>
-                                  <li><a href="https://play.acast.com/s/ninetwentynine?source=explore-tab" target="_blank" rel="noopener nofollow">
-                                    <div>Podcast</div>
-                                    <p>Inside tips from top business minds</p></a>
-                                  </li>
-                                  <li><a href="https://learn.fiverr.com/?source=explore-tab" target="_blank" rel="noopener">
-                                    <div>Learn</div>
-                                    <p>Professional online courses, led by experts</p></a>
-                                  </li>
-                                  <li><a href="https://blog.fiverr.com/?source=explore-tab" target="_blank" rel="noopener">
-                                    <div>Blog</div>
-                                    <p>News, information and community stories</p></a>
-                                  </li>
-                                  <li><a href="https://www.fiverr.com/logo-maker?source=explore-tab" target="_blank" rel="noopener">
-                                    <div>Logo Maker</div>
-                                    <p>Create your logo instantly</p></a>
-                                  </li>
-                                  <li><a href="https://workspace.fiverr.com/?utm_source=fiverr&amp;utm_medium=marketing_site&amp;utm_content=menu_visitor" target="_blank" rel="noopener">
-                                    <div>Fiverr Workspace</div>
-                                    <p>One place to manage your business</p></a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </aside>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="display-from-lg">
-                      <div class="lean-locale-settings">
-                        <div class="locale-settings-popover locale-settings-link locale-setting-language-link locale_settings-package locale-settings-package popover-theme">
-                          <span class="popover-content">
-                            <div class="locale-settings-link-title language-selection-title">
-                              <span class="lFICM06 title-icon" style="width:16px;height:16px" aria-hidden="true">
-                                <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path d="M9 1C4.58875 1 1 4.58875 1 9C1 13.4113 4.58875 17 9 17C13.4113 17 17 13.4113 17 9C17 4.58875 13.4113 1 9 1ZM8.53125 4.92676C7.81812 4.89612 7.11218 4.7959 6.43811 4.63293C6.54578 4.37781 6.6626 4.13281 6.78857 3.90063C7.30542 2.94824 7.93994 2.27991 8.53125 2.03784V4.92676ZM8.53125 5.86499V8.53125H5.60339C5.64465 7.4906 5.82202 6.45752 6.11536 5.51782C6.8927 5.71362 7.70874 5.83215 8.53125 5.86499ZM8.53125 9.46875V12.135C7.70874 12.1678 6.8927 12.2864 6.11536 12.4822C5.82202 11.5425 5.64465 10.5094 5.60339 9.46875H8.53125ZM8.53125 13.0732V15.9622C7.93994 15.7201 7.30542 15.0518 6.78857 14.0994C6.6626 13.8672 6.54578 13.6222 6.43811 13.3671C7.11218 13.2041 7.81799 13.1039 8.53125 13.0732ZM9.46875 13.0732C10.1819 13.1039 10.8878 13.2041 11.5619 13.3671C11.4542 13.6222 11.3374 13.8672 11.2114 14.0994C10.6946 15.0518 10.0601 15.7201 9.46875 15.9622V13.0732ZM9.46875 12.135V9.46875H12.3966C12.3553 10.5094 12.178 11.5425 11.8846 12.4822C11.1073 12.2864 10.2913 12.1678 9.46875 12.135ZM9.46875 8.53125V5.86499C10.2913 5.83215 11.1073 5.71362 11.8846 5.51782C12.178 6.45752 12.3553 7.4906 12.3966 8.53125H9.46875ZM9.46875 4.92676V2.03784C10.0601 2.27991 10.6946 2.94824 11.2114 3.90063C11.3374 4.13281 11.4542 4.37781 11.5619 4.63293C10.8878 4.7959 10.1819 4.89612 9.46875 4.92676ZM12.0354 3.45349C11.8007 3.02087 11.5457 2.63953 11.2769 2.31421C12.2141 2.63428 13.0631 3.14636 13.7771 3.8031C13.3699 4.02124 12.931 4.21069 12.4694 4.36902C12.3384 4.0509 12.1936 3.74487 12.0354 3.45349ZM5.9646 3.45349C5.8064 3.74487 5.66162 4.0509 5.53064 4.36902C5.06897 4.21069 4.63013 4.02112 4.2229 3.8031C4.93689 3.14636 5.78589 2.63428 6.72314 2.31421C6.45435 2.63953 6.19946 3.02075 5.9646 3.45349ZM5.2135 5.25012C4.89355 6.27368 4.70544 7.38953 4.66492 8.53125H1.95349C2.05383 7.00769 2.63892 5.61438 3.5564 4.50525C4.06555 4.79724 4.62317 5.047 5.2135 5.25012ZM4.66492 9.46875C4.70544 10.6106 4.89355 11.7263 5.2135 12.7499C4.62317 12.953 4.06555 13.2028 3.5564 13.4948C2.63892 12.3856 2.05383 10.9923 1.95349 9.46875H4.66492ZM5.53064 13.631C5.66162 13.9491 5.8064 14.2551 5.9646 14.5465C6.19946 14.9791 6.45435 15.3605 6.72314 15.6858C5.78589 15.3657 4.93689 14.8536 4.22302 14.1969C4.63 13.9789 5.06897 13.7893 5.53064 13.631ZM12.0354 14.5465C12.1936 14.2551 12.3384 13.9491 12.4694 13.631C12.931 13.7893 13.3699 13.9789 13.7771 14.1969C13.0631 14.8536 12.2141 15.3657 11.2769 15.6858C11.5457 15.3605 11.8005 14.9792 12.0354 14.5465ZM12.7865 12.7499C13.1064 11.7263 13.2946 10.6105 13.3351 9.46875H16.0465C15.9462 10.9923 15.3611 12.3856 14.4436 13.4948C13.9344 13.2028 13.3768 12.953 12.7865 12.7499ZM13.3351 8.53125C13.2946 7.3894 13.1064 6.27368 12.7865 5.25012C13.3768 5.047 13.9344 4.79724 14.4436 4.50525C15.3611 5.61438 15.9462 7.00769 16.0465 8.53125H13.3351Z" stroke-width="0.2"></path>
-                                </svg>
-                              </span>
-                              <span class="title-label">English</span>
-                            </div>
-                          </span>
-                          <aside id="lang-box" class="popover-box" data-position="bottom">
-                            <div class="popover-box-content">
-                              <section class="selection-list">
-                                <a class="item-row text-body-default" href="" data-locale="en-US">
-                                  <div class="item-row-content selected">
-                                    <span class="lFICM06 selected-icon" style="width:10px;height:10px" aria-hidden="true">
-                                      <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M13.6202 2.6083L5.4001 10.8284L2.37973 7.80805C2.23329 7.66161 1.99585 7.66161 1.84939 7.80805L0.96551 8.69193C0.819073 8.83836 0.819073 9.0758 0.96551 9.22227L5.13492 13.3917C5.28135 13.5381 5.51879 13.5381 5.66526 13.3917L15.0344 4.02252C15.1809 3.87608 15.1809 3.63865 15.0344 3.49218L14.1505 2.6083C14.0041 2.46186 13.7667 2.46186 13.6202 2.6083Z"></path>
-                                      </svg>
-                                    </span>
-                                    <p> <!-- -->English</p>
-                                  </div>
-                                </a>
-                                <a class="item-row text-body-default" href="" data-locale="de-DE">
-                                  <div class="item-row-content">
-                                    <p> <!-- -->Deutsch</p>
-                                  </div>
-                                </a>
-                                <a class="item-row text-body-default" href="" data-locale="es">
-                                  <div class="item-row-content">
-                                    <p> <!-- -->Español</p>
-                                </div>
-                                </a>
-                                <a class="item-row text-body-default" href="" data-locale="fr-FR"><div class="item-row-content"><p> <!-- -->Français</p></div>
-                                </a>
-                                <a class="item-row text-body-default" href="" data-locale="pt-BR"><div class="item-row-content"><p> <!-- -->Português</p></div>
-                                </a>
-                                <a class="item-row text-body-default" href="" data-locale="it-IT"><div class="item-row-content"><p> <!-- -->Italiano</p></div>
-                                </a>
-                                <a class="item-row text-body-default" href="" data-locale="nl-NL"><div class="item-row-content"><p> <!-- -->Nederlands</p></div>
-                                </a>
-                              </section>
-                            </div>
-                          </aside>
-                        </div>
-                        <div class="locale-settings-popover locale-settings-link locale_settings-package locale-settings-package popover-theme">
-                          <span class="popover-content">
-                            <div class="currency-selection-title locale-settings-link-title">€ EUR</div>
-                          </span>
-                          <aside id="currency-box" class="popover-box" data-position="bottom">
-                            <div class="popover-box-content">
-                              <section class="selection-list">
-                                <button class="item-row text-body-default default-currency-item">
-                                  <div class="item-row-content">
-                                    <p>
-                                      <span class="currency-name">United States Dollar</span>
-                                      <br>
-                                      <span class="currency-code-symbol">USD - US$</span>
-                                    </p>
-                                  </div>
-                                </button>
-                                <button class="item-row text-body-default default-currency-item">
-                                  <div class="item-row-content selected">
-                                    <span class="lFICM06 selected-icon" style="width:10px;height:10px" aria-hidden="true">
-                                      <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M13.6202 2.6083L5.4001 10.8284L2.37973 7.80805C2.23329 7.66161 1.99585 7.66161 1.84939 7.80805L0.96551 8.69193C0.819073 8.83836 0.819073 9.0758 0.96551 9.22227L5.13492 13.3917C5.28135 13.5381 5.51879 13.5381 5.66526 13.3917L15.0344 4.02252C15.1809 3.87608 15.1809 3.63865 15.0344 3.49218L14.1505 2.6083C14.0041 2.46186 13.7667 2.46186 13.6202 2.6083Z"></path>
-                                      </svg>
-                                    </span>
-                                    <p>
-                                      <span class="currency-name">Euro</span>
-                                      <br>
-                                      <span class="currency-code-symbol">EUR - €</span>
-                                    </p>
-                                  </div>
-                                </button>
-                                <button class="item-row text-body-default default-currency-item">
-                                  <div class="item-row-content">
-                                    <p>
-                                      <span class="currency-name">British Pound</span>
-                                      <br>
-                                      <span class="currency-code-symbol">GBP - £</span>
-                                    </p>
-                                  </div>
-                                </button>
-                                <button class="item-row text-body-default default-currency-item">
-                                  <div class="item-row-content">
-                                    <p>
-                                      <span class="currency-name">Australian Dollar</span>
-                                      <br>
-                                      <span class="currency-code-symbol">AUD - A$</span>
-                                    </p>
-                                  </div>
-                                </button>
-                                <button class="item-row text-body-default default-currency-item">
-                                  <div class="item-row-content">
-                                    <p>
-                                      <span class="currency-name">Canadian Dollar</span>
-                                      <br><span class="currency-code-symbol">CAD - CA$</span>
-                                    </p>
-                                  </div>
-                                </button>
-                              </section>
-                            </div>
-                          </aside>
-                        </div>
-                      </div>
-                    </li>
-                    <li class="display-from-md">
-                      <a href="/start_selling?source=top_nav" class="nav-link" rel="nofollow">Become a Seller</a>
-                    </li>
-                    <li class="display-from-sm">
-                      <a rel="nofollow" class="js-signin-modal-trigger nav-link" href="#0" data-signin="login">Sign in</a></li>
-                    <li class="">
-                      <a class="ORLWF8p _0MkXbqi L9EM07f i6NB5Ls co-green-700 js-signin-modal-trigger dincolo-header-join" rel="nofollow" href="#0" data-signin="signup">Join</a>
-                    </li>
-                  </ul>
-                </nav>
+  <body class="logged-out-body" data-aos-easing="ease-out-quad" data-aos-duration="700" data-aos-delay="0">
+    <style>html{margin-top:0 !important;}</style>
+    <!-- Error container -->
+    <div class="container error-container">
+      <div class="alert" id="form_message" role="alert"></div>
+            {% if messages %}
+            <script>
+              $(".error-container").toggleClass("show-message");
+            </script>
+              {% for message in messages %}
+              <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ message.message }}
               </div>
+              {% endfor %}
+            {% endif %}
+    </div>
+    <!-- MODALS -->
+    <!-- Example -->
+    <!-- Signup: Vertical  -->
+    <div class="modal fade" id="modalSignup" tabindex="-1" role="dialog" aria-labelledby="modalSignupVerticalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="card">
+
+            <!-- Close -->
+            <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            <!-- Image -->
+            <img src="{% static 'img/signup1.WebP' %}" alt="..." class="card-img-top">
+
+            <!-- Shape -->
+            <!-- <div class="inter-shapes">
+              <div class="shape shape-bottom shape-fluid-x text-white">
+                <svg viewBox="0 0 2880 480" fill="" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2160 0C1440 240 720 240 720 240H0v240h2880V0h-720z" fill=""></path></svg>          </div>
+            </div> -->
+
+            <!-- Body -->
+            <div class="card-body">
+
+              <!-- Heading -->
+              <h2 class="mb-0 fw-bold text-center" id="modalSignupVerticalTitle">
+                Sign Up
+              </h2>
+
+              <!-- Text -->
+              <p class="mb-6 text-center text-muted">
+                Simplify your workflow in minutes.
+              </p>
+
+              <!-- Form -->
+              <form class="mb-6" method="POST">
+                {% csrf_token %}
+                <!-- User name -->
+                <div class="form-group">
+                  <label class="visually-hidden" for="modalSignupName">
+                    Your username
+                  </label>
+                  <input type="text" name="signup-name" class="form-control" id="modalSignupName" placeholder="Your username" autocomplete="off" style="">
+                </div>
+                <!-- Email -->
+                <div class="form-group">
+                  <label class="visually-hidden" for="modalSignupEmail">
+                    Your email
+                  </label>
+                  <input type="email" name="signup-email" class="form-control" id="modalSignupEmail" placeholder="Your email" autocomplete="off" style="">
+                </div>
+
+                <!-- Password -->
+                <div class="form-group mb-5">
+                  <label class="visually-hidden" for="modalSignupPassword">
+                    Create a password
+                  </label>
+                  <input type="password" name="signup-password" class="form-control" id="modalSignupPassword" placeholder="Create a password" autocomplete="off" style="background-image: url(); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                </div>
+                <!-- Password check -->
+                <div class="form-group mb-5">
+                  <label class="visually-hidden" for="modalSignupPasswordCheck">
+                    Re-enter password
+                  </label>
+                  <input type="password" name="password-check" class="form-control" id="modalSignupPasswordCheck" placeholder="Re-enter password" autocomplete="off" style="background-image: url(); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                </div>
+                <!-- Terms checkbox -->
+                <label class="form-group" for="modalSignupTerms">
+                  Terms and agreements
+                </label>
+                <input type="checkbox" name="checkbox" id="modalSignupTerms" value="Agree">
+                <br>
+                <br>
+
+                <!-- Captcha form -->
+                <label class="form-group">
+                  Please fill in the captcha check
+                </label>
+                 {{ form.captcha }}
+                <!-- Submit -->
+                <button class="btn w-100 btn-primary" name="form-type" value="signup-form" type="submit">
+                  Sign up
+                </button>
+
+              </form>
+
+              <!-- Text -->
+              <p class="mb-0 fs-sm text-center text-muted">
+                Already have an account? <a href="/#signinModal">Log in</a>.
+              </p>
+
             </div>
-          </header>
-        </div>
-        <div id="CategoriesMenu">
-          <div class="categories-menu-wrapper categories_menu-package" data-reactroot="">
-            <nav class="categories-menu-package default">
-              <ul class="categories">
-                <li class="sub-menu-item target top-level buckets_without_title buckets-without-title"><a href="/categories/graphics-design?source=category_tree">Graphics &amp; Design</a></li>
-                <li class="sub-menu-item target top-level default list"><a href="/categories/online-marketing?source=category_tree">Digital Marketing</a></li>
-                <li class="sub-menu-item target top-level default list"><a href="/categories/writing-translation?source=category_tree">Writing &amp; Translation</a></li>
-                <li class="sub-menu-item target top-level default list"><a href="/categories/video-animation?source=category_tree">Video &amp; Animation</a></li>
-                <li class="sub-menu-item target top-level default list"><a href="/categories/music-audio?source=category_tree">Music &amp; Audio</a></li>
-                <li class="sub-menu-item target top-level default list"><a href="/categories/programming-tech?source=category_tree">Programming &amp; Tech</a></li>
-                <li class="sub-menu-item target top-level default list"><a href="/categories/business?source=category_tree">Business</a></li>
-                <li class="sub-menu-item target top-level default list"><a href="/categories/lifestyle?source=category_tree">Lifestyle</a></li>
-                <li class="sub-menu-item target top-level default static list"><p>Trending</p></li>
-              </ul>
-            </nav>
+
           </div>
         </div>
       </div>
-      {% include 'users/register.html' %}
+    </div>
 
-      <div class="main-content">
-        <!-- ===================TO THE TOP BUTTON====================== -->
-        <a id="back-to-top" href="#section_welcome" class="btn btn-primary back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left">
-          <i class="ion-android-arrow-up"></i>
-        </a>
-        {% include 'users/side-menu.html' %}
-      <!-- ================== CONTENT ====================== -->
-        <div class="logged-out-homepage">
-    <!-- ==============SECTION WELCOME =============== -->
-          <section class="section_welcome" id="section_welcome">
-            <div class="container max-width-container">
-              <div class="row clearfix">
-                <div class="left-side clearfix">
-                  <h2 class="welcome_title">
-                    Welcome to <i>Dincolo</i>
-                  </h2>
-                  <h3 class="welcome-subh">
-                    <span>Best <i>Professionals</i> in eastern Europe</span>
-                  </h3>
-                  <div class="search_bar_container">
-                    <form class="form-box" action="{% url 'search' %}">
-                      <span class="srch-icon" aria-hidden="true" style="width: 16px; height: 16px;">
-                        <svg width="20" height="20" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M15.8906 14.6531L12.0969 10.8594C12.025 10.7875 11.9313 10.75 11.8313 10.75H11.4187C12.4031 9.60938 13 8.125 13 6.5C13 2.90937 10.0906 0 6.5 0C2.90937 0 0 2.90937 0 6.5C0 10.0906 2.90937 13 6.5 13C8.125 13 9.60938 12.4031 10.75 11.4187V11.8313C10.75 11.9313 10.7906 12.025 10.8594 12.0969L14.6531 15.8906C14.8 16.0375 15.0375 16.0375 15.1844 15.8906L15.8906 15.1844C16.0375 15.0375 16.0375 14.8 15.8906 14.6531ZM6.5 11.5C3.7375 11.5 1.5 9.2625 1.5 6.5C1.5 3.7375 3.7375 1.5 6.5 1.5C9.2625 1.5 11.5 3.7375 11.5 6.5C11.5 9.2625 9.2625 11.5 6.5 11.5Z">
-                          </path>
-                        </svg>
-                      </span>
-                      <input class="searchfield" type="search" autocomplete="off" placeholder="Try &quot;Law Advice&quot;" value="">
-                      <button class="srch-btn">Search</button>
-                    </form>
-                  </div>
-                  <div class="popular">Popular:
-                    <ul>
-                      <li><a href="#" class="popular-text">Website Design</a></li>
-                      <li><a href="#" class="popular-text">Financial Auditing</a></li>
-                      <li><a href="#" class="popular-text">Tour operator</a></li>
-                      <li><a href="#" class="popular-text">NFT Art</a></li>
-                    </ul>
-                  </div>
+    <!-- Signin: Vertical  -->
+    <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="card">
+
+            <!-- Close -->
+            <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            <!-- Image -->
+            <img src="{% static 'img/login2.WebP' %}" alt="..." class="card-img-top">
+
+            <!-- Shape -->
+            <!-- <div class="inter-shapes">
+              <div class="shape shape-bottom shape-fluid-x text-white">
+                <svg viewBox="0 0 2880 480" fill="" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2160 0C1440 240 720 240 720 240H0v240h2880V0h-720z" fill=""></path></svg>          </div>
+            </div> -->
+
+            <!-- Body -->
+            <div class="card-body">
+
+              <!-- Heading -->
+              <h2 class="mb-0 fw-bold text-center" id="modalSignin">
+                Sign In
+              </h2>
+
+              <!-- Text -->
+              <p class="mb-6 text-center text-muted">
+                Get into your account and start selling your skills.
+              </p>
+
+              <!-- Form -->
+              <form class="mb-6" method="POST" action=".">
+                {% csrf_token %}
+                <!-- Email -->
+                <div class="form-group">
+                  <label class="visually-hidden" for="modalSigninName">
+                    Your user name
+                  </label>
+                  <input type="text" name="signin-name" class="form-control" id="modalSigninName" placeholder="Your email" autocomplete="off" style="background-image: url(#); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
                 </div>
-                <div class="right-side col-sm-8">
-                  <div id="welcome-carousel" class="carousel welcome_carousel slide carousel-fade" data-ride="carousel">
-                    <!-- Indicators -->
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner">
-                      <div class="item active">
-                        <img src="{% static 'img/hero1.WebP' %}" alt="Magdalena Maria">
-                        <div class="carousel-caption">
-                         <h3>Magdalena Maria</h3>
-                         <p>>Economist<</p>
-                       </div>
-                      </div>
 
-                      <div class="item">
-                        <img src="{% static 'img/hero3.WebP' %}" alt="Tom Sawyer">
-                        <div class="carousel-caption">
-                         <h3>Tom Sawyer</h3>
-                         <p>>Web Developer<</p>
-                       </div>
-                      </div>
+                <!-- Password -->
+                <div class="form-group mb-5">
+                  <label class="visually-hidden" for="modalSigninPassword">
+                    Enter your password
+                  </label>
+                  <input type="password" name="signin-password" class="form-control" id="modalSigninPassword" placeholder="Enter your password" autocomplete="off" style="background-image: url(#); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+                </div>
 
-                      <div class="item">
-                        <img src="{% static 'img/hero5.WebP' %}" alt="John Fick">
-                        <div class="carousel-caption">
-                         <h3>John Fick</h3>
-                         <p>>Assasin for hire<</p>
-                       </div>
-                      </div>
+                <!-- Submit -->
+                <button class="btn w-100 btn-primary" name="form-type" value="signin-form" type="submit">
+                  Sign in
+                </button>
 
-                      <div class="item">
-                        <img src="{% static 'img/hero6.WebP' %}" alt="Alex Giurkaev">
-                        <div class="carousel-caption">
-                         <h3>Alex Giurkaev</h3>
-                         <p>>Rapper<</p>
-                       </div>
-                      </div>
+              </form>
+
+              <!-- Text -->
+              <p class="mb-0 fs-sm text-center text-muted">
+                Don't have an account yet? <a href="#modalSignup">Sign up</a>.
+              </p>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment -->
+
+    <!-- NAVBAR -->
+    <nav class="navbar sticky-top navbar-expand-lg" >
+      <div class="container-fluid">
+
+        <!-- Brand -->
+        <a class="navbar-brand site-logo" href="{% url 'home' %}">
+          <img src="#" class="navbar-brand-img text-dark" alt="Logo here">
+        </a>
+
+        <!-- Toggler -->
+        <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="icon ion-android-menu"></i>
+        </button>
+
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+
+          <!-- Search form -->
+          <form class="navbar-search form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2 text-white" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn my-2 my-sm-0 text-white" type="submit">Search</button>
+          </form>
+          <!-- Navigation -->
+          <ul class="navbar-nav justify-content-end">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-decoration-none text-white" id="navbarAccount" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                Explore
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarAccount">
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none text-white" data-bs-toggle="dropdown" href="#">
+                    Guides
+                  </a>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none text-white" data-bs-toggle="dropdown" href="#">
+                    Community
+                  </a>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none text-white" data-bs-toggle="dropdown" href="#">
+                    Blog
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-decoration-none text-white" id="navbarAccount" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                Language
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarAccount">
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none text-white" data-bs-toggle="dropdown" href="#">
+                    English
+                  </a>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none text-white" data-bs-toggle="dropdown" href="#">
+                    Deutsch
+                  </a>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none text-white" data-bs-toggle="dropdown" href="#">
+                    Romanian
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-decoration-none text-white" id="navbarAccount" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                Currency
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarAccount">
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link " data-bs-toggle="dropdown" href="#">
+                    Eur
+                  </a>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link " data-bs-toggle="dropdown" href="#">
+                    Usd
+                  </a>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link " data-bs-toggle="dropdown" href="#">
+                    Ron
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link text-decoration-none text-white" id="navbarDocumentation" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                Sell your Skills
+              </a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link text-decoration-none text-white" id="navbarDocumentation" href="{% url 'logout' %}">
+                Sign out
+              </a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link text-decoration-none text-white" id="navbarDocumentation" data-toggle="modal" href="#signinModal">
+                Sign in
+              </a>
+            </li>
+            <li class="nav-item">
+            <!-- Button -->
+              <a class="nav-link text-decoration-none text-white lift" data-toggle="modal" href="#modalSignup" >
+                Join
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+          <button class="btn text-decoration-none text-danger" id="toggle-border" href="#" >
+            B
+          </button>
+
+        </div>
+
+      </div>
+    </nav>
+    <!-- ======= Main content ============ -->
+    <div class="main-content">
+      <div class="logged-out-homepage">
+        <!-- WELCOME -->
+        <section class="section_welcome pt-4 pt-md-11">
+          <div class="container">
+            <div class="row ">
+              <div class="col-12 col-md-5 col-lg-6 order-md-2 px-3">
+
+                <!-- Header Carousel -->
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="{% static 'img/programmer.png' %}" alt="programmer">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="{% static 'img/accountant.png' %}" alt="accountant">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="{% static 'img/photographer.png' %}" alt="photographer">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="{% static 'img/graphic-designer.png' %}" alt="graphic-designer">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="{% static 'img/architect.png' %}" alt="architect">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="{% static 'img/human-resources.png' %}" alt="human-resources">
                     </div>
                   </div>
                 </div>
-              </div> <!-- .row -->
-            </div> <!-- .container -->
-          </section>
-    <!-- ============== POPULAR SERVICES CAROUSEL ================= -->
-          <section class="section-row sec1-wrapper">
-            <div class="sec-inner max-width-container">
-              <div class="row">
-                <div class="col-sm-12">
-                  <h2>Popular Services</h2>
-                </div>
-                <div class="col-sm-12">
-                  <div class="categories-slider slick-slider">
-                    <div class="item"><h4>Law Advice</h4><img src="{% static 'img/hero1.WebP' %}"></div>
-                    <div class="item"><h4>Human Resources</h4><img src="{% static 'img/hero2.WebP' %}"></div>
-                    <div class="item"><h4>Due Diligence</h4><img src="{% static 'img/hero3.WebP' %}"></div>
-                    <div class="item"><h4>Finances</h4><img src="{% static 'img/hero4.WebP' %}"></div>
-                    <div class="item"><h4>Medical Care</h4><img src="{% static 'img/hero5.WebP' %}"></div>
-                    <div class="item"><h4>Web Development</h4><img src="{% static 'img/hero6.WebP' %}"></div>
-                </div>
-              </div> <!-- .row -->
-             </div> <!-- .container -->
-           </div>
-          </section>
+              </div>
+              <div class="col-12 col-md-7 col-lg-6 order-md-1 aos-init aos-animate px-3" data-aos="fade-up">
 
-      <!-- ==================== SELLING PROP  =================== -->
-          <section class="section-row sec2-wrapper">
-            <div class="sec-inner max-width-container">
-              <!-- <div class="selling-video">
-                <div class="vid_wrapper">
-                  <video autoplay muted loop id="vidbg">
-                      <source src="{% static 'video/video-selling.mp4' %}" type="video/mp4">Your          browser does not support the video tag.
-                  </video>
+                <!-- Heading -->
+                <h1 class="display-5 text-center text-md-start">
+                  Welcome to <span class="text-company">Dincolo</span>. <br>
+                  Sell your skills.
+                </h1>
+
+                <!-- Text -->
+                <p class="lead text-center text-md-start text-muted mb-6 mb-lg-8">
+                  Find the Job that Fits your Life.
+                </p>
+
+                <!-- Buttons -->
+                <div class="search_bar_container">
+                  <form class="form-box" action="{% url 'search' %}">
+                    <span class="srch-icon" aria-hidden="true" style="width: 16px; height: 16px;">
+                      <svg width="20" height="20" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.8906 14.6531L12.0969 10.8594C12.025 10.7875 11.9313 10.75 11.8313 10.75H11.4187C12.4031 9.60938 13 8.125 13 6.5C13 2.90937 10.0906 0 6.5 0C2.90937 0 0 2.90937 0 6.5C0 10.0906 2.90937 13 6.5 13C8.125 13 9.60938 12.4031 10.75 11.4187V11.8313C10.75 11.9313 10.7906 12.025 10.8594 12.0969L14.6531 15.8906C14.8 16.0375 15.0375 16.0375 15.1844 15.8906L15.8906 15.1844C16.0375 15.0375 16.0375 14.8 15.8906 14.6531ZM6.5 11.5C3.7375 11.5 1.5 9.2625 1.5 6.5C1.5 3.7375 3.7375 1.5 6.5 1.5C9.2625 1.5 11.5 3.7375 11.5 6.5C11.5 9.2625 9.2625 11.5 6.5 11.5Z">
+                        </path>
+                      </svg>
+                    </span>
+                    <input class="searchfield btn-primary-soft" type="search" autocomplete="off" placeholder="Try &quot;Law Advice&quot;" value="">
+                    <button class="srch-btn">Search</button>
+                  </form>
                 </div>
-              </div> -->
-              <div class="grid-15 flex-items-center">
-                <div class="selling-text">
+                <div class="popular">
+                  <h5>Popular:</h5>
+                  <ul>
+                    <li><a href="#" class="popular-text">Website Design</a></li>
+                    <li><a href="#" class="popular-text">Financial Auditing</a></li>
+                    <li><a href="#" class="popular-text">Tour operator</a></li>
+                    <li><a href="#" class="popular-text">NFT Art</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div> <!-- / .row -->
+          </div> <!-- / .container -->
+        </section>
+
+        <!-- FEATURED CATEGORIES -->
+        <section class="pt-5 py-8 py-md-11 section-row border-bottom">
+          <div class="container">
+            <div class="row d-block">
+              <div class="" data-aos="fade-up">
+                <div class="sec-inner max-width-container">
+                  <div class="row">
+                    <div class="col-sm-12 px-5">
+                      <h2>Popular Services</h2>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="categories-slider">
+                        <div>
+                          <div class="subcategory-wrapper">
+                            <a href="/" class="subcategory">
+                              <h4><small>Become succesful online</small>SEO
+                              </h4>
+                              <picture>
+                                <img alt="SEO" src="{% static 'img/seo.WebP' %}">
+                              </picture>
+                            </a>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="subcategory-wrapper">
+                            <a href="/" class="subcategory">
+                              <h4><small>Attract attention</small>Photography
+                              </h4>
+                              <picture>
+                                <img alt="photo" src="{% static 'img/photo.WebP' %}">
+                              </picture>
+                            </a>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="subcategory-wrapper">
+                            <a href="/" class="subcategory">
+                              <h4><small>Be understood everywhere</small>Translation
+                              </h4>
+                              <picture>
+                                <img alt="translation" src="{% static 'img/translation.WebP' %}">
+                              </picture>
+                            </a>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="subcategory-wrapper">
+                            <a href="/" class="subcategory">
+                              <h4><small>Unlock perfection</small>Web Design
+                              </h4>
+                              <picture>
+                                <img alt="webpage" src="{% static 'img/webpage.WebP' %}">
+                              </picture>
+                            </a>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="subcategory-wrapper">
+                            <a href="/" class="subcategory">
+                              <h4><small>Be unique</small>Graphic Design
+                              </h4>
+                              <picture>
+                                <img alt="graphic" src="{% static 'img/graphic.WebP' %}">
+                              </picture>
+                            </a>
+                          </div>
+                        </div>
+                    </div>
+                  </div> <!-- .row -->
+                 </div> <!-- .container -->
+               </div>
+              </div>
+            </div> <!-- / .row -->
+          </div> <!-- / .container -->
+        </section>
+
+
+        <!-- SELLING AD -->
+        <section class="pt-8 pt-md-11 pb-8 pb-md-11 section-row selling" style="">
+          <div class="container">
+            <div class="row align-items-center justify-content-between mb-8 mb-md-11" data-aos="fade-left">
+              <div class="col-12 col-md-8 col-lg-8 order-md-1 aos-init aos-animate" data-aos="fade-right">
+                <div class="selling-text w-100">
                     <h2 class="">Best freelancers in eastern Europe</h2>
-                      <ul>
+                      <ul class="mt-5">
                         <li>
                           <h6>
-                            <span class="sec2-txt check-icon" aria-hidden="true" style="width: 24px; height: 24px; fill: rgb(122, 125, 133);">
+                            <span class="sec2-txt check-icon" aria-hidden="true" style="width: 24px; height: 24px; fill: rgb(147, 112, 219);">
                               <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8 1.75C4.54822 1.75 1.75 4.54822 1.75 8C1.75 11.4518 4.54822 14.25 8 14.25C11.4518 14.25 14.25 11.4518 14.25 8C14.25 4.54822 11.4518 1.75 8 1.75ZM0.25 8C0.25 3.71979 3.71979 0.25 8 0.25C12.2802 0.25 15.75 3.71979 15.75 8C15.75 12.2802 12.2802 15.75 8 15.75C3.71979 15.75 0.25 12.2802 0.25 8Z"></path>
                                 <path d="M11.5303 5.46967C11.8232 5.76256 11.8232 6.23744 11.5303 6.53033L7.53033 10.5303C7.23744 10.8232 6.76256 10.8232 6.46967 10.5303L4.46967 8.53033C4.17678 8.23744 4.17678 7.76256 4.46967 7.46967C4.76256 7.17678 5.23744 7.17678 5.53033 7.46967L7 8.93934L10.4697 5.46967C10.7626 5.17678 11.2374 5.17678 11.5303 5.46967Z"></path>
                               </svg>
-                            </span>The best for every budget
+                            </span>Statement 1
                           </h6>
-                          <p class="tbody-sec2">Find high-quality services at every price point. No hourly rates, just project-based pricing.</p>
+                          <p class="tbody-sec2">..............................................</p>
                         </li>
                         <li>
                           <h6>
-                            <span class="sec2-txt check-icon" aria-hidden="true" style="width: 24px; height: 24px; fill: rgb(122, 125, 133);">
+                            <span class="sec2-txt check-icon" aria-hidden="true" style="width: 24px; height: 24px; fill: rgb(147, 112, 219);">
                               <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.75C4.54822 1.75 1.75 4.54822 1.75 8C1.75 11.4518 4.54822 14.25 8 14.25C11.4518 14.25 14.25 11.4518 14.25 8C14.25 4.54822 11.4518 1.75 8 1.75ZM0.25 8C0.25 3.71979 3.71979 0.25 8 0.25C12.2802 0.25 15.75 3.71979 15.75 8C15.75 12.2802 12.2802 15.75 8 15.75C3.71979 15.75 0.25 12.2802 0.25 8Z"></path>
                                 <path d="M11.5303 5.46967C11.8232 5.76256 11.8232 6.23744 11.5303 6.53033L7.53033 10.5303C7.23744 10.8232 6.76256 10.8232 6.46967 10.5303L4.46967 8.53033C4.17678 8.23744 4.17678 7.76256 4.46967 7.46967C4.76256 7.17678 5.23744 7.17678 5.53033 7.46967L7 8.93934L10.4697 5.46967C10.7626 5.17678 11.2374 5.17678 11.5303 5.46967Z"></path>
                               </svg>
-                            </span>Quality work done quickly
+                            </span>Statement 2
                           </h6>
-                          <p class="tbody-sec2">Find the right freelancer to begin working on your project within minutes.</p>
+                          <p class="tbody-sec2">....................................................</p>
                         </li>
                         <li>
                           <h6>
-                            <span class="sec2-txt check-icon" aria-hidden="true" style="width: 24px; height: 24px; fill: rgb(122, 125, 133);">
+                            <span class="sec2-txt check-icon" aria-hidden="true" style="width: 24px; height: 24px; fill: rgb(147, 112, 219);">
                               <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8 1.75C4.54822 1.75 1.75 4.54822 1.75 8C1.75 11.4518 4.54822 14.25 8 14.25C11.4518 14.25 14.25 11.4518 14.25 8C14.25 4.54822 11.4518 1.75 8 1.75ZM0.25 8C0.25 3.71979 3.71979 0.25 8 0.25C12.2802 0.25 15.75 3.71979 15.75 8C15.75 12.2802 12.2802 15.75 8 15.75C3.71979 15.75 0.25 12.2802 0.25 8Z"></path>
                                 <path d="M11.5303 5.46967C11.8232 5.76256 11.8232 6.23744 11.5303 6.53033L7.53033 10.5303C7.23744 10.8232 6.76256 10.8232 6.46967 10.5303L4.46967 8.53033C4.17678 8.23744 4.17678 7.76256 4.46967 7.46967C4.76256 7.17678 5.23744 7.17678 5.53033 7.46967L7 8.93934L10.4697 5.46967C10.7626 5.17678 11.2374 5.17678 11.5303 5.46967Z"></path>
                               </svg>
-                            </span>Protected payments, every time
+                            </span>Statement 3
                           </h6>
-                          <p class="tbody-sec2">Always know what you'll pay upfront. Your payment isn't released until you approve the work.</p>
+                          <p class="tbody-sec2">.........................................................</p>
                         </li>
                         <li>
                           <h6>
-                            <span class="sec2-txt check-icon" aria-hidden="true" style="width: 24px; height: 24px; fill: rgb(122, 125, 133);">
+                            <span class="sec2-txt check-icon" aria-hidden="true" style="width: 24px; height: 24px; fill: rgb(147, 112, 219);">
                               <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8 1.75C4.54822 1.75 1.75 4.54822 1.75 8C1.75 11.4518 4.54822 14.25 8 14.25C11.4518 14.25 14.25 11.4518 14.25 8C14.25 4.54822 11.4518 1.75 8 1.75ZM0.25 8C0.25 3.71979 3.71979 0.25 8 0.25C12.2802 0.25 15.75 3.71979 15.75 8C15.75 12.2802 12.2802 15.75 8 15.75C3.71979 15.75 0.25 12.2802 0.25 8Z"></path>
                                 <path d="M11.5303 5.46967C11.8232 5.76256 11.8232 6.23744 11.5303 6.53033L7.53033 10.5303C7.23744 10.8232 6.76256 10.8232 6.46967 10.5303L4.46967 8.53033C4.17678 8.23744 4.17678 7.76256 4.46967 7.46967C4.76256 7.17678 5.23744 7.17678 5.53033 7.46967L7 8.93934L10.4697 5.46967C10.7626 5.17678 11.2374 5.17678 11.5303 5.46967Z">
@@ -393,206 +516,321 @@
                         </li>
                       </ul>
                 </div>
-                <div class="selling-map">
-                  <img src="{% static 'svg/eu-map.svg' %}">
-              </div><!-- grid-15 flex container end -->
-            </div>
-          </section>
-      <!-- ========= SERVICE MAIN CATEGORIES ================= -->
-          <section class="section-row sec3-wrapper">
-              <div class="sec-inner max-width-container">
-                <h2>Explore the marketplace</h2>
-                <div class="categories-list">
-                  <a href="#" class="category-box">
-            				<div class="cat-counter">10 Freelancers</div>
-            				<div class="category-box-icon"> <i class="las la-bullhorn"></i> </div>
-            				<div class="category-box-content">
-            				  <h3>Design, Art &amp; Multimedia</h3>
-            				</div>
-                  </a>
-                  <a href="#" class="category-box">
-            				<div class="cat-counter">15 Freelancers</div>
-            				<div class="category-box-icon"> <i class="las la-graduation-cap"></i> </div>
-            				<div class="category-box-content">
-            				  <h3>Education &amp; Training</h3>
-            				</div>
-                  </a>
-                  <a href="#" class="category-box">
-            				<div class="cat-counter">12 Freelancers</div>
-            				<div class="category-box-icon"> <i class="la la-line-chart"></i> </div>
-            				<div class="category-box-content">
-            				  <h3>Accounting / Finance</h3>
-            				</div>
-                  </a>
-                  <a href="#" class="category-box">
-            				<div class="cat-counter">20 Freelancers</div>
-            				<div class="category-box-icon"> <i class="las la-users"></i> </div>
-            				<div class="category-box-content">
-            				  <h3>Human Resource</h3>
-            				</div>
-                  </a>
-                  <a href="#" class="category-box">
-            				<div class="cat-counter">25 Freelancers</div>
-            				<div class="category-box-icon"> <i class="las la-phone"></i> </div>
-            				<div class="category-box-content">
-            				  <h3>Telecommunications</h3>
-            				</div>
-                  </a>
-                  <a href="#" class="category-box">
-            				<div class="cat-counter">18 Freelancers</div>
-            				<div class="category-box-icon"> <i class="la la-cutlery"></i> </div>
-            				<div class="category-box-content">
-            				  <h3>Restaurant / Food Service</h3>
-            				</div>
-                  </a>
-                  <a href="#" class="category-box">
-            				<div class="cat-counter">38 Freelancers</div>
-            				<div class="category-box-icon"> <i class="las la-building"></i> </div>
-            				<div class="category-box-content">
-            				  <h3>Construction / Facilities</h3>
-            				</div>
-                  </a>
-                  <a href="#" class="category-box">
-            				<div class="cat-counter">23 Freelancers</div>
-            				<div class="category-box-icon"> <i class="las la-user-md"></i> </div>
-            				<div class="category-box-content">
-            				  <h3>Health</h3>
-            				</div>
-                  </a>
-            		 </div>
+
               </div>
-          </section>
-      <!-- ============== BUSINESSES TESTIMONIALS CAROUSEL ================= -->
-          <section class="section-row sec4-wrapper">
-           <div class="sec-inner max-width-container">
-             <div class="row">
-               <div class="col-sm-12">
-                 <h2 class="section-row_title">What our partners say</h2>
-               </div>
-               <div class="col-sm-12">
-                 <div class="testimonials-slider">
-                    <div class="item">
-                        <img src="{% static 'img/hero6.WebP' %}" alt="Owl Image">
-                        <h5>Kay Kim, Co-Founder
-                          <span class="testimonial-logo ">
-                            <img alt="Company logo" src="{% static 'svg/mysql.svg' %}" loading="lazy">
-                          </span>
-                        </h5>
-                        <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
-                        </blockquote>
-                    </div>
-                    <div class="item">
-                        <img src="{% static 'img/hero6.WebP' %}" alt="Owl Image">
-                        <h5>Kay Kim, Co-Founder
-                          <span class="testimonial-logo">
-                            <img alt="Company logo" src="{% static 'svg/mysql.svg' %}" loading="lazy">
-                          </span>
-                        </h5>
-                        <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
-                        </blockquote>
-                    </div>
-                    <div class="item">
-                        <img src="{% static 'img/hero6.WebP' %}" alt="Owl Image">
-                        <h5>Kay Kim, Co-Founder
-                          <span class="testimonial-logo">
-                            <img alt="Company logo" src="{% static 'svg/mysql.svg' %}" loading="lazy">
-                          </span>
-                        </h5>
-                        <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
-                        </blockquote>
-                    </div>
-                    <div class="item">
-                        <img src="{% static 'img/hero6.WebP' %}" alt="Owl Image">
-                        <h5>Kay Kim, Co-Founder
-                          <span class="testimonial-logo">
-                            <img alt="Company logo" src="{% static 'svg/mysql.svg' %}" loading="lazy">
-                          </span>
-                        </h5>
-                        <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
-                        </blockquote>
-                    </div>
-                    <div class="item">
-                        <img src="{% static 'img/hero6.WebP' %}" alt="Owl Image">
-                        <h5>Kay Kim, Co-Founder
-                          <span class="testimonial-logo">
-                            <img alt="Company logo" src="{% static 'svg/mysql.svg' %}" loading="lazy">
-                          </span>
-                        </h5>
-                        <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
-                        </blockquote>
-                    </div>
-                    <div class="item">
-                        <img src="{% static 'img/hero6.WebP' %}" alt="Owl Image">
-                        <h5>Kay Kim, Co-Founder
-                          <span class="testimonial-logo">
-                            <img alt="Company logo" src="{% static 'svg/mysql.svg' %}" loading="lazy">
-                          </span>
-                        </h5>
-                        <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
-                        </blockquote>
-                    </div>
-                    <div class="item">
-                        <img src="{% static 'img/hero6.WebP' %}" alt="Owl Image">
-                        <h5>Kay Kim, Co-Founder
-                          <span class="testimonial-logo">
-                            <img alt="Company logo" src="{% static 'svg/mysql.svg' %}" loading="lazy">
-                          </span>
-                        </h5>
-                        <blockquote class="font-domaine"><i>"It's extremely exciting that Dincolo has freelancers from all over Eastern Europe — it broadens the talent pool. One of the best things about Dincolo is that while we're sleeping, someone's working with the devil."</i>
-                        </blockquote>
-                    </div>
+            </div> <!-- / .row -->
+          </div> <!-- / .container -->
+        </section>
+
+        <!-- TESTIMONIALS -->
+        <section class="pt-10 section-row pt-md-12" style="z-index: 1000;">
+          <div class="container">
+            <div class="row justify-content-start">
+              <div class="col-12 col-md-10 col-lg-8">
+                <!-- Heading -->
+                <h2>
+                  Our customers are our biggest fans.
+                </h2>
+              </div>
+            </div> <!-- / .row -->
+            <div class="row justify-content-center">
+              <div class="col-12">
+
+                <!-- Carousel -->
+                <div class="testimonials-slider">
+                  <div class="item">
+                    <picture class="image">
+                      <img src="{% static 'img/hero1.WebP' %}">
+                    </picture>
+                    <blockquote>I refuse to accept the view that mankind is so tragically bound to the starless midnight of racism and war that the bright daybreak of peace and brotherhood can never become a reality... I believe that unarmed truth and unconditional love will have the final word.
+                    </blockquote>
+                    <cite> Martin Luther King, Jr.</cite>
+                  </div>
+                  <div class="item">
+                    <picture class="image">
+                      <img src="{% static 'img/hero3.WebP' %}">
+                    </picture>
+                    <blockquote> Peace is not a relationship of nations. It is a condition of mind brought about by a serenity of soul. Peace is not merely the absence of war. It is also a state of mind. Lasting peace can come only to peaceful people.
+                    </blockquote>
+                    <div class="pointing"></div>
+                    <cite> Jawaharlal Nehru</cite>
+                  </div>
+                  <div class="item">
+                    <picture class="image">
+                      <img src="{% static 'img/hero2.WebP' %}">
+                    </picture>
+                    <blockquote> Forgiveness is not always easy. At times, it feels more painful than the wound we suffered, to forgive the one that inflicted it. And yet, there is no peace without forgiveness.
+                    </blockquote>
+                    <div class="pointing"></div>
+                    <cite> Marianne Williamson</cite>
+                  </div>
+                  <div class="item">
+                    <picture class="image">
+                      <img src="{% static 'img/hero4.WebP' %}">
+                    </picture>
+                    <blockquote>Of all our dreams today there is none more important - or so hard to realise - than that of peace in the world. May we never lose our faith in it or our resolve to do everything that can be done to convert it one day into reality. </blockquote>
+                    <div class="pointing"></div>
+                    <cite> Lester B. Pearson</cite>
                   </div>
                 </div>
-              </div> <!-- .row -->
-            </div> <!-- .container -->
-          </section>
-          <!-- ===========SECTION Get Started ================ -->
-          <section class="section-row sec5-wrapper">
-           <div class="sec-inner max-width-container">
-             <div class="signup mb-0">
-              <div class="signup-text ">
-                <h2 class="text-display-1 font-domaine">
-                  <span>Find the <i>talent</i> needed to get your business <i>growing</i>.
-                  </span>
-                </h2>
 
-                <a class=" btn-signup" href="{% url 'register' %}">Get Started</a>
-              </div>
-              <picture class="signup-image ">
-                  <!-- <source media="(min-width: 1160px)" srcset="">
-                  <source media="(min-width: 900px)" srcset=""> -->
-                  <img alt="The talent you need" src="{% static 'img/get_started1.WebP' %}" loading="lazy">
-              </picture>
             </div>
           </div>
-        </section>
-        <!-- ===========SECTION NEWSLETTER================ -->
-          <div class="" id="newsletter">
-          </div>
-      </div>
-  </div>
-    {% include 'users/footer.html' %}
-</div>
-    <!-- JS
-    ================================================== -->
+        </div>
+      </section>
+        <!-- SHAPE -->
+        <div class="inter-shapes mt-5">
+          <div class="shape shape-bottom shape-fluid-x text-gray-200">
+            <svg viewBox="0 0 2880 480" fill="" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2160 0C1440 240 720 240 720 240H0v240h2880V0h-720z" fill=""></path></svg>      </div>
+        </div>
 
-    <!-- JS Global -->
-    <script src="{% static 'plugins/jquery/jquery-3.6.0.min.js' %}"></script>
-    <!-- <script src="{% static 'plugins/owlcarousel/owl.carousel.min.js' %}"></script> -->
+        <!-- Popular listings -->
+        <section class="pt-12 pt-md-13 section-row bg-gray-200">
+          <div class="container">
+            <div class="row w-100 mx-0">
+              <div class="">
+
+                <!-- Heading -->
+                <h2>
+                  Check out the most popular listings. <br>
+                  <span class="text-primary"></span>
+                </h2>
+
+                <!-- Text -->
+                <p class="fs-lg text-gray-700 mb-6">
+                  You have a business to run. Stop worring about deadlines and get in contact with a professional.
+                </p>
+                <div class="row listing-container listing__grid">
+                  <!-- listing start -->
+                  <a href="#" class="listing__item graphics" style="position:relative">
+                    <div class="listing-detail">
+                      <div class="listing-img"> <img src="{% static 'img/accountant.WebP' %}" alt=""> </div>
+                      <div class="listing-title"><h3 class="">Web Designer, Graphic Designer, UI/UX Designer &amp; Art <span class="utf-verified-badge" data-tippy-placement="top" data-tippy="" data-original-title="Verified"></span></h3></div>
+                      <div class="listing-footer">
+                        <ul>
+                          <li><i class="icon ion-ios-briefcase"></i> Software Developer</li>
+                          <li><i class="icon ion-ios-calculator"></i> $12-$30 per hour</li>
+                          <li><i class="icon ion-ios-location"></i> Str. Principala, Brasov 500338</li>
+                          <li><i class="icon ion-ios-time"></i> 15 Minute Ago</li>
+                        </ul>
+                      </div>
+                      <span class="bookmark-icon"></span>
+                    </div>
+                  </a>
+                  <!-- listing end -->
+                  <!-- listing start -->
+                  <a href="#" class="listing__item graphics" style="position:relative">
+                    <div class="listing-detail">
+                      <div class="listing-img"> <img src="{% static 'img/accountant.WebP' %}" alt=""> </div>
+                      <div class="listing-title"><h3 class="">Web Designer, Graphic Designer, UI/UX Designer &amp; Art <span class="utf-verified-badge" data-tippy-placement="top" data-tippy="" data-original-title="Verified"></span></h3></div>
+                      <div class="listing-footer">
+                        <ul>
+                          <li><i class="icon ion-ios-briefcase"></i> Software Developer</li>
+                          <li><i class="icon ion-ios-calculator"></i> $12-$30 per hour</li>
+                          <li><i class="icon ion-ios-location"></i> Str. Principala, Brasov 500338</li>
+                          <li><i class="icon ion-ios-time"></i> 15 Minute Ago</li>
+                        </ul>
+                      </div>
+                      <span class="bookmark-icon"></span>
+                    </div>
+                  </a>
+                  <!-- listing end -->
+                  <!-- listing start -->
+                  <a href="#" class="listing__item graphics" style="position:relative">
+                    <div class="listing-detail">
+                      <div class="listing-img"> <img src="{% static 'img/accountant.WebP' %}" alt=""> </div>
+                      <div class="listing-title"><h3 class="">Web Designer, Graphic Designer, UI/UX Designer &amp; Art <span class="utf-verified-badge" data-tippy-placement="top" data-tippy="" data-original-title="Verified"></span></h3></div>
+                      <div class="listing-footer">
+                        <ul>
+                          <li><i class="icon ion-ios-briefcase"></i> Software Developer</li>
+                          <li><i class="icon ion-ios-calculator"></i> $12-$30 per hour</li>
+                          <li><i class="icon ion-ios-location"></i> Str. Principala, Brasov 500338</li>
+                          <li><i class="icon ion-ios-time"></i> 15 Minute Ago</li>
+                        </ul>
+                      </div>
+                      <span class="bookmark-icon"></span>
+                    </div>
+                  </a>
+                  <!-- listing end -->
+                  <!-- listing start -->
+                  <a href="#" class="listing__item graphics" style="position:relative">
+                    <div class="listing-detail">
+                      <div class="listing-img"> <img src="{% static 'img/accountant.WebP' %}" alt=""> </div>
+                      <div class="listing-title"><h3 class="">Web Designer, Graphic Designer, UI/UX Designer &amp; Art <span class="utf-verified-badge" data-tippy-placement="top" data-tippy="" data-original-title="Verified"></span></h3></div>
+                      <div class="listing-footer">
+                        <ul>
+                          <li><i class="icon ion-ios-briefcase"></i> Software Developer</li>
+                          <li><i class="icon ion-ios-calculator"></i> $12-$30 per hour</li>
+                          <li><i class="icon ion-ios-location"></i> Str. Principala, Brasov 500338</li>
+                          <li><i class="icon ion-ios-time"></i> 15 Minute Ago</li>
+                        </ul>
+                      </div>
+                      <span class="bookmark-icon"></span>
+                    </div>
+                  </a>
+                  <!-- listing end -->
+                  <!-- listing start -->
+                  <a href="#" class="listing__item graphics" style="position:relative">
+                    <div class="listing-detail">
+                      <div class="listing-img"> <img src="{% static 'img/accountant.WebP' %}" alt=""> </div>
+                      <div class="listing-title"><h3 class="">Web Designer, Graphic Designer, UI/UX Designer &amp; Art <span class="utf-verified-badge" data-tippy-placement="top" data-tippy="" data-original-title="Verified"></span></h3></div>
+                      <div class="listing-footer">
+                        <ul>
+                          <li><i class="icon ion-ios-briefcase"></i> Software Developer</li>
+                          <li><i class="icon ion-ios-calculator"></i> $12-$30 per hour</li>
+                          <li><i class="icon ion-ios-location"></i> Str. Principala, Brasov 500338</li>
+                          <li><i class="icon ion-ios-time"></i> 15 Minute Ago</li>
+                        </ul>
+                      </div>
+                      <span class="bookmark-icon"></span>
+                    </div>
+                  </a>
+                  <!-- listing end -->
+                  <!-- listing start -->
+                  <a href="#" class="listing__item graphics" style="position:relative">
+                    <div class="listing-detail">
+                      <div class="listing-img"> <img src="{% static 'img/accountant.WebP' %}" alt=""> </div>
+                      <div class="listing-title"><h3 class="">Web Designer, Graphic Designer, UI/UX Designer &amp; Art <span class="utf-verified-badge" data-tippy-placement="top" data-tippy="" data-original-title="Verified"></span></h3></div>
+                      <div class="listing-footer">
+                        <ul>
+                          <li><i class="icon ion-ios-briefcase"></i> Software Developer</li>
+                          <li><i class="icon ion-ios-calculator"></i> $12-$30 per hour</li>
+                          <li><i class="icon ion-ios-location"></i> Str. Principala, Brasov 500338</li>
+                          <li><i class="icon ion-ios-time"></i> 15 Minute Ago</li>
+                        </ul>
+                      </div>
+                      <span class="bookmark-icon"></span>
+                    </div>
+                  </a>
+                  <!-- listing end -->
+                  <!-- listing start -->
+                  <a href="#" class="listing__item graphics" style="position:relative">
+                    <div class="listing-detail">
+                      <div class="listing-img"> <img src="{% static 'img/accountant.WebP' %}" alt=""> </div>
+                      <div class="listing-title"><h3 class="">Web Designer, Graphic Designer, UI/UX Designer &amp; Art <span class="utf-verified-badge" data-tippy-placement="top" data-tippy="" data-original-title="Verified"></span></h3></div>
+                      <div class="listing-footer">
+                        <ul>
+                          <li><i class="icon ion-ios-briefcase"></i> Software Developer</li>
+                          <li><i class="icon ion-ios-calculator"></i> $12-$30 per hour</li>
+                          <li><i class="icon ion-ios-location"></i> Str. Principala, Brasov 500338</li>
+                          <li><i class="icon ion-ios-time"></i> 15 Minute Ago</li>
+                        </ul>
+                      </div>
+                      <span class="bookmark-icon"></span>
+                    </div>
+                  </a>
+                  <!-- listing end -->
+                  <!-- listing start -->
+                  <a href="#" class="listing__item graphics" style="position:relative">
+                    <div class="listing-detail">
+                      <div class="listing-img"> <img src="{% static 'img/accountant.WebP' %}" alt=""> </div>
+                      <div class="listing-title"><h3 class="">Web Designer, Graphic Designer, UI/UX Designer &amp; Art <span class="utf-verified-badge" data-tippy-placement="top" data-tippy="" data-original-title="Verified"></span></h3></div>
+                      <div class="listing-footer">
+                        <ul>
+                          <li><i class="icon ion-ios-briefcase"></i> Software Developer</li>
+                          <li><i class="icon ion-ios-calculator"></i> $12-$30 per hour</li>
+                          <li><i class="icon ion-ios-location"></i> Str. Principala, Brasov 500338</li>
+                          <li><i class="icon ion-ios-time"></i> 15 Minute Ago</li>
+                        </ul>
+                      </div>
+                      <span class="bookmark-icon"></span>
+                    </div>
+                  </a>
+                  <!-- listing end -->
+                </div>
+              </div>
+            </div> <!-- / .row -->
+          </div> <!-- / .container -->
+        </section>
+
+        <!-- GUIDES -->
+        <section class="pt-9 pt-md-12 section-row bg-gray-200">
+          <div class="container">
+            <div class="row" style="position: relative;">
+                <!-- Heading -->
+                <h2>
+                  Check out our guides. <br>
+                  <span class="text-primary"></span>
+                </h2>
+                <a class="see-more-link" href="#" target="_blank">See More Guides
+                  <span class="chevron-right" aria-hidden="true" style="width: 10px; height: 10px;">
+                    <i class="icon ion-chevron-right"></i>
+                  </span>
+                </a>
+                <div class="guides-grid">
+                  <a href="#" class="guide col-12-xs col-6-sm col-4-md" target="_blank">
+                    <picture>
+                      <img alt="Start an online business and work from home" src="{% static 'img/accountant.WebP' %}" loading="lazy">
+                    </picture>
+                    <h6>Start an online business and work from home</h6>
+                    <p>A complete guide to starting a small business online</p>
+                  </a>
+                  <a href="#" class="guide col-12-xs col-6-sm col-4-md" target="_blank">
+                    <picture>
+                      <img alt="Start an online business and work from home" src="{% static 'img/accountant.WebP' %}" loading="lazy">
+                    </picture>
+                    <h6>Digital marketing made easy</h6>
+                    <p>A practical guide to understand what is digital marketing</p>
+                  </a>
+                  <a href="#" class="guide col-12-xs col-6-sm col-4-md" target="_blank">
+                    <picture>
+                      <img alt="Create a logo for your business" src="{% static 'img/accountant.WebP' %}" loading="lazy">
+                    </picture>
+                    <h6>Create a logo for your business</h6>
+                    <p>A step-by-step guide to create a memorable business logo</p>
+                  </a>
+                </div>
+            </div> <!-- / .row -->
+          </div> <!-- / .container -->
+        </section>
+
+        <!-- SHAPE -->
+
+        <!-- CTA -->
+        <section class="py-0 section-row py-md-0 cta">
+          <div class="container">
+            <div class="row w-100 justify-content-center justify-content-md-start">
+              <div class="col-12 col-lg-8 text-center text-md-left">
+                <div class="signup mb-0">
+                  <div class="signup-text">
+                    <h2 class="display-4">
+                      <span>A <i>succesful</i> business needs <i>talent</i>. Find some <i>now</i> !</span>
+                    </h2>
+                    <a class="btn-signup" data-toggle="modal" href="#modalSignup">Get Started</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-0 col-lg-4 text-center d-lg-flex justify-content-center">
+                <div class="signup-image">
+                  <img src="{% static 'svg/hand-shake-svgrepo-com.svg' %}">
+                </div>
+              </div>
+            </div> <!-- / .row -->
+          </div> <!-- / .container -->
+        </section>
+
+
+      </div> <!-- Logged out homepage end -->
+    </div> <!-- Main content end -->
+      <!-- FOOTER -->
+      {% include 'users/footer.html' %}
+
+
+    <!-- JAVASCRIPT -->
+    <script
+  src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-migrate-3.3.2.min.js" integrity="sha256-Ap4KLoCf1rXb52q+i3p0k2vjBsmownyBTE1EqlRiMwA=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
+    </script>
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-    <!-- JS Plugins -->
-    <script src="{% static 'plugins/lightbox/dist/js/lightbox.min.js' %}"></script>
-    <script src="{% static 'plugins/isotope/isotope.pkgd.min.js' %}"></script>
-    <!-- <script src="{% static 'plugins/flickity/flickity.pkgd.min.js' %}"></script> -->
-    <script src="{% static 'plugins/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
     <!-- JS Custom -->
     <script src="{% static 'js/custom.js' %}"></script>
-    <script src="{% static 'plugins/register-modal/main.js' %}"></script>
-    <script src="{% static 'plugins/register-modal/placeholders.min.js' %}"></script>
-
-    <script async src="{% static 'js/google_maps.js' %}"></script>
-    <!-- Google Maps -->
+    <!-- Back to top -->
     <script src="{% static 'js/back_to_top.js' %}"></script>
+
   </body>
 </html>

@@ -9,7 +9,7 @@ from time import strftime
 from time import gmtime
 
 
-#-----------------------------------THE JOB CATEGORIES MODEL-------------------
+# #-----------------------------------THE JOB CATEGORIES MODEL-------------------
 class JobCategory(models.Model):
     name = models.CharField(max_length=30)
     icon = models.ImageField(upload_to='media/job_category', blank=True, null=True)
@@ -29,16 +29,17 @@ class JobCategory(models.Model):
     def __str__(self):
         return self.name
 
-CHOICES = (
-    ('Full Time', 'Full Time'),
-    ('Part Time', 'Part Time'),
-    ('Internship', 'Internship'),
-    ('Remote', 'Remote'),
-)
-
-#-----------------------------------THE JOB POST ------ ------------------------
+#
+#
+# #-----------------------------------THE JOB POST ------ ------------------------
 class Job(models.Model):
-    recruiter = models.ForeignKey(User, related_name='jobs', on_delete=models.CASCADE)
+    CHOICES = (
+        ('Full Time', 'Full Time'),
+        ('Part Time', 'Part Time'),
+        ('Internship', 'Internship'),
+        ('Remote', 'Remote'),
+    )
+    # recruiter = models.ForeignKey(CustomUser, related_name='jobs', on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     company = models.CharField(max_length=200)
     logo = models.ImageField(upload_to='company_logos')
@@ -69,7 +70,7 @@ class Job(models.Model):
 
 class Applicant(models.Model):
     job = models.ForeignKey(Job, related_name='applicants', on_delete=models.CASCADE)
-    applicant = models.ForeignKey(User, related_name='applied', on_delete=models.CASCADE)
+    # applicant = models.ForeignKey(CustomUser, related_name='applied', on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
@@ -78,7 +79,7 @@ class Applicant(models.Model):
 
 class Selected(models.Model):
     job = models.ForeignKey(Job, related_name='select_job', on_delete=models.CASCADE)
-    applicant = models.ForeignKey(User, related_name='select_applicant', on_delete=models.CASCADE)
+    # applicant = models.ForeignKey(CustomUser, related_name='select_applicant', on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
 
     class Meta:

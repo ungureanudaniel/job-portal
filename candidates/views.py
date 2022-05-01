@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Profile, Skill, AppliedJobs, SavedJobs, AvailableCountry
+from .models import Profile, Skill, SavedJobs, AvailableCountry
+#AppliedJobs,
 from recruiters.models import Job, Applicant, Selected, JobCategory
 from users.models import About, BlogPost, Testimonial
 from .forms import ProfileUpdateForm, NewSkillForm
@@ -7,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from users.models import Users
 from django.contrib import messages
 from django.views.generic import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -33,6 +36,7 @@ def dict_key(d, k):
     return d[k]
 #--------------------------------home view-------------------------------------
 def home(request):
+    context = {}
     if request.user.is_authenticated:
         template = 'candidates/logged-in-home.html'
     else:
@@ -44,16 +48,113 @@ def home(request):
     posts = BlogPost.objects.all().order_by("created_date")[:3]
     reviews = Testimonial.objects.all()
     print(countries)
+    # form = CaptchaForm(request.POST)
+    form = True
+    if request.method=="POST":
+        print(f"The form type is : {request.POST.get('form-type')}")
+        if request.POST.get('form-type') == "signup-form":
+            username = request.POST.get('signup-name')
+            email = request.POST.get('signup-email')
+            password = request.POST.get('signup-password')
+            check = request.POST.get('password-check')
+            checkbox = request.POST.get('checkbox')
+            # print(username)
+            # print(email)
+            # print(check)
+            # print(checkbox)
+            first_name =""
+            last_name=""
+            phone=""
+            gender=""
+            birth=""
+            img=""
+            type =""
+            if form == True:
+                if checkbox == "Agree":
+                    if check != password:
+                        messages.error(request, "Please check so that both passwords are identical.")
+                        return redirect('.')
+                    else:
+                        try:
+                            user_check = User.objects.get(username=username)
+                            email_check = User.objects.get(email=email)
+                            if user_check:
+                                messages.warning(request, "This user name already exists!")
+                                return redirect('/')
+                            elif email_check:
+                                messages.error(request, "This user email address already exists!")
+                                return redirect('/')
+                        except Exception as e:
+                            print(e)
+                            try:
+                                user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email, password=password, is_active = False)
+                                new_users = Users.objects.create(user=user, email=email, phone=phone, gender=gender, birthdate = birth, image=img, type=type, conf_number=random_digits())
+                                conf_number=random_digits()
+                                user.save()
+                                new_users.save()
+                                #---------------------send confirmation email settings------
+                                conf_subject = "DINCOLO account confirmation"
+                                from_email=settings.FROM_EMAIL
+                                conf_message = ''
+                                html_content='Thank you for joining our job platform! You will not regret it.\
+                                    To finalize the process please \
+                                            <a href="{}registration_confirmation/?email={}&conf_number={}"> click this link \
+                                            </a>.'.format(request.build_absolute_uri(''), new_users.email, new_users.conf_number)
+                                try:
+                                    send_mail(conf_subject, conf_message, from_email, [user.email], html_message=html_content)
+                                    context = {
+                                            }
 
-    context = {
-        'home_page': "active",
-        "featured_jobs": featured_jobs,
-        'countries_list': countries_list,
-        "jobs_cat": jobs_cat,
-        "countries": countries,
-        "posts": posts,
-        "reviews": reviews,
-    }
+                                except Exception as e:
+                                    return HttpResponse('Invalid header found.')
+                            except Exception as e:
+                                    messages.error(request, e)
+                                    return redirect('/')
+
+                else:
+                    messages.error(request, "Please check box to agree to our terms and conditions.")
+                    return redirect('.')
+        elif request.POST.get('form-type') == "signin-form":
+            user = None
+            try:
+                username = request.POST.get('signin-name')
+                password = request.POST.get('signin-password')
+                user = authenticate(username=username, password=password)
+                if user is not None:
+                    login(request, user)
+                    context['user'] = username
+                    return redirect('/')
+            except (Exception, ValueError) as e:
+                print(f"The error is {e}")
+
+
+            else:
+                messages.error(request, "Incorrect login info!")
+                return render(request, "candidates/logged-out-home.html", {})
+        else:
+            return render(request, "candidates/logged-out-home.html", {})
+
+    data_keys = [
+    'home_page',
+    "featured_jobs",
+    'countries_list',
+    "jobs_cat",
+    "countries",
+    "posts",
+    "reviews"
+    ]
+    data_val = [
+    "active",
+    featured_jobs,
+    countries_list,
+    jobs_cat,
+    countries,
+    posts,
+    reviews
+    ]
+    combined = zip(data_keys,data_val)
+    context.update(combined)
+    print(context)
     return render(request, template, context)
 
 #-------------------------------CATEGORY VIEW-----------------------------------

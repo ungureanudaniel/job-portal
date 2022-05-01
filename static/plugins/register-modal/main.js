@@ -48,14 +48,14 @@
 		}
 
 		//IMPORTANT - REMOVE THIS - it's just to show/hide error messages in the demo
-		this.blocks[0].getElementsByTagName('form')[0].addEventListener('submit', function(event){
-			event.preventDefault();
-			self.toggleError(document.getElementById('signin-email'), true);
-		});
-		this.blocks[1].getElementsByTagName('form')[0].addEventListener('submit', function(event){
-			event.preventDefault();
-			self.toggleError(document.getElementById('signup-username'), true);
-		});
+		// this.blocks[0].getElementsByTagName('form')[0].addEventListener('submit', function(event){
+		// 	event.preventDefault();
+		// 	self.toggleError(document.getElementById('signin-email'), true);
+		// });
+		// this.blocks[1].getElementsByTagName('form')[0].addEventListener('submit', function(event){
+		// 	event.preventDefault();
+		// 	self.toggleError(document.getElementById('signup-username'), true);
+		// });
 	};
 
 	ModalSignin.prototype.togglePassword = function(target) {
@@ -73,17 +73,17 @@
 			this.blocks[i].getAttribute('data-type') == type ? addClass(this.blocks[i], 'signin-modal__block--is-selected') : removeClass(this.blocks[i], 'signin-modal__block--is-selected');
 		}
 		//update switcher appearance
-		var switcherType = (type == 'signup') ? 'signup' : 'login';
-		for( var i=0; i < this.switchers.length; i++ ) {
-			this.switchers[i].getAttribute('data-type') == switcherType ? addClass(this.switchers[i], 'cd-selected') : removeClass(this.switchers[i], 'cd-selected');
-		}
+		// var switcherType = (type == 'signup') ? 'signup' : 'login';
+		// for( var i=0; i < this.switchers.length; i++ ) {
+		// 	this.switchers[i].getAttribute('data-type') == switcherType ? addClass(this.switchers[i], 'cd-selected') : removeClass(this.switchers[i], 'cd-selected');
+		// }
 	};
 
-	ModalSignin.prototype.toggleError = function(input, bool) {
-		// used to show error messages in the form
-		toggleClass(input, 'signin-modal__input--has-error', bool);
-		toggleClass(input.nextElementSibling, 'signin-modal__error--is-visible', bool);
-	}
+	// ModalSignin.prototype.toggleError = function(input, bool) {
+	// 	// used to show error messages in the form
+	// 	toggleClass(input, 'signin-modal__input--has-error', bool);
+	// 	toggleClass(input.nextElementSibling, 'signin-modal__error--is-visible', bool);
+	// }
 
 	var signinModal = document.getElementsByClassName("js-signin-modal")[0];
 	if( signinModal ) {

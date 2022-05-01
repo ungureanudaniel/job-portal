@@ -3,8 +3,20 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from autoslug import AutoSlugField
 from django_countries.fields import CountryField
-from recruiters.models import Job, JobCategory
+from recruiters.models import JobCategory, Job
 from ckeditor.fields import RichTextField
+
+# class EmailBackend(ModelBackend):
+#     def authenticate(self, request, username=None, password=None, **kwargs):
+#         UserModel = get_user_model()
+#         try:
+#             user = UserModel.objects.get(email=username)
+#         except UserModel.DoesNotExist:
+#             return None
+#         else:
+#             if user.check_password(password):
+#                 return user
+#         return None
 
 class AvailableCountry(models.Model):
     name = models.CharField(max_length=200, null=True, blank=True, verbose_name = "Available Countries")
@@ -31,7 +43,7 @@ class Post(models.Model):
         ('Published', 'Published'),
         ('Draft', 'Draft'),
     )
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    # author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='blog')
     text = RichTextField(blank=True, null=True)
@@ -66,7 +78,7 @@ class Profile(models.Model):
         ('Internship', 'Internship'),
         ('Remote', 'Remote'),
     )
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='profile')
+    # user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True, related_name='profile')
     full_name = models.CharField(max_length=200, null=True, blank=True)
     country = CountryField(null=True, blank=True)
     location = models.CharField(max_length=255, null=True, blank=True)
@@ -86,11 +98,11 @@ class Profile(models.Model):
 
 class Skill(models.Model):
     skill = models.CharField(max_length=200)
-    user = models.ForeignKey(User, related_name='skills', on_delete=models.CASCADE)
-
+    # user = models.ForeignKey(CustomUser, related_name='skills', on_delete=models.CASCADE)
+#
 class SavedJobs(models.Model):
     job = models.ForeignKey(Job, related_name='saved_job', on_delete=models.CASCADE)
-    user = models.ForeignKey(User, related_name='saved', on_delete=models.CASCADE)
+    # user = models.ForeignKey(CustomUser, related_name='saved', on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
 
 
@@ -103,7 +115,7 @@ class SavedJobs(models.Model):
 
 class AppliedJobs(models.Model):
     job = models.ForeignKey(Job, related_name='applied_job', on_delete=models.CASCADE)
-    user = models.ForeignKey(User, related_name='applied_user', on_delete=models.CASCADE)
+    # user = models.ForeignKey(CustomUser, related_name='applied_user', on_delete=models.CASCADE)
     date_posted = models.DateTimeField(default=timezone.now)
 
     class Meta:

@@ -6,42 +6,36 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from .forms import CaptchaForm
 from django.core.mail import send_mail, BadHeaderError
-from .models import Candidate, Company, About
+from .models import About, Users
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_protect
 import random
 
-def login(request):
-    return render(request, 'users/login.html')
-#-------------------------------LOGIN VIEW-----------------------------------
-def user_login(request):
-    if request.user.is_authenticated:
-        return redirect("profile")
-    else:
-        if request.method == "POST":
-            username = request.POST['signin-email']
-            password = request.POST['signin-pass']
-            user = authenticate(username=username, password=password)
+#---------------------------------LOGOUT VIEW-----------------------------------
+def user_logout(request):
+    try:
+        logout(request)
+    except (Exception, ValueError) as e:
+        print(e)
+    return redirect('/')
 
-            if user is not None:
-                user1 = Candidate.objects.get(user=user)
-                if user1.type == "candidate":
-                    login(request, user)
-                    return redirect("dashboard")
-            else:
-                return render(request, "users/login.html", {})
-    return render(request, "users/register.html")
 #-----------------------GENERATE RANDOM SUBSCRIBER ID--------------------------
 def random_digits():
     return "%0.12d" % random.randint(0, 999999999999)
 #-------------------------------REGSTER VIEW-----------------------------------
 def register(request):
-    form = CaptchaForm(request.POST)
+    # form = CaptchaForm(request.POST)
+    form = True
     if request.method=="POST":
-        username = request.POST['username-register']
-        email = request.POST['emailaddress-register']
-        password = request.POST['password-register']
-        check = request.POST['checks[]']
+        username = request.POST.get('signup-name')
+        email = request.POST.get('signup-email')
+        password = request.POST.get('signup-password')
+        check = request.POST.get('password-check')
+        checkbox = request.POST.get('checkbox')
+        print(username)
+        print(email)
+        print(check)
+        print(checkbox)
         first_name =""
         last_name=""
         phone=""
@@ -49,40 +43,45 @@ def register(request):
         birth=""
         img=""
         type =""
-        if form.is_valid():
-            if check != "Agree":
-                messages.error(request, "Please check box to agree to our terms and conditions.")
-                return redirect('register')
-            try:
-                user_check = User.objects.get(username=username)
-                email_check = User.objects.get(email=username)
-                if user_check:
-                    messages.error(request, "This user name already exists!")
-                    return redirect('register')
-                elif email_check:
-                    messages.error(request, "This user email address already exists!")
-                    return redirect('register')
-            except Exception as e:
-                user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email, password=password)
-                candidates = Candidate.objects.create(user=user, email=email, phone=phone, gender=gender, birthdate = birth, image=img, type=type, conf_number=random_digits())
-                conf_number=random_digits()
-                user.save()
-                candidates.save()
-                #---------------------send confirmation email settings------
-                conf_subject = "DINCOLO account confirmation"
-                from_email=settings.FROM_EMAIL
-                conf_message = ''
-                html_content='Thank you for joining our job platform! You will not regret it.\
-                    To finalize the process please \
-                            <a href="{}registration_confirmation/?email={}&conf_number={}"> click this link \
-                            </a>.'.format(request.build_absolute_uri(''), user.email, candidates.conf_number)
-                try:
-                    send_mail(conf_subject, conf_message, from_email, [user.email], html_message=html_content)
-                    context = {
-                            }
+        if form == True:
+            if checkbox == "Agree":
+                if check != password:
+                    messages.error(request, "Please check so that both passwords are identical.")
+                    return redirect('.')
+                else:
+                    try:
+                        user_check = User.objects.get(username=username)
+                        email_check = User.objects.get(email=email)
+                        if user_check:
+                            messages.warning(request, "This user name already exists!")
+                            return redirect('/')
+                        elif email_check:
+                            messages.error(request, "This user email address already exists!")
+                            return redirect('/')
+                    except Exception as e:
+                        user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email, password=password)
+                        new_users = Users.objects.create(user=user, email=email, phone=phone, gender=gender, birthdate = birth, image=img, type=type, conf_number=random_digits())
+                        conf_number=random_digits()
+                        user.save()
+                        new_users.save()
+                        #---------------------send confirmation email settings------
+                        conf_subject = "DINCOLO account confirmation"
+                        from_email=settings.FROM_EMAIL
+                        conf_message = ''
+                        html_content='Thank you for joining our job platform! You will not regret it.\
+                            To finalize the process please \
+                                    <a href="{}registration_confirmation/?email={}&conf_number={}"> click this link \
+                                    </a>.'.format(request.build_absolute_uri(''), user.email, new_users.conf_number)
+                        try:
+                            send_mail(conf_subject, conf_message, from_email, [user.email], html_message=html_content)
+                            context = {
+                                    }
 
-                except Exception as e:
-                    return HttpResponse('Invalid header found.')
+                        except Exception as e:
+                            return HttpResponse('Invalid header found.')
+            else:
+                messages.error(request, "Please check box to agree to our terms and conditions.")
+                return redirect('.')
             return redirect('registration_confirmation')
         return render(request, "users/register.html", {'form':form})
     return render(request, 'users/register.html', {'form':form})
@@ -133,13 +132,21 @@ def registration_success_view(request):
     except:
         messages.warning(request, "This email already exists in our database!")
         return render(request, template, {})
-#-------------------------ACCOUNT VIEW---------------------------------------
+#-------------------------PROFILE VIEW---------------------------------------
 @login_required
 def profile(request):
     context = {
         'profile_page': "active",
     }
     return render(request, 'users/profile.html', context)
+#------------------------------DASHBOARD VIEW----------------------------
+@login_required
+def dashboard(request):
+
+    context = {
+        'dashboard': "active",
+    }
+    return render(request, 'users/dashboard.html', context)
 
 def privacy(request):
     return render(request, 'users/privacy.html')

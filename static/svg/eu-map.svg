@@ -41,7 +41,7 @@
   #az         {}
   #ba         {}
   #be         {}
-  #bg         {fill: rgba(205, 102, 102)}
+  #bg         {fill: rgba(147, 112, 219)}
   #by         {}
   #ca         {}
   #ch         {}
@@ -60,7 +60,7 @@
   #gl         {}
   #gr         {}
   #hr         {}
-  #hu         {fill: rgba(205, 102, 102)}
+  #hu         {fill: rgba(147, 112, 219)}
   #ie         {}
   #il         {}
   #iq         {}
@@ -76,14 +76,14 @@
   #lv         {}
   #ma         {}
   #mc         {}
-  #md         {fill: rgba(205, 102, 102)}
+  #md         {fill: rgba(147, 112, 219)}
   #mk         {}
   #mt         {}
   #nl         {}
   #no         {}
   #pl         {}
   #pt         {}
-  #ro         {fill: rgba(205, 102, 102)}
+  #ro         {fill: rgba(147, 112, 219)}
   #sa         {}
   #se         {}
   #si         {}
@@ -93,7 +93,7 @@
   #tm         {}
   #tn         {}
   #tr         {}
-  #ua         {fill: rgba(205, 102, 102)}
+  #ua         {fill: rgba(147, 112, 219)}
 
 
   g.nationGroup, path  {fill:inherit;stroke:inherit}

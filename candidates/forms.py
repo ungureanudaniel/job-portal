@@ -1,6 +1,6 @@
 from django import forms
 from .models import Profile, Skill, Post
-
+#
 class AddNewJobForm(forms.ModelForm):
     class Meta:
         model = Post

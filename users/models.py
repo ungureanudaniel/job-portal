@@ -14,23 +14,25 @@ class About(models.Model):
     def __str__(self):
         return self.title
 #----------------------------------APPLICANT MODEL-----------------------------
-class Candidate(models.Model):
+class Users(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     email = models.CharField(max_length=100)
     phone = models.CharField(max_length=10)
     image = models.ImageField(upload_to="")
-    gender = models.CharField(max_length=10)
     type = models.CharField(max_length=15, default = 'freelancer')
-    birthdate = models.DateTimeField()
     conf_number = models.CharField(max_length=15)
     confirmed = models.BooleanField(default=False)
     status = models.CharField(max_length=20, default="verification pending")
+
+    class Meta:
+        verbose_name = 'Users'
+        verbose_name_plural = 'Users'
 
     def __str__(self):
         return str(self.user.first_name) + str(self.user.last_name)
 #----------------------------------COMPANY MODEL-----------------------------
 class Company(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     email = models.CharField(max_length=100)
     phone = models.CharField(max_length=10)
     image = models.ImageField(upload_to="")
@@ -41,7 +43,9 @@ class Company(models.Model):
     description = RichTextField()
     company_name = models.CharField(max_length=100)
     conf_number = models.CharField(max_length=15)
-
+    class Meta:
+        verbose_name = 'Company'
+        verbose_name_plural = 'Companies'
     def __str__ (self):
         return self.user.username
 #-----------------------------------THE POST CATEGORIES MODEL-------------------
@@ -51,8 +55,8 @@ class BlogPostCategory(models.Model):
     slug = models.SlugField(max_length=255, unique=True)
 
     class Meta:
-        verbose_name = 'Category'
-        verbose_name_plural = 'Categories'
+        verbose_name = 'BlogCategory'
+        verbose_name_plural = 'BlogCategories'
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
@@ -70,7 +74,7 @@ class BlogPost(models.Model):
         ('Published', 'Published'),
         ('Draft', 'Draft'),
     )
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    # author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     image = models.FileField(upload_to='blog_image', blank=True)
     text = RichTextField(blank=True, null=True)
@@ -114,7 +118,7 @@ class Testimonial(models.Model):
     text = RichTextField(blank=True, null=True)
     image = models.FileField(upload_to='media', blank=True)
     slug = models.SlugField(max_length=255, unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    # author = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

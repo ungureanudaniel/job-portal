@@ -3,7 +3,7 @@ from django.urls import path, include
 import debug_toolbar
 from django.conf import settings
 from django.contrib.auth import views as auth_views
-from users.views import register, profile, user_login, contact, about, privacy, terms, pricing
+from users.views import register, profile, contact, about, privacy, terms, pricing
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import ugettext_lazy as _
