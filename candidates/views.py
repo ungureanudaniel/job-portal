@@ -1,15 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Profile, Skill, SavedJobs, AvailableCountry
 #AppliedJobs,
+from django.core.mail import send_mail, BadHeaderError
+import random
 from recruiters.models import Job, Applicant, Selected, JobCategory
 from users.models import About, BlogPost, Testimonial
 from .forms import ProfileUpdateForm, NewSkillForm
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+import datetime
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from users.models import Users
+from users.models import Users, Subscriber
 from django.contrib import messages
 from django.views.generic import UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -18,10 +21,47 @@ from django.contrib.auth import get_user_model
 from django.core.paginator import Paginator
 from django.template.defaulttags import register
 
-
+#----------generate unique code for email subscription conf--------------------
+def random_digits():
+    return "%0.12d" % random.randint(0, 999999999999)
 def maintenance(request):
     template = 'candidates/maintenance.html'
+    duplicate_message = ""
+    if request.method == "POST":
+        #---------------fetch the user input -----------------------------------
 
+        newsletter_email = request.POST.get('sub_email')
+        print(newsletter_email)
+        #--------------check if newsletter email exists already---------
+        if newsletter_email:
+            print(f"email ok")
+            try:
+                duplicate = Subscriber.objects.get(email=newsletter_email)
+                if duplicate:
+                    messages.warning(request, "This email already exists!")
+
+                    context = {
+
+                    }
+                    return render(request, template, context)
+            except Exception as e:
+                print(e)
+                #-----------------------SAVE IN DATABASE----------------
+                sub = Subscriber(email=newsletter_email, conf_num=random_digits(), timestamp=datetime.datetime.now())
+                sub.save()
+                messages.success(request, "A confirmation link is on its way to your email inbox!")
+                #---------------------send confirmation email settings------
+                sub_subject = "Newsletter Dincolo Freelancers"
+                from_email=settings.FROM_EMAIL
+                sub_message = ''
+                html_content='Thank you for subscribing to our newsletter!\
+                            Finalize the process by \
+                                <a href="{}subscription_confirmation/?email={}&conf_num={}"> clicking this link \
+                                    </a>.'.format(request.build_absolute_uri(''), sub.email, sub.conf_num)
+                try:
+                    send_mail(sub_subject, sub_message, from_email, [sub], html_message=html_content)
+                except Exception as e:
+                    messages.error(request,f"Error is {e}")
     context = {}
     return render(request, template, context)
 
@@ -106,6 +146,7 @@ def home(request):
                                             }
 
                                 except Exception as e:
+                                    messages.error(request, e)
                                     return HttpResponse('Invalid header found.')
                             except Exception as e:
                                     messages.error(request, e)

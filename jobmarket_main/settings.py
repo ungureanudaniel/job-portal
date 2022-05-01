@@ -2,6 +2,7 @@ from pathlib import Path
 import os
 from django.conf import settings
 from dotenv import load_dotenv
+from django.contrib.messages import constants as messages
 
 load_dotenv(verbose=True)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -171,7 +172,13 @@ FROM_EMAIL = 'contact@dincolo.eu'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-secondary',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+ }
 #-------------------PROGRESSIVE WEB APP SETUP-----------------------------------
 # PWA_APP_NAME = 'Dincolo'
 # PWA_APP_DESCRIPTION = "Job portal PWA"
@@ -202,4 +209,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ]
 # PWA_APP_DIR = 'ltr'
 # PWA_APP_LANG = 'en-US'
-MAINTENANCE_MODE = False
+MAINTENANCE_MODE = True

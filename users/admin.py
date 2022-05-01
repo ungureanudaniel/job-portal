@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BlogPostCategory, BlogPost, Testimonial, Users
+from .models import BlogPostCategory, BlogPost, Testimonial, Users, Subscriber
 
 class BlogPostCategoryAdmin(admin.ModelAdmin):
      list_display = ('name', 'image', 'slug')
@@ -14,9 +14,11 @@ class TestimonialAdmin(admin.ModelAdmin):
 
 class UsersAdmin(admin.ModelAdmin):
      list_display =  ['user', 'email', 'phone', 'confirmed','type', 'conf_number']
-
+class SubscriberAdmin(admin.ModelAdmin):
+     list_display =  ['email', 'conf_num', 'confirmed', 'timestamp']
 
 admin.site.register(BlogPostCategory, BlogPostCategoryAdmin)
 admin.site.register(BlogPost, BlogPostAdmin)
 admin.site.register(Testimonial, TestimonialAdmin)
 admin.site.register(Users, UsersAdmin)
+admin.site.register(Subscriber, SubscriberAdmin)
