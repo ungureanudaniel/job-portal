@@ -201,6 +201,9 @@ $(function () {
   $( ".dashboard-trigger" ).click(function() {
     $( '.dashboard-nav' ).toggleClass( "active" );
   });
-
+  /*** User Statistics timeframe dropdown ***/
+  $( ".timeframe-trigger" ).click(function() {
+    $( '.tmfr-dropdown' ).toggleClass( "open" );
+  });
 
 });

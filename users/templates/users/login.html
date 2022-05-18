@@ -1,211 +1,36 @@
+{% extends 'users/base.html' %}
 {% load static %}
-{% load i18n %}
-<div id="Sidebar" class="">
-  <div class="site-login sidebar-package">
-    <div class="sidebar-header">
-      <a class="FKiIhUG _1x76oPA co-white js-open-popup-join bg-co-green-700" rel="nofollow" href="/join">Join dincolo</a>
-    </div>
-    <div class="sidebar-menu">
-      <a class="sidebar-link" href="/login?source=side_navigation" rel="nofollow">Sign in</a>
-      <div class="sidebar-categories">
-        <article class="_1uUxCFA sidebar-collapsible">
-          <div class="qpaomAc sidebar-collapsible-title-wrapper">
-            <div class="_1sRj0_p sidebar-collapsible-title">Browse Categories</div>
-            <div class="_1LYDMMk">
-              <span class="_1AB8XqH _1JYzoTK" style="width: 14px; height: 14px;">
-                <svg width="8" height="16" viewBox="0 0 8 16" xmlns="http://www.w3.org/2000/svg"><path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z"></path>
-                </svg>
-              </span>
-            </div>
-          </div>
-          <div class="sidebar-collapsible-content" style="height: 0px;">
-            <ul>
-              <article class="_1uUxCFA sidebar-collapsible">
-                <div class="qpaomAc sidebar-collapsible-title-wrapper">
-                  <div class="_1sRj0_p _2avYGny sidebar-collapsible-title">Graphics &amp; Design</div>
-                  <div class="_1LYDMMk"><span class="_1AB8XqH _1JYzoTK" style="width: 14px; height: 14px;">
-                    <svg width="8" height="16" viewBox="0 0 8 16" xmlns="http://www.w3.org/2000/svg"><path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z"></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-              <div class="sidebar-collapsible-content" style="height: 0px;">
-                <ul>
-                  <li><a href="/categories/graphics-design/creative-logo-design">Logo Design</a>
-                  </li>
-                  <li><a href="/categories/graphics-design/ar-filters-lenses">AR Filters &amp; Lenses</a></li>
-                </ul>
-              </div>
-            </article>
-            <article class="_1uUxCFA sidebar-collapsible">
-              <div class="qpaomAc sidebar-collapsible-title-wrapper">
-                <div class="_1sRj0_p _2avYGny sidebar-collapsible-title">Digital Marketing</div>
-                <div class="_1LYDMMk">
-                  <span class="_1AB8XqH _1JYzoTK" style="width: 14px; height: 14px;">
-                    <svg width="8" height="16" viewBox="0 0 8 16" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z"></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-              <div class="sidebar-collapsible-content" style="height: 0px;">
-                <ul>
-                  <li><a href="/categories/online-marketing/social-media-advertising">Social Media Advertising</a></li>
-                  <li><a href="/categories/online-marketing/social-marketing">Social Media Marketing</a></li>
-                  <li><a href="/categories/online-marketing/seo-services">Search Engine Optimization (SEO)</a></li>
-                </ul>
-              </div>
-            </article>
-            <article class="_1uUxCFA sidebar-collapsible">
-              <div class="qpaomAc sidebar-collapsible-title-wrapper">
-                <div class="_1sRj0_p _2avYGny sidebar-collapsible-title">Writing &amp; Translation</div>
-                <div class="_1LYDMMk">
-                  <span class="_1AB8XqH _1JYzoTK" style="width: 14px; height: 14px;">
-                    <svg width="8" height="16" viewBox="0 0 8 16" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z"></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-              <div class="sidebar-collapsible-content" style="height: 0px;">
-                <ul>
-                  <li><a href="/categories/writing-translation/articles-blogposts">Articles &amp; Blog Posts</a></li><li><a href="/categories/writing-translation/proofreading-editing">Proofreading &amp; Editing</a></li>
-                </ul>
-              </div>
-            </article>
-            <article class="_1uUxCFA sidebar-collapsible">
-              <div class="qpaomAc sidebar-collapsible-title-wrapper">
-                <div class="_1sRj0_p _2avYGny sidebar-collapsible-title">Video &amp; Animation</div>
-                <div class="_1LYDMMk">
-                  <span class="_1AB8XqH _1JYzoTK" style="width: 14px; height: 14px;">
-                    <svg width="8" height="16" viewBox="0 0 8 16" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z"></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-              <div class="sidebar-collapsible-content" style="height: 0px;">
-                <ul>
-                  <li><a href="/categories/video-animation/animated-explainer-videos">Whiteboard &amp; Animated Explainers</a></li><li><a href="/categories/video-animation/video-editing">Video Editing</a></li><li><a href="/categories/video-animation/short-video-ads">Short Video Ads</a></li>
-                </ul>
-              </div>
-            </article>
-            <article class="_1uUxCFA sidebar-collapsible">
-              <div class="qpaomAc sidebar-collapsible-title-wrapper">
-                <div class="_1sRj0_p _2avYGny sidebar-collapsible-title">Music &amp; Audio</div>
-                <div class="_1LYDMMk">
-                  <span class="_1AB8XqH _1JYzoTK" style="width: 14px; height: 14px;">
-                    <svg width="8" height="16" viewBox="0 0 8 16" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z"></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-              <div class="sidebar-collapsible-content" style="height: 0px;">
-                <ul>
-                  <li><a href="/categories/music-audio/voice-overs">Voice Over</a></li><li><a href="/categories/music-audio/mixing-mastering">Mixing &amp; Mastering</a></li><li><a href="/categories/music-audio/producers-composers">Producers &amp; Composers</a></li>
-                </ul>
-              </div>
-            </article>
-            <article class="_1uUxCFA sidebar-collapsible">
-              <div class="qpaomAc sidebar-collapsible-title-wrapper">
-                <div class="_1sRj0_p _2avYGny sidebar-collapsible-title">Programming &amp; Tech</div>
-                <div class="_1LYDMMk">
-                  <span class="_1AB8XqH _1JYzoTK" style="width: 14px; height: 14px;">
-                    <svg width="8" height="16" viewBox="0 0 8 16" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z"></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-              <div class="sidebar-collapsible-content" style="height: 0px;">
-                <ul>
-                  <li><a href="/categories/programming-tech/wordpress-services">WordPress</a></li><li><a href="/categories/programming-tech/web-cms-services">Website Builders &amp; CMS</a></li><li><a href="/categories/programming-tech/game-development">Game Development</a></li>
-                </ul>
-              </div>
-            </article>
-            <article class="_1uUxCFA sidebar-collapsible">
-              <div class="qpaomAc sidebar-collapsible-title-wrapper">
-                <div class="_1sRj0_p _2avYGny sidebar-collapsible-title">Data</div>
-                <div class="_1LYDMMk">
-                  <span class="_1AB8XqH _1JYzoTK" style="width: 14px; height: 14px;">
-                    <svg width="8" height="16" viewBox="0 0 8 16" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z"></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-              <div class="sidebar-collapsible-content" style="height: 0px;">
-                <ul>
-                  <li><a href="/categories/data/databases">Databases</a></li><li><a href="/categories/data/data-processing">Data Processing</a></li><li><a href="/categories/data/data-engineering">Data Engineering</a></li>
-                </ul>
-              </div>
-            </article>
-            <article class="_1uUxCFA sidebar-collapsible">
-              <div class="qpaomAc sidebar-collapsible-title-wrapper">
-                <div class="_1sRj0_p _2avYGny sidebar-collapsible-title">Business</div>
-                <div class="_1LYDMMk">
-                  <span class="_1AB8XqH _1JYzoTK" style="width: 14px; height: 14px;">
-                    <svg width="8" height="16" viewBox="0 0 8 16" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z"></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-              <div class="sidebar-collapsible-content" style="height: 0px;">
-                <ul>
-                  <li><a href="/categories/business/sales">Sales</a></li><li><a href="/categories/business/virtual-assistant-services">Virtual Assistant</a></li><li><a href="/categories/business/market-research-reports">Market Research</a></li>
-                </ul>
-              </div>
-            </article>
-            <article class="_1uUxCFA sidebar-collapsible">
-              <div class="qpaomAc sidebar-collapsible-title-wrapper">
-                <div class="_1sRj0_p _2avYGny sidebar-collapsible-title">Lifestyle</div>
-                <div class="_1LYDMMk">
-                  <span class="_1AB8XqH _1JYzoTK" style="width: 14px; height: 14px;">
-                    <svg width="8" height="16" viewBox="0 0 8 16" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z"></path>
-                    </svg>
-                  </span>
-                </div>
-              </div>
-              <div class="sidebar-collapsible-content" style="height: 0px;">
-                <ul>
-                  <li><a href="/categories/lifestyle/gaming">Gaming</a></li><li><a href="/categories/lifestyle/online-tutoring">Online Tutoring</a></li><li><a href="/categories/lifestyle/life-coaching">Life Coaching</a></li>
-                </ul>
-              </div>
-            </article>
-          </ul>
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    <div id="content-container" class="container p-none" style="margin-top: 10em;margin-bottom: 15em;">
+      <h2 class="mb-5">Type in your login info below to see the whole website</h2>
+        <div class="lgn-container col-lg-8">
+            <form id="login-form" method="POST">
+                {% csrf_token %}
+                <table class="table">
+                    <tr>
+                        <td><label for="id_username">Username</label></td>
+                        <td><input id="id_username" name="username"
+                                   type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="id_password">Password</label></td>
+                        <td><input id="id_password" name="password" type="password"
+                          class="form-control"></td>
+                    </tr>
+                </table>
+                {% if form.errors %}
+                    <p class=" label label-danger">
+                        Your username and password didn't match.
+                        Please try again.
+                    </p>
+                {% endif %}
+                <input type="submit" value="Login" class="btn pull-right" style="position:relative;float:center;color:white;background-color: #6c757d;"/>
+
+
+            </form>
+            <hr>
         </div>
-      </article>
     </div>
-    <div class="sidebar-resources">
-      <article class="_1uUxCFA resources-tab-collapsible sidebar-collapsible">
-        <div class="qpaomAc resources-tab-collapsible-title-wrapper sidebar-collapsible-title-wrapper">
-          <div class="_1sRj0_p resources-tab-collapsible-title sidebar-collapsible-title">
-            <span class="tab-title">Explore</span>
-          </div>
-          <div class="_1LYDMMk">
-            <span class="_1AB8XqH _1JYzoTK" style="width:14px;height:14px">
-              <svg width="8" height="16" viewBox="0 0 8 16" xmlns="http://www.w3.org/2000/svg"><path d="M0.772126 1.19065L0.153407 1.80934C0.00696973 1.95578 0.00696973 2.19322 0.153407 2.33969L5.80025 8L0.153407 13.6603C0.00696973 13.8067 0.00696973 14.0442 0.153407 14.1907L0.772126 14.8094C0.918563 14.9558 1.156 14.9558 1.30247 14.8094L7.84666 8.26519C7.99309 8.11875 7.99309 7.88131 7.84666 7.73484L1.30247 1.19065C1.156 1.04419 0.918563 1.04419 0.772126 1.19065Z"></path>
-              </svg>
-            </span>
-          </div>
-        </div>
-        <div class="resources-tab-collapsible-content sidebar-collapsible-content" style="height:0">
-          <ul>
-            <li><a href="" target="_blank" rel="noopener">Discover</a></li>
-            <li><a href="/resources/guides?source=explore-tab" target="_blank" rel="noopener">Guides</a></li>
-            <li><a href="" target="_blank" rel="noopener">Learn</a></li>
-            <li><a href="" target="_blank" rel="noopener">Community</a></li>
-            <li><a href="" target="_blank" rel="noopener">Blog</a></li>
-            <li><a href="" target="_blank" rel="noopener">dincolo Workspace</a></li>
-          </ul>
-        </div>
-      </article>
-    </div>
-    <a class="sidebar-link" href="">Open in App</a>
-  </div>
-</div>
-<div class="login-sidebar-overlay"></div>
-</div>
+{% endblock content %}

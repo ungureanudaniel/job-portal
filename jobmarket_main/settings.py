@@ -19,7 +19,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'dincolo.eu', 'www.dincolo.eu']
-
+FROM_MAINTENANCE = True
 
 # Application definition
 
@@ -209,4 +209,3 @@ MESSAGE_TAGS = {
 # ]
 # PWA_APP_DIR = 'ltr'
 # PWA_APP_LANG = 'en-US'
-MAINTENANCE_MODE = True

@@ -45,6 +45,7 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-decoration-none text-white" id="navbarAccount" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
                 Explore
+                <!-- <span class="caret"></span> -->
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarAccount">
                 <li class="dropdown-item dropend">
@@ -183,7 +184,7 @@
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link text-decoration-none text-white" id="navbarDocumentation" data-toggle="modal" href="#signinModal">
+              <a class="nav-link text-decoration-none text-white" id="navbarDocumentation" href="{% url 'login' %}">
                 Sign in
               </a>
             </li>
@@ -195,9 +196,6 @@
             </li>
             {% endif %}
           </ul>
-          <button class="btn text-decoration-none text-danger" id="toggle-border" href="#" >
-            B
-          </button>
 
         </div>
 
