@@ -37,28 +37,33 @@
                       <img alt="" src="{% static 'img/avatar-img.png' %}" class="photo">
           				  </span>
           				  <div class="user-profile-text">
-                      <span class="fullname">John Williams</span>
-                      <span class="user-role">Software Engineer</span>
+                      <span class="fullname">Daniel Ungureanu</span>
+                      <span class="user-role">Chainsaw Operator</span>
           				  </div>
           			   </div>
                    <div class="clearfix"></div>
                    <ul>
-                     <li class="active"><a href="dashboard.html"><i class="icon-material-outline-dashboard"></i> Dashboard</a></li>
-                  	 <li><a href="dashboard-jobs-post.html"><i class="icon-line-awesome-user-secret"></i> Manage Jobs Post</a></li>
-                  	 <li><a href="dashboard-manage-jobs.html"><i class="icon-material-outline-group"></i> Manage Jobs <span class="nav-tag">5</span></a></li>
-                  	 <li><a href="dashboard-manage-resume.html"><i class="icon-material-outline-supervisor-account"></i> Manage Resume</a></li>
-                  	 <li><a href="dashboard-bookmarks.html"><i class="icon-feather-heart"></i> Bookmarks Jobs</a></li>
-                  	 <li><a href="#"><i class="icon-line-awesome-file-text"></i> Freelancer Tasks</a>
+                     <li><a href="{% url 'dashboard' %}"><i class="icon ion-clipboard"></i> Dashboard</a></li>
+                     <li class="active"><a href="{% url 'profile' %}"><i class="icon ion-ios-person-outline"></i> Profile</a></li>
+                     <li id="fr-trigger"><a href="#"><i class="icon ion-ios-lightbulb-outline"></i> Freelancer submenu<i class="icon ion-chevron-down ml-5"></i></a>
                        <ul class="dropdown-nav">
-                         <li><a href="dashboard-freelancer-manage-tasks-list.html"><i class="icon-feather-chevron-right"></i> Freelancer Manage Tasks</a></li>
-                         <li><a href="dashboard-manage-bidders-list.html"><i class="icon-feather-chevron-right"></i> Freelancer Manage Bidders</a></li>
-                         <li><a href="dashboard-freelancer-active-bids.html"><i class="icon-feather-chevron-right"></i> Freelancer Active Bids</a></li>
-                         <li><a href="dashboard-freelancer-add-post-bids.html"><i class="icon-feather-chevron-right"></i> Freelancer Post Bids</a></li>
-                        </ul>
+                         <li><a href="dashboard-jobs-post.html"><i class="icon ion-ios-plus-empty"></i> Post a Service</a></li>
+                         <li><a href="dashboard-freelancer-manage-tasks-list.html"><i class="icon ion-ios-book-outline"></i> Manage Contracts</a></li>
+                       </ul>
                       </li>
-                      <li><a href="dashboard-reviews.html"><i class="icon-material-outline-rate-review"></i> Reviews</a></li>
-          				    <li><a href="dashboard-my-profile.html"><i class="icon-feather-user"></i> My Profile</a></li>
-                      <li><a href="index-1.html"><i class="icon-material-outline-power-settings-new"></i> Logout</a></li>
+                      <li id="ctr-trigger"><a href="#"><i class="icon ion-ios-briefcase-outline"></i> Contractor submenu<i class="icon ion-chevron-down ml-5"></i></a>
+                        <ul class="dropdown-nav">
+                          <li><a href="dashboard-jobs-post.html"><i class="icon ion-ios-plus-empty"></i> Post a job</a></li>
+                          <li><a href="dashboard-freelancer-manage-tasks-list.html"><i class="icon ion-ios-flag-outline"></i> Manage Jobs <span class="nav-tag">{ count nr }</span></a></li>
+                          <li><a href="dashboard-manage-resume.html"><i class="icon ion-ios-book-outline"></i> Manage Job Applications</a></li>
+                          <li><a href="dashboard-bookmarks.html"><i class="icon ion-ios-bookmarks-outline"></i> Bookmarks</a></li>
+
+                          <li><a href="dashboard-freelancer-active-bids.html"><i class="icon-feather-chevron-right"></i> Active Bids</a></li>
+                          <li><a href="dashboard-freelancer-add-post-bids.html"><i class="icon-feather-chevron-right"></i> Post Bids</a></li>
+                        </ul>
+                       </li>
+                      <li><a href="#"><i class="icon ion-ios-star-outline"></i> Reviews</a></li>
+                      <li><a href="#"><i class="icon ion-log-out"></i> Logout</a></li>
                     </ul>
                   </div>
                 </div>
@@ -70,7 +75,7 @@
     <!-- Dashboard Sidebar / End -->
 
     <!-- Dashboard Content -->
-    <div class="dashboard-content" data-simplebar="init" style="height: 753px;">
+    <div class="dashboard-content " data-simplebar="init" style="height: 730">
       <div class="simplebar-track vertical" style="visibility: visible;">
         <div class="simplebar-scrollbar" style="visibility: visible; top: 0px; height: 246px;"></div>
       </div>
@@ -92,7 +97,7 @@
         			</div>
         		</div>
           </div>
-	        <div class="dashboard-content-inner-aera" style="min-height: 753px;">
+	        <div class="inner-dashboard-content" style="min-height: 753px;">
             {% include 'users/messages.html' %}
             <!-- Start of user facts -->
             <div class="userfacts-container">
@@ -148,7 +153,7 @@
               <div class="col-xl-6 col-md-12 col-sm-12">
                 <div class="dashboard-box main-box-in-row">
                   <div class="headline">
-                    <h3>User Statistics</h3>
+                    <h3>Sales</h3>
     				        <div class="sort-by">
                       <div class="dropdown stat-dropdown">
                         <!-- <a type="button" class="btn dropdown-toggle btn-default timeframe-trigger" data-toggle="dropdown" role="button" title="This Week">
@@ -203,7 +208,7 @@
     		      <div class="col-xl-6 col-md-12 col-sm-12">
                 <div class="dashboard-box main-box-in-row">
                   <div class="headline">
-                    <h3>User Notes Activities</h3>
+                    <h3>Task bids</h3>
                   </div>
                   <div class="content">
                     <div class="header-notifications-content">
@@ -219,7 +224,7 @@
                             <ul class="dashboard-box-list">
                               <li>
                                 <span class="notification-icon"><i class="icon-material-outline-group"></i></span>
-                                <span class="notification-text"><strong>Lorem Ipsum</strong> is simply dummy text of printing and type setting industry. Lorem Ipsum been industry standard dummy text.</span>
+                                <span class="notification-text"><strong>Task title</strong> was bid on <strong>date</strong>.</span>
     						                <div class="buttons-to-right">
                                   <a href="#" class="button green ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Edit"><i class="icon-feather-edit"></i></a>
                                   <a href="#" class="button red ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Remove"><i class="icon-feather-trash-2"></i></a>
@@ -227,21 +232,23 @@
     					                 </li>
     					                <li>
                                 <span class="notification-icon"><i class="icon-feather-briefcase"></i></span>
-                                <span class="notification-text"><strong>Lorem Ipsum</strong> is simply dummy text of printing and type setting industry. Lorem Ipsum been industry standard dummy text.</span>
+                                <span class="notification-text"><strong>Task title</strong> was bid on <strong>date</strong>.</span>
                     						<div class="buttons-to-right">
                     							<a href="#" class="button green ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Edit"><i class="icon-feather-edit"></i></a>
                     							<a href="#" class="button red ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Remove"><i class="icon-feather-trash-2"></i></a>
                     						</div>
     					                </li>
     					                <li>
-                    						<span class="notification-icon"><i class="icon-feather-briefcase"></i></span> <span class="notification-text"><strong>Lorem Ipsum</strong> is simply dummy text of printing and type setting industry. Lorem Ipsum been industry standard dummy text.</span>
+                    						<span class="notification-icon"><i class="icon-feather-briefcase"></i></span>
+                                <span class="notification-text"><strong>Task title</strong> was bid on <strong>date</strong>.</span>
                     						<div class="buttons-to-right">
                     							<a href="#" class="button green ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Edit"><i class="icon-feather-edit"></i></a>
                     							<a href="#" class="button red ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Remove"><i class="icon-feather-trash-2"></i></a>
                     						</div>
                     					</li>
                               <li>
-                    						<span class="notification-icon"><i class="icon-material-outline-group"></i></span> <span class="notification-text"><strong>Lorem Ipsum</strong> is simply dummy text of printing and type setting industry. Lorem Ipsum been industry standard dummy text.</span>
+                    						<span class="notification-icon"><i class="icon-material-outline-group"></i></span>
+                                <span class="notification-text"><strong>Task title</strong> was bid on <strong>date</strong>.</span>
                     						<div class="buttons-to-right">
                     							<a href="#" class="button green ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Edit"><i class="icon-feather-edit"></i></a>
                     							<a href="#" class="button red ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Remove"><i class="icon-feather-trash-2"></i></a>
@@ -252,7 +259,7 @@
                         </div>
                       </div>
                     </div>
-    				        <a href="#small-dialog" class="popup-with-zoom-anim utf-header-notifications-button ripple-effect utf-button-sliding-icon">User Add Notes <i class="icon-feather-chevron-right"></i></a>
+    				        <a href="#small-dialog" class="popup-with-zoom-anim utf-header-notifications-button ripple-effect utf-button-sliding-icon"></a>
                   </div>
                 </div>
               </div>
@@ -263,13 +270,13 @@
               <div class="col-xl-6 col-md-12 col-sm-12">
                 <div class="dashboard-box">
                   <div class="headline">
-                    <h3>Recent Jobs Activities</h3>
+                    <h3>Activity</h3>
                   </div>
                   <div class="content">
                     <ul class="utf-dashboard-box-list">
                       <li>
                         <span class="notification-icon"><i class="icon-material-outline-group"></i></span>
-                        <span class="notification-text"> <strong>John Williams</strong> <a href="#">iOS Developers</a> Someone Downloaded Your Resume.</span>
+                        <span class="notification-text"> <strong>Daniel Ungureanu</strong> <a href="#">Chainsaw Operator</a> Someone Downloaded Your Resume.</span>
                         <div class="utf-buttons-to-right single-right-button">
                           <a href="#" class="button red ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Remove"><i class="icon-feather-trash-2"></i></a>
     					          </div>
@@ -310,7 +317,7 @@
               <div class="col-xl-6 col-md-12 col-sm-12">
                 <div class="dashboard-box">
                   <div class="headline">
-                    <h3>All Order Invoices</h3>
+                    <h3>Invoices</h3>
                     <div class="sort-by">
                       <div class="btn-group bootstrap-select hide-tick">
                         <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" title="This Week">
@@ -363,10 +370,9 @@
                           <div class="utf-invoice-user-city">Afghanistan
                             <img class="flag" src="images/flags/af.svg" alt="" data-tippy-placement="top" data-tippy="" data-original-title="Afghanistan">
                           </div>
-    					            <strong>John Williams <span class="paid">Paid Plan</span> </strong>
+    					            <strong>Imobility <span class="paid"></span> </strong>
                           <ul>
                             <li><span>Order ID:</span> 004312641</li>
-                            <li><span>Package:</span> Standard</li>
                             <li><span>Date:</span> 12 Jan, 2021</li>
                           </ul>
                         </div>
@@ -377,10 +383,9 @@
                           <div class="utf-invoice-user-city">United States
                             <img class="flag" src="images/flags/us.svg" alt="" data-tippy-placement="top" data-tippy="" data-original-title="United States">
                           </div>
-                          <strong>John Williams <span class="paid">Paid Plan</span></strong>
+                          <strong>IT company <span class="paid"></span></strong>
                           <ul>
                             <li><span>Order ID:</span> 004312641</li>
-                            <li><span>Package:</span> Extended</li>
                             <li><span>Date:</span> 18 Jan, 2021</li>
                           </ul>
                         </div>
@@ -394,10 +399,9 @@
                           <div class="utf-invoice-user-city">Australia
                             <img class="flag" src="images/flags/au.svg" alt="" data-tippy-placement="top" data-tippy="" data-original-title="Australia">
                           </div>
-                          <strong>John Williams <span class="unpaid">Unpaid Plan</span></strong>
+                          <strong>IT company <span class="unpaid"></span></strong>
                           <ul>
                             <li><span>Order ID:</span> 004312641</li>
-                            <li><span>Package:</span> Basic</li>
                             <li><span>Date:</span> 06 Jan, 2021</li>
                           </ul>
                         </div>
@@ -427,7 +431,7 @@
         			<div class="col-xl-12">
         				<div class="utf_dashboard_list_box table-responsive recent_booking dashboard-box">
         				  <div class="headline">
-        					<h3>Booking Packages</h3>
+        					<h3>Some other data</h3>
         					<div class="sort-by">
         					  <div class="btn-group bootstrap-select hide-tick"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" title="This Week"><span class="filter-option pull-left">This Week</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open" role="combobox"><ul class="dropdown-menu inner" role="listbox" aria-expanded="false"><li data-original-index="0" class="selected"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true"><span class="text">This Week</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">This Month</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">Last 6 Months</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">This Year</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select class="selectpicker hide-tick" tabindex="-98">
         						<option>This Week</option>
@@ -441,67 +445,67 @@
         				  <table class="table table-hover">
         					<thead>
         					  <tr>
-        						<th>Order ID</th>
+        						<th>ID</th>
         						<th>Profile</th>
-        						<th>Plan Package</th>
-        						<th>Expiry Plan</th>
+        						<th>Plan</th>
+        						<th>Expiry</th>
         						<th>Payment Type</th>
         						<th>Status</th>
-        						<th>View Booking</th>
+        						<th>View</th>
         					  </tr>
         					</thead>
         					<tbody>
         					  <tr>
         						<td>0431261</td>
         						<td><img alt="" class="img-fluid rounded-circle shadow-lg" src="images/thumb-1.jpg" width="50" height="50" data-tippy-placement="top" data-tippy="" data-original-title="John Williams"></td>
-        						<td>Standard Plan</td>
+        						<td>Standard</td>
         						<td>12 Dec 2021</td>
-        						<td>Paypal</td>
+        						<td>?</td>
         						<td><span class="badge badge-pill badge-primary text-uppercase">Approved</span></td>
         						<td><a href="#" class="button gray"><i class="icon-feather-eye"></i> View Detail</a></td>
         					  </tr>
         					  <tr>
         						<td>0431262</td>
         						<td><img alt="" class="img-fluid rounded-circle shadow-lg" src="images/thumb-1.jpg" width="50" height="50" data-tippy-placement="top" data-tippy="" data-original-title="John Williams"></td>
-        						<td>Extended Plan</td>
+        						<td>Extended</td>
         						<td>12 Dec 2021</td>
-        						<td>Credit Card</td>
+        						<td>?</td>
         						<td><span class="badge badge-pill badge-primary text-uppercase">Approved</span></td>
         						<td><a href="#" class="button gray"><i class="icon-feather-eye"></i> View Detail</a></td>
         					  </tr>
         					  <tr>
         						<td>0431263</td>
         						<td><img alt="" class="img-fluid rounded-circle shadow-lg" src="images/thumb-1.jpg" width="50" height="50" data-tippy-placement="top" data-tippy="" data-original-title="John Williams"></td>
-        						<td>Standard Plan</td>
+        						<td>Standard</td>
         						<td>12 Dec 2021</td>
-        						<td>Paypal</td>
+        						<td>?</td>
         						<td><span class="badge badge-pill badge-danger text-uppercase">Pending</span></td>
         						<td><a href="#" class="button gray"><i class="icon-feather-eye"></i> View Detail</a></td>
         					  </tr>
         					  <tr>
         						<td>0431264</td>
         						<td><img alt="" class="img-fluid rounded-circle shadow-lg" src="images/thumb-1.jpg" width="50" height="50" data-tippy-placement="top" data-tippy="" data-original-title="John Williams"></td>
-        						<td>Basic Plan</td>
+        						<td>Basic</td>
         						<td>12 Dec 2021</td>
-        						<td>Paypal</td>
+        						<td>?</td>
         						<td><span class="badge badge-pill badge-danger text-uppercase">Pending</span></td>
         						<td><a href="#" class="button gray"><i class="icon-feather-eye"></i> View Detail</a></td>
         					  </tr>
         					  <tr>
         						<td>0431265</td>
         						<td><img alt="" class="img-fluid rounded-circle shadow-lg" src="images/thumb-1.jpg" width="50" height="50" data-tippy-placement="top" data-tippy="" data-original-title="John Williams"></td>
-        						<td>Extended Plan</td>
+        						<td>Extended</td>
         						<td>12 Dec 2021</td>
-        						<td>Paywith Stripe</td>
+        						<td>?</td>
         						<td><span class="badge badge-pill badge-danger text-uppercase">Pending</span></td>
         						<td><a href="#" class="button gray"><i class="icon-feather-eye"></i> View Detail</a></td>
         					  </tr>
         					  <tr>
         						<td>0431266</td>
         						<td><img alt="" class="img-fluid rounded-circle shadow-lg" src="images/thumb-1.jpg" width="50" height="50" data-tippy-placement="top" data-tippy="" data-original-title="John Williams"></td>
-        						<td>Basic Plan</td>
+        						<td>Basic</td>
         						<td>12 Dec 2021</td>
-        						<td>Paypal</td>
+        						<td>?</td>
         						<td><span class="badge badge-pill badge-canceled text-uppercase">Canceled</span></td>
         						<td><a href="#" class="button gray"><i class="icon-feather-eye"></i> View Detail</a></td>
         					  </tr>

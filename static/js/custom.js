@@ -201,9 +201,45 @@ $(function () {
   $( ".dashboard-trigger" ).click(function() {
     $( '.dashboard-nav' ).toggleClass( "active" );
   });
+  /*** Submenus ***/
+  $( "#fr-trigger" ).click(function() {
+    $( '#fr-trigger' ).toggleClass( "active-submenu" );
+    if ($("#fr-trigger.active-submenu")[0]) {
+      $( '#fr-trigger>a>i' ).removeClass( "ion-chevron-down" );
+      $( '#fr-trigger>a>i' ).addClass( "ion-chevron-up" );
+    } else {
+      $( '#fr-trigger>a>i' ).addClass( "ion-chevron-down" );
+      $( '#fr-trigger>a>i' ).removeClass( "ion-chevron-up" );
+    }
+  });
+  $( "#ctr-trigger" ).click(function() {
+    $( '#ctr-trigger' ).toggleClass( "active-submenu" );
+    if ($("#ctr-trigger.active-submenu")[0]) {
+      $( '#ctr-trigger>a>i' ).removeClass( "ion-chevron-down" );
+      $( '#ctr-trigger>a>i' ).addClass( "ion-chevron-up" );
+    } else {
+      $( '#ctr-trigger>a>i' ).addClass( "ion-chevron-down" );
+      $( '#ctr-trigger>a>i' ).removeClass( "ion-chevron-up" );
+    }
+  });
   /*** User Statistics timeframe dropdown ***/
   $( ".timeframe-trigger" ).click(function() {
     $( '.tmfr-dropdown' ).toggleClass( "open" );
   });
 
 });
+// Check when window size is below 992 in order to change styling on dashboard links
+$(window).resize(function() {
+  if ($(window).width() < 992) {
+     $( '.dashboard-nav' ).addClass( "mobile" );
+  }
+ else {
+    $( '.dashboard-nav' ).removeClass( "mobile" );
+ }
+});
+// Show notification when hovering over something
+$(".ion-star").hover(function() {
+        $(this).css('cursor','pointer').attr('title', 'Basic membership.');
+    }, function() {
+        $(this).css('cursor','auto');
+    });

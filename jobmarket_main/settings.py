@@ -19,7 +19,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'dincolo.eu', 'www.dincolo.eu']
-FROM_MAINTENANCE = True
+FROM_MAINTENANCE = False
 
 # Application definition
 
@@ -179,33 +179,3 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
  }
-#-------------------PROGRESSIVE WEB APP SETUP-----------------------------------
-# PWA_APP_NAME = 'Dincolo'
-# PWA_APP_DESCRIPTION = "Job portal PWA"
-# PWA_APP_THEME_COLOR = '#000000'
-# PWA_APP_BACKGROUND_COLOR = '#ffffff'
-# PWA_APP_DISPLAY = 'standalone'
-# PWA_APP_SCOPE = '/'
-# PWA_APP_ORIENTATION = 'any'
-# PWA_APP_START_URL = ''
-# PWA_APP_STATUS_BAR_COLOR = 'default'
-# PWA_APP_ICONS = [
-#     {
-#         'src': 'static/images/1200px-Flag_of_Romania.svg.png',
-#         'sizes': '160x160'
-#     }
-# ]
-# PWA_APP_ICONS_APPLE = [
-#     {
-#         'src': 'static/images/1200px-Flag_of_Romania.svg.png',
-#         'sizes': '160x160'
-#     }
-# ]
-# PWA_APP_SPLASH_SCREEN = [
-#     {
-#         'src': 'static/images/1200px-Flag_of_Romania.svg.png',
-#         'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
-#     }
-# ]
-# PWA_APP_DIR = 'ltr'
-# PWA_APP_LANG = 'en-US'
