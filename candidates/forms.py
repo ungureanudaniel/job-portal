@@ -1,10 +1,10 @@
 from django import forms
-from .models import Profile, Skill, Post
-#
-class AddNewJobForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ['title', 'text', 'category', 'featured', 'slug']
+from .models import Profile, Skill, ServicePost
+
+# class AddNewJobForm(forms.ModelForm):
+#     class Meta:
+#         model = ServicePost
+#         fields = ['title', 'text', 'category', 'featured', 'slug']
 class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile

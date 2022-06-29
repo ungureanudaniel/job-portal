@@ -1,7 +1,8 @@
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home, candidate_dashboard, add_post, category, job_details, search_results
+from .views import home, candidate_dashboard, add_post, category, job_details,\
+ search_results
 from users.views import user_logout
 from django.conf.urls.i18n import i18n_patterns
 from django.utils.translation import ugettext_lazy as _
@@ -59,7 +60,7 @@ urlpatterns = [
     # path("job_list/", views.job_list, name="job_list"),
     # path("edit_job/<int:myid>/", views.edit_job, name="edit_job"),
     # path("company_logo/<int:myid>/", views.company_logo, name="company_logo"),
-    # for admin
+    # # for admin
     # path("admin_login/", views.admin_login, name="admin_login"),
     # path("view_applicants/", views.view_applicants, name="view_applicants"),
     # path("delete_applicant/<int:myid>/", views.delete_applicant, name="delete_applicant"),

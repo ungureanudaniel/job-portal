@@ -2,7 +2,9 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
-from .views import register, user_login, user_logout, contact, about, profile, dashboard, privacy, terms, registration_conf_view, registration_success_view
+from .views import register, user_login, user_logout, contact, about,\
+ profile, dashboard, privacy, terms, registration_conf_view,\
+ registration_success_view, add_service_view
 
 urlpatterns = [
     # path('login/', user_login, name='login'),
@@ -17,6 +19,7 @@ urlpatterns = [
     # path('review/', include('review.urls')),
     path('profile/', profile, name='profile'),
     path('dashboard/', dashboard, name='dashboard'),
+    path('add_service/', add_service_view, name='add_service'),
     path('privacy-policy/', privacy, name='privacy-policy'),
     path('terms-of-service/', terms, name='terms-of-service'),
     ]

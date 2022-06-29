@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django_countries',
     'django.contrib.sites',
     'users',
-    'recruiters',
     'candidates',
 
 ]

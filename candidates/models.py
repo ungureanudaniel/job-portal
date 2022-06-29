@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from autoslug import AutoSlugField
 from django_countries.fields import CountryField
-from recruiters.models import JobCategory, Job
 from ckeditor.fields import RichTextField
-
+from time import strftime
+from time import gmtime
 # class EmailBackend(ModelBackend):
 #     def authenticate(self, request, username=None, password=None, **kwargs):
 #         UserModel = get_user_model()
@@ -18,16 +18,47 @@ from ckeditor.fields import RichTextField
 #                 return user
 #         return None
 
-class AvailableCountry(models.Model):
-    name = models.CharField(max_length=200, null=True, blank=True, verbose_name = "Available Countries")
+#-----------------------------------THE JOB CATEGORIES MODEL-------------------
+class Category(models.Model):
+    name = models.CharField(max_length=30)
+    icon = models.ImageField(upload_to='media/job_category', blank=True, null=True)
+    image = models.ImageField(upload_to='media/job_category', blank=True)
+    slug = models.SlugField(max_length=255, unique=True)
 
     class Meta:
-        verbose_name = "Available Country"
-        verbose_name_plural = "Available Countries"
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
 
     def __str__(self):
         return self.name
-#---------------------------POST TAGS -----------------------------------------
+
+
+
+#-----------------------------------THE JOB POST ------ ------------------------
+class SubCategory(models.Model):
+    cat = models.ForeignKey(Category, related_name='subcategory', on_delete=models.SET_NULL, blank=True, null=True)
+    name = models.CharField(max_length=30)
+    icon = models.ImageField(upload_to='media/job_category', blank=True, null=True)
+    image = models.ImageField(upload_to='media/job_category', blank=True)
+    slug = models.SlugField(max_length=255, unique=True)
+
+    class Meta:
+        verbose_name = 'subcategory'
+        verbose_name_plural = 'subcategories'
+
+    def __str__(self):
+        return self.name
+
+# class AvailableCountry(models.Model):
+#     name = models.CharField(max_length=200, null=True, blank=True, verbose_name = "Available Countries")
+#
+#     class Meta:
+#         verbose_name = "Available Country"
+#         verbose_name_plural = "Available Countries"
+#
+#     def __str__(self):
+#         return self.name
+# #---------------------------POST TAGS -----------------------------------------
 class Tag(models.Model):
     name_ro = models.CharField(max_length=255, unique=True)
     name_en = models.CharField(max_length=255, unique=True)
@@ -35,10 +66,9 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name_ro
-
-#--------------------------CANDIDATE POST MODEL---------------------------------
-
-class Post(models.Model):
+#
+# #--------------------------CANDIDATE POST MODEL---------------------------------
+class ServicePost(models.Model):
     STATUS_CHOICES = (
         ('Published', 'Published'),
         ('Draft', 'Draft'),
@@ -47,7 +77,9 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='blog')
     text = RichTextField(blank=True, null=True)
-    category = models.ForeignKey(JobCategory, related_name='jobcategory', on_delete=models.SET_NULL, blank=True, null=True)
+    category = models.ForeignKey(Category, related_name='category', on_delete=models.SET_NULL, blank=True, null=True)
+    subcat = models.ForeignKey(SubCategory, related_name='subcategory', on_delete=models.SET_NULL, blank=True, null=True)
+    price = models.CharField(max_length=10)
     featured = models.BooleanField(default=False)
     slug = models.SlugField(max_length=255, unique=True)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -100,27 +132,27 @@ class Skill(models.Model):
     skill = models.CharField(max_length=200)
     # user = models.ForeignKey(CustomUser, related_name='skills', on_delete=models.CASCADE)
 #
-class SavedJobs(models.Model):
-    job = models.ForeignKey(Job, related_name='saved_job', on_delete=models.CASCADE)
-    # user = models.ForeignKey(CustomUser, related_name='saved', on_delete=models.CASCADE)
-    date_posted = models.DateTimeField(default=timezone.now)
-
-
-    class Meta:
-        verbose_name = "Saved Jobs"
-        verbose_name_plural = "Saved Jobs"
-
-    def __str__(self):
-        return self.job.title
-
-class AppliedJobs(models.Model):
-    job = models.ForeignKey(Job, related_name='applied_job', on_delete=models.CASCADE)
-    # user = models.ForeignKey(CustomUser, related_name='applied_user', on_delete=models.CASCADE)
-    date_posted = models.DateTimeField(default=timezone.now)
-
-    class Meta:
-        verbose_name = "Applied Jobs"
-        verbose_name_plural = "Applied Jobs"
-
-    def __str__(self):
-        return self.job.title
+# class SavedJobs(models.Model):
+#     job = models.ForeignKey(Job, related_name='saved_job', on_delete=models.CASCADE)
+#     # user = models.ForeignKey(CustomUser, related_name='saved', on_delete=models.CASCADE)
+#     date_posted = models.DateTimeField(default=timezone.now)
+#
+#
+#     class Meta:
+#         verbose_name = "Saved Jobs"
+#         verbose_name_plural = "Saved Jobs"
+#
+#     def __str__(self):
+#         return self.job.title
+#
+# class AppliedJobs(models.Model):
+#     job = models.ForeignKey(Job, related_name='applied_job', on_delete=models.CASCADE)
+#     # user = models.ForeignKey(CustomUser, related_name='applied_user', on_delete=models.CASCADE)
+#     date_posted = models.DateTimeField(default=timezone.now)
+#
+#     class Meta:
+#         verbose_name = "Applied Jobs"
+#         verbose_name_plural = "Applied Jobs"
+#
+#     def __str__(self):
+#         return self.job.title

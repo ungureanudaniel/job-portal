@@ -228,6 +228,7 @@ $(function () {
   });
 
 });
+$('#ex-basic').picker();
 // Check when window size is below 992 in order to change styling on dashboard links
 $(window).resize(function() {
   if ($(window).width() < 992) {
@@ -242,4 +243,36 @@ $(".ion-star").hover(function() {
         $(this).css('cursor','pointer').attr('title', 'Basic membership.');
     }, function() {
         $(this).css('cursor','auto');
+});
+// Update select dropdown for service category
+// const prices = {"programming":[{value:1,desc:"Websites Builders;"},{value:2,desc:"Wordpress;"},{value:3,desc:"Games;"},{value:4,desc:"E-commerce;"},{value:5,desc:"Mobile applications;"}],
+//              "accounting":[{value:1,desc:"Websites Builders;"},{value:2,desc:"Wordpress;"},{value:3,desc:"Games;"},{value:4,desc:"E-commerce;"},{value:5,desc:"Mobile applications;"}],
+//              "writing":[{value:1,desc:"Websites Builders;"},{value:2,desc:"Wordpress;"},{value:3,desc:"Games;"},{value:4,desc:"E-commerce;"},{value:5,desc:"Mobile applications;"}],
+//              "translation":[{value:1,desc:"Websites Builders;"},{value:2,desc:"Wordpress;"},{value:3,desc:"Games;"},{value:4,desc:"E-commerce;"},{value:5,desc:"Mobile applications;"}],
+//              "video":[{value:1,desc:"Animated explainers;"},{value:2,desc:"Wordpress;"},{value:3,desc:"Games;"},{value:4,desc:"E-commerce;"},{value:5,desc:"Mobile applications;"}],
+//              "audio":[{value:1,desc:"Websites Builders;"},{value:2,desc:"Wordpress;"},{value:3,desc:"Games;"},{value:4,desc:"E-commerce;"},{value:5,desc:"Mobile applications;"}],
+//              "business":[{value:1,desc:"CRM management;"},{value:2,desc:"Customer Care;"},{value:3,desc:"HR consulting;"},{value:4,desc:"Event management;"},{value:5,desc:"Career Counseling;"}],
+//              "marketing":[{value:1,desc:"Websites Builders;"},{value:2,desc:"Wordpress;"},{value:3,desc:"Games;"},{value:4,desc:"E-commerce;"},{value:5,desc:"Mobile applications;"}],
+//              "lifestyle":[{value:1,desc:"Websites Builders;"},{value:2,desc:"Wordpress;"},{value:3,desc:"Games;"},{value:4,desc:"E-commerce;"},{value:5,desc:"Mobile applications;"}],
+//              "graphic":[{value:1,desc:"Websites Builders;"},{value:2,desc:"Wordpress;"},{value:3,desc:"Games;"},{value:4,desc:"E-commerce;"},{value:5,desc:"Mobile applications;"}]}
+//
+// const price = document.querySelector('[name=subcategory]');
+// document.querySelector('[name=category]').addEventListener('change', function(e) {
+//   price.innerHTML = prices[this.value].reduce((acc, elem) => `${acc}<option value="${elem.value}">${elem.desc}</option>`, "");
+// });
+var document = window.document;
+    $(document).ready(function(){
+
+        var $field1var=$("#field1");
+        var $field2var=$("#field2");
+
+        var $field2options=$field2var.find('option');
+
+        $field2var.html($field2options.filter('[value=""]'));
+
+        $field1var.on('change',function(){
+            $field2var.html($field2options.filter('[parent="'+this.value+'"],[value=""]'));
+            $('#field2 option[value=""]').prop('selected', true);
+
+        });
     });

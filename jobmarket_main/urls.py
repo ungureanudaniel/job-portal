@@ -14,7 +14,6 @@ urlpatterns = [
     ]
 urlpatterns += i18n_patterns(
     path('users/', include('users.urls')),
-    path('hiring/', include('recruiters.urls')),
     path('', include('candidates.urls')),
     path('captcha/', include('captcha.urls')),
     path('__debug__/', include(debug_toolbar.urls)),

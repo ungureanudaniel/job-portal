@@ -1,0 +1,531 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+<div class="clearfix"></div>
+{% include 'users/messages.html' %}
+
+<div class="dashboard-container" style="height: 753px;">
+    <!-- Dashboard Sidebar -->
+    <div class="dashboard-sidebar">
+      <div class="dashboard-sidebar-inner" data-simplebar="init" style="height: 753px;">
+        <div class="simplebar-track vertical" style="visibility: visible; display: none;">
+          <div class="simplebar-scrollbar" style="visibility: visible; top: 0px; height: 25px;">
+          </div>
+        </div>
+        <div class="simplebar-track horizontal" style="visibility: visible; display: none;">
+          <div class="simplebar-scrollbar" style="visibility: visible; left: 0px; width: 25px;">
+          </div>
+        </div>
+        <div class="simplebar-scroll-content" style="padding-right: 15px; margin-bottom: -30px;">
+          <div class="simplebar-content" style="padding-bottom: 15px; margin-right: -15px;">
+            <div class="dashboard-nav-container">
+              <!-- Responsive Navigation Trigger -->
+              <a href="#" class="dashboard-trigger">
+                <span class="hamburger hamburger-collapse-item">
+                  <span class="hamburger-box-item">
+                    <span class="hamburger-inner-item"></span>
+                  </span>
+                </span>
+                <span class="trigger-title">Dashboard Menu</span>
+              </a>
+                <!-- Navigation -->
+        		  <div class="dashboard-nav">
+          			<div class="dashboard-nav-inner">
+          			  <div class="dashboard-profile-box">
+          				  <span class="avatar-img">
+                      <img alt="" src="{% static 'img/avatar-img.png' %}" class="photo">
+          				  </span>
+          				  <div class="user-profile-text">
+                      <span class="fullname">Daniel Ungureanu</span>
+                      <span class="user-role">Chainsaw Operator</span>
+          				  </div>
+          			   </div>
+                   <div class="clearfix"></div>
+                   <ul>
+                     <li ><a href="{% url 'dashboard' %}"><i class="icon ion-clipboard"></i> Dashboard</a></li>
+                     <li ><a href="{% url 'profile' %}"><i class="icon ion-ios-person-outline"></i> Profile</a></li>
+                     <li class="active" id="fr-trigger"><a href="#"><i class="icon ion-ios-lightbulb-outline"></i> Freelancer submenu<i class="icon ion-chevron-down ml-5"></i></a>
+                       <ul class="dropdown-nav">
+                         <li><a href="{% url 'add_service' %}"><i class="icon ion-ios-plus-empty"></i> Post a Service</a></li>
+                         <li><a href="dashboard-freelancer-manage-tasks-list.html"><i class="icon ion-ios-book-outline"></i> Manage Contracts</a></li>
+                       </ul>
+                      </li>
+                      <li id="ctr-trigger"><a href="#"><i class="icon ion-ios-briefcase-outline"></i> Contractor submenu<i class="icon ion-chevron-down ml-5"></i></a>
+                        <ul class="dropdown-nav">
+                          <li><a href="dashboard-jobs-post.html"><i class="icon ion-ios-plus-empty"></i> Post a job</a></li>
+                          <li><a href="dashboard-freelancer-manage-tasks-list.html"><i class="icon ion-ios-flag-outline"></i> Manage Jobs <span class="nav-tag">{ count nr }</span></a></li>
+                          <li><a href="dashboard-manage-resume.html"><i class="icon ion-ios-book-outline"></i> Manage Job Applications</a></li>
+                          <li><a href="dashboard-bookmarks.html"><i class="icon ion-ios-bookmarks-outline"></i> Bookmarks</a></li>
+
+                          <li><a href="dashboard-freelancer-active-bids.html"><i class="icon-feather-chevron-right"></i> Active Bids</a></li>
+                          <li><a href="dashboard-freelancer-add-post-bids.html"><i class="icon-feather-chevron-right"></i> Post Bids</a></li>
+                        </ul>
+                       </li>
+                      <li><a href="#"><i class="icon ion-ios-star-outline"></i> Reviews</a></li>
+                      <li><a href="#"><i class="icon ion-log-out"></i> Logout</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- Dashboard Sidebar / End -->
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content " data-simplebar="init" style="height: 730">
+      <div class="simplebar-track vertical" style="visibility: visible;">
+        <div class="simplebar-scrollbar" style="visibility: visible; top: 0px; height: 246px;"></div>
+      </div>
+      <div class="simplebar-track horizontal" style="visibility: visible;">
+        <div class="simplebar-scrollbar" style="visibility: visible; left: 0px; width: 25px;"></div>
+      </div>
+      <div class="simplebar-scroll-content" style="padding-right: 15px; margin-bottom: -30px;">
+        <div class="simplebar-content" style="padding-bottom: 15px; margin-right: -15px;">
+      	  <div id="dashboard-titlebar" class="dashboard-headline-item">
+        		<div class="row">
+        			<div class="col-xl-12">
+        				<h3>Dashboard</h3>
+        				<nav id="breadcrumbs">
+        					<ul>
+        					  <li><a href="{% url 'home' %}">Home</a></li>
+        					  <li>Dashboard</li>
+        					</ul>
+        				</nav>
+        			</div>
+        		</div>
+          </div>
+	        <div class="inner-dashboard-content" style="min-height: 753px;">
+          <!-- Post a service form -->
+            <div class="row">
+        		  <div class="col-xl-12">
+                <div class="dashboard-box">
+                  <div class="headline">
+                    <h3>Write about the service you provide</h3>
+                  </div>
+                  <div class="content with-padding padding-bottom-10">
+                    <div class="row">
+                      <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="submit-field">
+                          <h5>Service title</h5>
+                          <input type="text" class="with-border" placeholder="Type in your service, max 6 words">
+                        </div>
+                      </div>
+                      <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="submit-field">
+                          <h5>Service Category</h5>
+                          <select name="category" class="with-border" >
+                            <option selected>Choose...</option>
+                            <option value="programming">Programming</option>
+                            <option value="accounting">Accounting</option>
+                            <option value="writing">Writing</option>
+                            <option value="translation">Translation</option>
+                            <option value="video">Video Editing</option>
+                            <option value="audio">Audio Editing</option>
+                            <option value="business">Business</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="graphic">Graphic design</option>
+                            <option value="lifestyle">Lifestyle</option>
+                          </select>
+
+                        </div>
+                      </div>
+                      <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="submit-field">
+                          <h5>Subcategory</h5>
+                          <select name="subcategory" class="with-border" >
+                            <option selected>Choose...</option>
+
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="submit-field">
+                          <h5>Service Type</h5>
+                          <select name="type" class="with-border" >
+                            <option selected>Choose...</option>
+
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="submit-field">
+                          <h5>Price</h5>
+                          <div class="row">
+                            <div class="col-xl-6 col-md-6 col-sm-6">
+                              <div class="input-with-icon">
+                                <input class="with-border" type="text" placeholder="Min Salary">
+                                <i class="currency">USD</i>
+        						          </div>
+                            </div>
+                            <div class="col-xl-6 col-md-6 col-sm-6">
+                              <div class="utf-input-with-icon">
+                                <input class="utf-with-border" type="text" placeholder="Max Salary">
+                                <i class="currency">USD</i>
+        						          </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+        				      <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="submit-field">
+                          <h5>Tags</h5>
+                          <input type="text" class="utf-with-border" placeholder="Search Tags">
+                        </div>
+                      </div>
+
+        				      <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="submit-field">
+                          <h5>Experience</h5>
+                          <div class="btn-group bootstrap-select utf-with-border">
+                            <button type="button" class="btn dropdown-toggle bs-placeholder btn-default" data-toggle="dropdown" role="button" title="Select Experience">
+                              <span class="filter-option pull-left">Select Experience</span>&nbsp;
+                              <span class="bs-caret">
+                                <span class="caret"></span>
+                              </span>
+                            </button>
+                            <div class="dropdown-menu open" role="combobox">
+                              <ul class="dropdown-menu inner" role="listbox" aria-expanded="false">
+                                <li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">1 Year</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                <li data-original-index="2"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">1.5 Year</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                <li data-original-index="3"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">2 Year</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                <li data-original-index="4"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">2.5 Year</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                                <li data-original-index="5"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">3 Year</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li>
+                              </ul>
+                            </div>
+                            <select class="selectpicker utf-with-border" data-value="0 To 6 Years" data-size="7" title="Select Experience" tabindex="-98"><option class="bs-title-option" value="">Select Experience</option>
+                              <option>1 Year</option>
+                              <option>1.5 Year</option>
+                              <option>2 Year</option>
+                              <option>2.5 Year</option>
+                              <option>3 Year</option>
+                            </select></div>
+                          </div>
+                        </div>
+
+        				      <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="submit-field">
+                          <h5>Location</h5>
+                          <input type="text" class="utf-with-border" placeholder="Type Address">
+                        </div>
+                      </div>
+
+        				      <div class="col-xl-12 col-md-12 col-sm-12">
+                        <div class="submit-field">
+                          <h5>Job Skills?
+                            <i class="help-icon" data-tippy-placement="top" data-tippy="" data-original-title="Maximum of 6 Skills"></i>
+                          </h5>
+                          <div class="keywords-container">
+                            <div class="keyword-input-container">
+                              <input type="text" class="keyword-input utf-with-border" placeholder="CSS, Photoshop, Js, Bootstrap">
+                              <button class="keyword-input-button ripple-effect"><i class="icon-material-outline-add"></i></button>
+                            </div>
+                            <div class="keywords-list" style="height: auto;"><!-- keywords go here --></div>
+                            <div class="clearfix"></div>
+                          </div>
+                        </div>
+                      </div>
+        				      <div class="col-xl-12 col-md-12 col-sm-12">
+                        <div class="feedback-yes-no margin-bottom-30 margin-top-10">
+                          <div class="radio">
+                            <input id="radio-1" name="radio" type="radio" checked="">
+                            <label for="radio-1"><span class="radio-label"></span> Hourly Price</label>
+        						      </div>
+                          <div class="radio">
+                            <input id="radio-2" name="radio" type="radio">
+                            <label for="radio-2"><span class="radio-label"></span> Fixed Price</label>
+                          </div>
+        					      </div>
+                      </div>
+        				      <div class="col-xl-12 col-md-12 col-sm-12">
+                        <div class="submit-field">
+                          <h5>Project Description</h5>
+        					        <textarea cols="40" rows="2" class="utf-with-border" placeholder="Project Description..."></textarea>
+                        </div>
+                      </div>
+        				      <div class="col-xl-12 col-md-12 col-sm-12">
+                        <div class="submit-field">
+                          <h5>Upload File</h5>
+                          <div class="uploadButton margin-top-15 margin-bottom-30">
+                            <input class="uploadButton-input" type="file" accept="image/*, application/pdf" id="upload" multiple="">
+                            <label class="uploadButton-button ripple-effect" for="upload">Upload File</label>
+                            <span class="uploadButton-file-name">Upload File (Docx, Doc, PDF) File.</span>
+        					        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xl-12">
+                <div class="dashboard-box">
+                  <div class="headline">
+                    <h3>Personal Detail &amp; Address</h3>
+                  </div>
+                  <div class="content with-padding padding-bottom-10">
+                    <div class="row">
+                      <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="submit-field datepicker">
+                          <h5>Birth Date</h5>
+                          <input class="utf-with-border" type="date">
+                        </div>
+                      </div>
+                      <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="submit-field">
+                          <h5>Address</h5>
+                          <input type="text" class="utf-with-border" placeholder="Address">
+                        </div>
+                      </div>
+                      <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="submit-field">
+                          <h5>City</h5>
+                          <div class="btn-group bootstrap-select utf-with-border">
+                            <button type="button" class="btn dropdown-toggle bs-placeholder btn-default" data-toggle="dropdown" role="button" title="Select City">
+                              <span class="filter-option pull-left">Select City</span>&nbsp;
+                              <span class="bs-caret">
+                                <span class="caret"></span>
+                              </span>
+                            </button>
+                            <div class="dropdown-menu open" role="combobox">
+                              <ul class="dropdown-menu inner" role="listbox" aria-expanded="false">
+                                <li data-original-index="1">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">Allahabad</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                                <li data-original-index="2">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">Faizabad</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                                <li data-original-index="3">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">Sultanpur</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                                <li data-original-index="4">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">Pratapgarh</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                                <li data-original-index="5">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">Basti</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                            <select class="selectpicker utf-with-border" data-size="7" title="Select City" tabindex="-98"><option class="bs-title-option" value="">Select City</option>
+                              <option>Allahabad</option>
+                              <option>Faizabad</option>
+                              <option>Sultanpur</option>
+                              <option>Pratapgarh</option>
+                              <option>Basti</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+        				      <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="submit-field">
+                          <h5>State</h5>
+                          <div class="btn-group bootstrap-select utf-with-border">
+                            <button type="button" class="btn dropdown-toggle bs-placeholder btn-default" data-toggle="dropdown" role="button" title="Select State">
+                              <span class="filter-option pull-left">Select State</span>&nbsp;
+                              <span class="bs-caret">
+                                <span class="caret"></span>
+                              </span>
+                            </button>
+                            <div class="dropdown-menu open" role="combobox">
+                              <ul class="dropdown-menu inner" role="listbox" aria-expanded="false">
+                                <li data-original-index="1">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">Allahabad</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                                <li data-original-index="2">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">Faizabad</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                                <li data-original-index="3">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">Sultanpur</span><span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                                <li data-original-index="4">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">Pratapgarh</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                                <li data-original-index="5">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">Basti</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                            <select class="selectpicker utf-with-border" data-size="7" title="Select State" tabindex="-98">
+                              <option class="bs-title-option" value="">Select State</option>
+                              <option>Allahabad</option>
+                              <option>Faizabad</option>
+                              <option>Sultanpur</option>
+                              <option>Pratapgarh</option>
+                              <option>Basti</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+        				      <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="submit-field">
+                          <h5>Country</h5>
+                          <div class="btn-group bootstrap-select utf-with-border">
+                            <button type="button" class="btn dropdown-toggle bs-placeholder btn-default" data-toggle="dropdown" role="button" title="Select Country">
+                              <span class="filter-option pull-left">Select Country</span>&nbsp;
+                              <span class="bs-caret">
+                                <span class="caret"></span>
+                              </span>
+                            </button>
+                            <div class="dropdown-menu open" role="combobox">
+                              <ul class="dropdown-menu inner" role="listbox" aria-expanded="false">
+                                <li data-original-index="1">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">Allahabad</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                                <li data-original-index="2">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">Faizabad</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                                <li data-original-index="3">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">Sultanpur</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                                <li data-original-index="4">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">Pratapgarh</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                                <li data-original-index="5">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">Basti</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                            <select class="selectpicker utf-with-border" data-size="7" title="Select Country" tabindex="-98">
+                              <option class="bs-title-option" value="">Select Country</option>
+                              <option>Allahabad</option>
+                              <option>Faizabad</option>
+                              <option>Sultanpur</option>
+                              <option>Pratapgarh</option>
+                              <option>Basti</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="submit-field">
+                          <h5>Zip Code</h5>
+                          <input type="text" class="utf-with-border" placeholder="000000">
+                        </div>
+                      </div>
+        				      <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="submit-field">
+                          <h5>Father Name</h5>
+                          <input type="text" class="utf-with-border" placeholder="Father Name">
+                        </div>
+                      </div>
+        				      <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="submit-field">
+                          <h5>Hobbies(With Comma)</h5>
+                          <input type="text" class="utf-with-border" placeholder="Hobbies(With Comma)">
+                        </div>
+                      </div>
+                      <div class="col-xl-12 col-md-12 col-sm-12">
+                        <div class="submit-field">
+                          <h5>Description</h5>
+        					        <textarea cols="20" rows="2" class="utf-with-border" placeholder="Description..."></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+        		  <div class="col-xl-12">
+                <div class="dashboard-box">
+                  <div class="headline">
+                    <h3>Social Accounts</h3>
+                  </div>
+                <div class="content with-padding padding-bottom-10">
+                  <div class="row">
+                    <div class="col-xl-6 col-md-6 col-sm-12">
+                      <div class="submit-field">
+                        <h5><i class="icon-brand-facebook"></i> Facebook</h5>
+                        <input type="text" class="utf-with-border" placeholder="https://www.facebook.com">
+                      </div>
+                    </div>
+        				    <div class="col-xl-6 col-md-6 col-sm-12">
+                      <div class="submit-field">
+                        <h5><i class="icon-brand-twitter"></i> Twitter</h5>
+                        <input type="text" class="utf-with-border" placeholder="https://twitter.com">
+                      </div>
+                    </div>
+        				    <div class="col-xl-6 col-md-6 col-sm-12">
+                      <div class="submit-field">
+                        <h5><i class="icon-brand-linkedin"></i> LinkedIn</h5>
+                        <input type="text" class="utf-with-border" placeholder="https://www.linkedin.com">
+                      </div>
+                    </div>
+        				    <div class="col-xl-6 col-md-6 col-sm-12">
+                      <div class="submit-field">
+                        <h5><i class="icon-brand-google"></i> Google +</h5>
+                        <input type="text" class="utf-with-border" placeholder="https://www.google.com">
+                      </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12">
+                      <div class="submit-field">
+                        <h5><i class="icon-brand-pinterest"></i> Pinterest</h5>
+                        <input type="text" class="utf-with-border" placeholder="https://www.pinterest.com">
+                      </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-12">
+                      <div class="submit-field">
+                        <h5><i class="icon-feather-instagram"></i> Instagram</h5>
+                        <input type="text" class="utf-with-border" placeholder="https://www.instagram.com">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="utf-centered-button">
+            <a href="javascript:void(0);" class="button utf-ripple-effect-dark utf-button-sliding-icon margin-top-0">Submit <i class="icon-feather-plus"></i></a>
+          </div>
+            <!-- Post a service form end-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

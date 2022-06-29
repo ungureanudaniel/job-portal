@@ -163,11 +163,17 @@ def dashboard(request):
         'dashboard': "active",
     }
     return render(request, 'users/dashboard.html', context)
-
+#-------------------------ADD SERVICE VIEW---------------------------------------
+@login_required
+def add_service_view(request):
+    context = {
+    }
+    return render(request, 'users/add_service.html', context)
+#-------------------------PRIVACY VIEW---------------------------------------
 def privacy(request):
     return render(request, 'users/privacy.html')
 
-
+#-------------------------TERMS VIEW---------------------------------------
 def terms(request):
     return render(request, 'users/terms.html')
 

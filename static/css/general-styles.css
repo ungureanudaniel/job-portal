@@ -147,10 +147,6 @@ nav ul li {
   align-items: center;
   -webkit-box-align: center;
 } */
-.dropdown-menu {
-  background-color: var(--themecolordropdowns);
-  margin-top: 8.5px;
-}
 .dropdown-menu li {
     margin: 0;
     padding: 5px 7px;
@@ -1121,7 +1117,218 @@ select.bs-select-hidden, select.selectpicker {
 .section-title h2, .section-title i {
   margin: 40px;
 }
-
+.submit-field {
+    margin-bottom: 20px;
+    display: block;
+}
+.submit-field h5 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+}
+/*---------------
+      ADD SERVICE post
+-----------------*/
+.dashboard-box .content.with-padding {
+    padding: 30px;
+}
+.padding-bottom-10 {
+    padding-bottom: 10px !important;
+}
+input.with-border, input[type="text"].with-border, input[type="password"].with-border, input[type="email"].with-border, input[type="number"].with-border, textarea.with-border, select.with-border {
+    background: #fbfdff;
+    border: 1px solid #dde6ef;
+    box-shadow: 0 1px 4px 0px rgb(0 0 0 / 5%);
+}
+body, h1, h2, h3, h4, h5, h6, input[type="text"], input[type="password"], input[type="email"], textarea, select, input[type="button"], input[type="submit"], button, body .pac-container {
+    font-family: "Nunito", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-transform: none;
+}
+input, input[type="text"], input[type="password"], input[type="email"], input[type="number"], textarea, select {
+    height: 48px;
+    line-height: 48px;
+    padding: 0 15px;
+    outline: none;
+    font-size: 16px;
+    color: #808080;
+    margin: 0 0 16px 0;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    background-color: #fbfdff;
+    font-weight: 500;
+    opacity: 1;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0 1px 4px 0px rgb(0 0 0 / 12%);
+}
+input {
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 100%;
+}
+.bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active {
+    color: #808080;
+}
+.bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="col-"] {
+    float: none;
+    display: flex;
+    margin-left: 0;
+}
+.with-border.bootstrap-select:before {
+    width: calc(100% - 2px);
+    left: 1px;
+}
+.bootstrap-select:before {
+    content: "";
+    position: absolute;
+    z-index: 999;
+    bottom: 0px;
+    left: 0;
+    height: 8px;
+    width: 100%;
+    background-color: #fbfdff;
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s;
+}
+.with-border .dropdown-menu, .with-border.bootstrap-select.btn-group button {
+    background: #fbfdff;
+    border: 1px solid #dde6ef;
+    box-shadow: 0 1px 4px 0px rgb(0 0 0 / 5%);
+}
+.bootstrap-select.btn-group button {
+    position: relative;
+    display: inline-block;
+    height: 48px;
+    line-height: 0;
+    padding: 0 15px;
+    margin: 0;
+    outline: none;
+    font-size: 16px;
+    color: #808080;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    background-color: #fbfdff;
+    font-weight: 500;
+    opacity: 1;
+    border-radius: 4px;
+    border: none;
+    box-shadow: 0 1px 4px 0px rgb(0 0 0 / 12%);
+}
+.bootstrap-select.btn-group .dropdown-toggle .filter-option {
+    overflow: hidden;
+    width: 100%;
+    line-height: 48px;
+    text-align: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    float: left;
+    height: 48px;
+    display: block;
+}
+.bootstrap-select > .dropdown-toggle {
+    width: 100%;
+    padding-right: 25px;
+    z-index: 1;
+}
+.bootstrap-select .btn {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.bootstrap-select.btn-group .dropdown-toggle .caret {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    margin-top: -2px;
+    vertical-align: middle;
+    transition: 0.35s;
+}
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 5px dashed;
+    border-top: 5px solid #aaa;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+}
+.bootstrap-select.btn-group .dropdown-menu {
+    min-width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 16px;
+    overflow: hidden;
+    height: auto;
+}
+.bootstrap-select .dropdown-menu {
+    opacity: 0;
+    transition: 0.4s;
+    display: block;
+    pointer-events: none;
+    visibility: hidden;
+    cursor: default;
+}
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 998;
+    display: none;
+    float: left;
+    padding: 0px;
+    margin: 0;
+    font-size: 15px;
+    text-align: left;
+    list-style: none;
+    background-color: #fbfdff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px 0px rgb(0 0 0 / 12%);
+}
+.bootstrap-select.btn-group .dropdown-menu li:first-child {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+.bootstrap-select.btn-group .dropdown-menu li {
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+.bootstrap-select.btn-group .dropdown-menu li a {
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.dropdown-menu > li > a {
+    display: block;
+    padding: 8px 15px;
+    padding-right: 35px;
+    clear: both;
+    font-weight: normal;
+    line-height: 22px;
+    color: #808080;
+    border-radius: 0px;
+}
+.bootstrap-select.btn-group .dropdown-menu li a span.text {
+    display: inline-block;
+}
 /*---------------
       TESTIMONIALS
 -----------------*/

@@ -1,23 +1,23 @@
 from django.contrib import admin
-from .models import Profile, Skill, SavedJobs, AvailableCountry, AppliedJobs
+from .models import Profile, Skill, Category, SubCategory
+
 class ProfileAdmin(admin.ModelAdmin):
      list_display = ('full_name', 'country', 'location', 'resume', 'grad_year', 'looking_for', 'slug')
 
 class SkillAdmin(admin.ModelAdmin):
      list_display =  ('skill',)
 
-class SavedJobsAdmin(admin.ModelAdmin):
-     list_display =  ['job']
+class SubCategoryAdmin(admin.ModelAdmin):
+     list_display = ('name', 'image', 'slug')
+     prepopulated_fields = {'slug': ('name',)}
 
-class AppliedJobsAdmin(admin.ModelAdmin):
-     list_display =  ['job']
-
-
-class AvailableCountryAdmin(admin.ModelAdmin):
-     list_display = ['name']
-
-admin.site.register(AvailableCountry, AvailableCountryAdmin)
+class CategoryAdmin(admin.ModelAdmin):
+     list_display =  ('name', 'image', 'slug')
+     prepopulated_fields = {'slug': ('name',)}
+#
+#
+#
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(SubCategory, SubCategoryAdmin)
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Skill, SkillAdmin)
-admin.site.register(SavedJobs, SavedJobsAdmin)
-admin.site.register(AppliedJobs, AppliedJobsAdmin)

@@ -43,8 +43,8 @@
           			   </div>
                    <div class="clearfix"></div>
                    <ul>
-                     <li><a href="{% url 'dashboard' %}"><i class="icon ion-clipboard"></i> Dashboard</a></li>
-                     <li class="active"><a href="{% url 'profile' %}"><i class="icon ion-ios-person-outline"></i> Profile</a></li>
+                     <li class="active"><a href="{% url 'dashboard' %}"><i class="icon ion-clipboard"></i> Dashboard</a></li>
+                     <li ><a href="{% url 'profile' %}"><i class="icon ion-ios-person-outline"></i> Profile</a></li>
                      <li id="fr-trigger"><a href="#"><i class="icon ion-ios-lightbulb-outline"></i> Freelancer submenu<i class="icon ion-chevron-down ml-5"></i></a>
                        <ul class="dropdown-nav">
                          <li><a href="{% url 'add_service' %}"><i class="icon ion-ios-plus-empty"></i> Post a Service</a></li>
@@ -87,130 +87,25 @@
       	  <div id="dashboard-titlebar" class="dashboard-headline-item">
         		<div class="row">
         			<div class="col-xl-12">
-        				<h3>Profile</h3>
+        				<h3>Dashboard</h3>
         				<nav id="breadcrumbs">
         					<ul>
         					  <li><a href="{% url 'home' %}">Home</a></li>
-        					  <li>Profile</li>
+        					  <li>Dashboard</li>
         					</ul>
         				</nav>
         			</div>
         		</div>
           </div>
 	        <div class="inner-dashboard-content" style="min-height: 753px;">
-            <!-- Start of profile general info -->
-            <div class="profile-section mt-0">
-              <div class="profile-main-left">
-                <div class="profile-pic">
-                  <img src="{% static 'img/avatar-img.png' %}">
-                </div>
-                <div class="profile-info1">
-                  <h2>Some data</h2>
-                  <p>Some other data</p>
-                  <p>Some more data</p>
-
-                </div>
-              </div>
-              <div class="profile-main-right">
-                <div class="profile-name">
-                  <h1>{{ user.first_name }} {{ user.last_name }}</h1>
-                  <i class="icon ion-star"></i>
-                </div>
-                <div class="profile-title">
-                  <h3>Senior Chainsaw Operator</h3>
-                </div>
-                <div class="profile-description">
-                  <p>I’m a chainsaw operator and nature lover! I have a passion for cutting trees, although i love nature a great deal. Yeah baby, vvrrrruuuummmm vruum vruum vruum!</p>
-                </div>
-                <div class="profile-skills">
-                  <div class="skills-group">
-                    <h4>Top Skills</h4>
-                    <ul>
-                      <li>Chain</li>
-                      <li>Saw</li>
-                      <li>Tree felling</li>
-                      <li>Grapplehook</li>
-                    </ul>
-                  </div>
-                  <div class="skills-group">
-                    <h4>Top Certifications</h4>
-                    <!-- <ul>
-                      <li>Certificate 1</li>
-                      <li>Certificate 2</li>
-                      <li>Certificate 3</li>
-                      <li>Certificate 4</li>
-                    </ul> -->
-                    <span>No certificates yet.</span>
-                    <button href="">Get your ass certified</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- End of profile general info -->
-            <!-- Start of Experience info -->
-            <div class="profile-section">
-              <div class="section-title">
-                <h2>Experience</h2>
-                <a href="#"><i class="icon ion-edit"></i></a>
-              </div>
-              <div class="">
-              </div>
-            </div>
-            <!-- End of Experience info -->
-            <!-- Start of Education info -->
-            <div class="profile-section">
-              <div class="section-title">
-                <h2>Education</h2>
-                <a href="#"><i class="icon ion-edit"></i></a>
-              </div>
-              <div class="">
-              </div>
-            </div>
-            <!-- End of Education info -->
-            <!-- Start of portfolio info -->
-            <div class="profile-section">
-              <div class="section-title">
-                <h2>Portfolio</h2>
-                <a href="#"><i class="icon ion-edit"></i></a>
-              </div>
-              <div class="">
-              </div>
-            </div>
-            <!-- End of portfolio info -->
-            <!-- Start of Qualifications info -->
-            <div class="profile-section">
-              <div class="section-title">
-                <h2>Qualifications</h2>
-                <a href="#"><i class="icon ion-edit"></i></a>
-              </div>
-              <div class="">
-              </div>
-            </div>
-            <!-- End of Qualifications info -->
-            <!-- Start of Publications info -->
-            <div class="profile-section">
-              <div class="section-title">
-                <h2>Publications</h2>
-                <a href="#"><i class="icon ion-edit"></i></a>
-              </div>
-              <div class="">
-              </div>
-            </div>
-            <!-- End of Publications info -->
-            <!-- Start of reviews -->
-            <div class="profile-section mb-5">
-              <div class="section-title">
-                <h2>Reviews</h2>
-                <a href="#"><i class="icon ion-edit"></i></a>
-              </div>
-              <div class="">
-              </div>
-            </div>
-            <!-- End of reviews -->
+            {% include 'users/messages.html' %}
+            <!-- Start of user facts -->
+            
+            <!-- End of contracts history -->
           </div>
         </div>
       </div>
-	   <!-- Dashboard Content End -->
-   </div>
-</div>
+    </div>
+	<!-- Dashboard Content End -->
+  </div>
 {% endblock %}
