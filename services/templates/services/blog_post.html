@@ -1,0 +1,288 @@
+{% extends 'artisan_app/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+    <!--  NAVBAR
+    ================================================== -->
+
+    <!-- navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home' %}">The Artisan Bakery</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar__collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <!-- General links romanian -->
+            <li ><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+            <li><a href="{% url 'home' %}#section_about">{% trans 'About' %}</a></li>
+            <li ><a href="#section_menu">{% trans 'Menu' %}</a></li>
+            <li ><a href="{% url 'gallery' %}">{% trans 'Gallery' %}</a></li>
+            <li ><a href="{% url 'events' %}">{% trans 'Events' %}</a></li>
+            <li class="active"><a href="{% url 'blog' %}">Blog</a></li>
+            <li><a href="{% url 'contacts' %}">Contact</a></li>
+            {% if user.is_authenticated %}
+            <li><a class="" href="{% url 'send_email' %}">{% trans 'Send Newsletter' %}</a></li>
+
+            {% endif %}
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav>
+      <!-- HEADER
+      ================================================== -->
+      <section class="section section_header section_header__blog">
+        <!-- ======language button ==== -->
+        <div class="language_dropdown d-flex">
+          <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            <h5 class="text-white">{% trans 'Language' %}</h5>
+            <select class="language" name="language">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                        {{ language.code|upper }}
+                    </option>
+                {% endfor %}
+            </select><br>
+              <input class="lang_button" type="submit" value="Go">
+          </form>
+        </div>
+        <!-- ======language button end ==== -->
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+
+              <!-- Heading -->
+              <h1 class="section__heading section_header__heading text-center">
+                {% trans 'Blog Posts' %}
+              </h1>
+
+              <!-- Breadcrumbs -->
+              <ol class="breadcrumb">
+                <!-- <li><a href="{% url 'home' %}">Home</a></li>
+
+                <li class="active">Blog Post</li> -->
+
+                <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+
+                <li class="active">{% trans 'Blog Posts' %}</li>
+              </ol>
+
+            </div>
+          </div> <!-- .row -->
+        </div> <!-- .container -->
+        <div class="section_header__bg blog_bg"></div>
+      </section>
+
+      <!-- section blog post -->
+      <section class="section__blog-post">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8">
+              <div class="blog__item">
+                <div class="blog-item__img">
+                  <img src="{{ the_post.image.url }}" class="img-responsive" alt="...">
+                </div>
+                <div class="blog-item__content">
+                  <p class="blog-item__category">
+                    - {{ the_post.category|upper }} -
+                  </p>
+                  <div class="blog-item__title">
+                    <h3>{{ the_post.title }}</h3>
+                  </div>
+                  <div class="blog-item__date">
+                    <p>{{ the_post.created_date|date:"d N Y" }}</p>
+                  </div>
+
+                  <div class="blog-item__text">
+                    {{ the_post.text|safe }}
+                  </div> <!-- .blog-item__text -->
+
+                  <div class="blog-item__tags">
+                    <p>Tags:</p>
+                    {% for tag in blogpost.tags.all %}
+                    <a href="#">{{ item.name }}</a>
+                    <!-- <a href="#">#groggery</a>
+                    <a href="#">#themeforest</a> -->
+                    {% endfor %}
+                  </div>
+                  <div class="blog-item__footer">
+                    <div class="footer__item">
+                      <ul class="item-info__list">
+                        <li class="info-list__item"><i class="ion ion-android-person"></i> by {{ the_post.author.first_name }} {{ the_post.author.last_name }}</li>
+                        <li class="info-list__item"><i class="ion ion-android-chat" aria-hidden="true"></i> {{ the_post.comments.count }} Comments</li>
+                      </ul> <!-- .item-info__list -->
+                    </div> <!-- .footer__item -->
+                    <div class="footer__item">
+                      <ul class="social__icons">
+                        <li class="social-icons__item">Share:</li>
+                        <li class="social-icons__item"><a href="#"><i class="icon ion-social-twitter" aria-hidden="true"></i></a></li>
+                        <li class="social-icons__item"><a href="#"><i class="icon ion-social-facebook" aria-hidden="true"></i></a></li>
+                        <li class="social-icons__item"><a href="#"><i class="icon ion-social-googleplus" aria-hidden="true"></i></a></li>
+                      </ul> <!-- .social__icons -->
+                    </div> <!-- .footer__item -->
+                  </div> <!-- .blog-item__footer -->
+                </div> <!-- / .blog-item__content -->
+              </div> <!-- .blog__item -->
+              <div class="comments">
+                <h4 class="subheading">Comments</h4>
+                <ul class="comments__list">
+                  {% if not the_post.comments.all %}
+                  <li class="comment">
+                    <!-- <div class="comment__user">
+                      No comments yet
+                    </div> -->
+                    <div class="comment__user">
+                      {% trans 'No comments yet' %}
+                    </div>
+                  {% elif the_post.comments.all %}
+                    {% for comment in comments %}
+                    <li class="comment">
+                      <div class="comment__user">
+                        {{ comment.name }}
+                      </div>
+                      <div class="comment__date">
+                        {{ comment.timestamp }}
+                      </div>
+                      <div class="comment__message">
+                        {{ comment.text }}
+                      </div>
+                      <div class="comment__reply">
+                        <a href="">Reply</a>
+                      </div>
+                      <!-- <ul class="comments-list__children">
+                        <li class="comment">
+                          <div class="comment__user">
+                            John Doe
+                          </div>
+                          <div class="comment__date">
+                            April 8, 2017 at 4:15 pm
+                          </div>
+                          <div class="comment__message">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                          </div>
+                          <div class="comment__reply">
+                            <a href="">Reply</a>
+                          </div>
+                        </li>  -->
+                      <!-- </ul> <!-- .comments-list__children
+                    </li> <!-- .comment -->
+                    {% endfor %}
+                  {% endif %}
+                </ul> <!-- .comments__list -->
+
+
+                <!-- <h4 class="subheading">Leave a comment</h4> -->
+                <h4 class="subheading">Lasa un comentariu</h4>
+
+                <form class="comments__form" method="POST" action=".">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <!-- <label for="name" class="sr-only">Name (Required)</label> -->
+                    <label for="name" class="sr-only">Nume (Obligatoriu)</label>
+
+                    <input type="text" name="form-name" class="required form-control" id="name" placeholder="Enter Your Full Name">
+                  </div>
+
+                  <div class="form-group">
+                    <!-- <label for="email" class="sr-only">Email address (Required)</label> -->
+                    <label for="email" class="sr-only">Adresa Email (Obligatoriu)</label>
+
+                    <input type="email" name="form-email" class="required form-control" id="email" placeholder="Enter Your E-mail">
+                  </div>
+
+                  <div class="form-group">
+                    <!-- <label for="message" class="sr-only">Message (Required)</label> -->
+                    <label for="message" class="sr-only">Mesaj (Obligatoriu)</label>
+
+                    <textarea name="form-message" class="required form-control" rows="6" id="message" placeholder="Enter Your Message"></textarea>
+                    <span class="help-block"></span>
+                  </div>
+
+                  <button type="submit" class="btn btn-default">
+                    Post comment
+                  </button>
+                </form>
+              </div> <!-- .comments -->
+            </div>
+
+            <div class="col-sm-4">
+              <div class="blog__sidebar">
+                <div class="sidebar__item">
+                  <!-- <h4 class="subheading">Search</h4> -->
+                  <h4 class="subheading">Cautare</h4>
+
+                  <form class="search-form" role="search" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <input type="text" class="form-control" name="keyword" placeholder="Enter keywords">
+                    </div>
+                    <a href="{% url 'search_blogposts' %}" class="btn btn-default">Cautare</a>
+                  </form> <!-- .search-form -->
+                  <!-- <h4 class="subheading">Categories</h4> -->
+                  <h4 class="subheading">Categorii</h4>
+
+                  <ul class="categories">
+                    {% for cat in cats %}
+                    <li><a href="#">{{ cat.name|title }}</a></li>
+                    {% endfor %}
+                  </ul> <!-- .categories -->
+                </div> <!-- .sidebar__item -->
+                <div class="sidebar__item">
+                  <!-- <h4 class="subheading">Recent posts</h4> -->
+                  <h4 class="subheading">Postari recente</h4>
+
+                  <ul class="recent__posts">
+                    {% for item in posts %}
+                    <li>
+                      <a href="{% url 'blog_post' pk=item.pk %}" class="post__title">
+                        <h5 class="post__title">{{ item.title }}</h5>
+                        <p class="post__desc">
+                          {{ item.text|safe|truncatechars:100 }}
+                        </p>
+                        <p class="post__info"><i class="ion ion-android-calendar"></i>{{ item.created_date|date:"d N Y" }}</p>
+                        <p class="post__info"><i class="ion ion-android-person"></i> by {{ item.author.first_name }} {{ item.author.last_name }}</p>
+                      </a>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div> <!-- .sidebar__item -->
+                <div class="sidebar__item">
+                  <h4 class="subheading">Tags</h4>
+                  <ul class="tags">
+
+                      <li class=""><a href="#">#copii </a><a href=""> #tort </a><a href=""> #retete </a><a href=""> #lifestyle </a><a href=""> #calatorii </a><a href=""> #slowfood </a></li>
+
+                  </ul>
+
+                  <h4 class="subheading">Follow us</h4>
+                  <ul class="social__icons">
+                    <li class="social-icons__item"><a href="#"><i class="icon ion-social-twitter-outline"></i></a></li>
+                    <li class="social-icons__item"><a href="https://www.facebook.com/artisanbakerybrasov"><i class="icon ion-social-facebook-outline"></i></a></li>
+                    <li class="social-icons__item"><a href="https://www.instagram.com/artisanbakerybrasov/"><i class="icon ion-social-instagram-outline"></i></a></li>
+                  </ul> <!-- .social__icons -->
+                </div> <!-- .sidebar__item -->
+              </div> <!-- .blog__sidebar -->
+            </div>
+          </div> <!-- / .row -->
+        </div> <!-- / .container -->
+      </section> <!-- / .section__blog-post -->
+<!-- JS
+================================================= -->
+
+{% endblock %}

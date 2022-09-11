@@ -1,0 +1,168 @@
+{% extends 'artisan_app/base.html' %}
+{% load static %}
+{% block content %}
+<!--  NAVBAR
+================================================== -->
+
+<!-- navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
+        <span class="sr-only">Menu</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'home' %}">The Artisan Bakery</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar__collapse">
+      <ul class="nav navbar-nav navbar-right">
+
+        <!-- General links english-->
+        <!-- <li><a href="{% url 'home' %}">Home</a><li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'menu' %}">Menu</a></li>
+        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+        <li><a href="{% url 'events' %}">Events</a></li>
+        <li><a href="{% url 'blog' %}">Blog</a></li>
+        <li class="active"><a href="{% url 'contacts' %}">Contact</a></li> -->
+
+        <!-- General links -->
+        <li><a href="{% url 'home' %}">Acasa</a></li>
+        <li><a href="{% url 'about' %}">Despre</a></li>
+        <li><a href="{% url 'menu' %}">Meniu</a></li>
+        <li><a href="{% url 'gallery' %}">Galerie foto</a></li>
+        <li><a href="{% url 'events' %}">Evenimente</a></li>
+        <li><a href="{% url 'blog' %}">Blog</a></li>
+        <li class="active"><a href="{% url 'contacts' %}">Contact</a></li>
+        {% if user.is_authenticated %}
+        <!-- <li><a href="{% url 'send_email' %}">Send Newsletter</a></li>-->
+        <li><a class="" href="{% url 'send_email' %}">Trimite Newsletter</a></li>
+
+        {% endif %}
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container -->
+</nav>
+<!-- CONTENT
+================================================== -->
+
+<!-- HEADER
+================================================== -->
+<section class="section section_header section_header__contacts">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+
+        <!-- Heading -->
+          <!-- english -->
+        <!-- <h1 class="section__heading section_header__heading text-center">
+          Contact
+        </h1> -->
+          <!-- romanian -->
+        <h1 class="section__heading section_header__heading text-center">
+          Contact
+        </h1>
+
+        <!-- Breadcrumbs -->
+        <ol class="breadcrumb">
+          <!-- english -->
+          <!-- <li><a href="{% url 'home' %}">Home</a></li> -->
+          <!-- romanian -->
+          <li><a href="{% url 'home' %}">Acasa</a></li>
+          <!-- english -->
+          <!-- <li class="active">Contact</li> -->
+          <!-- romanian -->
+          <li class="active">Contact</li>
+        </ol>
+
+      </div>
+    </div> <!-- .row -->
+  </div> <!-- .container -->
+  <div class="section_header__bg voucher_bg"></div>
+</section>
+<!-- section map-heading -->
+<section class="section_map-heading" id="section_contacts">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            {{ message.message }}
+          </div>
+          {% endfor %}
+        {% else %}
+        <h2 class="map__title">Send us the beneficiary info in the form below</h2>
+        <p class="map__address">The beneficiary will automaticaly receive a notification by email</p>
+        {% endif %}
+        <div class="contacts_form__body">
+
+          <!-- Alert message -->
+          <div class="alert" id="form_message" role="alert"></div>
+
+          <!-- Form -->
+          <form id="form_sendemail" method="POST" action="#section_contacts">
+            {% csrf_token %}
+
+            <!-- Email -->
+            <div class="form-group">
+              <label for="email" class="sr-only">Email address</label>
+              <input type="email" name="email" class="form-control" id="email" placeholder="Type the beneficiary email address">
+              <span class="help-block"></span>
+            </div>
+
+            <!-- Name -->
+            <div class="form-group">
+              <label for="name" class="sr-only">Name</label>
+              <input type="text" name="name" class="form-control" id="name" placeholder="Type the beneficiary's name ">
+              <span class="help-block"></span>
+            </div>
+
+            <!-- subject -->
+            <div class="form-group">
+              <label for="name" class="sr-only">Value</label>
+              <!-- <input type="text" name="value" class="form-control" id="name" placeholder="Choose a value"> -->
+              <div class="dropdown">
+                <button onclick="vouchervalue()" class="dropbtn">Choose a voucher value</button>
+                <div id="myVoucherList" class="dropdown-content">
+                  <span>50</span>
+                  <span>75</span>
+                  <span>100</span>
+                  <span>150</span>
+                  <span>200</span>
+                </div>
+              </div>
+              <span class="help-block"></span>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+              <label for="message" class="sr-only">Message</label>
+              <textarea name="message" class="form-control" id="message" rows="6" placeholder="Write a message here for the beneficiary"></textarea>
+              <span class="help-block"></span>
+            </div>
+
+            <!-- Note -->
+            <div class="form-group">
+              <small class="text-muted">
+                * All fields compulsory *
+              </small>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-default" id="newsletter">
+              Pay now
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div> <!-- / .row -->
+  </div> <!-- .container -->
+</section>
+
+{% endblock %}

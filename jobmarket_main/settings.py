@@ -16,10 +16,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG')
+DEBUG = bool(int(os.getenv('DEBUG', 0)))
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'dincolo.eu', 'www.dincolo.eu']
-FROM_MAINTENANCE = False
+ALLOWED_HOSTS = []
+ALLOWED_HOSTS_ENV = os.getenv('ALLOWED_HOSTS')
+if ALLOWED_HOSTS_ENV:
+    ALLOWED_HOSTS.extend(ALLOWED_HOSTS_ENV.strip().split(','))
+
+DEVELOPMENT = True
 
 # Application definition
 
@@ -34,11 +38,12 @@ INSTALLED_APPS = [
     'crispy_forms',
     'captcha',
     'debug_toolbar',
-    'django_filters',
     'django_countries',
     'django.contrib.sites',
     'users',
-    'candidates',
+    'services',
+    'blog',
+    'subscriptions',
 
 ]
 

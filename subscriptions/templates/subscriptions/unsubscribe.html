@@ -1,0 +1,171 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'plugins/odometer/odometer-theme-minimal.css' %}" rel="stylesheet">
+
+    <title>The Artisan Bakery | Cake & Coffee Shop </title>
+
+    <!-- CSS Plugins -->
+    <link href="{% static 'plugins/lightbox/dist/css/lightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'plugins/ionicons/css/ionicons.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- CSS Global -->
+    <link href="{% static 'css/styles_v2.min.css' %}" rel="stylesheet">
+
+  </head>
+  <body data-spy="scroll" data-target=".navbar" data-offset="70">
+
+    <!-- TO THE TOP BUTTON
+    ================================================== -->
+    <a id="back-to-top" href="#section_welcome" class="btn btn-primary back-to-top" role="button" onclick="topFunction()" title="Click to return on the top page" data-toggle="tooltip" data-placement="left">
+      <i class="ion-android-arrow-up"></i>
+    </a>
+
+    <!-- PRELOADER
+    ================================================== -->
+
+    <!--  NAVBAR
+    ================================================== -->
+
+    <!-- navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home' %}">The Artisan Bakery</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar__collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <!-- General links -->
+            <li><a href="{% url 'home' %}">Acasa</a></li>
+            <li><a href="{% url 'home' %}#section_about">Despre</a></li>
+            <li><a href="{% url 'menu' %}">Meniu</a></li>
+            <li><a href="{% url 'gallery' %}">Galerie foto</a></li>
+            <li><a href="{% url 'events' %}">Evenimente</a></li>
+            <li><a href="{% url 'blog' %}">Blog</a></li>
+            <li class="active"><a href="{% url 'contacts' %}">Contact</a></li>
+            {% if user.is_authenticated %}
+            <!-- <li><a href="{% url 'send_email' %}">Send Newsletter</a></li>-->
+            <li><a class="" href="{% url 'send_email' %}">Trimite Newsletter</a></li>
+
+            {% endif %}
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav>
+    <!-- CONTENT
+    ================================================== -->
+
+		<!-- HEADER
+		================================================== -->
+    <section class="section section_header section_header__contacts">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+
+						<!-- Heading -->
+              <!-- english -->
+						<!-- <h1 class="section__heading section_header__heading text-center">
+							Contact
+						</h1> -->
+              <!-- romanian -->
+            <h1 class="section__heading section_header__heading text-center">
+							Dezabonare newsletter
+						</h1>
+
+						<!-- Breadcrumbs -->
+						<ol class="breadcrumb">
+              <!-- english -->
+							<!-- <li><a href="{% url 'home' %}">Home</a></li> -->
+              <!-- romanian -->
+              <li><a href="{% url 'home' %}">Acasa</a></li>
+              <!-- english -->
+              <!-- <li class="active">Contact</li> -->
+              <!-- romanian -->
+							<li class="active">Dezabonare</li>
+						</ol>
+
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+      <div class="section_header__bg contacts_bg"></div>
+    </section>
+
+    <section class="section_map-heading" id="section_contacts">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            {% if messages %}
+              {% for message in messages %}
+              <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ message.message }}
+              </div>
+              {% endfor %}
+            {% else %}
+            <h2 class="map__title">Esti sigur ca vrei sa renunti la newsletter?</h2>
+            <p class="map__address">Daca totusi da :( ... introdu emailul in casuta de mai jos si apasa trimite. Toate cele bune!</p>
+            {% endif %}
+            <div class="contacts_form__body">
+
+              <!-- Alert message -->
+              <div class="alert" id="form_message" role="alert"></div>
+
+              <!-- Form -->
+              <form id="form_sendemail" method="POST" action="{% url 'unsubscribe' %}">
+                {% csrf_token %}
+
+                <!-- Email -->
+                <div class="form-group">
+                  <label for="email" class="sr-only">Email address</label>
+                  <input type="email" name="unsub_email" class="form-control" id="email" placeholder="Introdu adresa de email">
+                  <span class="help-block"></span>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn btn-default">
+                  Trimite
+                </button>
+
+              </form>
+            </div>
+
+          </div>
+
+        </div> <!-- / .row -->
+      </div> <!-- .container -->
+    </section>
+
+    <!-- JS
+    ================================================== -->
+
+    <!-- JS Global -->
+    <script src="{% static 'plugins/jquery/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- JS Plugins -->
+    <script async src="{% static 'plugins/lightbox/dist/js/lightbox.min.js' %}"></script>
+    <script async src="{% static 'plugins/isotope/isotope.pkgd.min.js' %}"></script>
+    <script async src="{% static 'plugins/flickity/flickity.pkgd.min.js' %}"></script>
+    <script src="{% static 'plugins/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+
+    <!-- JS Custom -->
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    <script async src="{% static 'js/google_maps.js' %}"></script>
+
+    <!-- Google Maps -->
+    <script async src="{% static 'js/back_to_top.js' %}"></script>
+    </body>
+    </html>

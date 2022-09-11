@@ -1,0 +1,550 @@
+{% extends 'services/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+  <!-- PRELOADER
+  ================================================== -->
+
+  <!-- NAVBAR
+  ================================================== -->
+  {% include 'services/navbar.html' %}
+
+    <!-- HEADER
+    ================================================== -->
+    <section class="section section_header section_header__events">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+
+            <!-- Heading -->
+
+            <h1 class="section__heading section_header__heading ">
+                {% trans 'Dashboard' %}
+            </h1>
+            <!-- Breadcrumbs -->
+            <ol class="breadcrumb">
+              <!-- english -->
+              <!-- <li><a href="{% url 'home' %}">Home</a></li> -->
+              <!-- romanian -->
+              <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+              <!-- english -->
+              <!-- <li class="active">Events</li> -->
+              <!-- romanian -->
+              <li class="active">{% trans 'Dashboard' %}</li>
+
+            </ol>
+
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+      <div class="section_header__bg events_bg"></div>
+    </section>
+
+
+    <!-- ============ dashboard ============== -->
+    <div class="dashboard-container" style="height: 753px;">
+        <!-- Dashboard Sidebar -->
+        <div class="dashboard-sidebar">
+          <div class="dashboard-sidebar-inner" data-simplebar="init" style="height: 753px;">
+            <div class="simplebar-track vertical" style="visibility: visible; display: none;">
+              <div class="simplebar-scrollbar" style="visibility: visible; top: 0px; height: 25px;">
+              </div>
+            </div>
+            <div class="simplebar-track horizontal" style="visibility: visible; display: none;">
+              <div class="simplebar-scrollbar" style="visibility: visible; left: 0px; width: 25px;">
+              </div>
+            </div>
+            <div class="simplebar-scroll-content" style="padding-right: 15px; margin-bottom: -30px;">
+              <div class="simplebar-content" style="padding-bottom: 15px; margin-right: -15px;">
+                <div class="dashboard-nav-container">
+                  <!-- Responsive Navigation Trigger -->
+                  <a href="#" class="dashboard-trigger">
+                    <span class="hamburger hamburger-collapse-item">
+                      <span class="hamburger-box-item">
+                        <span class="hamburger-inner-item"></span>
+                      </span>
+                    </span>
+                    <span class="trigger-title">Dashboard Menu</span>
+                  </a>
+                    <!-- Navigation -->
+            		  <div class="dashboard-nav">
+              			<div class="dashboard-nav-inner">
+              			  <div class="dashboard-profile-box">
+              				  <span class="avatar-img">
+                          <img alt="" src="{% static 'img/avatar-img.png' %}" class="photo">
+              				  </span>
+              				  <div class="user-profile-text">
+                          <span class="fullname">Daniel Ungureanu</span>
+                          <span class="user-role">Chainsaw Operator</span>
+              				  </div>
+              			   </div>
+                       <div class="clearfix"></div>
+                       <ul>
+                         <li class="active"><a href="{% url 'dashboard' %}"><i class="icon ion-clipboard"></i> Dashboard</a></li>
+                         <li ><a href="{% url 'profile' %}"><i class="icon ion-ios-person-outline"></i> Profile</a></li>
+                         <li id="fr-trigger"><a href="#"><i class="icon ion-ios-lightbulb-outline"></i> Freelancer submenu<i class="icon ion-chevron-down ml-5"></i></a>
+                           <ul class="dropdown-nav">
+                             <li><a href="#"><i class="icon ion-ios-plus-empty"></i> Post a Service</a></li>
+                             <li><a href="dashboard-freelancer-manage-tasks-list.html"><i class="icon ion-ios-book-outline"></i> Manage Contracts</a></li>
+                           </ul>
+                          </li>
+                          <li id="ctr-trigger"><a href="#"><i class="icon ion-ios-briefcase-outline"></i> Contractor submenu<i class="icon ion-chevron-down ml-5"></i></a>
+                            <ul class="dropdown-nav">
+                              <li><a href="dashboard-jobs-post.html"><i class="icon ion-ios-plus-empty"></i> Post a job</a></li>
+                              <li><a href="dashboard-freelancer-manage-tasks-list.html"><i class="icon ion-ios-flag-outline"></i> Manage Jobs <span class="nav-tag">{ count nr }</span></a></li>
+                              <li><a href="dashboard-manage-resume.html"><i class="icon ion-ios-book-outline"></i> Manage Job Applications</a></li>
+                              <li><a href="dashboard-bookmarks.html"><i class="icon ion-ios-bookmarks-outline"></i> Bookmarks</a></li>
+
+                              <li><a href="dashboard-freelancer-active-bids.html"><i class="icon-feather-chevron-right"></i> Active Bids</a></li>
+                              <li><a href="dashboard-freelancer-add-post-bids.html"><i class="icon-feather-chevron-right"></i> Post Bids</a></li>
+                            </ul>
+                           </li>
+                          <li><a href="#"><i class="icon ion-ios-star-outline"></i> Reviews</a></li>
+                          <li><a href="#"><i class="icon ion-log-out"></i> Logout</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- Dashboard Sidebar / End -->
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content " data-simplebar="init" style="height: 730">
+          <div class="simplebar-track vertical" style="visibility: visible;">
+            <div class="simplebar-scrollbar" style="visibility: visible; top: 0px; height: 246px;"></div>
+          </div>
+          <div class="simplebar-track horizontal" style="visibility: visible;">
+            <div class="simplebar-scrollbar" style="visibility: visible; left: 0px; width: 25px;"></div>
+          </div>
+          <div class="simplebar-scroll-content" style="padding-right: 15px; margin-bottom: -30px;">
+            <div class="simplebar-content" style="padding-bottom: 15px; margin-right: -15px;">
+    	        <div class="inner-dashboard-content" style="min-height: 753px;">
+                <!-- Start of user facts -->
+                <div class="userfacts-container">
+                  <div class="userfact" data-fun-fact-color="#2a41e8">
+              			<div class="userfact-icon">
+                      <i class="icon ion-android-home"> </i>
+                    </div>
+                    <div class="userfact-text">
+                      <h4>100</h4>
+          			      <span>Companies View</span>
+                    </div>
+                  </div>
+                  <div class="userfact" data-fun-fact-color="#36bd78">
+              			<div class="userfact-icon" >
+                      <i class="icon ion-briefcase" ></i>
+                    </div>
+                    <div class="userfact-text">
+                      <h4>152</h4>
+        			        <span>Contracts Completed</span>
+                    </div>
+                  </div>
+                  <div class="userfact" data-fun-fact-color="#efa80f">
+        			      <div class="userfact-icon" >
+                      <i class="icon ion-heart" ></i>
+                    </div>
+                    <div class="userfact-text">
+                      <h4>100</h4>
+        			        <span>Fact 3</span>
+                    </div>
+                  </div>
+                  <div class="userfact" data-fun-fact-color="#0fc5bf">
+                    <div class="userfact-icon" >
+                      <i class="icon ion-calculator" ></i>
+                    </div>
+        			      <div class="userfact-text">
+                      <h4>10</h4>
+        			        <span>Fact 4</span>
+                    </div>
+                  </div>
+        		      <div class="userfact" data-fun-fact-color="#f02727">
+                    <div class="userfact-icon" >
+                      <i class="icon ion-coffee"></i>
+                    </div>
+        			      <div class="userfact-text">
+                      <h4>111</h4>
+        			        <span>Fact 5</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- End of user facts -->
+                <!-- Start of user statistics and notes -->
+                <div class="row">
+                  <div class="col-xl-6 col-md-12 col-sm-12">
+                    <div class="dashboard-box main-box-in-row">
+                      <div class="headline">
+                        <h3>Sales</h3>
+        				        <div class="sort-by">
+                          <div class="dropdown stat-dropdown">
+                            <!-- <a type="button" class="btn dropdown-toggle btn-default timeframe-trigger" data-toggle="dropdown" role="button" title="This Week">
+                              <span class="filter-option pull-left">This Week</span>&nbsp;
+                            </a> -->
+                            <select class="custom-select">
+                              <option selected="selected">This Week</option>
+                              <option>This Month</option>
+                              <option>Last 6 Months</option>
+        					            <option>This Year</option>
+                            </select>
+                            <!-- <ul class="dropdown-menu inner tmfr-dropdown " role="listbox" aria-expanded="false">
+                              <li data-original-index="0" class="selected">
+                                <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true">
+                                  <span class="text">This Week</span>
+                                  <span class="glyphicon glyphicon-ok check-mark"></span>`
+                                </a>
+                              </li>
+                              <li data-original-index="1">
+                                <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                  <span class="text">This Month</span>
+                                  <span class="glyphicon glyphicon-ok check-mark"></span>
+                                </a>
+                              </li>
+                              <li data-original-index="2">
+                                <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                  <span class="text">Last 6 Months</span>
+                                  <span class="glyphicon glyphicon-ok check-mark"></span>
+                                </a>
+                              </li>
+                              <li data-original-index="3">
+                                <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                  <span class="text">This Year</span>
+                                  <span class="glyphicon glyphicon-ok check-mark"></span>
+                                </a>
+                              </li>
+                            </ul> -->
+                            <div class="" role="combobox">
+
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="content">
+                        <div class="chart"><div class="chartjs-size-monitor" style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
+                          <canvas id="canvas" width="504" height="239" class="chartjs-render-monitor" style="display: block; width: 504px; height: 239px;"></canvas>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+        		      <div class="col-xl-6 col-md-12 col-sm-12">
+                    <div class="dashboard-box main-box-in-row">
+                      <div class="headline">
+                        <h3>Task bids</h3>
+                      </div>
+                      <div class="content">
+                        <div class="header-notifications-content">
+                          <div class="header-notifications-scroll" data-simplebar="init" style="height: 138px;">
+                            <div class="simplebar-track vertical" style="visibility: visible;">
+                              <div class="simplebar-scrollbar" style="visibility: visible; top: 0px; height: 56px;"></div>
+                            </div>
+                            <div class="simplebar-track horizontal" style="visibility: visible;">
+                              <div class="simplebar-scrollbar" style="visibility: visible; left: 0px; width: 25px;"></div>
+                            </div>
+                            <div class="simplebar-scroll-content" style="padding-right: 15px; margin-bottom: -30px;">
+                              <div class="simplebar-content" style="padding-bottom: 15px; margin-right: -15px;">
+                                <ul class="dashboard-box-list">
+                                  <li>
+                                    <span class="notification-icon"><i class="icon-material-outline-group"></i></span>
+                                    <span class="notification-text"><strong>Task title</strong> was bid on <strong>date</strong>.</span>
+        						                <div class="buttons-to-right">
+                                      <a href="#" class="button green ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Edit"><i class="icon-feather-edit"></i></a>
+                                      <a href="#" class="button red ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Remove"><i class="icon-feather-trash-2"></i></a>
+        						                </div>
+        					                 </li>
+        					                <li>
+                                    <span class="notification-icon"><i class="icon-feather-briefcase"></i></span>
+                                    <span class="notification-text"><strong>Task title</strong> was bid on <strong>date</strong>.</span>
+                        						<div class="buttons-to-right">
+                        							<a href="#" class="button green ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Edit"><i class="icon-feather-edit"></i></a>
+                        							<a href="#" class="button red ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Remove"><i class="icon-feather-trash-2"></i></a>
+                        						</div>
+        					                </li>
+        					                <li>
+                        						<span class="notification-icon"><i class="icon-feather-briefcase"></i></span>
+                                    <span class="notification-text"><strong>Task title</strong> was bid on <strong>date</strong>.</span>
+                        						<div class="buttons-to-right">
+                        							<a href="#" class="button green ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Edit"><i class="icon-feather-edit"></i></a>
+                        							<a href="#" class="button red ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Remove"><i class="icon-feather-trash-2"></i></a>
+                        						</div>
+                        					</li>
+                                  <li>
+                        						<span class="notification-icon"><i class="icon-material-outline-group"></i></span>
+                                    <span class="notification-text"><strong>Task title</strong> was bid on <strong>date</strong>.</span>
+                        						<div class="buttons-to-right">
+                        							<a href="#" class="button green ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Edit"><i class="icon-feather-edit"></i></a>
+                        							<a href="#" class="button red ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Remove"><i class="icon-feather-trash-2"></i></a>
+                        						</div>
+                        					</li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+        				        <a href="#small-dialog" class="popup-with-zoom-anim utf-header-notifications-button ripple-effect utf-button-sliding-icon"></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End of user statistics and notes -->
+                <!-- Start of activity history type 1 -->
+                <div class="row">
+                  <div class="col-xl-6 col-md-12 col-sm-12">
+                    <div class="dashboard-box">
+                      <div class="headline">
+                        <h3>Activity</h3>
+                      </div>
+                      <div class="content">
+                        <ul class="utf-dashboard-box-list">
+                          <li>
+                            <span class="notification-icon"><i class="icon-material-outline-group"></i></span>
+                            <span class="notification-text"> <strong>Daniel Ungureanu</strong> <a href="#">Chainsaw Operator</a> Someone Downloaded Your Resume.</span>
+                            <div class="utf-buttons-to-right single-right-button">
+                              <a href="#" class="button red ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Remove"><i class="icon-feather-trash-2"></i></a>
+        					          </div>
+                          </li>
+                          <li>
+                            <span class="notification-icon"><i class="icon-feather-briefcase"></i></span> <span class="notification-text"> <strong>John Williams</strong> <a href="#">iOS Developers</a> Someone Downloaded Your Resume.</span>
+                            <div class="utf-buttons-to-right single-right-button">
+                              <a href="#" class="button red ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Remove"><i class="icon-feather-trash-2"></i></a>
+                            </div>
+                          </li>
+                          <li>
+                				    <span class="notification-icon"><i class="icon-feather-briefcase"></i></span> <span class="notification-text"> <strong>John Williams</strong> <a href="#">Software Engineer</a> Someone Downloaded Your Resume.</span>
+                            <div class="utf-buttons-to-right single-right-button">
+                              <a href="#" class="button red ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Remove"><i class="icon-feather-trash-2"></i></a>
+                            </div>
+                          </li>
+                          <li>
+                            <span class="notification-icon"><i class="icon-feather-briefcase"></i></span> <span class="notification-text"> <strong>John Williams</strong> <a href="#">Software Engineer</a> Someone Downloaded Your Resume.</span>
+                            <div class="utf-buttons-to-right single-right-button">
+                              <a href="#" class="button red ripple-effect ico" data-tippy-placement="top" data-tippy="" data-original-title="Remove"><i class="icon-feather-trash-2"></i></a>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+              			<div class="utf-pagination-container-aera margin-top-10 margin-bottom-50">
+                      <nav class="pagination">
+                        <ul>
+              				    <li class="utf-pagination-arrow"><a href="#" class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-left"></i></a></li>
+                          <li><a href="#" class="current-page ripple-effect">1</a></li>
+                          <li><a href="#" class="ripple-effect">2</a></li>
+                          <li><a href="#" class="ripple-effect">3</a></li>
+                          <li class="utf-pagination-arrow"><a href="#" class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>
+                        </ul>
+                      </nav>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-md-12 col-sm-12">
+                    <div class="dashboard-box">
+                      <div class="headline">
+                        <h3>Invoices</h3>
+                        <div class="sort-by">
+                          <div class="btn-group bootstrap-select hide-tick">
+                            <button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" title="This Week">
+                              <span class="filter-option pull-left">This Week</span>&nbsp;
+                              <span class="bs-caret">
+                                <span class="caret"></span>
+                                </span>
+                            </button>
+                            <div class="dropdown-menu open" role="combobox">
+                              <ul class="dropdown-menu inner" role="listbox" aria-expanded="false">
+                                <li data-original-index="0" class="selected">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true">
+                                    <span class="text">This Week</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                                <li data-original-index="1">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">This Month</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                                <li data-original-index="2">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">Last 6 Months</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                                <li data-original-index="3">
+                                  <a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false">
+                                    <span class="text">This Year</span>
+                                    <span class="glyphicon glyphicon-ok check-mark"></span>
+                                  </a>
+                                </li>
+                              </ul>
+                            </div>
+                            <select class="selectpicker hide-tick" tabindex="-98">
+                              <option>This Week</option>
+                              <option>This Month</option>
+                              <option>Last 6 Months</option>
+                              <option>This Year</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="content">
+                        <ul class="utf-dashboard-box-list">
+                          <li>
+                            <div class="utf-invoice-list-item">
+                              <div class="utf-invoice-user-city">Afghanistan
+                                <img class="flag" src="images/flags/af.svg" alt="" data-tippy-placement="top" data-tippy="" data-original-title="Afghanistan">
+                              </div>
+        					            <strong>Imobility <span class="paid"></span> </strong>
+                              <ul>
+                                <li><span>Order ID:</span> 004312641</li>
+                                <li><span>Date:</span> 12 Jan, 2021</li>
+                              </ul>
+                            </div>
+                            <div class="utf-buttons-to-right"> <a href="invoice-template.html" class="button gray" data-tippy-placement="top" data-tippy="" data-original-title="Invoice"><i class="icon-feather-printer"></i> Invoice</a> </div>
+                          </li>
+                          <li>
+                            <div class="utf-invoice-list-item">
+                              <div class="utf-invoice-user-city">United States
+                                <img class="flag" src="images/flags/us.svg" alt="" data-tippy-placement="top" data-tippy="" data-original-title="United States">
+                              </div>
+                              <strong>IT company <span class="paid"></span></strong>
+                              <ul>
+                                <li><span>Order ID:</span> 004312641</li>
+                                <li><span>Date:</span> 18 Jan, 2021</li>
+                              </ul>
+                            </div>
+                            <div class="utf-buttons-to-right">
+                              <a href="invoice-template.html" class="button gray" data-tippy-placement="top" data-tippy="" data-original-title="Invoice"><i class="icon-feather-printer"></i> Invoice
+                              </a>
+                            </div>
+                          </li>
+                          <li>
+                            <div class="utf-invoice-list-item">
+                              <div class="utf-invoice-user-city">Australia
+                                <img class="flag" src="images/flags/au.svg" alt="" data-tippy-placement="top" data-tippy="" data-original-title="Australia">
+                              </div>
+                              <strong>IT company <span class="unpaid"></span></strong>
+                              <ul>
+                                <li><span>Order ID:</span> 004312641</li>
+                                <li><span>Date:</span> 06 Jan, 2021</li>
+                              </ul>
+                            </div>
+                            <div class="utf-buttons-to-right">
+                              <a href="invoice-template.html" class="button red" data-tippy-placement="top" data-tippy="" data-original-title="Remove"><i class="icon-feather-trash-2"></i> Remove</a>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="utf-pagination-container-aera margin-top-10 margin-bottom-50">
+                      <nav class="pagination">
+                        <ul>
+                          <li class="utf-pagination-arrow"><a href="#" class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-left"></i></a></li>
+                          <li><a href="#" class="current-page ripple-effect">1</a></li>
+                          <li><a href="#" class="ripple-effect">2</a></li>
+                          <li><a href="#" class="ripple-effect">3</a></li>
+                          <li class="utf-pagination-arrow"><a href="#" class="ripple-effect"><i class="icon-material-outline-keyboard-arrow-right"></i></a></li>
+                        </ul>
+                      </nav>
+                    </div>
+                  </div>
+                </div>
+                <!-- End of activity history type 1 -->
+                <!-- Start of activity history type 2 -->
+            		 <div class="row">
+            			<div class="col-xl-12">
+            				<div class="utf_dashboard_list_box table-responsive recent_booking dashboard-box">
+            				  <div class="headline">
+            					<h3>Some other data</h3>
+            					<div class="sort-by">
+            					  <div class="btn-group bootstrap-select hide-tick"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" role="button" title="This Week"><span class="filter-option pull-left">This Week</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open" role="combobox"><ul class="dropdown-menu inner" role="listbox" aria-expanded="false"><li data-original-index="0" class="selected"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="true"><span class="text">This Week</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">This Month</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">Last 6 Months</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" data-tokens="null" role="option" aria-disabled="false" aria-selected="false"><span class="text">This Year</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div><select class="selectpicker hide-tick" tabindex="-98">
+            						<option>This Week</option>
+            						<option>This Month</option>
+            						<option>Last 6 Months</option>
+            						<option>This Year</option>
+            					  </select></div>
+            					</div>
+            				  </div>
+            				<div class="dashboard-list-box table-responsive invoices with-icons">
+            				  <table class="table table-hover">
+            					<thead>
+            					  <tr>
+            						<th>ID</th>
+            						<th>Profile</th>
+            						<th>Plan</th>
+            						<th>Expiry</th>
+            						<th>Payment Type</th>
+            						<th>Status</th>
+            						<th>View</th>
+            					  </tr>
+            					</thead>
+            					<tbody>
+            					  <tr>
+            						<td>0431261</td>
+            						<td><img alt="" class="img-fluid rounded-circle shadow-lg" src="images/thumb-1.jpg" width="50" height="50" data-tippy-placement="top" data-tippy="" data-original-title="John Williams"></td>
+            						<td>Standard</td>
+            						<td>12 Dec 2021</td>
+            						<td>?</td>
+            						<td><span class="badge badge-pill badge-primary text-uppercase">Approved</span></td>
+            						<td><a href="#" class="button gray"><i class="icon-feather-eye"></i> View Detail</a></td>
+            					  </tr>
+            					  <tr>
+            						<td>0431262</td>
+            						<td><img alt="" class="img-fluid rounded-circle shadow-lg" src="images/thumb-1.jpg" width="50" height="50" data-tippy-placement="top" data-tippy="" data-original-title="John Williams"></td>
+            						<td>Extended</td>
+            						<td>12 Dec 2021</td>
+            						<td>?</td>
+            						<td><span class="badge badge-pill badge-primary text-uppercase">Approved</span></td>
+            						<td><a href="#" class="button gray"><i class="icon-feather-eye"></i> View Detail</a></td>
+            					  </tr>
+            					  <tr>
+            						<td>0431263</td>
+            						<td><img alt="" class="img-fluid rounded-circle shadow-lg" src="images/thumb-1.jpg" width="50" height="50" data-tippy-placement="top" data-tippy="" data-original-title="John Williams"></td>
+            						<td>Standard</td>
+            						<td>12 Dec 2021</td>
+            						<td>?</td>
+            						<td><span class="badge badge-pill badge-danger text-uppercase">Pending</span></td>
+            						<td><a href="#" class="button gray"><i class="icon-feather-eye"></i> View Detail</a></td>
+            					  </tr>
+            					  <tr>
+            						<td>0431264</td>
+            						<td><img alt="" class="img-fluid rounded-circle shadow-lg" src="images/thumb-1.jpg" width="50" height="50" data-tippy-placement="top" data-tippy="" data-original-title="John Williams"></td>
+            						<td>Basic</td>
+            						<td>12 Dec 2021</td>
+            						<td>?</td>
+            						<td><span class="badge badge-pill badge-danger text-uppercase">Pending</span></td>
+            						<td><a href="#" class="button gray"><i class="icon-feather-eye"></i> View Detail</a></td>
+            					  </tr>
+            					  <tr>
+            						<td>0431265</td>
+            						<td><img alt="" class="img-fluid rounded-circle shadow-lg" src="images/thumb-1.jpg" width="50" height="50" data-tippy-placement="top" data-tippy="" data-original-title="John Williams"></td>
+            						<td>Extended</td>
+            						<td>12 Dec 2021</td>
+            						<td>?</td>
+            						<td><span class="badge badge-pill badge-danger text-uppercase">Pending</span></td>
+            						<td><a href="#" class="button gray"><i class="icon-feather-eye"></i> View Detail</a></td>
+            					  </tr>
+            					  <tr>
+            						<td>0431266</td>
+            						<td><img alt="" class="img-fluid rounded-circle shadow-lg" src="images/thumb-1.jpg" width="50" height="50" data-tippy-placement="top" data-tippy="" data-original-title="John Williams"></td>
+            						<td>Basic</td>
+            						<td>12 Dec 2021</td>
+            						<td>?</td>
+            						<td><span class="badge badge-pill badge-canceled text-uppercase">Canceled</span></td>
+            						<td><a href="#" class="button gray"><i class="icon-feather-eye"></i> View Detail</a></td>
+            					  </tr>
+            					</tbody>
+            				  </table>
+            				</div>
+            			 </div>
+            			</div>
+            		</div>
+                <!-- End of contracts history -->
+              </div>
+            </div>
+          </div>
+        </div>
+    	<!-- Dashboard Content End -->
+      </div>
+
+{% endblock %}

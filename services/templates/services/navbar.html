@@ -1,0 +1,130 @@
+{% load static %}
+{% load i18n %}
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
+        <span class="sr-only">Menu</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'home' %}">LOGO</a>
+
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar__collapse">
+      <ul class="nav navbar-nav navbar-right">
+
+        <!-- General links -->
+        <li class="active nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-decoration-none" id="navbarAccount" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+            Explore
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarAccount">
+            <li class="dropdown-item dropend">
+              <a class="dropdown-link text-decoration-none" data-bs-toggle="dropdown" href="#">
+                Guides
+              </a>
+            </li>
+            <li class="dropdown-item dropend">
+              <a class="dropdown-link text-decoration-none" data-bs-toggle="dropdown" href="#">
+                Community
+              </a>
+            </li>
+            <li class="dropdown-item dropend">
+              <a class="dropdown-link text-decoration-none" data-bs-toggle="dropdown" href="#">
+                Blog
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-decoration-none" id="navbarAccount" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+            Language
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarAccount">
+            <li class="dropdown-item dropend">
+              <a class="dropdown-link text-decoration-none" data-bs-toggle="dropdown" href="#">
+                English
+              </a>
+            </li>
+            <li class="dropdown-item dropend">
+              <a class="dropdown-link text-decoration-none" data-bs-toggle="dropdown" href="#">
+                Deutsch
+              </a>
+            </li>
+            <li class="dropdown-item dropend">
+              <a class="dropdown-link text-decoration-none" data-bs-toggle="dropdown" href="#">
+                Romanian
+              </a>
+            </li>
+
+          </ul>
+        </li>
+        <li><a href="#">{% trans 'Currency' %}</a></li>
+        <li><a href="#">{% trans 'Sell your Skills' %}</a></li>
+            {% if user.is_authenticated %}
+            <li class="nav-item dropdown hide-on-mobile dropleft">
+              <a type="button" class="notifications-btn">
+                <span class="icon ion-ios-bell"></span>
+              </a>
+              <ul class="dropdown-menu notifications-dropdown-block" aria-labelledby="navbarAccount">
+                <li class="notifications-not-read"><a href="#"> <span class="notification-icon"><i class="icon ion-material-outline"></i></span> <span class="notification-text"> <strong>John Williams</strong> Applied for Jobs <strong>Web Designer</strong></span></a></li>
+                <li><a class="dropdown-link text-decoration-none " data-bs-toggle="dropdown" href=""><span class="notification-icon"><i class="icon ion-briefcase"></i></span> <span class="notification-text"> <strong>John Williams</strong> Applied for Jobs <strong>Web Designer</strong></span></a></li>
+                <li><a class="dropdown-link text-decoration-none " data-bs-toggle="dropdown" href=""><span class="notification-icon"><i class="icon ion-briefcase"></i></span> <span class="notification-text"> <strong>John Williams</strong> Applied for Jobs <strong>Web Designer</strong></span></a></li>
+                <li><a class="dropdown-link text-decoration-none " data-bs-toggle="dropdown" href=""><span class="notification-icon"><i class="icon ion-briefcase"></i></span> <span class="notification-text"> <strong>John Williams</strong> Applied for Jobs <strong>Web Designer</strong></span></a></li>
+              </ul>
+
+            </li>
+            <li class="nav-item dropdown dropleft">
+              <a type="button" class="profile-btn">
+                <span class="icon ion-ios-person"></span>
+              </a>
+              <ul class="dropdown-menu account-dropdown-block" aria-labelledby="navbarAccount">
+                <li class="dropdown-header">
+                  <h2>Hi, {{ user.get_username }} !</h2>
+                  <h4>Check your profile tools below</h4>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none " data-bs-toggle="dropdown" href="{% url 'dashboard' %}">
+                    Dashboard
+                  </a>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none " data-bs-toggle="dropdown" href="{% url 'profile' %}">
+                    Profile
+                  </a>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none " data-bs-toggle="dropdown" href="#">
+                    Settings
+                  </a>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none " data-bs-toggle="dropdown" href="#">
+                    Membership
+                  </a>
+                </li>
+                <hr>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none " data-bs-toggle="dropdown" href="#">
+                    Support
+                  </a>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none " data-bs-toggle="dropdown" id="navbarDocumentation" href="{% url 'logout' %}">
+                    Sign out
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+
+            {% endif %}
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav>

@@ -1,0 +1,138 @@
+{% extends 'artisan_app/base.html' %}
+{% load static %}
+{% block content %}
+<!--  NAVBAR
+================================================== -->
+
+<!-- navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
+        <span class="sr-only">Menu</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index_default.html">{{ slogans.brand }}</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbar__collapse">
+      <ul class="nav navbar-nav navbar-right">
+
+        <!-- General links english-->
+        <!-- <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'menu' %}">Menu</a></li>
+        <li ><a href="{% url 'gallery' %}">Gallery</a></li>
+        <li><a href="{% url 'events' %}">Events</a></li>
+        <li><a href="{% url 'blog' %}">Blog</a></li>
+        <li><a href="{% url 'contacts' %}">Contact</a></li> -->
+
+        <!-- General links romanian -->
+        <li><a href="{% url 'home' %}">Acasa</a></li>
+        <li><a href="{% url 'about' %}">Despre</a></li>
+        <li><a href="{% url 'menu' %}">Meniu</a></li>
+        <li><a href="{% url 'gallery' %}">Fotografii</a></li>
+        <li><a href="{% url 'events' %}">Evenimente</a></li>
+        <li><a href="{% url 'blog' %}">Blog</a></li>
+        <li><a href="{% url 'contacts' %}">Contact</a></li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container -->
+</nav>
+      <!-- CONTENT
+      ================================================== -->
+
+      <!-- HEADER
+      ================================================== -->
+      <section class="section section_header section_header__reservation">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+
+              <!-- Heading -->
+              <h1 class="section__heading section_header__heading text-center">
+                Reservation
+              </h1>
+
+              <!-- Breadcrumbs -->
+              <ol class="breadcrumb">
+                <li><a href="index_default.html">Home</a></li>
+                <li class="active">Reservation</li>
+              </ol>
+
+            </div>
+          </div> <!-- .row -->
+        </div> <!-- .container -->
+        <div class="section_header__bg reservation_bg"></div>
+      </section>
+
+      <!-- section reservation -->
+      <section class="section_reservation" id="section_reservation">
+        <div class="section_row">
+          <div class="col-md-5">
+            <div class="reservation_img"></div>
+          </div>
+          <div class="col-md-7">
+            <div class="reservation_form_body">
+              <h3 class="reservation_form_title">Online reservation</h3>
+              <hr class="section_title_line">
+              <p class="section_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              <form class="reservation_form" id="reservation__form">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="sr-only" for="reservation__name">Full Name</label>
+                      <input type="text" class="form-control" id="reservation__name" name="reservation__name" placeholder="Full Name">
+                      <div class="help-block"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only" for="reservation__phone">Phone Number</label>
+                      <input type="tel" class="form-control" id="reservation__phone" name="reservation__phone" placeholder="Phone Number">
+                      <div class="help-block"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only" for="reservation__phone">Your e-mail</label>
+                      <input type="email" class="form-control" name="reservation__email" id="reservation__email" placeholder="Your e-mail">
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label class="sr-only" for="reservation__people">Number of persons</label>
+                      <select class="form-control" id="reservation__people" name="reservation__people">
+                        <option value="1" selected="">1 Person</option>
+                        <option value="2">2 Persons</option>
+                        <option value="3">3 Persons</option>
+                        <option value="4">4 Persons</option>
+                        <option value="5">5 Persons</option>
+                        <option value="6">6 Persons</option>
+                      </select>
+                      <div class="help-block"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only" for="reservation__date">Date</label>
+                      <input type="date" class="form-control" name="reservation__date" id="reservation__date" value="2017-10-09">
+                      <div class="help-block"></div>
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only" for="reservation__time">Time</label>
+                      <input type="time" class="form-control" id="reservation__time" value="19:00" name="reservation__time">
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <button type="submit" class="btn btn-default">Reserve a table</button>
+                  </div>
+                </div> <!-- .row -->
+              </form>
+            </div> <!-- .reservation_form_body -->
+          </div>
+        </div> <!-- .section_row -->
+      </section>
+
+{% endblock %}

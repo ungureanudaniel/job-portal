@@ -1,0 +1,316 @@
+{% extends 'services/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+    <!-- PRELOADER
+    ================================================== -->
+
+    <!-- NAVBAR
+    ================================================== -->
+    {% include 'services/navbar.html' %}
+
+    <!-- CONTENT
+    ================================================== -->
+
+    <!-- section welcome & ads -->
+    <section class="section_events mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="section_title mt-5">&#8722; News &#8722;</h2>
+            <hr class="section_title_line">
+            <p class="section_caption">Read the latest news, tailored to your interest</p>
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="events">
+              {% for cat in news_obj %}
+              <div class="events__item events__item_jazz">
+                <div class="events-item__body">
+                  <div class="events-item__content">
+                    <h2>{{ cat.category }}</h2>
+                    <h3 class="events-item__content_extra extra_title">{{ cat.title }}</h3>
+                    <p class="events-item__content_extra extra_caption">{{ cat.text|truncatechars:200|striptags }}.</p>
+                    <ul class="events-item__content_extra">
+                      <li><i class="icon ion-ios-calendar-outline"></i> {{ cat.timestamp|date:"d b Y" }}</li>
+                      <li><i class="icon ion-ios-clock-outline"></i> {{ cat.timestamp|date:"H:%M" }}</li>
+                    </ul>
+                    <div class="events-item__content_extra">
+                      <a href="reservation.html" class="btn btn-default">See more</a>
+                    </div>
+                  </div>
+                </div>
+              </div> <!-- .events_item -->
+              {% endfor %}
+              <!-- <div class="events__item events__item_music">
+                <div class="events-item__body">
+                  <div class="events-item__content">
+                    <h2>Concert</h2>
+                    <h3 class="events-item__content_extra extra_title">Live concert with our friends</h3>
+                    <p class="events-item__content_extra extra_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur sint similique beatae eius, reprehenderit corporis.</p>
+                    <ul class="events-item__content_extra">
+                      <li><i class="icon ion-ios-calendar-outline"></i> October 5, 2016</li>
+                      <li><i class="icon ion-ios-clock-outline"></i> 19:00</li>
+                    </ul>
+                    <div class="events-item__content_extra">
+                      <a href="reservation.html" class="btn btn-default">Book now</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="events__item events__item_poetry">
+                <div class="events-item__body">
+                  <div class="events-item__content">
+                    <h2>Poetry</h2>
+                    <h3 class="events-item__content_extra extra_title">Modern poetry</h3>
+                    <p class="events-item__content_extra extra_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione vero commodi enim, ullam ex sit mollitia, saepe assumenda.</p>
+                    <ul class="events-item__content_extra">
+                      <li><i class="icon ion-ios-calendar-outline"></i> October 9, 2016</li>
+                      <li><i class="icon ion-ios-clock-outline"></i> 20:00</li>
+                    </ul>
+                    <div class="events-item__content_extra">
+                      <a href="reservation.html" class="btn btn-default">Book now</a>
+                    </div>
+                  </div>
+                </div>
+              </div>  -->
+              <!-- <div class="events__item events__item_wine">
+                <div class="events-item__body">
+                  <div class="events-item__content">
+                    <h2>Wine</h2>
+                    <h3 class="events-item__content_extra extra_title">Large selection of delicious wine</h3>
+                    <p class="events-item__content_extra extra_caption">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique eius minima, dolorum eveniet amet aperiam eaque esse animi.</p>
+                    <ul class="events-item__content_extra">
+                      <li><i class="icon ion-ios-calendar-outline"></i> October 17, 2016</li>
+                      <li><i class="icon ion-ios-clock-outline"></i> 19:30</li>
+                    </ul>
+                    <div class="events-item__content_extra">
+                      <a href="reservation.html" class="btn btn-default">Book now</a>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div> <!-- .events -->
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container-fluid -->
+    </section>
+    <!-- section posts -->
+    <section class="section_posts">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="section_title">&#8722; {% trans 'Posts that might interest you' %} &#8722;</h2>
+
+            <hr class="section_title_line">
+            <p class="section_caption"></p>
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+      <div class="container">
+        <div class="row">
+          {% for jobpost in jobposts %}
+          <div class="col-sm-6">
+            <div class="event_card">
+              <div class="event_card__img">
+                <img src="{{ jobpost.image.url }}" class="img-responsive" alt="...">
+              </div>
+              <div class="event_card__body">
+                <div class="event_card__date">
+                  <i class="icon ion-ios-calendar-outline"></i>{{ jobpost.created_date|date:"d N Y" }}
+                </div>
+                <h4 class="event_card__title">
+                  {{ jobpost.title }}
+                </h4>
+                <div class="event_card__desc">
+                  {{ jobpost.text|striptags|truncatechars:100 }}
+                </div>
+                <div class="event_card__time">
+                  <i class="ion-ios-clock-outline"></i>{{ jobpost.price_min }} - {{ jobpost.price_max }} EUR / Hour
+                </div>
+                <div class="event_card__price">
+                  <i class="ion-ios-pricetags-outline"></i>{{ jobpost.tags }}
+                </div>
+                <hr>
+                <div class="event_card__btn">
+                  <!-- <a href="reservation.html" class="btn btn-default">Book now</a> -->
+                  <a href="" class="btn btn-default">{% trans 'See more' %}</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+    </section>
+
+    <!-- section review -->
+    <section class="section_review mt-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <h2 class="section_review_title">{% trans 'What people say about us' %}...</h2>
+          </div>
+          <div class="col-sm-8">
+            <div id="carousel-review" class="carousel carousel_review slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators hidden">
+                <li data-target="#carousel-review" data-slide-to="0" class="active"></li>
+              </ol>
+              <!-- Wrapper for slides -->
+
+              <div class="carousel-inner" role="listbox">
+                {% for r in reviews %}
+                <!-- 1 -->
+                <div class="item active">
+                  <p class="review_text">"{{ r.text|safe }}"</p>
+                  <h5 class="review_author">&#8722; {{ r.name|title }} &#8722;</h5>
+                </div>
+                {% endfor %}
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-review" role="button" data-slide="prev">
+                  <img src="{% static 'img/arrow_left.svg' %}" class="lazy" alt="Prev">
+                </a>
+                <a class="right carousel-control" href="#carousel-review" role="button" data-slide="next">
+                  <img src="{% static 'img/arrow_right.svg' %}" class="lazy" alt="Next">
+                </a>
+              </div> <!-- .carousel_inner -->
+            </div>
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+    </section>
+    <!-- section events -->
+    <section class="section_events" id="section_events">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <!-- <h2 class="section_title">&#8722; Events &#8722;</h2> -->
+            <h2 class="section_title">&#8722; {% trans 'Events' %} &#8722;</h2>
+
+            <hr class="section_title_line">
+            <p class="section_caption"></p>
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="events">
+            {% if not all_events %}
+              <p class="section_caption">{% trans 'Unfortunatelly there are no events soon but, keep an eye on news' %}!</p>
+              {% else %}
+              {% for event in all_events %}
+              <div class="events__item events__item_jazz">
+                <div class="events-item__body">
+                  {% get_current_language as LANGUAGE_CODE %}
+                  {% if LANGUAGE_CODE == 'en' %}
+                  <div class="events-item__content">
+                    <h2>{{ event.type|safe }}</h2>
+                    <h3 class="events-item__content_extra extra_title">{{ event.title_en }}</h3>
+                    <p class="events-item__content_extra extra_caption">{{ event.description_en|safe }}.</p>
+                    <ul class="events-item__content_extra">
+                      <li><i class="icon ion-ios-calendar-outline"></i>{{ event.start_date|date:"d N Y" }}</li>
+                      <li><i class="icon ion-ios-clock-outline"></i>{{ event.start_date|date:"h:iA" }}</li>
+                    </ul>
+                    <div class="events-item__content_extra">
+                      <!-- <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a> -->
+                      <a href="{% url 'reservation' %}" class="btn btn-default">{% trans 'Make a reservation' %}</a>
+
+                    </div>
+                  </div>
+                  {% elif LANGUAGE_CODE == 'ro' %}
+                  <div class="events-item__content">
+                    <h2>{{ event.type|safe }}</h2>
+                    <h3 class="events-item__content_extra extra_title">{{ event.title_en }}</h3>
+                    <p class="events-item__content_extra extra_caption">{{ event.description_en|safe }}.</p>
+                    <ul class="events-item__content_extra">
+                      <li><i class="icon ion-ios-calendar-outline"></i>{{ event.start_date|date:"d N Y" }}</li>
+                      <li><i class="icon ion-ios-clock-outline"></i>{{ event.start_date|date:"h:iA" }}</li>
+                    </ul>
+                    <div class="events-item__content_extra">
+                      <!-- <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a> -->
+                      <a href="{% url 'reservation' %}" class="btn btn-default">{% trans 'Make a reservation' %}</a>
+
+                    </div>
+                  </div>
+                  {% endif %}
+                </div>
+              </div> <!-- .events_item -->
+
+            {% endfor %}
+            {% endif %}
+
+            </div> <!-- .events -->
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container-fluid -->
+    </section>
+    <!-- section slogan -->
+    <section class="section_slogan">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <!-- {{ slogans }} -->
+            <h1 class="slogan_title">&#8722; Slogan here &#8722;</h1>
+            <p class="slogan_caption">extra text here</p>
+
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+    </section>
+    <!-- section blog -->
+    <section class="section_blog" id="section_blog">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="section_title">&#8722; Blog &#8722;</h2>
+            <hr class="section_title_line">
+            <!-- <p class="section_caption">Read about our latest news, events and much more about life of our friendly family</p> -->
+            <p class="section_caption">{% trans 'Read about our latest news, events and more about life, kids and recipes' %}</p>
+
+          </div>
+        </div> <!-- .row -->
+        <div class="row">
+          {% for post in posts %}
+          <div class="col-sm-4">
+            <div class="blog__item blog__item1">
+              <div class="blog-item__img">
+                <img src="{{ post.image.url }}" class="lazy img-responsive" alt="...">
+              </div>
+              <div class="blog-item__content">
+                <a href="#" class="blog-item__title">
+                  <h3>{{ post.title }}</h3>
+                </a>
+                <div class="blog-item__info">
+                  <ul class="item-info__list">
+                    <li class="info-list__item"><i class="ion-android-person" aria-hidden="true"></i> {{ post.author.first_name }} {{ post.author.last_name }}</li>
+                    <li class="info-list__item"><i class="ion-android-chat" aria-hidden="true"></i>{{ post.comment_count }}</li>
+                    <li class="info-list__item"><i class="ion-android-calendar" aria-hidden="true"></i>{{ post.created_date|date:"d N Y" }}</li>
+                  </ul>
+                </div>
+                <div class="blog-item__text">
+                  {{ post.text|safe|truncatechars:200 }}
+                </div>
+                <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">{{ post.tags }}</a></p>
+              </div> <!-- / .blog-item__content -->
+            </div> <!-- / .blog__item -->
+          </div>
+          {% endfor %}
+        </div> <!-- .row -->
+        <div class="row">
+          <div class="col" style="text-align:center;">
+            <!-- <button type="button" class="btn btn-default">More posts</button> -->
+            <button type="button" class="btn btn-default"><a href="#">{% trans 'See more' %}</a></button>
+
+          </div>
+         </div> <!-- .row -->
+       </div> <!-- .container -->
+    </section>
+
+
+{% endblock %}

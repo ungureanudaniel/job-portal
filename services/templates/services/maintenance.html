@@ -1,0 +1,175 @@
+{% extends 'services/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+    <!--  NAVBAR
+    ================================================== -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home' %}">LOGO</a>
+
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar__collapse">
+          <ul class="nav navbar-nav navbar-right">
+
+            <!-- General links -->
+            <li class="active nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-decoration-none" id="navbarAccount" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                Explore
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarAccount">
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none" data-bs-toggle="dropdown" href="#">
+                    Guides
+                  </a>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none" data-bs-toggle="dropdown" href="#">
+                    Community
+                  </a>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none" data-bs-toggle="dropdown" href="#">
+                    Blog
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-decoration-none" id="navbarAccount" data-bs-toggle="dropdown" href="#" aria-haspopup="true" aria-expanded="false">
+                Language
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarAccount">
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none" data-bs-toggle="dropdown" href="#">
+                    English
+                  </a>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none" data-bs-toggle="dropdown" href="#">
+                    Deutsch
+                  </a>
+                </li>
+                <li class="dropdown-item dropend">
+                  <a class="dropdown-link text-decoration-none" data-bs-toggle="dropdown" href="#">
+                    Romanian
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+            <li><a href="#">{% trans 'Currency' %}</a></li>
+            <li><a href="#">{% trans 'Sell your Skills' %}</a></li>
+            {% if user.is_authenticated %}
+            <li><a class="nav-link text-decoration-none" id="navbarDocumentation" href="{% url 'logout' %}">{% trans 'Sign out' %}</a></li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link text-decoration-none" id="navbarDocumentation" data-toggle="modal" href="#signinModal">
+                Sign in
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-decoration-none lift" data-toggle="modal" href="#modalSignup" >
+                Join
+              </a>
+            </li>
+            {% endif %}
+          </ul>
+        </div><!-- /.navbar-collapse -->
+
+      </div><!-- /.container -->
+
+    </nav>
+
+    <!-- CONTENT
+    ================================================== -->
+
+    <!-- section welcome -->
+    <section class="section_welcome" id="section_welcome">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3">
+            <div class="welcome_content">
+              <h1 class="welcome_content_heading">
+                <h2 class="">The <mark style="background-color:rgba(147, 112, 219, 0.5); color: white; font-weight: 900;">Best</mark> freelancers platform in eastern Europe<br>
+                  <mark style="background-color:rgba(147, 112, 219, 0.5); color: white; font-weight: 900;margin-top:30px;">is on it's way out</mark>
+                </h2>
+                <img style="height:200px;margin:20px 20px 20px;" src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Hand_pointing_down_%28contour%29.svg" alt="Artisan-Bakery-Logo" width="320" height="320"></h1>
+              <ul class="welcome_content_logo">
+                <li><i class="icon ion-ios-minus-empty"></i></li>
+
+                <li><i class="icon ion-ios-minus-empty"></i></li>
+              </ul>
+              <h3 class="welcome_content_caption"></h3>
+              <div class="welcome_content_btn">
+                <a href="#section_about" class="btn btn-default">{% trans 'Discover us' %}</a>
+                <a href="#newsletter" class="btn btn-default"> Newsletter </a>
+              </div>
+            </div> <!-- .welcome_content -->
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+      <div class="welcome-parallax_bg" style="transform: translateY(0px);"></div>
+    </section>
+
+    <!-- section blog -->
+    <section class="section_blog" id="section_blog">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="section_title">&#8722; Blog &#8722;</h2>
+            <hr class="section_title_line">
+            <!-- <p class="section_caption">Read about our latest news, events and much more about life of our friendly family</p> -->
+            <p class="section_caption">{% trans 'Read about our latest news, events and more about life, kids and recipes' %}</p>
+
+          </div>
+        </div> <!-- .row -->
+        <div class="row">
+          {% for post in posts %}
+          <div class="col-sm-4">
+            <div class="blog__item blog__item1">
+              <div class="blog-item__img">
+                <img src="{{ post.image.url }}" class="lazy img-responsive" alt="...">
+              </div>
+              <div class="blog-item__content">
+                <a href="{% url 'blog_post' pk=post.pk %}" class="blog-item__title">
+                  <h3>{{ post.title }}</h3>
+                </a>
+                <div class="blog-item__info">
+                  <ul class="item-info__list">
+                    <li class="info-list__item"><i class="ion-android-person" aria-hidden="true"></i> {{ post.author.first_name }} {{ post.author.last_name }}</li>
+                    <li class="info-list__item"><i class="ion-android-chat" aria-hidden="true"></i>{{ post.comment_count }}</li>
+                    <li class="info-list__item"><i class="ion-android-calendar" aria-hidden="true"></i>{{ post.created_date|date:"d N Y" }}</li>
+                  </ul>
+                </div>
+                <div class="blog-item__text">
+                  {{ post.text|safe|truncatechars:200 }}
+                </div>
+                <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">{{ post.tags }}</a></p>
+              </div> <!-- / .blog-item__content -->
+            </div> <!-- / .blog__item -->
+          </div>
+          {% endfor %}
+        </div> <!-- .row -->
+        <div class="row">
+          <div class="col" style="text-align:center;">
+            <!-- <button type="button" class="btn btn-default">More posts</button> -->
+            <button type="button" class="btn btn-default"><a href="#">{% trans 'See more' %}</a></button>
+
+          </div>
+         </div> <!-- .row -->
+       </div> <!-- .container -->
+    </section>
+
+{% endblock %}

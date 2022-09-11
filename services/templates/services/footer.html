@@ -1,0 +1,57 @@
+{% load static %}
+{% load i18n %}
+
+<!-- section footer -->
+<div class="bottom-shape">
+    <div class="shape shape-fluid-x ">
+      <svg class="mt-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#404145" fill-opacity="1" d="M0,160L60,144C120,128,240,96,360,90.7C480,85,600,107,720,128C840,149,960,171,1080,181.3C1200,192,1320,192,1380,192L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+</div>
+<footer class="section_footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 col-lg-3">
+        <!-- <h3 class="section_footer_heading">Contacts</h3> -->
+        <h3 class="section_footer_heading">Contact</h3>
+
+        <p><i class="icon ion-ios-location-outline"></i><a href="https://www.google.com/maps/dir/Artisan+Bakery,+Strada+Pelicanului+Nr.+13,+Bra%C8%99ov+500461/''/@45.6660948,25.5567492,18z/data=!4m14!4m13!1m5!1m1!1s0x40b35b766c35ea5f:0xd19fd0955f55fbff!2m2!1d25.5581365!2d45.6658306!1m5!1m1!1s0x0:0xd19fd0955f55fbff!2m2!1d25.5581365!2d45.6658306!3e0">500461 Str. Opportunity 69, Heidelberg, DE</a> </p>
+        <p><i class="icon ion-ios-telephone-outline"></i><a href="tel:+40 768 662 612"> +40 757 484 561</a></p>
+        <p><i class="icon ion-ios-email-outline"></i><a href="mailto:contact@artisanbakery.ro"> contact@jobportal.eu</a></p>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <!-- <h3 class="section_footer_heading">Follow us</h3> -->
+        <h3 class="section_footer_heading">{% trans 'Follow us' %}</h3>
+
+        <div class="social">
+          <ul>
+            <li><p><b>Social: </b></p></li>
+            <li class="social_icon"><a href="https://www.facebook.com/artisanbakerybrasov"><i class="icon ion-social-facebook-outline"></i></a></li>
+            <li class="social_icon"><a href="#"><i class="icon ion-social-twitter-outline"></i></a></li>
+            <li class="social_icon"><a href="https://www.instagram.com/artisanbakerybrasov/"><i class="icon ion-social-instagram-outline"></i></a></li>
+            <li class="social_icon"><a href="#"><i class="ion-social-foursquare"></i></a></li>
+          </ul>
+        </div> <!-- .social -->
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <!-- <h3 class="section_footer_heading">Opening hours</h3> -->
+        <h3 class="section_footer_heading">Program</h3>
+
+        <p><b>Mon-Fri: </b>9 AM - 4 PM</p>
+        <p><b>Sat: </b>11 AM - 1 PM</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <hr>
+        <p class="text-center">{% trans 'If you do not wish to receive any more news from us, just click the button below' %}.</p>
+        <div class="text-white text-center">
+          <button class="btn text-white" href="{% url 'unsubscribe' %}"><h5>{% trans 'Unsubscribe' %}</h5></button>
+        </div>
+
+        <p class="footer_info"><a style="text-decoration: none; color:inherit;" href="http://www.dincolo.eu/admin/">&#169; 2017 S.C. DINCOLO EU GMBH</a></p>
+
+        <p> All rights reserved. </p>
+      </div>
+    </div> <!-- .row -->
+  </div> <!-- .container -->
+</footer>

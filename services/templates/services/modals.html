@@ -1,0 +1,174 @@
+{% load static %}
+{% load i18n %}
+<!-- Signup: Vertical  -->
+<div class="modal fade" id="modalSignup" tabindex="-1" role="dialog" aria-labelledby="modalSignupVerticalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="card">
+
+        <!-- Close -->
+        <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        <!-- Image -->
+        <img src="{% static 'img/signup1.WebP' %}" alt="..." class="card-img-top">
+
+        <!-- Shape -->
+        <!-- <div class="inter-shapes">
+          <div class="shape shape-bottom shape-fluid-x text-white">
+            <svg viewBox="0 0 2880 480" fill="" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2160 0C1440 240 720 240 720 240H0v240h2880V0h-720z" fill=""></path></svg>          </div>
+        </div> -->
+
+        <!-- Body -->
+        <div class="card-body">
+
+          <!-- Heading -->
+          <h2 class="mb-0 fw-bold text-center" id="modalSignupVerticalTitle">
+            Sign Up
+          </h2>
+
+          <!-- Text -->
+          <p class="mb-6 text-center text-muted">
+            Simplify your workflow in minutes.
+          </p>
+
+          <!-- Form -->
+          <form class="mb-6" method="POST">
+            {% csrf_token %}
+            <!-- User name -->
+            <div class="form-group">
+              <label class="visually-hidden" for="modalSignupName">
+                Your username
+              </label>
+              <input type="text" name="signup-name" class="form-control" id="modalSignupName" placeholder="Your username" autocomplete="off" style="">
+            </div>
+            <!-- Email -->
+            <div class="form-group">
+              <label class="visually-hidden" for="modalSignupEmail">
+                Your email
+              </label>
+              <input type="email" name="signup-email" class="form-control" id="modalSignupEmail" placeholder="Your email" autocomplete="off" style="">
+            </div>
+
+            <!-- Password -->
+            <div class="form-group mb-5">
+              <label class="visually-hidden" for="modalSignupPassword">
+                Create a password
+              </label>
+              <input type="password" name="signup-password" class="form-control" id="modalSignupPassword" placeholder="Create a password" autocomplete="off" style="background-image: url(); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+            </div>
+            <!-- Password check -->
+            <div class="form-group mb-5">
+              <label class="visually-hidden" for="modalSignupPasswordCheck">
+                Re-enter password
+              </label>
+              <input type="password" name="password-check" class="form-control" id="modalSignupPasswordCheck" placeholder="Re-enter password" autocomplete="off" style="background-image: url(); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+            </div>
+            <!-- Terms checkbox -->
+            <label class="form-group" for="modalSignupTerms">
+              Terms and agreements
+            </label>
+            <input type="checkbox" name="checkbox" id="modalSignupTerms" value="Agree">
+            <br>
+            <br>
+
+            <!-- Captcha form -->
+            <label class="form-group">
+              Please fill in the captcha check
+            </label>
+             {{ form.captcha }}
+            <!-- Submit -->
+            <button class="btn w-100 btn-primary" name="form-type" value="signup-form" type="submit">
+              Sign up
+            </button>
+
+          </form>
+
+          <!-- Text -->
+          <p class="mb-0 fs-sm text-center text-muted">
+            Already have an account? <a href="/#signinModal">Log in</a>.
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Signin: Vertical  -->
+<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="card">
+
+        <!-- Close -->
+        <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        <!-- Image -->
+        <img src="{% static 'img/login2.WebP' %}" alt="..." class="card-img-top">
+
+        <!-- Shape -->
+        <!-- <div class="inter-shapes">
+          <div class="shape shape-bottom shape-fluid-x text-white">
+            <svg viewBox="0 0 2880 480" fill="" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2160 0C1440 240 720 240 720 240H0v240h2880V0h-720z" fill=""></path></svg>          </div>
+        </div> -->
+
+        <!-- Body -->
+        <div class="card-body">
+
+          <!-- Heading -->
+          <h2 class="mb-0 fw-bold text-center" id="modalSignin">
+            Sign In
+          </h2>
+
+          <!-- Text -->
+          <p class="mb-6 text-center text-muted">
+            Get into your account and start selling your skills.
+          </p>
+          <div class="container error-container mt-n5">
+            <div class="alert" id="form_message" role="alert"></div>
+                  {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                      {{ message.message }}
+                    </div>
+                    {% endfor %}
+                  {% endif %}
+          </div>
+          <!-- Form -->
+          <form class="mb-6" method="POST" action=".">
+            {% csrf_token %}
+            <!-- Email -->
+            <div class="form-group">
+              <label class="visually-hidden" for="modalSigninName">
+                Your user name
+              </label>
+              <input type="text" name="signin-name" class="form-control" id="modalSigninName" placeholder="Your email" autocomplete="off" style="background-image: url(#); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;">
+            </div>
+
+            <!-- Password -->
+            <div class="form-group mb-5">
+              <label class="visually-hidden" for="modalSigninPassword">
+                Enter your password
+              </label>
+              <input type="password" name="signin-password" class="form-control" id="modalSigninPassword" placeholder="Enter your password" autocomplete="off" style="background-image: url(#); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%;">
+            </div>
+
+            <!-- Submit -->
+            <button class="btn w-100 btn-primary" name="form-type" value="signin-form" type="submit">
+              Sign in
+            </button>
+
+          </form>
+
+          <!-- Text -->
+          <p class="mb-0 fs-sm text-center text-muted">
+            Don't have an account yet? <a href="#modalSignup">Sign up</a>.
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

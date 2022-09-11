@@ -1,0 +1,749 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang='ro'>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon/favicon.ico' %}">
+
+    <title>The Artisan Bakery | {% trans 'Homemade goodies, from 100% natural ingredients, in Brasov' %}</title>
+    <meta name="description" property="og:description" content="Torturi, prajituri, biscuiti, tarte dulci, tarte sarate, paine cu maia, torturi de nunta, torturi aniversari, totul absolut natural si artizanal">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="keywords" content="prajituri, fursecuri, tort, prajituri de casa, tarte dulci, tarte sarate, biscuiti, fursecuri, amandine, tort aniversare, cofetarie, patiserie, paine cu maia, retete, dulciuri brasov, torturi brasov, placinte, prajituri brasov">
+    <meta name="author" content="Artisan Bakery">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.artisanbakery.ro/">
+    <meta property="og:site_name" content="Artisan Bakery">
+    <meta property="og:title" content="Artisan Bakery | Prajituri de casa din ingrediente 100% naturale, Brasov" />
+    <meta property="og:description" content="Torturi, prajituri, biscuiti, tarte dulci, tarte sarate, paine cu maia, torturi de nunta, torturi aniversari, totul absolut natural si artizanal.">
+    <meta property="og:image" content="https://artisanbakery.ro/static/img/about-us6.WebP">
+    <meta property="og:image:alt" content="Cake for later as a way of life.">
+
+    <link rel="canonical" href="https://www.artisanbakery.ro/">
+    <!-- CSS Plugins -->
+    <link href="{% static 'plugins/lightbox/dist/css/lightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'plugins/flickity/flickity.min.css' %}" rel="stylesheet">
+    <link href="{% static 'plugins/ionicons/css/ionicons.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- CSS Global -->
+    <link href="{% static 'css/styles_v2.min.css' %}" rel="stylesheet">
+
+  </head>
+  <body data-spy="scroll" data-target=".navbar" data-offset="70">
+    <!-- Messenger Chat Plugin Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Chat Plugin code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "847107728813064");
+      chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v12.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/ro_RO/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- TO THE TOP BUTTON
+    ================================================== -->
+    <a id="back-to-top" href="#section_welcome" class="btn btn-primary back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left">
+      <i class="ion-android-arrow-up"></i>
+    </a>
+
+    <!-- PRELOADER
+    ================================================== -->
+
+    <!--  NAVBAR
+    ================================================== -->
+
+    <!-- navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home' %}">{{ slogans.brand }}</a>
+
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar__collapse">
+          <ul class="nav navbar-nav navbar-right">
+
+            <!-- General links -->
+            <li class="active"><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+            <li><a href="#section_about">{% trans 'About' %}</a></li>
+            <li><a href="{% url 'menu' %}">{% trans 'Menu' %}</a></li>
+            <li><a href="#section_gallery">{% trans 'Gallery' %}</a></li>
+            <li><a href="#section_events">{% trans 'Events' %}</a></li>
+            <li><a href="#section_blog">Blog</a></li>
+            <li><a href="{% url 'contacts' %}">Contact</a></li>
+            {% if user.is_authenticated %}
+            <li><a class="" href="{% url 'send_email' %}">{% trans 'Send Newsletter' %}</a></li>
+
+            {% endif %}
+          </ul>
+        </div><!-- /.navbar-collapse -->
+
+      </div><!-- /.container -->
+
+    </nav>
+
+    <!-- CONTENT
+    ================================================== -->
+
+    <!-- section welcome -->
+    <section class="section_welcome" id="section_welcome">
+      <div class="container">
+        <!-- ======language button ==== -->
+        <div class="language_dropdown d-flex">
+          <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            <h5 class="text-white">{% trans 'Language' %}</h5>
+            <select class="language" name="language">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                        {{ language.code|upper }}
+                    </option>
+                {% endfor %}
+            </select><br>
+              <input class="lang_button" type="submit" value="Go">
+          </form>
+        </div>
+        <!-- ======language button end ==== -->
+        <!-- <a href="#" class="voucher-link">
+          <div class="popup" onload="voucher_function()">
+            <img class="popupimg lazy" id="myPopup" src="{% static 'img/voucher3.WebP' %}"></img>
+            <div class="popuptext">
+                <p class="text-dark">In cautarea unui cadou inedit? </p>
+                <p>Ofera un <span>Voucher </span>.</p>
+                <p>Contacteaza-ne, <br>Pentru mai multe detalii. </p>
+            </div>
+
+          </div>
+        </a> -->
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3">
+            <div class="welcome_content">
+              <h1 class="welcome_content_heading"><img src="{% static 'img/LOGO-ARTISAN-BAKERY.WebP' %}" alt="Artisan-Bakery-Logo" width="320" height="320"></h1>
+              <p class="welcome_content_subheading">Cake & Coffee Shop</p>
+              <ul class="welcome_content_logo">
+                <li><i class="icon ion-ios-minus-empty"></i></li>
+                <li><i class="icon ion-fork"></i></li>
+                <li><i class="icon ion-wineglass"></i></li>
+                <li><i class="icon ion-knife"></i></li>
+                <li><i class="icon ion-ios-minus-empty"></i></li>
+              </ul>
+              <h3 class="welcome_content_caption">{% trans 'Homemade goodies, all prepared from natural ingredients, love and passion' %}</h3>
+              <div class="welcome_content_btn">
+                <a href="#section_about" class="btn btn-default">{% trans 'Discover us' %}</a>
+                <a href="#newsletter" class="btn btn-default"> Newsletter </a>
+                <a href="{% url 'menu' %}" class="btn btn-default"> {% trans 'Menu' %} </a>
+              </div>
+            </div> <!-- .welcome_content -->
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+      <div class="welcome-parallax_bg" style="transform: translateY(0px);"></div>
+    </section>
+
+    <!-- section about -->
+    {% get_current_language as LANGUAGE_CODE %}
+    {% if LANGUAGE_CODE == 'en' %}
+    <section class="section_about" id="section_about">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="section_title"><span>&#8722; {% trans 'Few words about us' %} &#8722;</span></h2>
+            <hr class="section_title_line">
+            <p class="section_caption">{{ story.about_us_en|striptags }}</p>
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+      <div class="section_about__row">
+        <div class="about__img">
+          <img src="{{ story.this_place_img.url }}" class="img-responsive lazy" alt="...">
+        </div>
+        <div class="about_desc">
+          <h3 class="about_desc__title">{% trans 'Why this place?' %}</h3>
+          <p class="about_desc__text">{{ story.this_place_en|striptags }}</p>
+        </div>
+      </div> <!-- .section_about__row -->
+      <div class="section_about__row">
+        <div class="about_desc">
+          <h3 class="about_desc__title">{% trans 'What are we cooking?' %}</h3>
+          <p class="about_desc__text">{{ story.what_we_cook_en|striptags }}</p>
+        </div>
+        <div class="about__img">
+          <img src="{{ story.what_we_cook_img.url }}" class="lazy img-responsive" alt="...">
+        </div>
+      </div> <!-- .section_about__row -->
+    </section>
+    <!-- ============    SECTION FACTS ================ -->
+    <section class="section_story">
+      <div class="container">
+        <div class="row">
+          {% for fact in facts %}
+          <div class="col-sm-4">
+            <div class="section_story__item">
+              <div class="story_item__year">
+                <!-- 1997 -->
+              </div>
+              <i class="ion-ios-star"></i>
+              <h3 class="story_item__title">
+                {{ fact.category_en }}
+              </h3>
+              <p class="story_item__desc">
+              </p>
+              <div id="" class="figures">{{ fact.figures }}</div>
+            </div>
+
+          </div>
+          {% endfor %}
+        </div> <!-- / .row -->
+
+      </div> <!-- .container -->
+    </section>
+    {% elif LANGUAGE_CODE == 'ro' %}
+    <section class="section_about" id="section_about">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="section_title"><span>&#8722; {% trans 'Few words about us' %} &#8722;</span></h2>
+            <hr class="section_title_line">
+            <p class="section_caption">{{ story.about_us_ro|striptags }}</p>
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+      <div class="section_about__row">
+        <div class="about__img">
+          <img src="{{ story.this_place_img.url }}" class="img-responsive lazy" alt="...">
+        </div>
+        <div class="about_desc">
+          <h3 class="about_desc__title">{% trans 'Why this place?' %}</h3>
+          <p class="about_desc__text">{{ story.this_place_ro|striptags }}</p>
+        </div>
+      </div> <!-- .section_about__row -->
+      <div class="section_about__row">
+        <div class="about_desc">
+          <h3 class="about_desc__title">{% trans 'What are we cooking?' %}</h3>
+          <p class="about_desc__text">{{ story.what_we_cook_ro|striptags }}</p>
+        </div>
+        <div class="about__img">
+          <img src="{{ story.what_we_cook_img.url }}" class="lazy img-responsive" alt="...">
+        </div>
+      </div> <!-- .section_about__row -->
+    </section>
+    <!-- ============    SECTION FACTS ================ -->
+    <section class="section_story">
+      <div class="container">
+        <div class="row">
+          {% for fact in facts %}
+          <div class="col-sm-4">
+            <div class="section_story__item">
+              <div class="story_item__year">
+                <!-- 1997 -->
+              </div>
+              <i class="ion-ios-star"></i>
+              <h3 class="story_item__title">
+                {{ fact.category_ro }}
+              </h3>
+              <p class="story_item__desc">
+              </p>
+              <div id="" class="figures">{{ fact.figures }}</div>
+            </div>
+
+          </div>
+          {% endfor %}
+        </div> <!-- / .row -->
+
+      </div> <!-- .container -->
+    </section>
+    {% elif LANGUAGE_CODE == 'de' %}
+    <section class="section_about" id="section_about">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="section_title"><span>&#8722; {% trans 'Few words about us' %} &#8722;</span></h2>
+            <hr class="section_title_line">
+            <p class="section_caption">{{ story.about_us_de|striptags }}</p>
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+      <div class="section_about__row">
+        <div class="about__img">
+          <img src="{{ story.this_place_img.url }}" class="img-responsive lazy" alt="...">
+        </div>
+        <div class="about_desc">
+          <h3 class="about_desc__title">{% trans 'Why this place?' %}</h3>
+          <p class="about_desc__text">{{ story.this_place_de|striptags }}</p>
+        </div>
+      </div> <!-- .section_about__row -->
+      <div class="section_about__row">
+        <div class="about_desc">
+          <h3 class="about_desc__title">{% trans 'What are we cooking?' %}</h3>
+          <p class="about_desc__text">{{ story.what_we_cook_de|striptags }}</p>
+        </div>
+        <div class="about__img">
+          <img src="{{ story.what_we_cook_img.url }}" class="lazy img-responsive" alt="...">
+        </div>
+      </div> <!-- .section_about__row -->
+    </section>
+    <!-- ============    SECTION FACTS ================ -->
+    <section class="section_story">
+      <div class="container">
+        <div class="row">
+          {% for fact in facts %}
+          <div class="col-sm-4">
+            <div class="section_story__item">
+              <div class="story_item__year">
+                <!-- 1997 -->
+              </div>
+              <i class="ion-ios-star"></i>
+              <h3 class="story_item__title">
+                {{ fact.category_de }}
+              </h3>
+              <p class="story_item__desc">
+              </p>
+              <div id="" class="figures">{{ fact.figures }}</div>
+            </div>
+
+          </div>
+          {% endfor %}
+        </div> <!-- / .row -->
+
+      </div> <!-- .container -->
+    </section>
+    {% endif %}
+
+
+    <!-- section team -->
+    <section class="section_team">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="section_title">&#8722; {% trans 'Our team' %} &#8722;</h2>
+            <hr class="section_title_line">
+            <p class="section_caption">{% trans 'The soul of our pastry shop' %}</p>
+          </div>
+        </div>
+        <div class="row">
+          {% for people in team %}
+          <div class="col-sm-6">
+            <div class="team__item">
+              <div class="team__item_photo">
+                <img class="lazy img-responsive" src="{{ people.photo.url }}" alt="...">
+              </div>
+              <div class="team__item_name">
+                <h3>{{ people.first_name }} {{ people.last_name }}</h3>
+              </div>
+              <div class="team__item_overlay">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == 'en' %}
+                <p class="team__item_profession">{{ people.job_en|title }}</p>
+                {% elif LANGUAGE_CODE == 'ro' %}
+                <p class="team__item_profession">{{ people.job_ro|title }}</p>
+                {% elif LANGUAGE_CODE == 'de' %}
+                <p class="team__item_profession">{{ people.job_de|title }}</p>
+                {% endif %}
+                <ul class="team__item_social">
+                  <li class="social_icon"><a href="{{ people.facebook }}"><i class="icon ion-social-facebook-outline"></i></a></li>
+                  <li class="social_icon"><a href="#"><i class="icon ion-social-twitter-outline"></i></a></li>
+                  <li class="social_icon"><a href="{{ people.insta }}"><i class="icon ion-social-instagram-outline"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+    </section>
+    <!-- section review -->
+    <section class="section_review mt-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4">
+            <h2 class="section_review_title">{% trans 'What people say about us' %}...</h2>
+          </div>
+          <div class="col-sm-8">
+            <div id="carousel-review" class="carousel carousel_review slide" data-ride="carousel">
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <li data-target="#carousel-review" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-review" data-slide-to="1"></li>
+                <li data-target="#carousel-review" data-slide-to="2"></li>
+                <li data-target="#carousel-review" data-slide-to="3"></li>
+                <li data-target="#carousel-review" data-slide-to="4"></li>
+                <li data-target="#carousel-review" data-slide-to="5"></li>
+                <li data-target="#carousel-review" data-slide-to="6"></li>
+                <li data-target="#carousel-review" data-slide-to="7"></li>
+                <li data-target="#carousel-review" data-slide-to="8"></li>
+                <li data-target="#carousel-review" data-slide-to="9"></li>
+                <li data-target="#carousel-review" data-slide-to="10"></li>
+                <li data-target="#carousel-review" data-slide-to="11"></li>
+                <li data-target="#carousel-review" data-slide-to="12"></li>
+                <li data-target="#carousel-review" data-slide-to="13"></li>
+                <li data-target="#carousel-review" data-slide-to="14"></li>
+                <li data-target="#carousel-review" data-slide-to="15"></li>
+                <li data-target="#carousel-review" data-slide-to="16"></li>
+
+              </ol>
+
+              <!-- Wrapper for slides -->
+
+              <div class="carousel-inner" role="listbox">
+                <!-- 1 -->
+                <div class="item active">
+                  <p class="review_text">"Super nice and cozy place. Delicious home made products.Very friendly staff. It's the place to go in this part of town."</p>
+                  <h5 class="review_author">&#8722; Alex Gi &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 2 -->
+                <div class="item">
+                  <p class="review_text">"Oameni deosebiti care ofera produse deosebite. Dulciuri de casa."</p>
+                  <h5 class="review_author">&#8722; Cristian Barna &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 3 -->
+                <div class="item">
+                  <p class="review_text">"Când te gândești la produse de o calitate superioară, la un laborator micuț dar cu oameni ce realizează lucruri mari, când îți este poftă de ceva dulce, sărat sau combinații de gusturi ce îți surprind plăcut parolele gustative, spui Artisan Bakery 🙂 Recomand cu drag!"</p>
+                  <h5 class="review_author">&#8722; Stefan Stefan &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 4 -->
+                <div class="item">
+                  <p class="review_text">"De fiecare data cand cumpar de la Artisan Bakery am simtamantul ca produsele sunt "facute in casa". Imi lasa impresia ca toate sunt pregatite cu grija, cu suflet, asa cum le-ai face pentru familia ta. "</p>
+                  <h5 class="review_author">&#8722; Mirela Toacse &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 5 -->
+                <div class="item">
+                  <p class="review_text">"Sunteti o echipa minunata! Va multumesc din suflet pentru deliciosul tort Pavlova! Iubesc prajitura asta! Recomand! 😍"</p>
+                  <h5 class="review_author">&#8722; Georgiana Gabriela Done &#8722;</h5>
+                  <p>Sursa: Facebook</p>
+                </div>
+                <!-- 6 -->
+                <div class="item">
+                  <p class="review_text">"Am gasit aici cele mai bune prajituri, cu ingrediente naturale, fara coloranti si conservanti. Totul este facut cu dragoste! Delicios! "</p>
+                  <h5 class="review_author">&#8722; Cris Manescu &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 7 -->
+                <div class="item">
+                  <p class="review_text">"Ordered a cake, and it's delicious. Seems to be made with fresh, quality ingredients."</p>
+                  <h5 class="review_author">&#8722; Claudia B. &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 8 -->
+                <div class="item">
+                  <p class="review_text">"Toate produsele care le-am incercat m-au facut sa revin. Recomand!!! "</p>
+                  <h5 class="review_author">&#8722; Claudia Popescu &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 9 -->
+                <div class="item">
+                  <p class="review_text">"Foarte delicioase produse. Un plus mare faptul că sunt naturale. Păcat că nu e așa accesibila locația pentru mine."</p>
+                  <h5 class="review_author">&#8722; Rallucu1 &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 10 -->
+                <div class="item">
+                  <p class="review_text">"Cookies, cakes, pies, bread - cooked with care, love and natural, local ingredients. I love this place!"</p>
+                  <h5 class="review_author">&#8722; Anton Irina &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 11 -->
+                <div class="item">
+                  <p class="review_text">"Ador echipa Artizan Bakery ! Tot ce se gătește aici e gustos , delicios și sănătos ! Am fost aici de multe ori aici și am avut bucuria și plăcerea de a gusta din toate bunătățile pregătite cu multă dragoste și dăruire ! Vă iubim !"</p>
+                  <h5 class="review_author">&#8722; Raluca Ungureanu &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 12 -->
+                <div class="item">
+                  <p class="review_text">"Artisan Bakery, un start up nou din Avangarden, a unor prieteni dragi, Ioana & Daniel, un vis devenit realitate. Visul lor, delectare noastra! Din cuptorul lor ies minuni: pita cu maia, tarte sărate sau dulci cu niște combinații pe care nu le-am mai încercat pana acum și prăjituri... Uuuf, multe prăjituri drăguțe, care îți fac cu niște mânuțe mici semn de pe raft și te strigaaa... Si cafea de la croitorie, și laptele e lapte, și untul e unt și oul e ou adevărat, nu praf... Deci, se respecta cu ingrediente cât mai locale. Recomand cu drag! "</p>
+                  <h5 class="review_author">&#8722; Angela Boghiu &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 13 -->
+                <div class="item">
+                  <p class="review_text">"Cozy, kid friendly cafe with amazing pastries and good coffee! Perfect for children with play corners where you can paint on the walls! Everything is baked in the store and tastes sweet for some money. The owners are very welcoming. Highly recommended! "</p>
+                  <h5 class="review_author">&#8722; Ida Wallin &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 14 -->
+                <div class="item">
+                  <p class="review_text">"Recomand aceasta locatie pentru a savura cele mai delicioase prăjituri, torturi si sucuri, într-un cadru relaxant, alaturi de personalul care te întâmpină cu căldură."</p>
+                  <h5 class="review_author">&#8722; Anai I &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 15 -->
+                <div class="item">
+                  <p class="review_text">"Pasiune in bucate! Multumim Artisan Bakery pentru rasfat! 😊😉Vom reveni mereu cu mare drag.  "</p>
+                  <h5 class="review_author">&#8722; Alexandra Ana &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- 16 -->
+                <div class="item">
+                  <p class="review_text">"this place has amazing cakes, quiches, coffee and hot chocolate. cozy little place with friendly staff. much better than waiting for service at a restaurant in town"</p>
+                  <h5 class="review_author">&#8722; penseur libre &#8722;</h5>
+                  <p>Sursa: Google</p>
+                </div>
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-review" role="button" data-slide="prev">
+                  <img src="{% static 'img/arrow_left.svg' %}" class="lazy" alt="Prev">
+                </a>
+                <a class="right carousel-control" href="#carousel-review" role="button" data-slide="next">
+                  <img src="{% static 'img/arrow_right.svg' %}" class="lazy" alt="Next">
+                </a>
+              </div> <!-- .carousel_inner -->
+            </div>
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+    </section>
+    <!-- section gallery -->
+    <section class="section_menu" id="section_gallery">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="section_title">&#8722; {% trans 'Gallery' %} &#8722;</h2>
+
+            <hr class="section_title_line">
+            <p class="section_caption">{% trans 'Interior photos or cake decorations and design' %}.</p>
+          </div>
+        </div>
+        <div class="row " >
+          <div class="col-sm-12 " style="text-align:center;">
+            <ul class="nav nav-tabs menu_nav">
+              <li role="presentation" class="active"><a href="#" role="tab" data-filter=".Interior">Interior</a></li>
+              <li role="presentation" class=""><a href="#" role="tab" data-filter=".Decoruri">Decoruri</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row menu__grid">
+          {% for item in gallery %}
+          <div class="col-sm-4 menu__item {{ item.type }}">
+            <div class="menu__item_hover ">
+
+              <img async src="{{ item.photo.url }}" class="lazy img-responsive" alt="...">
+              <div class="menu__item_overlay">
+
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+    </section>
+    <div class="container ">
+      <div class="row">
+        <div class="col-lg-12 " style="text-align:center;">
+          <button type="button" class="btn btn-default"><a href="{% url 'gallery' %}">{% trans 'See more' %}</a></button>
+
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <!-- section slogan -->
+    <section class="section_slogan">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <!-- {{ slogans }} -->
+            <h1 class="slogan_title">&#8722; {{ slogans.brand }} &#8722;</h1>
+            <p class="slogan_caption">{{ slogans.text|striptags }}</p>
+
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+    </section>
+    <!-- section events -->
+    <section class="section_events" id="section_events">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <!-- <h2 class="section_title">&#8722; Events &#8722;</h2> -->
+            <h2 class="section_title">&#8722; {% trans 'Events' %} &#8722;</h2>
+
+            <hr class="section_title_line">
+            <p class="section_caption"></p>
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="events">
+            {% if not all_events %}
+              <p class="section_caption">{% trans 'Unfortunatelly there are no events soon but, keep an eye on news' %}!</p>
+              {% else %}
+              {% for event in all_events %}
+              <div class="events__item events__item_jazz">
+                <div class="events-item__body">
+                  {% get_current_language as LANGUAGE_CODE %}
+                  {% if LANGUAGE_CODE == 'en' %}
+                  <div class="events-item__content">
+                    <h2>{{ event.type|safe }}</h2>
+                    <h3 class="events-item__content_extra extra_title">{{ event.title_en }}</h3>
+                    <p class="events-item__content_extra extra_caption">{{ event.description_en|safe }}.</p>
+                    <ul class="events-item__content_extra">
+                      <li><i class="icon ion-ios-calendar-outline"></i>{{ event.start_date|date:"d N Y" }}</li>
+                      <li><i class="icon ion-ios-clock-outline"></i>{{ event.start_date|date:"h:iA" }}</li>
+                    </ul>
+                    <div class="events-item__content_extra">
+                      <!-- <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a> -->
+                      <a href="{% url 'reservation' %}" class="btn btn-default">{% trans 'Make a reservation' %}</a>
+
+                    </div>
+                  </div>
+                  {% elif LANGUAGE_CODE == 'ro' %}
+                  <div class="events-item__content">
+                    <h2>{{ event.type|safe }}</h2>
+                    <h3 class="events-item__content_extra extra_title">{{ event.title_en }}</h3>
+                    <p class="events-item__content_extra extra_caption">{{ event.description_en|safe }}.</p>
+                    <ul class="events-item__content_extra">
+                      <li><i class="icon ion-ios-calendar-outline"></i>{{ event.start_date|date:"d N Y" }}</li>
+                      <li><i class="icon ion-ios-clock-outline"></i>{{ event.start_date|date:"h:iA" }}</li>
+                    </ul>
+                    <div class="events-item__content_extra">
+                      <!-- <a href="{% url 'reservation' %}" class="btn btn-default">Book now</a> -->
+                      <a href="{% url 'reservation' %}" class="btn btn-default">{% trans 'Make a reservation' %}</a>
+
+                    </div>
+                  </div>
+                  {% endif %}
+                </div>
+              </div> <!-- .events_item -->
+
+            {% endfor %}
+            {% endif %}
+
+            </div> <!-- .events -->
+          </div>
+        </div> <!-- .row -->
+      </div> <!-- .container-fluid -->
+    </section>
+
+    <!-- section quote -->
+    <section class="section__quote">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <i class="ion-android-hangout"></i>
+            <p class="section-quote__text">I'm a big fan of pastries the size of a baby that contain enough calories for a year. That seems like an effective use of time.</p>
+            <h2 class="section-quote__author">by Mike Birbiglia</h2>
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section> <!-- / .section__quote -->
+
+    <!-- section blog -->
+    <section class="section_blog" id="section_blog">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2 class="section_title">&#8722; Blog &#8722;</h2>
+            <hr class="section_title_line">
+            <!-- <p class="section_caption">Read about our latest news, events and much more about life of our friendly family</p> -->
+            <p class="section_caption">{% trans 'Read about our latest news, events and more about life, kids and recipes' %}</p>
+
+          </div>
+        </div> <!-- .row -->
+        <div class="row">
+          {% for post in posts %}
+          <div class="col-sm-4">
+            <div class="blog__item blog__item1">
+              <div class="blog-item__img">
+                <img src="{{ post.image.url }}" class="lazy img-responsive" alt="...">
+              </div>
+              <div class="blog-item__content">
+                <a href="{% url 'blog_post' pk=post.pk %}" class="blog-item__title">
+                  <h3>{{ post.title }}</h3>
+                </a>
+                <div class="blog-item__info">
+                  <ul class="item-info__list">
+                    <li class="info-list__item"><i class="ion-android-person" aria-hidden="true"></i> {{ post.author.first_name }} {{ post.author.last_name }}</li>
+                    <li class="info-list__item"><i class="ion-android-chat" aria-hidden="true"></i>{{ post.comment_count }}</li>
+                    <li class="info-list__item"><i class="ion-android-calendar" aria-hidden="true"></i>{{ post.created_date|date:"d N Y" }}</li>
+                  </ul>
+                </div>
+                <div class="blog-item__text">
+                  {{ post.text|safe|truncatechars:200 }}
+                </div>
+                <p class="blog-item__tags"><i class="ion-ios-pricetags" aria-hidden="true"></i> <a href="#">{{ post.tags }}</a></p>
+              </div> <!-- / .blog-item__content -->
+            </div> <!-- / .blog__item -->
+          </div>
+          {% endfor %}
+        </div> <!-- .row -->
+        <div class="row">
+          <div class="col" style="text-align:center;">
+            <!-- <button type="button" class="btn btn-default">More posts</button> -->
+            <button type="button" class="btn btn-default"><a href="{% url 'blog' %}">{% trans 'See more' %}</a></button>
+
+          </div>
+         </div> <!-- .row -->
+       </div> <!-- .container -->
+    </section>
+
+    <!-- section newsletter -->
+    <div class="" id="newsletter">
+        {% include 'artisan_app/newsletter.html' %}
+    </div>
+
+    {% include 'artisan_app/map.html' %}
+    {% include 'artisan_app/footer.html' %}
+
+    <!-- JS
+    ================================================== -->
+
+    <!-- JS Global -->
+    <script src="{% static 'plugins/jquery/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- JS Plugins -->
+    <script src="{% static 'plugins/lightbox/dist/js/lightbox.min.js' %}"></script>
+    <script src="{% static 'plugins/isotope/isotope.pkgd.min.js' %}"></script>
+    <!-- <script src="{% static 'plugins/flickity/flickity.pkgd.min.js' %}"></script> -->
+    <!-- <script src="{% static 'plugins/imagesloaded/imagesloaded.pkgd.min.js' %}"></script> -->
+
+    <!-- JS Custom -->
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    <script async src="{% static 'js/google_maps.js' %}"></script>
+
+    <!-- Google Maps -->
+    <script async src="{% static 'js/back_to_top.js' %}"></script>
+
+  </body>
+</html>

@@ -1,0 +1,228 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Google Tag Manager -->
+    <script async>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5HVSXR3');</script>
+    <!-- End Google Tag Manager -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}">
+
+    <title>The Artisan Bakery | {% trans 'Homemade goodies, from 100% natural ingredients, in Brasov' %}</title>
+    <meta name="description" property="og:description" content="Torturi, prajituri, biscuiti, tarte dulci, tarte sarate, paine cu maia, torturi de nunta, torturi aniversari, totul absolut natural si artizanal">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="keywords" content="prajituri, fursecuri, tort, prajituri de casa, tarte dulci, tarte sarate, biscuiti, fursecuri, amandine, tort aniversare, cofetarie, patiserie, paine cu maia, retete, dulciuri brasov, torturi brasov, placinte, prajituri brasov">
+    <meta name="author" content="Artisan Bakery">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://artisanbakery.ro/">
+    <meta property="og:site_name" content="Artisan Bakery">
+    <meta property="og:title" content="Artisan Bakery | Prajituri de casa din ingrediente 100% naturale, Brasov" />
+    <meta property="og:description" content="Torturi, prajituri, biscuiti, tarte dulci, tarte sarate, paine cu maia, torturi de nunta, torturi aniversari, totul absolut natural si artizanal.">
+    <meta property="og:image" content="#">
+    <meta property="og:image:alt" content="Cake for later as a way of life.">
+
+    <link rel="canonical" href="https://artisanbakery.ro/">
+    <!-- CSS Plugins -->
+    <link href="{% static 'plugins/lightbox/dist/css/lightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'plugins/flickity/flickity.min.css' %}" rel="stylesheet">
+    <link href="{% static 'plugins/ionicons/css/ionicons.min.css' %}" rel="stylesheet" type="text/css">
+
+    <!-- CSS Global -->
+    <link href="{% static 'css/styles_v2.min.css' %}" rel="stylesheet">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-194219081-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-194219081-1');
+    </script>
+  </head>
+  <body data-spy="scroll" data-target=".navbar" data-offset="70">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5HVSXR3"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!--  NAVBAR
+    ================================================== -->
+
+    <!-- navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar__collapse" aria-expanded="false">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'home' %}">{{ slogans.brand }}</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar__collapse">
+          <ul class="nav navbar-nav navbar-right">
+
+            <!-- General links romanian -->
+            <li ><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+            <li><a href="{% url 'home' %}#section_about">{% trans 'About' %}</a></li>
+            <li ><a href="{% url 'menu' %}">{% trans 'Menu' %}</a></li>
+            <li class="active"><a href="{% url 'gallery' %}">{% trans 'Gallery' %}</a></li>
+            <li><a href="{% url 'events' %}">{% trans 'Events' %}</a></li>
+            <li><a href="{% url 'blog' %}">Blog</a></li>
+            <li><a href="{% url 'contacts' %}">Contact</a></li>
+            {% if user.is_authenticated %}
+            <li><a class="" href="{% url 'send_email' %}">{% trans 'Send Newsletter' %}</a></li>
+
+            {% endif %}
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav>
+
+      <!-- CONTENT
+      ================================================== -->
+
+      <!-- HEADER
+      ================================================== -->
+      <section class="section section_header section_header__gallery">
+        <!-- ======language button ==== -->
+        <div class="language_dropdown d-flex">
+          <form action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            <h5 class="text-white">{% trans 'Language' %}</h5>
+            <select class="language" name="language">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                        {{ language.code|upper }}
+                    </option>
+                {% endfor %}
+            </select><br>
+              <input class="lang_button" type="submit" value="Go">
+          </form>
+        </div>
+        <!-- ======language button end ==== -->
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12" style="text-align:center">
+
+              <!-- Heading -->
+                <!-- english -->
+              <!-- <h1 class="section__heading section_header__heading text-center">
+                Gallery
+              </h1> -->
+                <!-- romanian -->
+              <h1 class="section__heading section_header__heading text-center">
+                {% trans 'Gallery' %}
+              </h1>
+
+              <!-- Breadcrumbs -->
+              <ol class="breadcrumb">
+                  <!-- english -->
+                <!-- <li><a href="{% url 'home' %}">Home</a></li> -->
+                  <!-- romanian -->
+                  <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+                  <!-- english -->
+                <!-- <li class="active">Gallery</li> -->
+                  <!-- romanian -->
+                <li class="active">{% trans 'Gallery' %}</li>
+
+              </ol>
+
+            </div>
+          </div> <!-- .row -->
+        </div> <!-- .container -->
+        <div class="section_header__bg gallery_bg"></div>
+      </section>
+
+      <!-- section gallery1 -->
+      <section class="section_gallery">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <h2 class="section_title">&#8722; Interior &#8722;</h2>
+              <hr class="section_title_line">
+              <p class="section_caption"></p>
+            </div>
+          </div> <!-- .row -->
+          <div class="row gallery__grid">
+            {% for item in int_photos %}
+            <div class="col-sm-4 col-xs-6 gallery__item">
+              <a href="{{ item.photo.url }}" data-lightbox="gallery">
+                <img src="{{ item.photo.url }}" class="img-responsive" alt="...">
+              </a>
+            </div>
+            {% endfor %}
+
+          </div> <!-- .row -->
+        </div> <!-- .container -->
+      </section>
+      <!-- section gallery2 -->
+      <section class="section_gallery">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <h2 class="section_title">&#8722; {% trans 'Decorations' %} &#8722;</h2>
+              <hr class="section_title_line">
+              <p class="section_caption"></p>
+            </div>
+          </div> <!-- .row -->
+          <div class="row gallery__grid">
+            {% for item in decor_photos %}
+            <div class="col-sm-4 col-xs-6 gallery__item">
+              <a href="{{ item.photo.url }}" data-lightbox="gallery">
+                <img src="{{ item.photo.url }}" class="img-responsive" alt="...">
+              </a>
+            </div>
+            {% endfor %}
+
+          </div> <!-- .row -->
+        </div> <!-- .container -->
+      </section>
+
+    {% include 'artisan_app/newsletter.html' %}
+
+    {% include 'artisan_app/map.html' %}
+    {% include 'artisan_app/footer.html' %}
+
+    <a id="back-to-top" href="#section_welcome" class="btn btn-primary back-to-top" role="button" onclick="topFunction()" title="Click to return on the top page" data-toggle="tooltip" data-placement="left">
+      <i class="ion-android-arrow-up"></i>
+    </a>
+
+    <!-- JS
+    ================================================== -->
+
+    <!-- JS Global -->
+    <script src="{% static 'plugins/jquery/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <!-- JS Plugins -->
+    <script src="{% static 'plugins/lightbox/dist/js/lightbox.min.js' %}"></script>
+    <script src="{% static 'plugins/isotope/isotope.pkgd.min.js' %}"></script>
+    <!-- <script async src="{% static 'plugins/flickity/flickity.pkgd.min.js' %}"></script> -->
+    <script src="{% static 'plugins/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+
+    <!-- JS Custom -->
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    <script async src="{% static 'js/google_maps.js' %}"></script>
+
+    <!-- Google Maps -->
+    <script async src="{% static 'js/back_to_top.js' %}"></script>
+
+  </body>
+</html>

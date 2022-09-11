@@ -1,0 +1,47 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang='en'>
+{% include "services/header.html" %}
+
+  <body data-spy="scroll" data-target=".navbar" data-offset="70">
+
+    <!-- TO THE TOP BUTTON
+    ================================================== -->
+    <a id="back-to-top" href="#section_welcome" class="btn back-to-top" role="button" onclick="topFunction()" title="Click to return on the top page" data-toggle="tooltip" data-placement="left">
+      <i class="ion-android-arrow-up"></i>
+    </a>
+
+    <!-- PRELOADER
+    ================================================== -->
+    <!-- <div id="loader-wrapper">
+      <div id="loader"></div>
+    </div> -->
+    {% include 'services/modals.html' %}
+    {% block content %}
+
+    {% endblock %}
+
+    {% include "services/footer.html" %}
+
+    <!-- JS
+    ================================================== -->
+    <!-- JS Global -->
+    <!-- <script src="{% static 'plugins/jquery/jquery-1.12.4.min.js' %}"></script> -->
+    <script src="{% static 'plugins/jquery/jquery-3.6.0.min.js' %}"></script>
+
+    <script src="{% static 'bootstrap_v4/js/bootstrap.min.js' %}"></script>
+
+    <!-- JS Plugins -->
+    <script src="{% static 'plugins/lightbox/dist/js/lightbox.min.js' %}"></script>
+    <script src="{% static 'plugins/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'plugins/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+
+    <!-- JS Custom -->
+
+    <script src="{% static 'js/custom.js' %}"></script>
+
+    <!-- Back to top -->
+    <script src="{% static 'js/back_to_top.js' %}"></script>
+    </body>
+  </html>
