@@ -2378,19 +2378,19 @@ Last change:	04/21/2017
 }
 
 .section_header .menu_bg {
-  background-image: url(../img/menu_bg.WebP);
+  background-image: url();
 }
 .section_header .gallery_bg {
-  background-image: url(../img/gallery_bg.WebP);
+  background-image: url();
 }
 .section_header .events_bg {
   background-image: url(../img/lawyer.WebP);
 }
 .section_header .blog_bg {
-  background-image: url(../img/slider_bg1.WebP);
+  background-image: url();
 }
 .section_header .contacts_bg {
-  background: url(../img/contact.WebP) no-repeat center center / cover;
+  background: url() no-repeat center center / cover;
 }
 /*** 3. Section: Welcome ***/
 
