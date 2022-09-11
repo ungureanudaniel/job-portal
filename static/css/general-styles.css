@@ -2549,7 +2549,7 @@ Last change:	04/21/2017
   right: 0;
   bottom: 0;
   left: 0;
-  background: #000000 url(../img/slogan_bg.WebP) no-repeat center center / cover;
+  background: #000000 url() no-repeat center center / cover;
   z-index: -999;
   background-attachment: fixed;
 }
@@ -2582,7 +2582,7 @@ Last change:	04/21/2017
   right: 0;
   bottom: 0;
   left: 0;
-  background: #000000 url(../img/map_bg.WebP) no-repeat center center / cover;
+  background: #000000 url() no-repeat center center / cover;
   z-index: -999;
 }
 .section_welcome .welcome-video_bg {
@@ -2722,7 +2722,7 @@ Last change:	04/21/2017
 .section_team {
   padding: 60px 0 100px;
   position: relative;
-  background: url(../img/team_bg7.WebP) no-repeat center top / cover;
+  background: url() no-repeat center top / cover;
 }
 @media (max-width: 767px) {
   .section_team {
@@ -4590,7 +4590,7 @@ select.bs-select-hidden, select.selectpicker {
 }
 /*** 15. Section: Map-heading ***/
 .section_map-heading {
-  background: url(../img/map_bg.WebP) no-repeat center center / cover;
+  background: url() no-repeat center center / cover;
   background-attachment: fixed;
   text-align: center;
   position: relative;
